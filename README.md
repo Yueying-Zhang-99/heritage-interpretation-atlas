@@ -6,7 +6,7 @@
 
 研究课题：**面向历史场所多元叙事的公众阐释设计研究——基于游戏化与混合现实**。
 
-采用 HTML5、CSS、Vanilla JavaScript、D3.js 7.9.0 和 JSON。无需 npm、构建、账户、数据库或外部 CDN。D3 已放入本地 `assets/vendor/`，许可见同目录。
+采用 HTML5、CSS、Vanilla JavaScript、D3.js 7.9.0 和 JSON。阅读无需账户、npm、构建、数据库或外部 CDN；从网页发布修改到 GitHub 时需要一个仅限此仓库的授权令牌。D3 已放入本地 `assets/vendor/`，许可见同目录。
 
 - Timeline：1930年至当前年份，三条理论流、有机概念区域、年代参考线、节点详情。
 - Cluster：六种研究编码聚类，D3 force 定位；多值条目在各组重复显示，圆点大小无量化意义。
@@ -32,6 +32,7 @@ js/cluster.js              多值编码聚类
 js/network.js              概念关系网络
 js/matrix.js               可排序文献表
 js/detail.js               文献、人物、概念详情
+js/editor.js               网页编辑器、浏览器草稿与 GitHub 发布
 data/knowledge.json        正式数据源，后续主要编辑此文件
 data/knowledge-snapshot.js 双击HTML时使用的离线预览快照
 assets/vendor/             D3.js 与许可证
@@ -47,7 +48,7 @@ tools/check.cjs            数据与文件检查
 
 可立即离线使用全部视图。由于浏览器对 `file://` 的 JSON fetch 限制，默认加载明确标注的离线快照。
 
-修改 `data/knowledge.json` 后，点击页面下方 **打开本地 JSON** 并选择该文件，即可使用新数据。文件只在本机读取，不上传；选择在本次页面会话有效，刷新后会回到快照。可选运行 `node tools/sync-snapshot.cjs` 来同步默认快照。
+修改 `data/knowledge.json` 后，点击页面下方 **打开本地 JSON** 并选择该文件，即可使用新数据。文件只在本机读取；网页编辑后可保存浏览器草稿或导出 JSON。可选运行 `node tools/sync-snapshot.cjs` 来同步默认快照。
 
 ### 持续研究编辑：建议使用本地服务
 
@@ -58,6 +59,14 @@ node tools/serve.cjs
 ```
 
 访问 `http://127.0.0.1:4173`。使用本地 HTTP 服务或 GitHub Pages 时，页面**只以 knowledge.json 为数据源**；编辑 JSON 后刷新即可，无需更新快照或运行构建。HTTP 数据损坏会显示错误，不会静默退回过期快照。
+
+### 直接在网页编辑并发布
+
+在页面下方点击 **管理内容 / 编辑与发布**。可新增、修改、删除条目，也可在“分类标签”中新增、改名或删除标签。条目中的多值标签每行填写一个。点击“保存到草稿”后，变更会保留在当前浏览器；建议使用“导出 JSON 备份”另存一份。
+
+要让所有访问者看到修改，请在 GitHub 创建一个 **fine-grained personal access token**，Repository access 仅选择 `Yueying-Zhang-99/heritage-interpretation-atlas`，Repository permissions → **Contents: Read and write**。在网页编辑器底部粘贴令牌，点击 **发布到 GitHub**。网页直接调用 GitHub Contents API 更新 `data/knowledge.json`，会先检查仓库中的版本，防止覆盖别人刚发布的改动。令牌只在当前页面输入框里使用，不写入本地草稿或仓库，关闭编辑器后会清空。GitHub Pages 的自动部署通常需要片刻。
+
+ChatGPT 与 GitHub 的连接不会自动授权公开网页；因此在网页内发布必须单独输入令牌。请勿将令牌写进条目、JSON 文件或分享给他人。
 
 ## 4. How to add a document
 
