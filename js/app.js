@@ -20,8 +20,7 @@
     const fields={type:'Document Type',paradigm:'Paradigm',themes:'Theme',concepts:'Key Concepts',heritage_conception:'Heritage Conception',interpretation_model:'Interpretation Model',authority_structure:'Authority',public_role:'Public Role',narrative_structure:'Narrative',media:'Media',public_actions:'Public Actions'};
     for(const [key,label]of Object.entries(fields)){const group=A.el('fieldset');group.append(A.el('legend','',label));const values=[...new Set([...A.arr(A.data.vocabulary[key]),...A.categories(key)])].sort();for(const value of values){const l=A.el('label','check-option'),input=A.el('input');input.type='checkbox';input.checked=state.filters[key]?.has(String(value))||false;input.onchange=()=>{state.filters[key]??=new Set();input.checked?state.filters[key].add(String(value)):state.filters[key].delete(String(value));A.render();};l.append(input,document.createTextNode(String(value)));group.append(l);}root.append(group);}
   };
-  A.load=(raw,source)=>{A.setData(raw);A.reset();$('#total-count').textContent=String(A.records.length).padStart(2,'0');$('#data-status').classList.remove('error');$('#data-status').textContent=`${source} · ${A.data.meta.is_sample?'示例数据库：摘要、编码与关系待原文校核。':'已加载知识库。'}`;};
-  $('#current-year').textContent=new Date().getFullYear();
+  A.load=(raw,source)=>{A.setData(raw);A.reset();$('#data-status').classList.remove('error');$('#data-status').textContent=`${source} · ${A.data.meta.is_sample?'示例数据库：摘要、编码与关系待原文校核。':'已加载知识库。'}`;};
   for(const [key,label]of A.lenses){const b=A.el('button','',label);b.dataset.lens=key;b.onclick=()=>{state.lens=key;A.render();};$('#lenses').append(b);}
   for(const [key,label]of Object.entries(A.fields)){const o=A.el('option','',label);o.value=key;$('#cluster-by').append(o);}
   for(const type of A.relationTypes){const o=A.el('option','',type);o.value=type;$('#relation-type').append(o);}
