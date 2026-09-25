@@ -150,7 +150,7 @@ Timeline 只连接已显示的条目。Network 保留筛选结果及其相邻辅
 
 项目使用相对路径，不依赖网站域名根路径，因此适用于 `https://用户名.github.io/仓库名/`。无需 npm build、Actions 工作流或服务端。`.nojekyll` 应保留。发布后编辑并提交 `data/knowledge.json` 即可更新数据，等待 Pages 更新后刷新页面。
 
-本次交付是可部署项目，不代表已在您的 GitHub 账户创建仓库或上线。请注意公开网站的 JSON、笔记和 PDF 均可被访客读取。
+当前仓库已于 2026-09-25 部署到 GitHub Pages：<https://yueying-zhang-99.github.io/heritage-interpretation-atlas/>。请注意公开网站的 JSON、笔记和 PDF 均可被访客读取。
 
 发布设置参考：[GitHub Pages 官方说明](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。本次实际检查记录见 [VALIDATION.md](VALIDATION.md)。
 

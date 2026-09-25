@@ -33,7 +33,7 @@ Local HTTP preview at `http://127.0.0.1:4173`:
 
 ## Boundaries
 
-- GitHub Pages has not been deployed. Relative resource paths and `.nojekyll` are prepared for a repository-root branch deployment. Instructions checked against [GitHub documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+- GitHub Pages was enabled on 2026-09-25 from `main` and `/(root)`. Its build completed successfully, and the public URL loaded 16 entries from `knowledge.json`; Timeline and Matrix were checked in the live browser. Relative resource paths and `.nojekyll` are used. Configuration follows [GitHub documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 - The browser automation environment blocks `file://` navigation, so double-click/offline mode was not browser-tested. Its snapshot parity and script syntax were checked; the normal HTTP mode and local JSON chooser were browser-tested.
 - No PDF files were supplied; the missing-PDF state was tested. Actual PDF opening should be checked after adding a PDF.
 - Research text and relationships are explicitly marked as sample coding pending source-level verification.
