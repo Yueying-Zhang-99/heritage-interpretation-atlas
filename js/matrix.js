@@ -1,0 +1,8 @@
+Atlas.matrix=function(rows){
+  const A=Atlas,columns=[['year','Year'],['title','Title'],['creator','Author / Organisation'],['type','Type'],['paradigm','Paradigm'],['themes','Themes'],['heritage_conception','Heritage Conception'],['interpretation_model','Interpretation Model'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Media']];
+  const value=(d,key)=>key==='creator'?[A.text(d.author),d.organization].filter(Boolean).join(' / '):A.text(d[key]);
+  const sorted=[...rows].sort((a,b)=>A.state.direction*(A.state.sort==='year'?a.year-b.year:value(a,A.state.sort).localeCompare(value(b,A.state.sort),'zh-CN',{numeric:true})));
+  const table=A.el('table','library'),head=A.el('thead'),header=A.el('tr');
+  for(const [key,title]of columns){const th=A.el('th');th.scope='col';th.setAttribute('aria-sort',A.state.sort===key?(A.state.direction===1?'ascending':'descending'):'none');const button=A.el('button','',title+(A.state.sort===key?(A.state.direction===1?' ↑':' ↓'):''));button.onclick=()=>{A.state.direction=A.state.sort===key?-A.state.direction:1;A.state.sort=key;A.render();};th.append(button);header.append(th);}head.append(header);table.append(head);
+  const body=A.el('tbody');for(const d of sorted){const tr=A.el('tr');for(const [key]of columns){const td=A.el('td',key==='title'?'title-cell':key==='year'?'year-cell':'');if(key==='title'){const b=A.el('button','',d.title);b.onclick=()=>A.openDetail(d.id);td.append(b,A.el('small','',d.title_zh||''));}else td.textContent=key==='year'?(d.year_label||d.year):(value(d,key)||'—');tr.append(td);}body.append(tr);}table.append(body);document.querySelector('#chart').append(table);
+};

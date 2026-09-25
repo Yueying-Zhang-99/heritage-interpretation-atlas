@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="遗产阐释知识图谱：探索遗产价值、公众参与和多元叙事的理论发展。">
+  <title>Heritage Interpretation · Knowledge Atlas</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f5f1e8'/%3E%3Ccircle cx='12' cy='12' r='8' fill='%23a78745' fill-opacity='.7'/%3E%3Ccircle cx='21' cy='15' r='8' fill='%23747b53' fill-opacity='.7'/%3E%3Ccircle cx='16' cy='23' r='8' fill='%23a55d46' fill-opacity='.7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <script defer src="assets/vendor/d3.v7.min.js"></script>
+  <script defer src="data/knowledge-snapshot.js"></script>
+  <script defer src="js/core.js"></script>
+  <script defer src="js/timeline.js"></script>
+  <script defer src="js/cluster.js"></script>
+  <script defer src="js/network.js"></script>
+  <script defer src="js/matrix.js"></script>
+  <script defer src="js/detail.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳至知识图谱</a>
+  <header class="masthead">
+    <a class="wordmark" href="./index.html" aria-label="遗产阐释知识图谱首页"><span class="atlas-mark">H<span>i</span></span><span>RESEARCH ATLAS<br><small>遗产阐释 · 研究档案</small></span></a>
+    <div class="masthead-meta">ARCHITECTURE / HERITAGE / DESIGN<span>AN EVOLVING RESEARCH COLLECTION</span></div>
+    <a href="#about" class="about-link">About the atlas ↗</a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><div class="eyebrow">遗产阐释知识图谱 <span>1930 — <span id="current-year">2026</span></span></div><h1 id="title">HERITAGE INTERPRETATION<br><em>KNOWLEDGE ATLAS</em></h1></div>
+      <div class="intro-aside"><p>Mapping the evolution of heritage values,<br>interpretation, public participation<br>and plural narratives.</p><div class="collection-count"><strong id="total-count">—</strong><span>RESEARCH ENTRIES<br>持续生长的研究档案</span></div></div>
+    </section>
+    <section id="workspace" class="workspace" aria-label="知识图谱工作区">
+      <div class="primary-bar"><nav class="views" aria-label="图谱视图"><button data-view="timeline" class="active" aria-pressed="true"><span>01</span> Timeline</button><button data-view="cluster" aria-pressed="false"><span>02</span> Cluster</button><button data-view="network" aria-pressed="false"><span>03</span> Network</button><button data-view="matrix" aria-pressed="false"><span>04</span> Matrix / Library</button></nav><div class="search-wrap"><span aria-hidden="true">⌕</span><input type="search" id="search" placeholder="搜索文献、作者或概念…" aria-label="搜索文献、作者或概念"></div><button id="filters-button" class="outline-button" aria-expanded="false" aria-controls="filter-dialog">Filters <span id="filter-count">＋</span></button></div>
+      <div class="lens-bar"><span class="label">RESEARCH LENS</span><div id="lenses" class="lenses" role="group" aria-label="研究视角"></div><button id="reset" class="text-button">重置视图 ↺</button></div>
+      <div class="view-heading"><div><span class="eyebrow" id="view-number">VIEW 01 / THEORETICAL GENEALOGY</span><h2 id="view-title">Tracing the shifts in heritage thinking<span>遗产阐释的理论谱系</span></h2></div><div class="view-tools"><label id="cluster-control" hidden>Cluster by <select id="cluster-by" aria-label="聚类维度"></select></label><label id="network-control" hidden>关系 <select id="relation-type" aria-label="关系类型"><option value="">All relations</option></select></label><span id="result-count" role="status" aria-live="polite">正在加载…</span></div></div>
+      <div class="legend" id="legend" aria-label="图例"></div>
+      <div id="chart" class="chart" aria-label="交互图谱"></div>
+      <div class="chart-footer"><p id="view-hint">选择节点阅读文献 · 虚线表示研究者建立的分析关系</p><span>EXPLORE / CONNECT / REFLECT</span></div>
+      <div class="data-bar"><p id="data-status" role="status">正在加载知识库…</p><label class="text-button file-label">打开本地 JSON<input type="file" id="json-file" accept=".json,application/json"></label></div>
+    </section>
+    <section id="about" class="about"><div class="eyebrow">ABOUT THE ATLAS <span>01 / RESEARCH CONTEXT</span></div><div><h2>A living map of<br><em>heritage interpretation.</em></h2><p>Heritage Interpretation Knowledge Atlas is an evolving research database that maps the theoretical development of heritage interpretation, from monument-centred conservation to plural, participatory and technology-mediated interpretation.</p></div><div class="research-note"><span class="label">DOCTORAL RESEARCH</span><p>面向历史场所多元叙事的公众阐释设计研究<br>—— 基于游戏化与混合现实</p><p class="small">The atlas forms part of doctoral research on public interpretation design for plural narratives of historic places through gamification and mixed reality.</p><p class="small">三条理论流并行交织，不代表彼此替代的线性进步。颜色与位置用于研究组织，不代表学术影响力。</p></div></section>
+  </main>
+  <footer class="site-footer"><span>HERITAGE INTERPRETATION / KNOWLEDGE ATLAS</span><span>研究、阅读与持续修订</span></footer>
+  <dialog id="filter-dialog" class="side-panel" aria-labelledby="filter-title"><div class="panel-top"><span class="eyebrow">REFINE THE COLLECTION</span><button class="close-button" data-close="filter-dialog" aria-label="关闭筛选">×</button></div><h2 id="filter-title">Filters <span>筛选文献</span></h2><p class="small">同一维度满足任一选项；不同维度同时满足。</p><div id="filter-fields"></div><div class="filter-actions"><button id="clear-filters" class="outline-button">清空筛选</button><button data-close="filter-dialog" class="solid-button">查看结果</button></div></dialog>
+  <dialog id="detail-dialog" class="side-panel detail-panel" aria-labelledby="detail-title"><div class="panel-top"><span class="eyebrow">READING ROOM / 文献详情</span><button class="close-button" data-close="detail-dialog" aria-label="关闭详情">×</button></div><div id="detail-content"></div></dialog>
+  <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
+  <noscript>请启用 JavaScript 以使用交互知识图谱。</noscript>
+</body>
+</html>
