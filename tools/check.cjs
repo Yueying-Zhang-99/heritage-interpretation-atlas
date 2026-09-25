@@ -8,7 +8,7 @@ const sandbox={window:{}};vm.createContext(sandbox);vm.runInContext(read('js/cor
 const data=JSON.parse(read('data/knowledge.json'));A.setData(data);
 assert.equal(A.byId.size,data.documents.length+data.nodes.length);
 const html=read('index.html');
-for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const ref=match[1];if(/^(?:#|data:|https?:)/.test(ref))continue;assert.ok(fs.existsSync(path.join(root,ref)),`Missing reference: ${ref}`);}
+for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){const ref=match[1];if(/^(?:#|data:|https?:)/.test(ref))continue;assert.ok(fs.existsSync(path.join(root,ref.split(/[?#]/)[0])),`Missing reference: ${ref}`);}
 for(const file of fs.readdirSync(path.join(root,'js'))){new vm.Script(read('js/'+file),{filename:file});}
 new vm.Script(read('data/knowledge-snapshot.js'));new vm.Script(read('assets/vendor/d3.v7.min.js'));
 vm.runInContext(read('data/knowledge-snapshot.js'),sandbox);assert.equal(JSON.stringify(sandbox.window.ATLAS_SNAPSHOT),JSON.stringify(data),'Offline snapshot differs from JSON');
