@@ -23,6 +23,8 @@ window.Atlas = (() => {
       if(d.relations!=null&&!Array.isArray(d.relations))throw new Error(`${d.id} 的 relations 必须为数组。`);
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
       if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
+      if(d.timeline_topic!=null&&!['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'].includes(d.timeline_topic))throw new Error(`${d.id} 的 timeline_topic 无效。`);
+      if(d.display_category!=null&&!['Charter / Policy','Theory / Book','Research Paper','Research Topic'].includes(d.display_category))throw new Error(`${d.id} 的 display_category 无效。`);
       if(d.importance!=null&&![1,2,3].includes(Number(d.importance)))throw new Error(`${d.id} 的 importance 必须为 1、2 或 3。`);
       if(d.annotations?.some(a=>!a||typeof a!=='object'))throw new Error(`${d.id} 包含无效标注。`);
       for(const r of d.relations||[])if(!r||typeof r.target!=='string'||!relationTypes.includes(r.type))throw new Error(`${d.id} 包含无效关系。`);

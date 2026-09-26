@@ -141,7 +141,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Early international principles for conserving historic monuments.",
       "importance_note": "Provisional research coding: Early conservation context. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "tilden",
@@ -212,7 +213,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Interpretation connects facts to meaning and provokes visitor reflection.",
       "importance_note": "Provisional research coding: Foundational interpretation text. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience"
     },
     {
       "id": "venice",
@@ -276,7 +278,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "International principles for conserving and restoring monuments and sites.",
       "importance_note": "Provisional research coding: Major conservation framework. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "world-heritage",
@@ -334,7 +337,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "A global framework for identifying and protecting cultural and natural heritage.",
       "importance_note": "Provisional research coding: Global heritage policy framework. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "burra",
@@ -398,7 +402,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Cultural significance guides conservation decisions for places.",
       "importance_note": "Provisional research coding: Values-based conservation framework. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "gaze",
@@ -458,7 +463,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Tourism experiences are shaped by socially organized ways of seeing.",
       "importance_note": "Provisional research coding: Broader visitor theory. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience"
     },
     {
       "id": "nara",
@@ -527,7 +533,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Authenticity must be understood within diverse cultural contexts.",
       "importance_note": "Provisional research coding: Important expansion of authenticity across cultures. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "dissonant",
@@ -588,7 +595,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Heritage meanings can conflict across groups and claims.",
       "importance_note": "Provisional research coding: Key account of conflicting heritage claims. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "id": "xian",
@@ -646,7 +654,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Setting contributes to the significance of heritage sites.",
       "importance_note": "Provisional research coding: Context and setting guidance. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "faro",
@@ -711,7 +720,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Heritage value is linked to communities, rights, and participation.",
       "importance_note": "Provisional research coding: Major shift toward heritage communities and rights. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "id": "smith",
@@ -783,7 +793,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Heritage is a cultural process shaped by power and practice.",
       "importance_note": "Provisional research coding: Key critical heritage account of power and practice. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "id": "ename",
@@ -853,7 +864,8 @@ window.ATLAS_SNAPSHOT = {
           "source": "ICOMOS Interpretation Charter, 2008",
           "location": "Principle 2, Context and Setting, item 3"
         }
-      ]
+      ],
+      "timeline_topic": "Interpretation & experience"
     },
     {
       "id": "hul",
@@ -911,7 +923,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Urban heritage is understood within the wider living city.",
       "importance_note": "Provisional research coding: Extends the heritage frame to living urban environments. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Conservation & values"
     },
     {
       "id": "participatory",
@@ -976,7 +989,8 @@ window.ATLAS_SNAPSHOT = {
       ],
       "preview": "Working topic: visitor and community participation in heritage.",
       "placeholder": true,
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "id": "plural",
@@ -1035,7 +1049,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Working topic: multiple voices and co-interpretation.",
       "placeholder": true,
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "id": "tourism",
@@ -1093,7 +1108,8 @@ window.ATLAS_SNAPSHOT = {
       "relations": [],
       "preview": "Responsible tourism connects visitor experience and community rights.",
       "importance_note": "Provisional research coding: Connects interpretation with community-oriented tourism. Reassess after close reading and citation review.",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience"
     },
     {
       "node_type": "document",
@@ -1138,7 +1154,8 @@ window.ATLAS_SNAPSHOT = {
           "source": "Milgram & Kishino, 1994",
           "location": "Abstract"
         }
-      ]
+      ],
+      "timeline_topic": "Digital methods"
     },
     {
       "node_type": "document",
@@ -1176,7 +1193,8 @@ window.ATLAS_SNAPSHOT = {
       "preview": "An early technical account of augmented-reality systems and their defining features.",
       "summary": "待精读：增强现实的技术定义及其与遗产阐释场景的适用边界。",
       "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Digital methods"
     },
     {
       "node_type": "document",
@@ -1218,7 +1236,8 @@ window.ATLAS_SNAPSHOT = {
           "source": "UNESCO, 2003",
           "location": "Article 2, Access to the digital heritage"
         }
-      ]
+      ],
+      "timeline_topic": "Digital methods"
     },
     {
       "node_type": "document",
@@ -1261,7 +1280,8 @@ window.ATLAS_SNAPSHOT = {
           "source": "The London Charter, version 2.1, 2009",
           "location": "Principle 2, Aims and Methods"
         }
-      ]
+      ],
+      "timeline_topic": "Digital methods"
     },
     {
       "node_type": "document",
@@ -1299,7 +1319,8 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Practical approaches to participation by visitors and communities in cultural institutions.",
       "summary": "待精读：参与式文化机构的方法与公众角色，可作为公众阐释设计的参考。",
       "source_url": "https://participatorymuseum.org/",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices"
     },
     {
       "node_type": "document",
@@ -1340,7 +1361,8 @@ window.ATLAS_SNAPSHOT = {
       "preview": "A conceptual definition of gamification for non-game contexts.",
       "summary": "待精读：区分游戏化、游戏性与完整游戏，作为历史场所互动设计的概念基线。",
       "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
-      "excerpts": []
+      "excerpts": [],
+      "timeline_topic": "Digital methods"
     }
   ],
   "nodes": [

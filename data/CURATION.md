@@ -12,3 +12,5 @@ Source excerpts are stored as short verbatim quotations in `excerpts`, with `sou
 - Milgram & Kishino, 1994, publisher abstract: https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p
 
 The UNESCO digital-heritage charter concerns preservation of digital resources. It should not be treated as a direct charter on interpreting physical historic places with AR/MR. The London Charter is more directly relevant to evidence, transparency and documentation in heritage visualisation.
+
+The Timeline plots publication year on the horizontal axis and a provisional, editable topic group on the vertical axis. These four working groups organize the current sample; they are not established theoretical streams. Each document has one `timeline_topic` for layout, and its other theme tags remain available in filters and the Cluster view. The author can reassign the topic in the editor as the review develops.

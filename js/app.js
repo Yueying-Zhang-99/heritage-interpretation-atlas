@@ -1,7 +1,7 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const viewInfo={timeline:['01 / DOCUMENT TIMELINE','Ideas, documents & methods over time','Provisional contribution: 1 context · 2 field-shaping · 3 direct theory shift. Dashed: reading pending.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
+  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: editable working topic · Size: provisional contribution · Dashed: reading pending.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
     A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart');
     const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
