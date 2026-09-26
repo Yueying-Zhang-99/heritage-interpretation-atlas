@@ -142,7 +142,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Early international principles for conserving historic monuments.",
       "importance_note": "Provisional research coding: Early conservation context. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Athens Charter",
+      "map_maker": "International Museums Office"
     },
     {
       "id": "tilden",
@@ -214,7 +216,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Interpretation connects facts to meaning and provokes visitor reflection.",
       "importance_note": "Provisional research coding: Foundational interpretation text. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Interpretation & experience"
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "Interpreting Our Heritage",
+      "map_maker": "Freeman Tilden"
     },
     {
       "id": "venice",
@@ -279,7 +283,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "International principles for conserving and restoring monuments and sites.",
       "importance_note": "Provisional research coding: Major conservation framework. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Venice Charter",
+      "map_maker": "ICOMOS"
     },
     {
       "id": "world-heritage",
@@ -338,7 +344,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "A global framework for identifying and protecting cultural and natural heritage.",
       "importance_note": "Provisional research coding: Global heritage policy framework. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "World Heritage Convention",
+      "map_maker": "UNESCO"
     },
     {
       "id": "burra",
@@ -403,7 +411,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Cultural significance guides conservation decisions for places.",
       "importance_note": "Provisional research coding: Values-based conservation framework. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Burra Charter",
+      "map_maker": "Australia ICOMOS"
     },
     {
       "id": "gaze",
@@ -464,7 +474,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Tourism experiences are shaped by socially organized ways of seeing.",
       "importance_note": "Provisional research coding: Broader visitor theory. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Interpretation & experience"
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "The Tourist Gaze",
+      "map_maker": "John Urry"
     },
     {
       "id": "nara",
@@ -534,7 +546,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Authenticity must be understood within diverse cultural contexts.",
       "importance_note": "Provisional research coding: Important expansion of authenticity across cultures. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Nara Document",
+      "map_maker": "ICOMOS / UNESCO"
     },
     {
       "id": "dissonant",
@@ -596,7 +610,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Heritage meanings can conflict across groups and claims.",
       "importance_note": "Provisional research coding: Key account of conflicting heritage claims. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Dissonant Heritage",
+      "map_maker": "Tunbridge & Ashworth"
     },
     {
       "id": "xian",
@@ -655,7 +671,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Setting contributes to the significance of heritage sites.",
       "importance_note": "Provisional research coding: Context and setting guidance. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Xi’an Declaration",
+      "map_maker": "ICOMOS"
     },
     {
       "id": "faro",
@@ -721,7 +739,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Heritage value is linked to communities, rights, and participation.",
       "importance_note": "Provisional research coding: Major shift toward heritage communities and rights. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Faro Convention",
+      "map_maker": "Council of Europe"
     },
     {
       "id": "smith",
@@ -794,7 +814,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Heritage is a cultural process shaped by power and practice.",
       "importance_note": "Provisional research coding: Key critical heritage account of power and practice. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Uses of Heritage",
+      "map_maker": "Laurajane Smith"
     },
     {
       "id": "ename",
@@ -865,7 +887,9 @@ window.ATLAS_SNAPSHOT = {
           "location": "Principle 2, Context and Setting, item 3"
         }
       ],
-      "timeline_topic": "Interpretation & experience"
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "Interpretation Charter",
+      "map_maker": "ICOMOS"
     },
     {
       "id": "hul",
@@ -924,7 +948,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Urban heritage is understood within the wider living city.",
       "importance_note": "Provisional research coding: Extends the heritage frame to living urban environments. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Conservation & values"
+      "timeline_topic": "Conservation & values",
+      "map_title": "Historic Urban Landscape",
+      "map_maker": "UNESCO"
     },
     {
       "id": "participatory",
@@ -990,7 +1016,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Working topic: visitor and community participation in heritage.",
       "placeholder": true,
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Participatory Heritage",
+      "map_maker": "Research topic"
     },
     {
       "id": "plural",
@@ -1050,7 +1078,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Working topic: multiple voices and co-interpretation.",
       "placeholder": true,
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Plural Narratives",
+      "map_maker": "Research topic"
     },
     {
       "id": "tourism",
@@ -1109,7 +1139,9 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Responsible tourism connects visitor experience and community rights.",
       "importance_note": "Provisional research coding: Connects interpretation with community-oriented tourism. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Interpretation & experience"
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "Heritage Tourism Charter",
+      "map_maker": "ICOMOS"
     },
     {
       "node_type": "document",
@@ -1155,7 +1187,9 @@ window.ATLAS_SNAPSHOT = {
           "location": "Abstract"
         }
       ],
-      "timeline_topic": "Digital methods"
+      "timeline_topic": "Digital methods",
+      "map_title": "Mixed Reality Displays",
+      "map_maker": "Milgram & Kishino"
     },
     {
       "node_type": "document",
@@ -1194,7 +1228,9 @@ window.ATLAS_SNAPSHOT = {
       "summary": "待精读：增强现实的技术定义及其与遗产阐释场景的适用边界。",
       "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
       "excerpts": [],
-      "timeline_topic": "Digital methods"
+      "timeline_topic": "Digital methods",
+      "map_title": "A Survey of AR",
+      "map_maker": "Ronald Azuma"
     },
     {
       "node_type": "document",
@@ -1237,7 +1273,9 @@ window.ATLAS_SNAPSHOT = {
           "location": "Article 2, Access to the digital heritage"
         }
       ],
-      "timeline_topic": "Digital methods"
+      "timeline_topic": "Digital methods",
+      "map_title": "Digital Heritage Charter",
+      "map_maker": "UNESCO"
     },
     {
       "node_type": "document",
@@ -1281,7 +1319,9 @@ window.ATLAS_SNAPSHOT = {
           "location": "Principle 2, Aims and Methods"
         }
       ],
-      "timeline_topic": "Digital methods"
+      "timeline_topic": "Digital methods",
+      "map_title": "The London Charter",
+      "map_maker": "London Charter"
     },
     {
       "node_type": "document",
@@ -1320,7 +1360,9 @@ window.ATLAS_SNAPSHOT = {
       "summary": "待精读：参与式文化机构的方法与公众角色，可作为公众阐释设计的参考。",
       "source_url": "https://participatorymuseum.org/",
       "excerpts": [],
-      "timeline_topic": "Participation & plural voices"
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "The Participatory Museum",
+      "map_maker": "Nina Simon"
     },
     {
       "node_type": "document",
@@ -1362,7 +1404,9 @@ window.ATLAS_SNAPSHOT = {
       "summary": "待精读：区分游戏化、游戏性与完整游戏，作为历史场所互动设计的概念基线。",
       "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
       "excerpts": [],
-      "timeline_topic": "Digital methods"
+      "timeline_topic": "Digital methods",
+      "map_title": "Defining Gamification",
+      "map_maker": "Deterding et al."
     }
   ],
   "nodes": [

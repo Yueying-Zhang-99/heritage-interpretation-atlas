@@ -108,3 +108,19 @@ main{padding-top:10px;padding-bottom:16px}
 .compact-map .timeline-band-label{top:8px}
 @media(max-width:760px){.document-heading h1{font-size:25px}.view-heading{padding-top:12px}}
 .timeline-point{transform:none}
+
+/* Always-visible title and maker labels beside each time point. */
+.map-node{position:absolute;width:140px;height:30px;padding:0;display:flex;gap:6px;align-items:flex-start;text-align:left;color:#213039;z-index:1}
+.map-node.reverse{flex-direction:row-reverse;text-align:right}
+.map-node:hover,.map-node:focus-visible{color:#0b6474;z-index:3}
+.map-marker{flex:0 0 22px;width:22px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1px}
+.map-circle{width:12px;height:12px;border:2px solid var(--entry-color);background:var(--entry-color);border-radius:50%;box-shadow:0 0 0 2px #fff;flex:none;transition:transform .15s}
+.map-circle[data-size="2"]{width:17px;height:17px}
+.map-circle[data-size="3"]{width:21px;height:21px}
+.map-circle.is-placeholder{background:#fff;border-style:dashed}
+.map-node:hover .map-circle,.map-node:focus-visible .map-circle{transform:scale(1.18)}
+.map-year{font-size:8px;line-height:1;color:#718189;white-space:nowrap}
+.map-label{width:112px;min-width:0;display:flex;flex-direction:column;gap:1px}
+.map-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:10px;font-weight:700;line-height:1.05;letter-spacing:-.01em}
+.map-maker{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#718087;font-size:9px;line-height:1.1}
+@media(max-width:760px){.map-title{font-size:10px}.map-maker{font-size:9px}}

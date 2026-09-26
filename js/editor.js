@@ -5,7 +5,7 @@ Atlas.editor=(()=>{
   const api='https://api.github.com/repos/Yueying-Zhang-99/heritage-interpretation-atlas/contents/data/knowledge.json';
   const tagFields={type:'条目类型',paradigm:'理论范式',themes:'主题',concepts:'关键概念',heritage_conception:'遗产观',interpretation_model:'阐释模式',authority_structure:'阐释权力',public_role:'公众角色',narrative_structure:'叙事结构',media:'媒介技术',public_actions:'公众行动'};
   const listFields=['author',...Object.keys(tagFields).filter(k=>k!=='type')];
-  const simpleFields={id:'唯一 ID',title:'英文标题',title_zh:'中文标题',year:'年份',year_label:'年份显示',organization:'机构',preview:'首页重点概括（建议英文）',summary:'内容摘要',paradigm_shift:'理论转向',significance:'研究意义',phd_relevance:'博士研究关联',importance_note:'贡献度评分依据',my_notes:'阅读笔记',source_url:'来源网址',pdf:'PDF 路径或网址',coding_status:'编码状态'};
+  const simpleFields={id:'唯一 ID',title:'英文标题',title_zh:'中文标题',year:'年份',year_label:'年份显示',organization:'机构',map_title:'图谱短标题（英文）',map_maker:'图谱机构或作者短名',preview:'首页重点概括（建议英文）',summary:'内容摘要',paradigm_shift:'理论转向',significance:'研究意义',phd_relevance:'博士研究关联',importance_note:'贡献度评分依据',my_notes:'阅读笔记',source_url:'来源网址',pdf:'PDF 路径或网址',coding_status:'编码状态'};
   let baseline=null,tab='entries',selected=null,editing=false;
   const clone=v=>JSON.parse(JSON.stringify(v));
   const status=(message,error=false)=>{const p=$('#editor-status');p.textContent=message;p.classList.toggle('error',error);};
