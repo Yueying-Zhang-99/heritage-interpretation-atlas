@@ -129,3 +129,24 @@ main{padding-top:6px}
 .document-heading{margin-bottom:6px}
 .view-heading{padding:8px 0 3px}
 .legend{padding:0 0 4px}
+
+/* Use the full display on wide screens instead of keeping a small fixed-size atlas. */
+@media(min-width:1500px){
+  main{max-width:none;padding-left:3%;padding-right:3%}
+  .document-heading h1{font-size:clamp(32px,2vw,42px)}
+  .document-heading p{font-size:14px}
+  .view-heading h2{font-size:24px}
+  .legend{font-size:12px}
+  .compact-map .timeline-axis{height:42px}
+  .compact-map .timeline-tick{font-size:12px}
+  .compact-map .timeline-band-label{font-size:14px;width:180px;top:14px}
+  .map-node{width:190px;height:44px;gap:8px}
+  .map-marker{flex-basis:30px;width:30px;gap:3px}
+  .map-circle{width:16px;height:16px}
+  .map-circle[data-size="2"]{width:22px;height:22px}
+  .map-circle[data-size="3"]{width:28px;height:28px}
+  .map-year{font-size:10px}
+  .map-label{width:152px;gap:2px}
+  .map-title{font-size:13px;line-height:1.1}
+  .map-maker{font-size:11px;line-height:1.15}
+}
