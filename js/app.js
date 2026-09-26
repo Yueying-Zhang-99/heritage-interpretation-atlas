@@ -1,17 +1,16 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const viewInfo={timeline:['01 / THEORETICAL GENEALOGY','Tracing the shifts in heritage thinking','遗产阐释的理论谱系','选择节点阅读文献 · 空心节点为研究主题，年代为示意位置'],cluster:['02 / CONCEPTUAL CLUSTERS','Finding common ground','研究编码的交汇','圆点大小一致，不表示学术影响力 · 多值条目在每个所属组出现 · 悬停查看标题'],network:['03 / RELATIONAL READING','Ideas in conversation','文献、人物与概念的关系','方形 DOCUMENT · 菱形 PERSON · 圆形 CONCEPT · 连线悬停查看关系 · 可拖动节点'],matrix:['04 / RESEARCH LIBRARY','The reading collection','结构化文献与研究编码','点击列名排序 · 点击标题阅读详情 · 横向滚动查看全部编码']};
+  const viewInfo={timeline:['01 / DOCUMENT TIMELINE','Ideas, documents & methods over time','Provisional contribution: 1 context · 2 field-shaping · 3 direct theory shift. Dashed: reading pending.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
-    A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();
-    const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').replaceChildren(document.createTextNode(info[1]),A.el('span','',info[2]));$('#view-hint').textContent=info[3];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
+    A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart');
+    const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
     document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===state.view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
-    document.querySelectorAll('[data-lens]').forEach(b=>{const active=b.dataset.lens===state.lens;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
     $('#cluster-control').hidden=state.view!=='cluster';$('#network-control').hidden=state.view!=='network';
     const count=Object.values(state.filters).reduce((n,set)=>n+set.size,0)+(state.minYear!==''?1:0)+(state.maxYear!==''?1:0);$('#filter-count').textContent=count||'＋';
-    const legend=$('#legend');legend.replaceChildren();const values=A.categories(state.lens);for(const [i,value]of values.entries()){const item=A.el('span','legend-item'),swatch=A.el('i','swatch');swatch.style.setProperty('--swatch',state.lens==='stream'?A.streams[value].color:A.palette[i%A.palette.length]);item.append(swatch,document.createTextNode(state.lens==='stream'?A.streams[value].name:value));legend.append(item);}if(state.lens!=='stream'){legend.append(A.el('span','','多值编码按首项着色；灰色 = 未编码'));}
+    const legend=$('#legend');legend.replaceChildren();for(const [value,color]of Object.entries(A.typeColors)){const item=A.el('span','legend-item'),swatch=A.el('i','swatch');swatch.style.setProperty('--swatch',color);item.append(swatch,document.createTextNode(value));legend.append(item);}legend.append(A.el('span','legend-note','Size: provisional contribution · Dashed: reading pending'));
     if(!A.visible.length){const empty=A.el('div','empty-state');empty.append(A.el('h3','','No matching entries'),A.el('p','','没有符合条件的条目，请调整搜索或筛选。'));const reset=A.el('button','text-button','清空搜索与筛选');reset.onclick=A.reset;empty.append(reset);$('#chart').append(empty);return;}
-    if(typeof d3==='undefined'&&state.view!=='matrix'){$('#chart').append(A.el('p','error','D3 文件未加载。请检查 assets/vendor/d3.v7.min.js，文献表视图仍可使用。'));return;}
+    if(typeof d3==='undefined'&&['cluster','network'].includes(state.view)){$('#chart').append(A.el('p','error','D3 unavailable; Timeline and Library remain available.'));return;}
     A[state.view](A.visible);
   };
   A.reset=()=>{Object.assign(state,{query:'',filters:{},minYear:'',maxYear:'',lens:'stream',cluster:'paradigm',relation:'',sort:'year',direction:1});$('#search').value='';$('#cluster-by').value='paradigm';$('#relation-type').value='';A.buildFilters();A.render();};
@@ -21,7 +20,6 @@
     for(const [key,label]of Object.entries(fields)){const group=A.el('fieldset');group.append(A.el('legend','',label));const values=[...new Set([...A.arr(A.data.vocabulary[key]),...A.categories(key)])].sort();for(const value of values){const l=A.el('label','check-option'),input=A.el('input');input.type='checkbox';input.checked=state.filters[key]?.has(String(value))||false;input.onchange=()=>{state.filters[key]??=new Set();input.checked?state.filters[key].add(String(value)):state.filters[key].delete(String(value));A.render();};l.append(input,document.createTextNode(String(value)));group.append(l);}root.append(group);}
   };
   A.load=(raw,source)=>{A.setData(raw);A.reset();$('#data-status').classList.remove('error');$('#data-status').textContent=`${source} · ${A.data.meta.is_sample?'示例数据库：摘要、编码与关系待原文校核。':'已加载知识库。'}`;};
-  for(const [key,label]of A.lenses){const b=A.el('button','',label);b.dataset.lens=key;b.onclick=()=>{state.lens=key;A.render();};$('#lenses').append(b);}
   for(const [key,label]of Object.entries(A.fields)){const o=A.el('option','',label);o.value=key;$('#cluster-by').append(o);}
   for(const type of A.relationTypes){const o=A.el('option','',type);o.value=type;$('#relation-type').append(o);}
   $('#cluster-by').onchange=e=>{state.cluster=e.target.value;A.render();};$('#relation-type').onchange=e=>{state.relation=e.target.value;A.render();};

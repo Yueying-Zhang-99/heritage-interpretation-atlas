@@ -22,6 +22,8 @@ window.Atlas = (() => {
       if(data.documents.includes(d)&&(d.year==null||d.year===''||!Number.isInteger(Number(d.year))||Number(d.year)<0||Number(d.year)>9999))throw new Error(`${d.id} 的 year 必须为有效整数。`);
       if(d.relations!=null&&!Array.isArray(d.relations))throw new Error(`${d.id} 的 relations 必须为数组。`);
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
+      if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
+      if(d.importance!=null&&![1,2,3].includes(Number(d.importance)))throw new Error(`${d.id} 的 importance 必须为 1、2 或 3。`);
       if(d.annotations?.some(a=>!a||typeof a!=='object'))throw new Error(`${d.id} 包含无效标注。`);
       for(const r of d.relations||[])if(!r||typeof r.target!=='string'||!relationTypes.includes(r.type))throw new Error(`${d.id} 包含无效关系。`);
     }
@@ -35,7 +37,10 @@ window.Atlas = (() => {
     return Object.entries(state.filters).every(([key,values])=>!values.size||A.arr(d[key]).some(x=>values.has(String(x))));
   });
   A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.arr(d[key])).map(String))].sort();
-  A.color=d=>{if(state.lens==='stream')return streams[d.stream]?.color||'#7d7c73';const v=A.arr(d[state.lens])[0];return v==null?'#99988d':palette[Math.max(0,A.categories(state.lens).indexOf(String(v)))%palette.length];};
+  const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78'};
+  A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
+  A.typeColors=typeColors;
+  A.color=d=>typeColors[A.category(d)]||'#777f78';
   A.safeURL=(value,pdf=false)=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);if(/^https?:$/.test(u.protocol))return u.href;if(pdf&&u.protocol==='file:'&&location.protocol==='file:'&&!/^[a-z][a-z\d+.-]*:/i.test(value)&&!value.startsWith('/')&&!value.includes('..'))return u.href;}catch{}return null;};
   A.tooltip=(event,d)=>{const tip=document.querySelector('#tooltip');tip.replaceChildren(A.el('strong','',d.title),A.el('span','',[d.year_label||d.year,A.text(d.concepts||d.themes)].filter(Boolean).join(' / ')));tip.hidden=false;const rect=event.currentTarget.getBoundingClientRect();const x=event.clientX||rect.x,y=event.clientY||rect.y;tip.style.left=Math.max(8,Math.min(x+15,innerWidth-tip.offsetWidth-12))+'px';tip.style.top=Math.max(8,Math.min(y+15,innerHeight-tip.offsetHeight-12))+'px';};
   A.hideTooltip=()=>document.querySelector('#tooltip').hidden=true;

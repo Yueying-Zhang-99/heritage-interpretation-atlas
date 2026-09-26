@@ -7,7 +7,7 @@ Atlas.cluster=function(rows){
   const simulation=d3.forceSimulation(nodes).force('x',d3.forceX(d=>centers.get(d.group).x).strength(.13)).force('y',d3.forceY(d=>centers.get(d.group).y).strength(.18)).force('collide',d3.forceCollide(29)).force('charge',d3.forceManyBody().strength(-6)).stop();
   for(let i=0;i<200;i++)simulation.tick();
   const g=svg.selectAll('.cluster-node').data(nodes).join('g').attr('transform',d=>`translate(${d.x},${d.y})`);A.bindNodes(g);
-  g.append('circle').attr('class','node-dot').attr('r',23).attr('fill',A.color).attr('fill-opacity',.13).attr('stroke',A.color).attr('stroke-width',1);
+  g.append('circle').attr('class','node-dot').attr('r',d=>d.placeholder?17:17+(d.importance||1)*2).attr('fill',A.color).attr('fill-opacity',d=>d.placeholder?0:.13).attr('stroke',A.color).attr('stroke-width',1.4).attr('stroke-dasharray',d=>d.placeholder?'3 3':null);
   g.append('text').attr('text-anchor','middle').attr('dy',4).attr('font-size',11).attr('fill',A.color).text(d=>d.year_label||d.year);
   g.append('title').text(d=>`${d.title} / ${d.group}`);
 };
