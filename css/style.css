@@ -63,3 +63,48 @@ body{font-family:var(--sans);letter-spacing:0}
 .timeline-bubble-preview{font-size:11px;color:#40515a;line-height:1.36;margin-top:4px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .timeline-bubble-pending{font-size:9px;color:#829199;font-weight:700;letter-spacing:.08em;margin-top:3px}
 @media(max-width:760px){.timeline-bubble{width:226px}.timeline-chart{margin-right:-4.5%}}
+
+/* Compact overview: all topic bands and years fit the chart width. */
+.timeline-chart{overflow-x:auto;overflow-y:auto;min-height:0}
+.compact-map{padding-bottom:0}
+.compact-map .timeline-axis{height:44px}
+.compact-map .timeline-axis-label{bottom:8px}
+.compact-map .timeline-tick{bottom:7px;font-size:10px}
+.compact-map .timeline-tick::after{top:18px;height:6px}
+.compact-map .timeline-band{background:#fff;border-bottom:1px solid #e6ecee}
+.compact-map .timeline-band:nth-child(even){background:#f9fbfb}
+.compact-map .timeline-band-label{top:12px;left:16px;width:138px;font-size:11px;line-height:1.3}
+.timeline-point{position:absolute;width:32px;height:32px;padding:0;display:flex;align-items:center;flex-direction:column;z-index:1;color:#64737a;transform:translate(-50%,-5px)}
+.timeline-point:hover,.timeline-point:focus-visible{z-index:20;color:#182026}
+.timeline-point-circle{display:block;width:12px;height:12px;border-radius:50%;background:var(--entry-color);border:2px solid var(--entry-color);box-shadow:0 0 0 3px #fff;flex:none;transition:transform .15s}
+.timeline-point[data-size="2"] .timeline-point-circle{width:17px;height:17px}
+.timeline-point[data-size="3"] .timeline-point-circle{width:22px;height:22px}
+.timeline-point.is-placeholder .timeline-point-circle{background:#fff;border-style:dashed}
+.timeline-point:hover .timeline-point-circle,.timeline-point:focus-visible .timeline-point-circle{transform:scale(1.18)}
+.timeline-point-year{display:block;margin-top:1px;font-size:8px;line-height:1;white-space:nowrap}
+.timeline-hover-card{display:none;position:fixed;width:268px;max-width:calc(100vw - 24px);z-index:100;padding:14px 16px;text-align:left;background:#fff;border:1px solid #cfdbde;border-radius:12px;box-shadow:0 10px 34px #15313e29;color:#182026;pointer-events:none;white-space:normal}
+.timeline-point:hover .timeline-hover-card,.timeline-point:focus-visible .timeline-hover-card{display:flex;flex-direction:column}
+.timeline-hover-year{font-size:11px;color:var(--entry-color);font-weight:700;margin-bottom:5px}
+.timeline-hover-title{font-size:15px;line-height:1.25;font-weight:700}
+.timeline-hover-zh{font-size:12px;color:#6c777d;margin-top:3px}
+.timeline-hover-maker{font-size:11px;color:#69777d;margin-top:10px}
+.timeline-hover-summary{font-size:12px;color:#354850;line-height:1.45;margin-top:8px}
+.timeline-hover-pending{font-size:10px;letter-spacing:.08em;color:#829198;margin-top:8px}
+@media(max-width:760px){.compact-map .timeline-band-label{width:110px;font-size:10px}.timeline-hover-card{display:none!important}}
+
+/* Keep the complete map visible at ordinary desktop heights. */
+main{padding-top:10px;padding-bottom:16px}
+.document-heading{margin-bottom:12px}
+.document-heading h1{font-size:29px}
+.document-heading p{font-size:12px}
+.primary-bar{min-height:48px}
+.primary-bar .views button{padding:11px 0}
+.view-heading{padding:12px 0 5px}
+.view-heading h2{font-size:20px;margin:3px 0}
+.legend{padding:3px 0 7px;min-height:24px}
+.compact-map .timeline-axis{height:35px}
+.compact-map .timeline-axis-label{bottom:6px}
+.compact-map .timeline-tick{bottom:5px}
+.compact-map .timeline-band-label{top:8px}
+@media(max-width:760px){.document-heading h1{font-size:25px}.view-heading{padding-top:12px}}
+.timeline-point{transform:none}

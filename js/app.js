@@ -1,7 +1,7 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: editable working topic · Size: provisional contribution · Dashed: reading pending.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
+  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Hover or focus a dot for a preview · Click for the full record.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
     A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart');
     const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
@@ -25,6 +25,7 @@
   $('#cluster-by').onchange=e=>{state.cluster=e.target.value;A.render();};$('#relation-type').onchange=e=>{state.relation=e.target.value;A.render();};
   document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;A.render();});
   $('#search').oninput=e=>{state.query=e.target.value;A.render();};$('#reset').onclick=A.reset;
+  let resizeFrame=0;window.addEventListener('resize',()=>{if(state.view==='timeline'){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>A.render());}});
   $('#filters-button').onclick=()=>{$('#filter-dialog').showModal();$('#filters-button').setAttribute('aria-expanded','true');};
   $('#filter-dialog').addEventListener('close',()=>$('#filters-button').setAttribute('aria-expanded','false'));
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
