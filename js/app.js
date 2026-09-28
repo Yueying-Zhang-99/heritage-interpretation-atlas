@@ -1,19 +1,19 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Title and author/organisation appear beside each dot · Click for the full record.'],cluster:['02 / CONCEPTUAL CLUSTERS','Shared concepts','Documents with multiple codes appear in each relevant group.'],network:['03 / RELATIONAL READING','Document relationships','Lines show provisional research links; open each record for evidence.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
+  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Title and author/organisation appear beside each dot · Click for the full record.'],cluster:['02 / TOPIC CLUSTERS','Documents grouped by shared codes','A record appears in every selected cluster it matches. Click any item to open its full record.'],network:['03 / RELATIONSHIP GRAPH','Explore connections','Drag nodes to rearrange · Scroll to zoom · Connections show coded links that still need source review.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
-    A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart');
+    A.sim?.stop();A.sim=null;A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart','network-chart');$('#chart').style.setProperty('--dot-scale',String(state.dotScale||1));
     const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
     document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===state.view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
-    $('#cluster-control').hidden=state.view!=='cluster';$('#network-control').hidden=state.view!=='network';
+    $('#cluster-control').hidden=state.view!=='cluster';$('#network-control').hidden=state.view!=='network';$('#dot-scale-control').hidden=state.view!=='timeline';$('#dot-scale').value=Math.round((state.dotScale||1)*100);$('#dot-scale-value').value=$('#dot-scale').value+'%';
     const count=Object.values(state.filters).reduce((n,set)=>n+set.size,0)+(state.minYear!==''?1:0)+(state.maxYear!==''?1:0);$('#filter-count').textContent=count||'＋';
     const legend=$('#legend');legend.replaceChildren();for(const [value,color]of Object.entries(A.typeColors)){const item=A.el('span','legend-item'),swatch=A.el('i','swatch');swatch.style.setProperty('--swatch',color);item.append(swatch,document.createTextNode(value));legend.append(item);}legend.append(A.el('span','legend-note','Size: provisional contribution · Dashed: reading pending'));
     if(!A.visible.length){const empty=A.el('div','empty-state');empty.append(A.el('h3','','No matching entries'),A.el('p','','没有符合条件的条目，请调整搜索或筛选。'));const reset=A.el('button','text-button','清空搜索与筛选');reset.onclick=A.reset;empty.append(reset);$('#chart').append(empty);return;}
-    if(typeof d3==='undefined'&&['cluster','network'].includes(state.view)){$('#chart').append(A.el('p','error','D3 unavailable; Timeline and Library remain available.'));return;}
+    if(typeof d3==='undefined'&&state.view==='network'){$('#chart').append(A.el('p','error','D3 unavailable; Timeline and Library remain available.'));return;}
     A[state.view](A.visible);
   };
-  A.reset=()=>{Object.assign(state,{query:'',filters:{},minYear:'',maxYear:'',lens:'stream',cluster:'paradigm',relation:'',sort:'year',direction:1});$('#search').value='';$('#cluster-by').value='paradigm';$('#relation-type').value='';A.buildFilters();A.render();};
+  A.reset=()=>{Object.assign(state,{query:'',filters:{},minYear:'',maxYear:'',lens:'stream',cluster:'paradigm',relation:'',sort:'year',direction:1,dotScale:1});$('#search').value='';$('#cluster-by').value='paradigm';$('#relation-type').value='';A.buildFilters();A.render();};
   A.buildFilters=()=>{
     const root=$('#filter-fields');root.replaceChildren();const year=A.el('fieldset');year.append(A.el('legend','','Year / 年份'));const inputs=A.el('div','year-fields');for(const [key,label]of [['minYear','起始年份'],['maxYear','结束年份']]){const l=A.el('label','',label),input=A.el('input');input.type='number';input.min=0;input.max=9999;input.value=state[key];input.placeholder=key==='minYear'?'1930':String(new Date().getFullYear());input.oninput=()=>{state[key]=input.value;A.render();};l.append(input);inputs.append(l);}year.append(inputs);root.append(year);
     const fields={type:'Document Type',paradigm:'Paradigm',themes:'Theme',concepts:'Key Concepts',heritage_conception:'Heritage Conception',interpretation_model:'Interpretation Model',authority_structure:'Authority',public_role:'Public Role',narrative_structure:'Narrative',media:'Media',public_actions:'Public Actions'};
@@ -24,7 +24,7 @@
   for(const type of A.relationTypes){const o=A.el('option','',type);o.value=type;$('#relation-type').append(o);}
   $('#cluster-by').onchange=e=>{state.cluster=e.target.value;A.render();};$('#relation-type').onchange=e=>{state.relation=e.target.value;A.render();};
   document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;A.render();});
-  $('#search').oninput=e=>{state.query=e.target.value;A.render();};$('#reset').onclick=A.reset;
+  $('#search').oninput=e=>{state.query=e.target.value;A.render();};$('#reset').onclick=A.reset;$('#dot-scale').oninput=e=>{state.dotScale=Number(e.target.value)/100;$('#dot-scale-value').value=e.target.value+'%';$('#chart').style.setProperty('--dot-scale',String(state.dotScale));};
   let resizeFrame=0;window.addEventListener('resize',()=>{if(state.view==='timeline'){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>A.render());}});
   $('#filters-button').onclick=()=>{$('#filter-dialog').showModal();$('#filters-button').setAttribute('aria-expanded','true');};
   $('#filter-dialog').addEventListener('close',()=>$('#filters-button').setAttribute('aria-expanded','false'));

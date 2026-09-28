@@ -150,3 +150,54 @@ main{padding-top:6px}
   .map-title{font-size:13px;line-height:1.1}
   .map-maker{font-size:11px;line-height:1.15}
 }
+
+/* Timeline point-size control */
+.dot-scale-control{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);white-space:nowrap}
+.dot-scale-control input{width:92px;accent-color:#267f8c}
+.dot-scale-control output{min-width:34px;font-size:10px;color:var(--ink)}
+.map-circle{transform:scale(var(--dot-scale,1))}
+.map-node:hover .map-circle,.map-node:focus-visible .map-circle{transform:scale(calc(var(--dot-scale,1) * 1.15))}
+
+/* Cluster bubbles reuse the Timeline's colour and contribution size language. */
+.cluster-board{display:flex;flex-direction:column;padding:8px 0}
+.cluster-group{display:grid;grid-template-columns:minmax(150px,190px) 1fr;gap:18px;min-width:0;padding:17px 8px;border-top:1px solid #e1e8ea}
+.cluster-group:last-child{border-bottom:1px solid #e1e8ea}
+.cluster-group-head{display:flex;flex-direction:column;gap:6px;padding-top:7px}
+.cluster-group-head h3{font-size:13px;font-weight:650;margin:0;color:#263a42}
+.cluster-count{font-size:10px;color:#78868c;white-space:nowrap}
+.cluster-items{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;min-width:0}
+.cluster-item{display:flex;align-items:center;gap:8px;min-width:190px;max-width:290px;min-height:48px;padding:4px 6px;background:transparent;text-align:left;color:#182026;border-radius:5px}
+.cluster-item:hover,.cluster-item:focus-visible{background:#f4f8f9;color:#182026}
+.cluster-dot{width:12px;height:12px;flex:none;border-radius:50%;background:var(--entry-color);border:2px solid var(--entry-color);transform:scale(var(--dot-scale,1));box-shadow:0 0 0 2px #fff}
+.cluster-dot[data-size="2"]{width:19px;height:19px}
+.cluster-dot[data-size="3"]{width:25px;height:25px}
+.cluster-dot.is-placeholder{background:#fff;border-style:dashed}
+.cluster-copy{display:flex;flex-direction:column;min-width:0;gap:3px}
+.cluster-meta{font-size:10px;color:#718088}
+.cluster-title{font-size:12px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cluster-maker{font-size:10px;color:#718088;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Obsidian-like relationship graph: open canvas, neighbour focus and direct manipulation. */
+#chart.network-chart{overflow:hidden;min-height:560px}
+.network-chart svg{display:block;width:100%;min-width:1050px;height:auto;max-height:none;background:#fbfcfc;touch-action:none;cursor:grab}
+.network-chart svg:active{cursor:grabbing}
+.network-node{cursor:grab;transition:opacity .2s}
+.network-node:active{cursor:grabbing}
+.network-node.is-dimmed{opacity:.12}
+.network-node:hover,.network-node:focus-visible{opacity:1!important}
+.network-halo{transition:fill-opacity .2s;animation:network-pulse 4.2s ease-in-out infinite}
+.network-node:nth-child(3n) .network-halo{animation-delay:-1.3s}
+.network-node:nth-child(3n + 1) .network-halo{animation-delay:-2.7s}
+.network-dot{filter:drop-shadow(0 1px 2px #18333d26)}
+.network-node:hover .network-dot,.network-node:focus-visible .network-dot{stroke-width:3.2}
+.network-title{font-family:var(--sans);font-size:14px;font-weight:650;fill:#18272e;paint-order:stroke;stroke:#fbfcfc;stroke-width:3px;stroke-linejoin:round}
+.network-meta{font-family:var(--sans);font-size:10px;fill:#718087;paint-order:stroke;stroke:#fbfcfc;stroke-width:2px;stroke-linejoin:round}
+.network-links line{transition:opacity .2s,stroke-width .2s}
+.network-links line.is-muted{opacity:.07}
+.network-toolbar{position:absolute;top:12px;right:14px;z-index:3;display:flex;align-items:center;gap:5px;padding:5px 7px;background:#ffffffed;border:1px solid #dce5e8;border-radius:7px;box-shadow:0 3px 12px #18333d12}
+.network-toolbar button{min-width:30px;height:28px;border:1px solid #dce5e8;background:#fff;border-radius:4px;font-size:14px}
+.network-toolbar button:hover{background:#edf4f5;color:#126d7a}
+.network-zoom-hint{padding:0 6px;font-size:10px;color:#75838a}
+@keyframes network-pulse{0%,100%{fill-opacity:.06}50%{fill-opacity:.16}}
+@media(max-width:760px){.dot-scale-control{width:100%;justify-content:flex-start}.dot-scale-control input{flex:1}.cluster-group{grid-template-columns:1fr;gap:8px;padding:12px 4px}.cluster-group-head{flex-direction:row;align-items:baseline;justify-content:space-between;padding:0}.cluster-items{gap:5px 8px}.cluster-item{min-width:min(100%,220px);flex:1 1 220px}.network-toolbar{left:8px;right:8px;justify-content:flex-end}.network-zoom-hint{margin-right:auto;font-size:9px}}
+@media(prefers-reduced-motion:reduce){.network-halo{animation:none}}

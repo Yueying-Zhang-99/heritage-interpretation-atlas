@@ -5,7 +5,7 @@ window.Atlas = (() => {
   const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Technology']];
   const palette=['#a1813e','#6f7950','#a55f48','#586f70','#8b6a72','#6e6555','#8d8457','#59724c','#af725b','#616774','#967845'];
   const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward'];
-  const state={view:'timeline',lens:'stream',cluster:'paradigm',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1};
+  const state={view:'timeline',lens:'stream',cluster:'paradigm',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1,dotScale:1};
   const A={streams,fields,lenses,palette,relationTypes,state,data:null,records:[],nodes:[],byId:new Map(),visible:[],sim:null};
   A.arr=v=>v==null||v===''?[]:Array.isArray(v)?v:[v];
   A.text=v=>A.arr(v).join(' · ');
