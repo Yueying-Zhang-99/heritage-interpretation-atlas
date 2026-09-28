@@ -9,8 +9,10 @@ Atlas.network=function(rows){
   for(const l of candidates){if(selected.has(l.source)&&auxIds.has(l.target))selected.add(l.target);if(selected.has(l.target)&&auxIds.has(l.source))selected.add(l.source);}
   const nodes=all.filter(d=>selected.has(d.id)).map(d=>({...d}));
   const golden=Math.PI*(3-Math.sqrt(5));
-  nodes.forEach((d,i)=>{const radius=42*Math.sqrt(i+1),angle=i*golden;d.x=W/2+Math.cos(angle)*radius;d.y=H/2+Math.sin(angle)*radius;d.targetX=W/2;d.targetY=H/2;d.labelSide=d.x>W/2?'left':'right';d.labelWidth=190;d.labelOffset=20;});
+  nodes.forEach((d,i)=>{const radius=45*Math.sqrt(i+1),angle=i*golden;d.seedX=W/2+Math.cos(angle)*radius*1.3;d.seedY=H/2+Math.sin(angle)*radius*.65;d.x=d.seedX;d.y=d.seedY;d.labelWidth=190;d.labelOffset=20;});
   const nodeIds=new Set(nodes.map(d=>d.id)),links=candidates.filter(l=>nodeIds.has(l.source)&&nodeIds.has(l.target));
+  const degree=new Map(nodes.map(d=>[d.id,0]));
+  for(const l of links){degree.set(l.source,degree.get(l.source)+1);degree.set(l.target,degree.get(l.target)+1);}
   const world=svg.append('g').attr('class','network-world');
   const linkLayer=world.append('g').attr('class','network-links');
   const link=linkLayer.selectAll('line').data(links).join('line').attr('stroke','#a9b8bd').attr('stroke-width',d=>d.type==='influences'?1.7:1.3).attr('stroke-dasharray',d=>d.type==='related_to'?'4 5':null).attr('opacity',.48).attr('tabindex',0).attr('aria-label',d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}: ${d.type}`);
@@ -25,7 +27,32 @@ Atlas.network=function(rows){
     const title=label.append('text').attr('class','network-title').attr('y',29).text(d.map_title||d.title).call(A.wrap,d.labelWidth||165,18);
     const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',29+Math.max(1,title.selectAll('tspan').size())*18+4).text(maker);
   });
-  const sim=d3.forceSimulation(nodes).force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?190:155).strength(.16)).force('charge',d3.forceManyBody().strength(d=>d.core_concept?-520:d.node_type==='document'?-390:-310)).force('center',d3.forceCenter(W/2,H/2)).force('x',d3.forceX(W/2).strength(.008)).force('y',d3.forceY(H/2).strength(.012)).force('collide',d3.forceCollide(d=>d.core_concept?68:d.node_type==='document'?54:42).iterations(2)).alphaDecay(.04).stop();
+  // Labels need room as well as dots. Prefer vertical separation so connected
+  // nodes remain in a compact, freely arranged constellation.
+  const labelAvoid=alpha=>{
+    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+      const a=nodes[i],b=nodes[j],sideA=a.x>W/2?-1:1,sideB=b.x>W/2?-1:1;
+      const leftA=a.x+(sideA<0?-205:-18),rightA=a.x+(sideA<0?18:205);
+      const leftB=b.x+(sideB<0?-205:-18),rightB=b.x+(sideB<0?18:205);
+      const overlapX=Math.min(rightA,rightB)-Math.max(leftA,leftB);
+      const overlapY=82-Math.abs(a.y-b.y);
+      if(overlapX<=0||overlapY<=0)continue;
+      const directionX=a.x===b.x?(i<j?-1:1):Math.sign(a.x-b.x);
+      const directionY=a.y===b.y?(i<j?-1:1):Math.sign(a.y-b.y);
+      const pushX=Math.min(overlapX+5,35)*.34;
+      const pushY=Math.min(overlapY+5,18)*.09;
+      a.vx+=directionX*pushX;b.vx-=directionX*pushX;
+      a.vy+=directionY*pushY;b.vy-=directionY*pushY;
+    }
+  };
+  const sim=d3.forceSimulation(nodes)
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?160:130).strength(.22))
+    .force('charge',d3.forceManyBody().strength(d=>!degree.get(d.id)?-30:d.core_concept?-220:d.node_type==='document'?-140:-115))
+    .force('center',d3.forceCenter(W/2,H/2))
+    .force('x',d3.forceX(d=>d.seedX).strength(d=>degree.get(d.id)?.035:.08))
+    .force('y',d3.forceY(d=>d.seedY).strength(d=>degree.get(d.id)?.025:.06))
+    .force('collide',d3.forceCollide(d=>d.core_concept?88:d.node_type==='document'?78:68).iterations(2))
+    .force('label-avoid',labelAvoid).alphaDecay(.04).stop();
   A.sim=sim;
   sim.tick(240);
   const place=()=>{node.attr('transform',d=>`translate(${d.x},${d.y})`);node.select('.network-label').attr('transform',d=>`translate(${d.x>W/2?-(d.labelOffset||20):(d.labelOffset||20)},4)`).attr('text-anchor',d=>d.x>W/2?'end':'start');link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);};
