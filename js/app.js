@@ -1,7 +1,7 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const physicsKey='heritage-atlas-network-physics-v1',physicsDefaults={distance:170,repulsion:280};
+  const physicsKey='heritage-atlas-network-physics-v1',physicsDefaults={distance:280,repulsion:470};
   A.networkPhysics={...physicsDefaults};
   try{const saved=JSON.parse(localStorage.getItem(physicsKey));if(saved&&Number.isFinite(saved.distance)&&saved.distance>=100&&saved.distance<=280&&Number.isFinite(saved.repulsion)&&saved.repulsion>=80&&saved.repulsion<=600)Object.assign(A.networkPhysics,saved);}catch{}
   const syncPhysicsControls=()=>{$('#network-spacing').value=A.networkPhysics.distance;$('#network-repulsion').value=A.networkPhysics.repulsion;$('#network-spacing-value').value=String(A.networkPhysics.distance);$('#network-repulsion-value').value=String(A.networkPhysics.repulsion);};
