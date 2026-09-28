@@ -25,8 +25,8 @@ Atlas.network=function(rows){
     const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',29+Math.max(1,title.selectAll('tspan').size())*18+4).text(maker);
   });
   const sim=d3.forceSimulation(nodes)
-    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?190:145).strength(.45))
-    .force('charge',d3.forceManyBody().strength(-430))
+    .force('link',d3.forceLink(links).id(d=>d.id).distance(d=>A.networkPhysics.distance+(d.type==='influences'?35:0)).strength(.45))
+    .force('charge',d3.forceManyBody().strength(-A.networkPhysics.repulsion))
     .force('center',d3.forceCenter(W/2,H/2))
     .force('x',d3.forceX(W/2).strength(.012))
     .force('y',d3.forceY(H/2).strength(.018))
@@ -49,6 +49,11 @@ Atlas.network=function(rows){
     if(animate)svg.transition().duration(260).call(zoom.transform,transform);else svg.call(zoom.transform,transform);
   };
   A.fitNetwork=fit;fit();
+  A.updateNetworkPhysics=()=>{
+    sim.force('link').distance(d=>A.networkPhysics.distance+(d.type==='influences'?35:0));
+    sim.force('charge').strength(-A.networkPhysics.repulsion);
+    sim.alpha(.8).stop().tick(160);place();fit(true);
+  };
   // Measure pointer coordinates in the zoomed world group. D3 then accounts
   // for the node's pointer offset and the current zoom transform together.
   node.call(d3.drag().container(()=>world.node()).on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.18).restart();d.fx=d.x;d.fy=d.y;}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;}).on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.targetX=d.x;d.targetY=d.y;d.fx=null;d.fy=null;}));
