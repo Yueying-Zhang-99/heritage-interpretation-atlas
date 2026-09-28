@@ -1469,6 +1469,73 @@ window.ATLAS_SNAPSHOT = {
       "id": "person-smith",
       "title": "Laurajane Smith",
       "node_type": "person"
+    },
+    {
+      "id": "heritage-values",
+      "title": "Heritage Values",
+      "title_zh": "遗产价值",
+      "map_title": "Heritage Values",
+      "map_maker": "Working concept",
+      "node_type": "concept",
+      "core_concept": true,
+      "summary": "Heritage value(s) asks why a place matters, to whom, and how those values are identified, interpreted, and negotiated. The concept can include historic, aesthetic, scientific, social, and spiritual dimensions; different communities may understand a place differently. This node connects records that discuss cultural significance, Outstanding Universal Value, cultural diversity, social value, interpretive authority, and value conflict. These are thematic links, not claims of direct influence.",
+      "relations": [
+        {
+          "target": "burra",
+          "type": "related_to",
+          "evidence": "The record identifies cultural significance as the organizing basis for conservation. Australia ICOMOS describes the 2013 Charter as its current version and notes first adoption in 1979. This is a thematic association, not a direct influence claim. Source: https://australia.icomos.org/publications/burra-charter-practice-notes/"
+        },
+        {
+          "target": "world-heritage",
+          "type": "related_to",
+          "evidence": "Article 11 links World Heritage listing to Outstanding Universal Value. The UNESCO Operational Guidelines define OUV as exceptional cultural and/or natural significance of common importance to humanity. This is a policy-specific value framework, not a synonym for all heritage values. Source: https://whc.unesco.org/en/glossary/327"
+        },
+        {
+          "target": "nara",
+          "type": "related_to",
+          "evidence": "The Nara Document calls for respect and understanding of the diverse expressions and values of different cultures in authenticity assessment. This connects value plurality with authenticity, without asserting direct influence. Source: https://whc.unesco.org/archive/nara94.htm"
+        },
+        {
+          "target": "faro",
+          "type": "related_to",
+          "evidence": "The Council of Europe describes the Faro Convention as relating heritage to communities and society, including the meanings, uses, and values people attach to places. This is an explicit thematic connection. Source: https://www.coe.int/en/web/culture-and-heritage/the-faro-way"
+        },
+        {
+          "target": "smith",
+          "type": "related_to",
+          "evidence": "The current research record frames Uses of Heritage around value construction and interpretive authority. Treat this as a reading lead; verify it against the book before using it as a thesis claim. Source record: https://www.routledge.com/Uses-ofHeritage/Smith/p/book/9780415318310"
+        },
+        {
+          "target": "dissonant",
+          "type": "related_to",
+          "evidence": "The current research record describes conflict and exclusion in heritage selection and use. This suggests a link to contested values, but the book has no source URL or page-level evidence in the database yet; verify during close reading."
+        },
+        {
+          "target": "xian",
+          "type": "related_to",
+          "evidence": "The Xi’an Declaration connects setting with the significance of heritage places. This node links that contextual approach to value interpretation; the declaration's exact wording and version should be checked before treating it as a value framework. Source: https://www.icomos.org/images/DOCUMENTS/Charters/xian-declaration.pdf"
+        },
+        {
+          "target": "ename",
+          "type": "related_to",
+          "evidence": "The Interpretation Charter excerpt in this record says interpretation should consider groups that contributed to a site's historical and cultural significance. This connects interpretation to whose values and contributions are represented. Source: https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
+        },
+        {
+          "target": "significance",
+          "type": "related_to",
+          "evidence": "Cultural significance is one established framework for articulating why places matter; the Burra Charter describes aesthetic, historic, scientific, social, and spiritual values. Related concepts, not interchangeable terms. Source: https://australia.icomos.org/publications/burra-charter-practice-notes/"
+        },
+        {
+          "target": "authenticity",
+          "type": "related_to",
+          "evidence": "Nara links authenticity assessment to culturally diverse sources and values. The relation marks a conceptual intersection; authenticity and value are not the same concept. Source: https://whc.unesco.org/archive/nara94.htm"
+        },
+        {
+          "target": "community",
+          "type": "related_to",
+          "evidence": "The Faro Convention connects heritage's social value with communities, shared responsibility, and participation. This association does not assume that communities hold a single shared view. Source: https://www.coe.int/en/web/culture-and-heritage/the-faro-way"
+        }
+      ]
     }
   ]
 };
