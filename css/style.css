@@ -159,6 +159,11 @@ main{padding-top:6px}
 .map-circle{transform:scale(var(--dot-scale,1))}
 .map-node:hover .map-circle,.map-node:focus-visible .map-circle{transform:scale(calc(var(--dot-scale,1) * 1.15))}
 
+/* Keep practice cases visible but quieter than the theoretical milestones. */
+.map-node.is-practice-case .map-circle{background:#82918d;border-color:#82918d}
+.map-node.is-practice-case .map-title{font-size:9px;font-weight:500}
+@media(min-width:1500px){.map-node.is-practice-case .map-title{font-size:11px}}
+
 /* Cluster bubbles reuse the Timeline's colour and contribution size language. */
 .cluster-board{display:flex;flex-direction:column;padding:8px 0}
 .cluster-group{display:grid;grid-template-columns:minmax(150px,190px) 1fr;gap:18px;min-width:0;padding:17px 8px;border-top:1px solid #e1e8ea}

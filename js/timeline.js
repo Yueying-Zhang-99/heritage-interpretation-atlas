@@ -31,8 +31,8 @@ Atlas.timeline=function(rows){
     const band=A.el('section','timeline-band');band.style.height=Math.max(large?92:68,(large?18:12)+tracks.length*trackStep,minBandHeight)+'px';band.setAttribute('aria-label',topic);
     band.append(A.el('div','timeline-band-label',topic));
     for(const {d,side,lo,track} of placed){
-      const point=A.el('button','map-node'+(side==='left'?' reverse':''));point.type='button';
-      point.style.left=lo+'px';point.style.top=((large?12:7)+track*trackStep)+'px';point.style.setProperty('--entry-color',A.color(d));
+      const point=A.el('button','map-node'+(side==='left'?' reverse':'')+(d.type==='Heritage Practice Case'?' is-practice-case':''));point.type='button';
+      point.style.left=lo+'px';point.style.top=((large?12:7)+track*trackStep)+'px';point.style.setProperty('--entry-color',d.type==='Heritage Practice Case'?'#82918d':A.color(d));
       point.setAttribute('aria-label',`${d.year_label||d.year}: ${d.title}${d.title_zh?' / '+d.title_zh:''}. ${A.text(d.author)||d.organization||''}. Open details.`);
       const marker=A.el('span','map-marker'),circle=A.el('span','map-circle');circle.dataset.size=d.importance?String(d.importance):'unscored';
       if(d.placeholder)circle.classList.add('is-placeholder');
