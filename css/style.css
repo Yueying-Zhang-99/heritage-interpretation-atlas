@@ -205,6 +205,9 @@ main{padding-top:6px}
 .network-maker{font-family:var(--sans);font-size:12px;fill:#718087;paint-order:stroke;stroke:#fbfcfc;stroke-width:2px;stroke-linejoin:round}
 .network-links line{transition:opacity .2s,stroke-width .2s}
 .network-links line.is-muted{opacity:.07}
+.network-links line{opacity:.14;stroke-width:1}
+.network-links line.is-active{opacity:.82!important;stroke:#607980;stroke-width:1.8}
+.network-cluster-heading{font-family:var(--sans);font-size:11px;font-weight:650;letter-spacing:.04em;fill:#73828a}
 .network-toolbar{position:absolute;top:12px;right:14px;z-index:3;display:flex;align-items:center;gap:5px;padding:5px 7px;background:#ffffffed;border:1px solid #dce5e8;border-radius:7px;box-shadow:0 3px 12px #18333d12}
 .network-toolbar button{min-width:30px;height:28px;border:1px solid #dce5e8;background:#fff;border-radius:4px;font-size:14px}
 .network-toolbar button:hover{background:#edf4f5;color:#126d7a}
