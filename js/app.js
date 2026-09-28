@@ -1,9 +1,9 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Title and author/organisation appear beside each dot · Click for the full record.'],cluster:['02 / TOPIC CLUSTERS','Documents grouped by shared codes','A record appears in every selected cluster it matches. Click any item to open its full record.'],network:['03 / RELATIONSHIP GRAPH','Explore connections','Drag nodes to rearrange · Scroll to zoom · Connections show coded links that still need source review.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
+  const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Title and author/organisation appear beside each dot · Click for the full record.'],cluster:['02 / TOPIC CLUSTERS','Documents grouped by shared codes','A record appears in every selected cluster it matches. Click any item to open its full record.'],network:['03 / RELATIONSHIP GRAPH','Explore connections','All nodes are fitted on entry · Drag to rearrange · Scroll to zoom · Use Full screen for a larger canvas · Coded links need source review.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
-    A.sim?.stop();A.sim=null;A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart','network-chart');$('#chart').style.setProperty('--dot-scale',String(state.dotScale||1));
+    A.sim?.stop();A.sim=null;A.fitNetwork=null;A.updateNetworkFullscreen=null;A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart','network-chart');$('#chart').style.setProperty('--dot-scale',String(state.dotScale||1));
     const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
     document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===state.view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
     $('#cluster-control').hidden=state.view!=='cluster';$('#network-control').hidden=state.view!=='network';$('#dot-scale-control').hidden=state.view!=='timeline';$('#dot-scale').value=Math.round((state.dotScale||1)*100);$('#dot-scale-value').value=$('#dot-scale').value+'%';
@@ -25,7 +25,7 @@
   $('#cluster-by').onchange=e=>{state.cluster=e.target.value;A.render();};$('#relation-type').onchange=e=>{state.relation=e.target.value;A.render();};
   document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;A.render();});
   $('#search').oninput=e=>{state.query=e.target.value;A.render();};$('#reset').onclick=A.reset;$('#dot-scale').oninput=e=>{state.dotScale=Number(e.target.value)/100;$('#dot-scale-value').value=e.target.value+'%';$('#chart').style.setProperty('--dot-scale',String(state.dotScale));};
-  let resizeFrame=0;window.addEventListener('resize',()=>{if(state.view==='timeline'){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>A.render());}});
+  let resizeFrame=0;window.addEventListener('resize',()=>{if(state.view==='timeline'||state.view==='network'){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>state.view==='timeline'?A.render():A.fitNetwork?.());}});document.addEventListener('fullscreenchange',()=>{A.updateNetworkFullscreen?.();if(state.view==='network')requestAnimationFrame(()=>A.fitNetwork?.());});
   $('#filters-button').onclick=()=>{$('#filter-dialog').showModal();$('#filters-button').setAttribute('aria-expanded','true');};
   $('#filter-dialog').addEventListener('close',()=>$('#filters-button').setAttribute('aria-expanded','false'));
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.close).close());
