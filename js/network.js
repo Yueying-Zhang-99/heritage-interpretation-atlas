@@ -18,9 +18,9 @@ Atlas.network=function(rows){
   node.append('circle').attr('class','network-halo').attr('r',d=>d.node_type==='document'?17+(d.importance||1)*3:15).attr('fill',d=>A.color(d)).attr('fill-opacity',d=>d.placeholder?.04:.08);
   node.append('path').attr('class','network-dot').attr('d',d=>d3.symbol().type(d.node_type==='person'?d3.symbolDiamond:d3.symbolCircle).size(d.node_type==='document'?170+(d.importance||1)*110:d.node_type==='person'?190:135)()).attr('fill',d=>d.placeholder||d.node_type==='concept'?'#fff':A.color(d)).attr('stroke',A.color).attr('stroke-width',2).attr('stroke-dasharray',d=>d.placeholder?'4 3':null);
   node.each(function(d){const label=d3.select(this).append('g').attr('class','network-label').attr('transform','translate(20,4)');
-    if(d.year_label||d.year)label.append('text').attr('class','network-year').attr('y',9).text(d.year_label||d.year);
-    const title=label.append('text').attr('class','network-title').attr('y',25).text(d.map_title||d.title).call(A.wrap,210,15);
-    const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',25+Math.max(1,title.selectAll('tspan').size())*15+3).text(maker);
+    if(d.year_label||d.year)label.append('text').attr('class','network-year').attr('y',10).text(d.year_label||d.year);
+    const title=label.append('text').attr('class','network-title').attr('y',29).text(d.map_title||d.title).call(A.wrap,230,18);
+    const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',29+Math.max(1,title.selectAll('tspan').size())*18+4).text(maker);
   });
   const sim=d3.forceSimulation(nodes).force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?205:165).strength(.42)).force('charge',d3.forceManyBody().strength(-560)).force('center',d3.forceCenter(W/2,H/2)).force('x',d3.forceX(W/2).strength(.012)).force('y',d3.forceY(H/2).strength(.018)).force('collide',d3.forceCollide(d=>d.node_type==='document'?68:48).iterations(2)).alphaDecay(.035).stop();
   A.sim=sim;
@@ -32,8 +32,8 @@ Atlas.network=function(rows){
   const zoom=d3.zoom().scaleExtent([.16,3.5]).on('zoom',e=>world.attr('transform',e.transform));svg.call(zoom).on('dblclick.zoom',null);
   const fit=(animate=false)=>{
     if(!nodes.length)return;
-    const minX=Math.min(...nodes.map(d=>d.x-34)),maxX=Math.max(...nodes.map(d=>d.x+260));
-    const minY=Math.min(...nodes.map(d=>d.y-34)),maxY=Math.max(...nodes.map(d=>d.y+104));
+    const minX=Math.min(...nodes.map(d=>d.x-36)),maxX=Math.max(...nodes.map(d=>d.x+282));
+    const minY=Math.min(...nodes.map(d=>d.y-36)),maxY=Math.max(...nodes.map(d=>d.y+122));
     const contentWidth=maxX-minX,contentHeight=maxY-minY,k=Math.min(W/contentWidth,H/contentHeight)*.9;
     const transform=d3.zoomIdentity.translate(W/2-k*(minX+contentWidth/2),H/2-k*(minY+contentHeight/2)).scale(k);
     if(animate)svg.transition().duration(260).call(zoom.transform,transform);else svg.call(zoom.transform,transform);
