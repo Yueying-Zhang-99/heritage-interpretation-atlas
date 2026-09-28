@@ -178,10 +178,8 @@ main{padding-top:6px}
 .cluster-maker{font-size:10px;color:#718088;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Obsidian-like relationship graph: open canvas, neighbour focus and direct manipulation. */
-#chart.network-chart{height:min(72vh,900px);min-height:540px;overflow:hidden;background:#fbfcfc}
-.network-chart svg{display:block;width:100%;height:100%;min-width:0;max-height:none;background:#fbfcfc;touch-action:none;cursor:grab}
-#chart.network-chart:fullscreen{width:100vw;height:100vh;min-height:100vh;border:0;background:#fbfcfc}
-#chart.network-chart:fullscreen svg{width:100%;height:100%}
+#chart.network-chart{height:min(72vh,900px);min-height:540px;overflow:hidden;background:transparent}
+.network-chart svg{display:block;width:100%;height:100%;min-width:0;max-height:none;background:transparent;touch-action:none;cursor:grab}
 .network-chart svg:active{cursor:grabbing}
 .network-node{cursor:grab;transition:opacity .2s}
 .network-node:active{cursor:grabbing}
@@ -204,3 +202,13 @@ main{padding-top:6px}
 @keyframes network-pulse{0%,100%{fill-opacity:.06}50%{fill-opacity:.16}}
 @media(max-width:760px){.dot-scale-control{width:100%;justify-content:flex-start}.dot-scale-control input{flex:1}.cluster-group{grid-template-columns:1fr;gap:8px;padding:12px 4px}.cluster-group-head{flex-direction:row;align-items:baseline;justify-content:space-between;padding:0}.cluster-items{gap:5px 8px}.cluster-item{min-width:min(100%,220px);flex:1 1 220px}#chart.network-chart{height:70vh;min-height:480px}.network-toolbar{left:8px;right:8px;justify-content:flex-end}.network-zoom-hint{margin-right:auto;font-size:9px}.network-toolbar button{min-width:27px;padding:0 5px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.network-halo{animation:none}}
+
+/* Network is a viewport-filling workspace from the moment it is opened. */
+body.network-active{height:100vh;height:100dvh;overflow:hidden}
+body.network-active main{width:100%;max-width:none;height:100vh;height:100dvh;display:flex;flex-direction:column;padding-top:6px;padding-bottom:0}
+body.network-active .document-heading{flex:none;margin-bottom:4px}
+body.network-active .workspace{display:flex;flex:1;flex-direction:column;min-height:0}
+body.network-active .primary-bar,body.network-active .view-heading,body.network-active .legend{flex:none}
+body.network-active .chart-footer,body.network-active .data-bar{display:none}
+body.network-active #chart{flex:1;min-height:0;overflow:hidden;border:0}
+body.network-active #chart.network-chart{height:auto;min-height:0;background:transparent}
