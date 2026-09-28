@@ -193,6 +193,7 @@ main{padding-top:6px}
 .network-node.is-dimmed{opacity:.12}
 .network-node.is-practice-case .network-halo{animation:none}
 .network-node.is-practice-case .network-label{opacity:.92}
+.network-node.is-practice-case .network-title{font-size:14px;font-weight:500}
 .network-node:hover,.network-node:focus-visible{opacity:1!important}
 .network-halo{transition:fill-opacity .2s;animation:network-pulse 4.2s ease-in-out infinite}
 .network-node:nth-child(3n) .network-halo{animation-delay:-1.3s}
