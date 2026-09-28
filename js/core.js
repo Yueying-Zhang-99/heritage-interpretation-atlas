@@ -24,7 +24,7 @@ window.Atlas = (() => {
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
       if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
       if(d.timeline_topic!=null&&!['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'].includes(d.timeline_topic))throw new Error(`${d.id} 的 timeline_topic 无效。`);
-      if(d.display_category!=null&&!['Charter / Policy','Theory / Book','Research Paper','Research Topic'].includes(d.display_category))throw new Error(`${d.id} 的 display_category 无效。`);
+      if(d.display_category!=null&&!['Charter / Policy','Theory / Book','Research Paper','Research Topic','Heritage Practice'].includes(d.display_category))throw new Error(`${d.id} 的 display_category 无效。`);
       if(d.importance!=null&&![1,2,3].includes(Number(d.importance)))throw new Error(`${d.id} 的 importance 必须为 1、2 或 3。`);
       if(d.annotations?.some(a=>!a||typeof a!=='object'))throw new Error(`${d.id} 包含无效标注。`);
       for(const r of d.relations||[])if(!r||typeof r.target!=='string'||!relationTypes.includes(r.type))throw new Error(`${d.id} 包含无效关系。`);
@@ -39,8 +39,8 @@ window.Atlas = (() => {
     return Object.entries(state.filters).every(([key,values])=>!values.size||A.arr(d[key]).some(x=>values.has(String(x))));
   });
   A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.arr(d[key])).map(String))].sort();
-  const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78'};
-  A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
+  const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78','Heritage Practice':'#17806f'};
+  A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Heritage Practice Case')return 'Heritage Practice';if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
   A.typeColors=typeColors;
   A.color=d=>typeColors[A.category(d)]||'#777f78';
   A.safeURL=(value,pdf=false)=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);if(/^https?:$/.test(u.protocol))return u.href;if(pdf&&u.protocol==='file:'&&location.protocol==='file:'&&!/^[a-z][a-z\d+.-]*:/i.test(value)&&!value.startsWith('/')&&!value.includes('..'))return u.href;}catch{}return null;};

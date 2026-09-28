@@ -9,7 +9,7 @@ Atlas.cluster=function(rows){
     const list=A.el('div','cluster-items');
     for(const d of items.sort((a,b)=>a.year-b.year||a.title.localeCompare(b.title))){
       const item=A.el('button','cluster-item');item.type='button';item.style.setProperty('--entry-color',A.color(d));item.onclick=()=>A.openDetail(d.id);
-      const dot=A.el('span','cluster-dot');dot.dataset.size=String(d.importance||1);if(d.placeholder)dot.classList.add('is-placeholder');
+      const dot=A.el('span','cluster-dot');dot.dataset.size=d.importance?String(d.importance):'unscored';if(d.placeholder)dot.classList.add('is-placeholder');
       const copy=A.el('span','cluster-copy'),meta=A.el('span','cluster-meta');meta.append(A.el('span','cluster-year',d.year_label||d.year));
       copy.append(meta,A.el('strong','cluster-title',d.map_title||d.title),A.el('span','cluster-maker',d.map_maker||A.text(d.author)||d.organization||'Research topic'));
       item.append(dot,copy);list.append(item);

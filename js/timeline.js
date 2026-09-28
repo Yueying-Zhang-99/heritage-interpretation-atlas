@@ -34,7 +34,7 @@ Atlas.timeline=function(rows){
       const point=A.el('button','map-node'+(side==='left'?' reverse':''));point.type='button';
       point.style.left=lo+'px';point.style.top=((large?12:7)+track*trackStep)+'px';point.style.setProperty('--entry-color',A.color(d));
       point.setAttribute('aria-label',`${d.year_label||d.year}: ${d.title}${d.title_zh?' / '+d.title_zh:''}. ${A.text(d.author)||d.organization||''}. Open details.`);
-      const marker=A.el('span','map-marker'),circle=A.el('span','map-circle');circle.dataset.size=String(d.importance||1);
+      const marker=A.el('span','map-marker'),circle=A.el('span','map-circle');circle.dataset.size=d.importance?String(d.importance):'unscored';
       if(d.placeholder)circle.classList.add('is-placeholder');
       marker.append(circle,A.el('span','map-year',String(d.year)));
       const label=A.el('span','map-label');label.append(A.el('strong','map-title',d.map_title||d.title),A.el('span','map-maker',d.map_maker||A.text(d.author)||d.organization||'Research topic'));

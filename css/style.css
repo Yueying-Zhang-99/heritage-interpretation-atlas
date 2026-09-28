@@ -117,6 +117,7 @@ main{padding-top:10px;padding-bottom:16px}
 .map-circle{width:12px;height:12px;border:2px solid var(--entry-color);background:var(--entry-color);border-radius:50%;box-shadow:0 0 0 2px #fff;flex:none;transition:transform .15s}
 .map-circle[data-size="2"]{width:17px;height:17px}
 .map-circle[data-size="3"]{width:21px;height:21px}
+.map-circle[data-size="unscored"]{width:15px;height:15px;background:#fff}
 .map-circle.is-placeholder{background:#fff;border-style:dashed}
 .map-node:hover .map-circle,.map-node:focus-visible .map-circle{transform:scale(1.18)}
 .map-year{font-size:8px;line-height:1;color:#718189;white-space:nowrap}
@@ -171,6 +172,7 @@ main{padding-top:6px}
 .cluster-dot{width:12px;height:12px;flex:none;border-radius:50%;background:var(--entry-color);border:2px solid var(--entry-color);transform:scale(var(--dot-scale,1));box-shadow:0 0 0 2px #fff}
 .cluster-dot[data-size="2"]{width:19px;height:19px}
 .cluster-dot[data-size="3"]{width:25px;height:25px}
+.cluster-dot[data-size="unscored"]{width:17px;height:17px;background:#fff}
 .cluster-dot.is-placeholder{background:#fff;border-style:dashed}
 .cluster-copy{display:flex;flex-direction:column;min-width:0;gap:3px}
 .cluster-meta{font-size:10px;color:#718088}

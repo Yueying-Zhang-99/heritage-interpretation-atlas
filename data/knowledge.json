@@ -80,7 +80,8 @@
       "Declaration",
       "Document",
       "Recommendation",
-      "Research theme"
+      "Research theme",
+      "Heritage Practice Case"
     ]
   },
   "documents": [
@@ -1406,6 +1407,123 @@
       "timeline_topic": "Digital methods",
       "map_title": "Defining Gamification",
       "map_maker": "Deterding et al."
+    },
+    {
+      "id": "case-robben-island",
+      "year": 1999,
+      "year_label": "1999 · UNESCO inscription",
+      "title": "Robben Island Museum Interpretation",
+      "title_zh": "罗本岛博物馆阐释实践",
+      "node_type": "document",
+      "type": "Heritage Practice Case",
+      "display_category": "Heritage Practice",
+      "timeline_topic": "Participation & plural voices",
+      "organization": "Robben Island Museum Council · UNESCO World Heritage Centre",
+      "recognition_basis": "罗本岛于1999年列入 UNESCO 世界遗产名录。阐释实践依据：南非提交、由 UNESCO 世界遗产中心公开的提名档案；该列入认定针对遗产地，不等于 UNESCO 对每种阐释方法的单独认证。",
+      "practice_date": "提名档案记录截至1999年的实践；具体项目启动时间未明。",
+      "map_title": "Robben Island Interpretation",
+      "map_maker": "Robben Island Museum",
+      "preview": "Former prisoners’ voices, prison spaces and exhibits convey varied experiences of incarceration and political struggle.",
+      "summary": "UNESCO 收录的提名档案描述了以监狱空间及其陈设呈现不同囚犯群体的经验；部分展陈依据前囚犯的建议布置，并使用囚犯录音讲述监禁中的学习与讨论。案例提示：空间叙事、亲历者声音与多重经验可以共同构成阐释内容。此摘要依据1999年提名档案，不代表对当前展陈状态的核验。",
+      "significance": "可用于分析历史场所如何借助空间、物件和亲历者声音表达冲突历史，并处理真实性与多元经验之间的关系。",
+      "phd_relevance": "适合作为多元叙事及场所体验的参照；若进一步联系 MR 设计，需区分历史证据、亲历者叙述与设计者补充内容。",
+      "themes": ["Multiple Narratives", "Memory", "Political History", "Prison Heritage"],
+      "concepts": ["Authenticity", "Heritage Values", "Multiple Narratives", "Community"],
+      "heritage_conception": ["Site", "Built Heritage", "Living Heritage"],
+      "interpretation_model": ["Narrative", "Experience"],
+      "authority_structure": ["Multi-stakeholder"],
+      "public_role": ["Visitor", "Contributor"],
+      "narrative_structure": ["Multiple Narratives", "Personal Narratives"],
+      "media": ["Exhibition", "Audio"],
+      "public_actions": ["Observe", "Listen", "Explore"],
+      "importance": null,
+      "importance_note": "不评定理论贡献度；此处为阐释实践案例，规模不表示案例质量。",
+      "placeholder": false,
+      "source_url": "https://whc.unesco.org/en/list/916/documents/",
+      "pdf": "https://whc.unesco.org/uploads/nominations/916.pdf",
+      "excerpts": [
+        {
+          "text": "conveyance of the many varieties of experience",
+          "source": "Robben Island nomination file (1999), UNESCO World Heritage Centre",
+          "location": "Nomination document, p. 14"
+        }
+      ],
+      "relations": [
+        {
+          "target": "authenticity",
+          "type": "related_to",
+          "evidence": "UNESCO公开的1999年提名档案将场所真实性与传达不同居住者经验联系起来；这里标注概念关联，不主张单一真实性定义。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+        },
+        {
+          "target": "heritage-values",
+          "type": "related_to",
+          "evidence": "UNESCO提名档案记载监狱空间、物件与亲历者声音如何传达场所历史意义。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+        },
+        {
+          "target": "plural",
+          "type": "related_to",
+          "evidence": "档案描述不同囚犯群体的经验及亲历者录音，支持将此案例与多元叙事议题并置分析。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+        }
+      ],
+      "coding_status": "UNESCO World Heritage property; practice summary from official nomination file; present-day interpretation requires follow-up."
+    },
+    {
+      "id": "case-tongariro",
+      "year": 1990,
+      "year_label": "1990 · UNESCO inscription",
+      "title": "Tongariro National Park Interpretation",
+      "title_zh": "汤加里罗国家公园阐释实践",
+      "node_type": "document",
+      "type": "Heritage Practice Case",
+      "display_category": "Heritage Practice",
+      "timeline_topic": "Participation & plural voices",
+      "organization": "New Zealand Department of Conservation · UNESCO World Heritage Centre",
+      "recognition_basis": "汤加里罗国家公园于1990年列入 UNESCO 世界遗产名录，1993年增列文化景观价值。UNESCO 官方案例页记录阐释活动；世界遗产认定针对遗产地，不等于对每项展示方法的单独认证。",
+      "practice_date": "UNESCO 官方案例页记载列入后的阐释活动；具体展陈实施年份未逐项注明。",
+      "map_title": "Tongariro Interpretation",
+      "map_maker": "DOC New Zealand · Māori partners",
+      "preview": "Māori participation shapes displays and interpretation of the park’s cultural and natural significance.",
+      "summary": "UNESCO 世界遗产中心的案例资料记载，汤加里罗的遗产价值通过标识、出版物和游客中心阐释；毛利社群参与展陈创作，以解释场所的文化与自然意义。UNESCO 资料也记录其作为文化景观的遗产价值。该条目将年份按首次列入世界遗产名录的1990年定位，官方资料未给出这些阐释项目各自的启动年份。",
+      "significance": "展示遗产价值阐释如何结合场所环境、原住民文化关联、游客中心媒介与社群参与。",
+      "phd_relevance": "可作为公众阐释与共同创作的实践参照；涉及原住民知识时，应将授权、知识边界和社群治理纳入 MR 或游戏化设计。",
+      "themes": ["Cultural Landscape", "Indigenous Heritage", "Participation", "Heritage Values"],
+      "concepts": ["Heritage Values", "Community", "Multiple Narratives"],
+      "heritage_conception": ["Cultural Landscape", "Living Heritage", "Community Heritage"],
+      "interpretation_model": ["Education", "Narrative", "Participation", "Co-creation"],
+      "authority_structure": ["Multi-stakeholder", "Co-created"],
+      "public_role": ["Visitor", "Contributor", "Co-creator"],
+      "narrative_structure": ["Community Narratives", "Multiple Narratives"],
+      "media": ["Text", "Exhibition", "Digital Media"],
+      "public_actions": ["Read", "Observe", "Explore", "Discuss"],
+      "importance": null,
+      "importance_note": "不评定理论贡献度；此处为阐释实践案例，规模不表示案例质量。",
+      "placeholder": false,
+      "source_url": "https://whc.unesco.org/en/activities/613/",
+      "excerpts": [
+        {
+          "text": "interpretation at visitor centres",
+          "source": "Case study: Tongariro, UNESCO World Heritage Centre",
+          "location": "Raising Awareness section"
+        }
+      ],
+      "relations": [
+        {
+          "target": "community",
+          "type": "related_to",
+          "evidence": "UNESCO案例页记载毛利社群参与展陈创作及教育资源开发；关系表示实践关联，并非认定社区意见单一。Source: https://whc.unesco.org/en/activities/613/"
+        },
+        {
+          "target": "heritage-values",
+          "type": "related_to",
+          "evidence": "官方案例将标识、出版物和游客中心阐释与场所世界遗产价值传播相连。Source: https://whc.unesco.org/en/activities/613/"
+        },
+        {
+          "target": "plural",
+          "type": "related_to",
+          "evidence": "案例涉及毛利文化与自然意义的共同阐释，可与多元叙事议题比较；此关联为分析性编码。Source: https://whc.unesco.org/en/activities/613/"
+        }
+      ],
+      "coding_status": "UNESCO World Heritage property; practice documented by UNESCO case page; specific intervention dates need follow-up."
     }
   ],
   "nodes": [

@@ -39,7 +39,9 @@ Atlas.network=function(rows){
     if(animate)svg.transition().duration(260).call(zoom.transform,transform);else svg.call(zoom.transform,transform);
   };
   A.fitNetwork=fit;fit();
-  node.call(d3.drag().container(()=>svg.node()).on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.18).restart();d.fx=d.x;d.fy=d.y;}).on('drag',(e,d)=>{const p=d3.zoomTransform(svg.node()).invert([e.x,e.y]);d.fx=p[0];d.fy=p[1];}).on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
+  // Measure pointer coordinates in the zoomed world group. D3 then accounts
+  // for the node's pointer offset and the current zoom transform together.
+  node.call(d3.drag().container(()=>world.node()).on('start',(e,d)=>{if(!e.active)sim.alphaTarget(.18).restart();d.fx=d.x;d.fy=d.y;}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y;}).on('end',(e,d)=>{if(!e.active)sim.alphaTarget(0);d.fx=null;d.fy=null;}));
   const toolbar=A.el('div','network-toolbar'),hint=A.el('span','network-zoom-hint',`${nodes.length} nodes · ${links.length} coded links · Drag to move, scroll to zoom`);
   const zoomOut=A.el('button','','−'),zoomIn=A.el('button','','＋'),fitButton=A.el('button','','Fit all');
   for(const b of [zoomOut,zoomIn,fitButton])b.type='button';zoomIn.setAttribute('aria-label','Zoom in');zoomOut.setAttribute('aria-label','Zoom out');
