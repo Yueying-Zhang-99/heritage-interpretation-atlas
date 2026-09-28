@@ -23,18 +23,19 @@ Atlas.network=function(rows){
     const title=label.append('text').attr('class','network-title').attr('y',29).text(d.map_title||d.title).call(A.wrap,230,18);
     const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',29+Math.max(1,title.selectAll('tspan').size())*18+4).text(maker);
   });
-  const sim=d3.forceSimulation(nodes).force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?205:165).strength(.42)).force('charge',d3.forceManyBody().strength(d=>d.core_concept?-760:-560)).force('center',d3.forceCenter(W/2,H/2)).force('x',d3.forceX(W/2).strength(.012)).force('y',d3.forceY(H/2).strength(.018)).force('collide',d3.forceCollide(d=>d.core_concept?82:d.node_type==='document'?68:48).iterations(2)).alphaDecay(.035).stop();
+  const sim=d3.forceSimulation(nodes).force('link',d3.forceLink(links).id(d=>d.id).distance(d=>d.type==='influences'?235:200).strength(.34)).force('charge',d3.forceManyBody().strength(d=>d.core_concept?-1050:-760)).force('center',d3.forceCenter(W/2,H/2)).force('x',d3.forceX(W/2).strength(.008)).force('y',d3.forceY(H/2).strength(.012)).force('collide',d3.forceCollide(d=>d.core_concept?100:d.node_type==='document'?82:58).iterations(3)).alphaDecay(.035).stop();
   A.sim=sim;
   sim.tick(300);
-  const place=()=>{node.attr('transform',d=>`translate(${d.x},${d.y})`);link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);};
+  const place=()=>{node.attr('transform',d=>`translate(${d.x},${d.y})`);node.select('.network-label').attr('transform',d=>d.x>W/2?'translate(-20,4)':'translate(20,4)').attr('text-anchor',d=>d.x>W/2?'end':'start');link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);};
   place();
   sim.on('tick',place);
   node.on('mouseenter.neighbours',function(e,d){const neighbours=new Set([d.id]);for(const l of links)if(l.source.id===d.id)neighbours.add(l.target.id);else if(l.target.id===d.id)neighbours.add(l.source.id);node.classed('is-dimmed',n=>!neighbours.has(n.id));link.classed('is-muted',l=>l.source.id!==d.id&&l.target.id!==d.id);}).on('mouseleave.neighbours',()=>{node.classed('is-dimmed',false);link.classed('is-muted',false);});
   const zoom=d3.zoom().scaleExtent([.16,3.5]).on('zoom',e=>world.attr('transform',e.transform));svg.call(zoom).on('dblclick.zoom',null);
   const fit=(animate=false)=>{
     if(!nodes.length)return;
-    const minX=Math.min(...nodes.map(d=>d.x-36)),maxX=Math.max(...nodes.map(d=>d.x+282));
-    const minY=Math.min(...nodes.map(d=>d.y-36)),maxY=Math.max(...nodes.map(d=>d.y+122));
+    const bounds=nodes.map(d=>d.x>W/2?{left:d.x-258,right:d.x+36,top:d.y-30,bottom:d.y+82}:{left:d.x-36,right:d.x+258,top:d.y-30,bottom:d.y+82});
+    const minX=Math.min(...bounds.map(b=>b.left)),maxX=Math.max(...bounds.map(b=>b.right));
+    const minY=Math.min(...bounds.map(b=>b.top)),maxY=Math.max(...bounds.map(b=>b.bottom));
     const contentWidth=maxX-minX,contentHeight=maxY-minY,k=Math.min(W/contentWidth,H/contentHeight)*.9;
     const transform=d3.zoomIdentity.translate(W/2-k*(minX+contentWidth/2),H/2-k*(minY+contentHeight/2)).scale(k);
     if(animate)svg.transition().duration(260).call(zoom.transform,transform);else svg.call(zoom.transform,transform);
