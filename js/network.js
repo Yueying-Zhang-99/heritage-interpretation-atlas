@@ -15,19 +15,22 @@ Atlas.network=function(rows){
   const link=linkLayer.selectAll('line').data(links).join('line').attr('stroke','#a9b8bd').attr('stroke-width',d=>d.type==='influences'?1.7:1.3).attr('stroke-dasharray',d=>d.type==='related_to'?'4 5':null).attr('opacity',.48).attr('tabindex',0).attr('aria-label',d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}: ${d.type}`);
   link.append('title').text(d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}\n${d.type}\n${d.evidence||'Relation coding needs source review.'}`);
   const nodeLayer=world.append('g').attr('class','network-nodes');
+  const markerLayer=world.append('g').attr('class','network-markers').style('pointer-events','none');
   const practice=d=>d.type==='Heritage Practice Case';
   const markerSize=d=>practice(d)?58:d.core_concept?410:d.node_type==='document'?170+(d.importance||1)*110:d.node_type==='person'?190:135;
   const markerShape=d=>d3.symbol().type(d.node_type==='person'?d3.symbolDiamond:d3.symbolCircle);
   const node=nodeLayer.selectAll('g').data(nodes,d=>d.id).join('g').attr('class',d=>'network-node'+(d.core_concept?' is-key-concept':'')+(practice(d)?' is-practice-case':'')).attr('tabindex',0).attr('role','button').attr('aria-label',d=>`${d.title}, ${d.year_label||d.year||''}; open details`).on('click',(e,d)=>{if(!e.defaultPrevented)A.openDetail(d.id);}).on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();A.openDetail(d.id);}});
   node.append('circle').attr('class','network-halo').attr('r',d=>practice(d)?9:d.core_concept?29:d.node_type==='document'?17+(d.importance||1)*3:15).attr('fill',d=>practice(d)?'#82918d':A.color(d)).attr('fill-opacity',d=>practice(d)?.035:d.placeholder ? .04 : d.core_concept ? .2 : .08);
-  node.append('path').attr('class','network-cutout').attr('d',d=>markerShape(d).size(markerSize(d)*1.55)()).attr('fill','#fff');
-  node.append('path').attr('class','network-dot').attr('d',d=>markerShape(d).size(markerSize(d))()).attr('fill',d=>practice(d)?'#82918d':d.placeholder||d.node_type==='concept'?'#fff':A.color(d)).attr('fill-opacity',d=>practice(d)?.78:1).attr('stroke',d=>practice(d)?'#788984':A.color(d)).attr('stroke-width',d=>practice(d)?1.4:d.core_concept?3:2).attr('stroke-dasharray',d=>d.placeholder?'4 3':null);
   node.each(function(d){const label=d3.select(this).append('g').attr('class','network-label').attr('transform','translate(20,4)');
     if(d.year_label||d.year)label.append('text').attr('class','network-year').attr('y',10).text(d.year_label||d.year);
     const title=label.append('text').attr('class','network-title').attr('y',29).text(d.map_title||d.title).call(A.wrap,d.labelWidth||165,18);
     const maker=d.map_maker||A.text(d.author)||d.organization;if(maker)label.append('text').attr('class','network-maker').attr('y',29+Math.max(1,title.selectAll('tspan').size())*18+4).text(maker);
     label.lower();
   });
+  // Keep every marker in a final shared layer so no label from another node can cover a dot.
+  const markers=markerLayer.selectAll('g').data(nodes,d=>d.id).join('g').attr('class','network-marker');
+  markers.append('path').attr('class','network-cutout').attr('d',d=>markerShape(d).size(markerSize(d)*1.55)()).attr('fill','#fff');
+  markers.append('path').attr('class','network-dot').attr('d',d=>markerShape(d).size(markerSize(d))()).attr('fill',d=>practice(d)?'#82918d':d.placeholder||d.node_type==='concept'?'#fff':A.color(d)).attr('fill-opacity',d=>practice(d)?.78:1).attr('stroke',d=>practice(d)?'#788984':A.color(d)).attr('stroke-width',d=>practice(d)?1.4:d.core_concept?3:2).attr('stroke-dasharray',d=>d.placeholder?'4 3':null);
   const applyLabelScale=()=>{
     const scale=A.networkPhysics.labelScale/100;
     node.each(function(d){
@@ -49,10 +52,12 @@ Atlas.network=function(rows){
     .alphaDecay(.025).stop();
   A.sim=sim;
   sim.tick(240);
-  const place=()=>{node.attr('transform',d=>`translate(${d.x},${d.y})`);node.select('.network-label').attr('transform',d=>{const offset=(d.labelOffset||36)*A.networkPhysics.labelScale/100;return `translate(${d.x>W/2?-offset:offset},4)`;}).attr('text-anchor',d=>d.x>W/2?'end':'start');link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);};
+  const place=()=>{node.attr('transform',d=>`translate(${d.x},${d.y})`);markers.attr('transform',d=>`translate(${d.x},${d.y})`);node.select('.network-label').attr('transform',d=>{const offset=(d.labelOffset||36)*A.networkPhysics.labelScale/100;return `translate(${d.x>W/2?-offset:offset},4)`;}).attr('text-anchor',d=>d.x>W/2?'end':'start');link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);};
   place();
   sim.on('tick',place);
-  node.on('mouseenter.neighbours',function(e,d){const neighbours=new Set([d.id]);for(const l of links)if(l.source.id===d.id)neighbours.add(l.target.id);else if(l.target.id===d.id)neighbours.add(l.source.id);node.classed('is-dimmed',n=>!neighbours.has(n.id));link.classed('is-muted',l=>l.source.id!==d.id&&l.target.id!==d.id).classed('is-active',l=>l.source.id===d.id||l.target.id===d.id);}).on('mouseleave.neighbours',()=>{node.classed('is-dimmed',false);link.classed('is-muted',false).classed('is-active',false);});
+  const focusNeighbours=d=>{const neighbours=new Set([d.id]);for(const l of links)if(l.source.id===d.id)neighbours.add(l.target.id);else if(l.target.id===d.id)neighbours.add(l.source.id);node.classed('is-dimmed',n=>!neighbours.has(n.id));markers.classed('is-dimmed',n=>!neighbours.has(n.id)).classed('is-hovered',n=>n.id===d.id);link.classed('is-muted',l=>l.source.id!==d.id&&l.target.id!==d.id).classed('is-active',l=>l.source.id===d.id||l.target.id===d.id);};
+  const clearFocus=()=>{node.classed('is-dimmed',false);markers.classed('is-dimmed',false).classed('is-hovered',false);link.classed('is-muted',false).classed('is-active',false);};
+  node.on('mouseenter.neighbours',(e,d)=>focusNeighbours(d)).on('mouseleave.neighbours',clearFocus).on('focus.neighbours',(e,d)=>focusNeighbours(d)).on('blur.neighbours',clearFocus);
   const zoom=d3.zoom().scaleExtent([.16,3.5]).on('zoom',e=>world.attr('transform',e.transform));svg.call(zoom).on('dblclick.zoom',null);
   const fit=(animate=false)=>{
     if(!nodes.length)return;
