@@ -1,13 +1,13 @@
 (async()=>{
   'use strict';
   const A=Atlas,$=s=>document.querySelector(s),state=A.state;
-  const physicsKey='heritage-atlas-network-physics-v1',physicsDefaults={distance:280,repulsion:470};
+  const physicsKey='heritage-atlas-network-physics-v2',physicsDefaults={distance:320,repulsion:520,labelScale:100};
   A.networkPhysics={...physicsDefaults};
-  try{const saved=JSON.parse(localStorage.getItem(physicsKey));if(saved&&Number.isFinite(saved.distance)&&saved.distance>=100&&saved.distance<=280&&Number.isFinite(saved.repulsion)&&saved.repulsion>=80&&saved.repulsion<=600)Object.assign(A.networkPhysics,saved);}catch{}
-  const syncPhysicsControls=()=>{$('#network-spacing').value=A.networkPhysics.distance;$('#network-repulsion').value=A.networkPhysics.repulsion;$('#network-spacing-value').value=String(A.networkPhysics.distance);$('#network-repulsion-value').value=String(A.networkPhysics.repulsion);};
+  try{const saved=JSON.parse(localStorage.getItem(physicsKey));if(saved){if(Number.isFinite(saved.distance)&&saved.distance>=100&&saved.distance<=420)A.networkPhysics.distance=saved.distance;if(Number.isFinite(saved.repulsion)&&saved.repulsion>=80&&saved.repulsion<=850)A.networkPhysics.repulsion=saved.repulsion;if(Number.isFinite(saved.labelScale)&&saved.labelScale>=80&&saved.labelScale<=140)A.networkPhysics.labelScale=saved.labelScale;}}catch{}
+  const syncPhysicsControls=()=>{$('#network-spacing').value=A.networkPhysics.distance;$('#network-repulsion').value=A.networkPhysics.repulsion;$('#network-text-scale').value=A.networkPhysics.labelScale;$('#network-spacing-value').value=String(A.networkPhysics.distance);$('#network-repulsion-value').value=String(A.networkPhysics.repulsion);$('#network-text-scale-value').value=A.networkPhysics.labelScale+'%';};
   const viewInfo={timeline:['01 / TOPIC × TIME MAP','Ideas and documents across time','X: year · Y: working topic · Title and author/organisation appear beside each dot · Click for the full record.'],cluster:['02 / TOPIC CLUSTERS','Documents grouped by shared codes','A record appears in every selected cluster it matches. Click any item to open its full record.'],network:['03 / RELATIONSHIP GRAPH','Explore connections','Open force-directed graph · Hover a node to trace links · Drag to explore and scroll to zoom.'],matrix:['04 / RESEARCH LIBRARY','Research library','Sort columns or open a record to read source notes.']};
   A.render=()=>{
-    document.body.classList.toggle('network-active',state.view==='network');A.sim?.stop();A.sim=null;A.fitNetwork=null;A.updateNetworkPhysics=null;A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart','network-chart');$('#chart').style.setProperty('--dot-scale',String(state.dotScale||1));
+    document.body.classList.toggle('network-active',state.view==='network');A.sim?.stop();A.sim=null;A.fitNetwork=null;A.updateNetworkPhysics=null;A.updateNetworkLabelScale=null;A.hideTooltip();A.visible=A.filtered();$('#chart').replaceChildren();$('#chart').classList.remove('timeline-chart','network-chart');$('#chart').style.setProperty('--dot-scale',String(state.dotScale||1));
     const info=viewInfo[state.view];$('#view-number').textContent='VIEW '+info[0];$('#view-title').textContent=info[1];$('#view-hint').textContent=info[2];$('#result-count').textContent=`${A.visible.length} / ${A.records.length} entries`;
     document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===state.view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',active);});
     $('#cluster-control').hidden=state.view!=='cluster';$('#network-control').hidden=state.view!=='network';$('#dot-scale-control').hidden=state.view!=='timeline';$('#dot-scale').value=Math.round((state.dotScale||1)*100);$('#dot-scale-value').value=$('#dot-scale').value+'%';syncPhysicsControls();
@@ -27,9 +27,11 @@
   for(const [key,label]of Object.entries(A.fields)){const o=A.el('option','',label);o.value=key;$('#cluster-by').append(o);}
   for(const type of A.relationTypes){const o=A.el('option','',type);o.value=type;$('#relation-type').append(o);}
   $('#cluster-by').onchange=e=>{state.cluster=e.target.value;A.render();};$('#relation-type').onchange=e=>{state.relation=e.target.value;A.render();};
-  const updatePhysics=()=>{A.networkPhysics.distance=Number($('#network-spacing').value);A.networkPhysics.repulsion=Number($('#network-repulsion').value);syncPhysicsControls();try{localStorage.setItem(physicsKey,JSON.stringify(A.networkPhysics));}catch{}A.updateNetworkPhysics?.();};
-  $('#network-spacing').oninput=updatePhysics;$('#network-repulsion').oninput=updatePhysics;
-  $('#network-defaults').onclick=()=>{$('#network-spacing').value=physicsDefaults.distance;$('#network-repulsion').value=physicsDefaults.repulsion;updatePhysics();};
+  const persistPhysics=()=>{syncPhysicsControls();try{localStorage.setItem(physicsKey,JSON.stringify(A.networkPhysics));}catch{}};
+  const updatePhysics=()=>{A.networkPhysics.distance=Number($('#network-spacing').value);A.networkPhysics.repulsion=Number($('#network-repulsion').value);persistPhysics();A.updateNetworkPhysics?.();};
+  const updateLabelScale=()=>{A.networkPhysics.labelScale=Number($('#network-text-scale').value);persistPhysics();A.updateNetworkLabelScale?.();};
+  $('#network-spacing').oninput=updatePhysics;$('#network-repulsion').oninput=updatePhysics;$('#network-text-scale').oninput=updateLabelScale;
+  $('#network-defaults').onclick=()=>{$('#network-spacing').value=physicsDefaults.distance;$('#network-repulsion').value=physicsDefaults.repulsion;$('#network-text-scale').value=physicsDefaults.labelScale;A.networkPhysics={...physicsDefaults};persistPhysics();A.updateNetworkPhysics?.();A.updateNetworkLabelScale?.();};
   document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{state.view=b.dataset.view;A.render();});
   $('#search').oninput=e=>{state.query=e.target.value;A.render();};$('#reset').onclick=A.reset;$('#dot-scale').oninput=e=>{state.dotScale=Number(e.target.value)/100;$('#dot-scale-value').value=e.target.value+'%';$('#chart').style.setProperty('--dot-scale',String(state.dotScale));};
   let resizeFrame=0;window.addEventListener('resize',()=>{if(state.view==='timeline'||state.view==='network'){cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>A.render());}});
