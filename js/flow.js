@@ -113,15 +113,21 @@ Atlas.flow=function(rows){
   topics.forEach((topic,i)=>{
     const members=nodes.filter(n=>n.topics.includes(i)).sort((a,b)=>a.x-b.x||a.y-b.y);
     if(!members.length)return;
-    const samples=members.map(n=>[n.x,n.y]);
+    const samples=members.map(n=>[n.x,n.y,sigma]);
     for(let k=1;k<members.length;k++){
       const a=members[k-1],b=members[k];
       const count=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/24);
-      for(let j=1;j<count;j++){const t=j/count,u=1-t,dx=b.x-a.x;samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x,a.y+(b.y-a.y)*(3*t*t-2*t*t*t)]);}
+      for(let j=1;j<count;j++){
+        const t=j/count,u=1-t,dx=b.x-a.x;
+        // A gentle waist between records keeps the node lobes round and the
+        // connecting ribbon continuous, with a smooth taper at both ends.
+        const bridgeSigma=sigma-13*Math.sin(Math.PI*t)**2;
+        samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x,a.y+(b.y-a.y)*(3*t*t-2*t*t*t),bridgeSigma]);
+      }
     }
     const values=new Float32Array(nx*ny);
-    for(const [px,py] of samples){const loX=Math.max(0,Math.floor((px-95)/cell)),hiX=Math.min(nx-1,Math.ceil((px+95)/cell)),loY=Math.max(0,Math.floor((py-95)/cell)),hiY=Math.min(ny-1,Math.ceil((py+95)/cell));
-      for(let gy=loY;gy<=hiY;gy++)for(let gx=loX;gx<=hiX;gx++){const value=Math.exp(-((gx*cell-px)**2+(gy*cell-py)**2)/(2*sigma*sigma));const index=gy*nx+gx;values[index]=Math.max(values[index],value);}
+    for(const [px,py,sampleSigma] of samples){const loX=Math.max(0,Math.floor((px-95)/cell)),hiX=Math.min(nx-1,Math.ceil((px+95)/cell)),loY=Math.max(0,Math.floor((py-95)/cell)),hiY=Math.min(ny-1,Math.ceil((py+95)/cell));
+      for(let gy=loY;gy<=hiY;gy++)for(let gx=loX;gx<=hiX;gx++){const value=Math.exp(-((gx*cell-px)**2+(gy*cell-py)**2)/(2*sampleSigma*sampleSigma));const index=gy*nx+gx;values[index]=Math.max(values[index],value);}
     }
     contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(values,nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
   });
