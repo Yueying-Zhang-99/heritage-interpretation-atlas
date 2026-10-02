@@ -274,7 +274,7 @@ body.network-active #chart.network-chart{height:auto;min-height:0;background:tra
 .flow-theme-button[data-theme="3"]{border-bottom:1px dotted #596970}
 .flow-theme-button[aria-pressed="true"]{background:#edf1f2;color:#152a32}
 .flow-key .text-button{font-size:11px;margin-left:auto}
-.flow-envelope{fill:#829092;fill-opacity:.04;stroke:#889496;stroke-width:1.1;pointer-events:none;transition:opacity .15s,fill-opacity .15s}
+.flow-envelope{fill:#829092;fill-opacity:.04;stroke:#889496;stroke-width:1.1;stroke-linejoin:round;stroke-linecap:round;pointer-events:none;transition:opacity .15s,fill-opacity .15s}
 .flow-envelope[data-theme="1"]{stroke:#56666c;stroke-width:1.4;fill-opacity:.035}
 .flow-envelope[data-theme="2"]{stroke:#657478;stroke-dasharray:6 4;fill-opacity:.035}
 .flow-envelope[data-theme="3"]{stroke:#657478;stroke-dasharray:1.5 3;fill-opacity:.045}

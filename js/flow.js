@@ -1,4 +1,42 @@
 /* Theme envelopes derived from coded records. Geometry never asserts influence. */
+Atlas.flowEnvelopePath=function(values,nx,ny,cell){
+  // Round kernel intersections in the field first; increasing SVG resolution alone
+  // cannot remove the cusps produced by a hard union of neighbouring kernels.
+  const sigma=18/cell,radius=Math.ceil(sigma*3),kernel=[];
+  let total=0;
+  for(let offset=-radius;offset<=radius;offset++){const weight=Math.exp(-offset*offset/(2*sigma*sigma));kernel.push(weight);total+=weight;}
+  for(let i=0;i<kernel.length;i++)kernel[i]/=total;
+  const horizontal=new Float32Array(values.length),smooth=new Float32Array(values.length);
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+    let sum=0;for(let k=-radius;k<=radius;k++)if(x+k>=0&&x+k<nx)sum+=values[y*nx+x+k]*kernel[k+radius];
+    horizontal[y*nx+x]=sum;
+  }
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+    let sum=0;for(let k=-radius;k<=radius;k++)if(y+k>=0&&y+k<ny)sum+=horizontal[(y+k)*nx+x]*kernel[k+radius];
+    smooth[y*nx+x]=sum;
+  }
+  const contour=d3.contours().size([nx,ny]).thresholds([.32])(smooth)[0];
+  const curve=d3.line().curve(d3.curveBasisClosed);
+  const paths=[];
+  for(const polygon of contour.coordinates)for(const ring of polygon){
+    // A closed B-spline follows a coarser, evenly spaced boundary without the
+    // tiny straight segments of marching squares. Keep separate islands/holes.
+    const points=ring.slice(0,-1).map(([x,y])=>[x*cell,y*cell]),spaced=[];
+    if(!points.length)continue;
+    spaced.push(points[0]);let distance=0,previous=points[0];
+    for(let i=1;i<=points.length;i++){
+      const next=points[i%points.length],dx=next[0]-previous[0],dy=next[1]-previous[1],length=Math.hypot(dx,dy);
+      if(!length){previous=next;continue;}
+      let travelled=0;
+      while(distance+length-travelled>=10){const step=10-distance;travelled+=step;spaced.push([previous[0]+dx*travelled/length,previous[1]+dy*travelled/length]);distance=0;}
+      distance+=length-travelled;previous=next;
+    }
+    if(spaced.length>1&&Math.hypot(spaced.at(-1)[0]-spaced[0][0],spaced.at(-1)[1]-spaced[0][1])<5)spaced.pop();
+    const path=curve(spaced.length>=4?spaced:points);
+    if(path)paths.push(path.endsWith('Z')?path:path+'Z');
+  }
+  return paths.filter(Boolean).join('');
+};
 Atlas.flow=function(rows){
   const A=Atlas,root=document.querySelector('#chart'),topics=A.flowTopics;
   root.classList.add('flow-chart');
@@ -68,7 +106,6 @@ Atlas.flow=function(rows){
   guides.append('text').attr('x',18).attr('y',axisY+4).text('YEAR');
   // An envelope unions local kernels and short chronological bridges. Long gaps remain open.
   const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=43;
-  const path=d3.geoPath(d3.geoIdentity().scale(cell));
   const contours=[];
   topics.forEach((topic,i)=>{
     const members=nodes.filter(n=>n.topics.includes(i)).sort((a,b)=>a.x-b.x||a.y-b.y);
@@ -83,8 +120,7 @@ Atlas.flow=function(rows){
     for(const [px,py] of samples){const loX=Math.max(0,Math.floor((px-95)/cell)),hiX=Math.min(nx-1,Math.ceil((px+95)/cell)),loY=Math.max(0,Math.floor((py-95)/cell)),hiY=Math.min(ny-1,Math.ceil((py+95)/cell));
       for(let gy=loY;gy<=hiY;gy++)for(let gx=loX;gx<=hiX;gx++){const value=Math.exp(-((gx*cell-px)**2+(gy*cell-py)**2)/(2*sigma*sigma));const index=gy*nx+gx;values[index]=Math.max(values[index],value);}
     }
-    const contour=d3.contours().size([nx,ny]).thresholds([.32])(values)[0];
-    contours.push(backdrop.append('path').datum({topic,i}).attr('d',path(contour)).attr('class','flow-envelope').attr('data-theme',i));
+    contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(values,nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
   });
   const byId=new Map(nodes.map(n=>[n.d.id,n]));
   let selected=null;
