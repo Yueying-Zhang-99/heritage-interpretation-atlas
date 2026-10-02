@@ -258,3 +258,51 @@ body.network-active #chart.network-chart{height:auto;min-height:0;background:tra
 .detail-resize-sw{bottom:-4px;left:-4px;cursor:nesw-resize}.detail-resize-se{bottom:0;right:0;cursor:nwse-resize;border-radius:0 0 12px 0}
 .detail-resize-se::after{content:'';position:absolute;right:5px;bottom:5px;width:8px;height:8px;border-right:2px solid #93a7ad;border-bottom:2px solid #93a7ad}
 @media(max-width:480px){.detail-card-content{padding:4px 18px 20px}.detail-card .detail-meta{grid-template-columns:90px 1fr}.detail-card h2{font-size:23px}}
+
+/* Overlapping themes timeline: restrained greys, document-coloured foreground dots. */
+.timeline-modes{display:flex;gap:2px;border:1px solid #dce3e5;padding:3px;border-radius:5px}
+.timeline-modes button{padding:5px 12px;font-size:12px;border-radius:3px;color:#6b7980}
+.timeline-modes button[aria-pressed="true"]{color:#1e2d33;background:#edf1f2}
+.view-tools{flex-wrap:wrap}
+.flow-chart{min-height:0;overflow:auto;background:#fff}
+.flow-chart svg{min-width:680px;max-height:none;width:100%;height:auto;overflow:visible}
+.flow-key{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:15px 4px 4px;font-size:11px}
+.flow-key-caption{font-size:10px;letter-spacing:1.3px;color:#7e8a90;margin-right:8px}
+.flow-theme-button{font-size:11px;padding:5px 8px;border-bottom:1px solid #8a969a;color:#596970}
+.flow-theme-button[data-theme="1"]{border-bottom:2px solid #596970}
+.flow-theme-button[data-theme="2"]{border-bottom:1px dashed #596970}
+.flow-theme-button[data-theme="3"]{border-bottom:1px dotted #596970}
+.flow-theme-button[aria-pressed="true"]{background:#edf1f2;color:#152a32}
+.flow-key .text-button{font-size:11px;margin-left:auto}
+.flow-envelope{fill:#829092;fill-opacity:.04;stroke:#889496;stroke-width:1.1;pointer-events:none;transition:opacity .15s,fill-opacity .15s}
+.flow-envelope[data-theme="1"]{stroke:#56666c;stroke-width:1.4;fill-opacity:.035}
+.flow-envelope[data-theme="2"]{stroke:#657478;stroke-dasharray:6 4;fill-opacity:.035}
+.flow-envelope[data-theme="3"]{stroke:#657478;stroke-dasharray:1.5 3;fill-opacity:.045}
+.flow-envelope.is-active{fill-opacity:.1;stroke-width:1.7}
+.flow-envelope.is-muted{opacity:.17}
+.flow-guides line{stroke:#acb8bb;stroke-width:1}
+.flow-guides text{font-size:10px;fill:#708087}
+.flow-label{cursor:pointer;transition:opacity .15s}
+.flow-year{font-size:10px;fill:#7c8a90}
+.flow-title{font-size:12px;font-weight:550;fill:#1a2d36;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.flow-maker{font-size:10px;fill:#718188;paint-order:stroke;stroke:#fff;stroke-width:2px;stroke-linejoin:round}
+.flow-label.is-practice-case .flow-title{font-size:11px;font-weight:400}
+.flow-label.is-hovered .flow-title{fill:#0b5461;text-decoration:underline}
+.flow-label.is-muted,.flow-dot.is-muted{opacity:.22}
+.flow-dot{cursor:pointer;transition:opacity .15s}
+.flow-circle{fill:var(--entry-color);stroke:#fff;stroke-width:1.5;transform:scale(var(--dot-scale,1));transform-box:fill-box;transform-origin:center}
+.flow-circle.is-placeholder{fill:#fff;stroke:var(--entry-color);stroke-width:1.8;stroke-dasharray:3 2}
+.flow-dot-halo{fill:#fff;pointer-events:none;transform:scale(var(--dot-scale,1));transform-box:fill-box;transform-origin:center}
+.flow-dot.is-hovered .flow-dot-halo{stroke:#566e76;stroke-width:1}
+.flow-hit{fill:transparent}
+.flow-links path{stroke:#6b7b81;stroke-width:1.1;stroke-dasharray:3 3;fill:none;pointer-events:none}
+.flow-note{font-size:11px;color:#74848b;margin:0;padding:9px 4px 12px;max-width:1100px}
+.topic-evidence-entry{padding:13px 0;border-bottom:1px solid #e7ecee}
+.topic-evidence-entry h4{font-size:13px;font-weight:550;margin:0 0 4px}
+.topic-evidence-entry a{font-size:12px;color:#477782}
+.coding-badge{font-size:10px;color:#687d84;border:1px solid #dce5e8;border-radius:3px;padding:2px 5px;display:inline-block;margin-bottom:6px}
+.membership-group{border-bottom:1px solid #e4eaec;padding:5px 0 12px}
+.membership-fields{padding-left:19px}
+.membership-fields .editor-field{margin:7px 0}
+@media(max-width:760px){.flow-key{gap:5px}.flow-key-caption{width:100%}.flow-theme-button{font-size:10px}.timeline-modes button{padding:4px 9px}.flow-note{min-width:300px}}
+@media(prefers-reduced-motion:reduce){.flow-envelope,.flow-label,.flow-dot{transition:none}}

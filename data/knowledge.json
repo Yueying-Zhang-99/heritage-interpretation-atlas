@@ -3,7 +3,11 @@
     "title": "Heritage Interpretation Knowledge Atlas",
     "schema_version": "1.0",
     "is_sample": true,
-    "notice": "示例与研究编码数据库：重要性评分为研究者初步判断，不代表引用量或客观学术影响；虚线节点待原文精读，摘要与关系须逐条校核。"
+    "notice": "示例与研究编码数据库：重要性评分为研究者初步判断，不代表引用量或客观学术影响；虚线节点待原文精读，摘要与关系须逐条校核。",
+    "topic_coding": {
+      "updated": "2026-10-02",
+      "method": "Qualitative working codes: source = checked original or official description; provisional = interpretation pending close reading. Shared subject matter is not proof of direct influence. Publication / inscription dates retain their existing meaning."
+    }
   },
   "vocabulary": {
     "heritage_conception": [
@@ -144,7 +148,16 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Athens Charter",
-      "map_maker": "International Museums Office"
+      "map_maker": "International Museums Office",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "保护与修复的早期政策背景；本轮未据原文扩展其他主题。",
+          "source_url": "https://www.icomos.org/en/resources/charters-and-texts",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "tilden",
@@ -218,7 +231,16 @@
       "excerpts": [],
       "timeline_topic": "Interpretation & experience",
       "map_title": "Interpreting Our Heritage",
-      "map_maker": "Freeman Tilden"
+      "map_maker": "Freeman Tilden",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "经典公众阐释理论条目；沿用现有编码，具体原则及页码待精读确认。",
+          "source_url": "https://uncpress.org/9798890882950/interpreting-our-heritage/",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "venice",
@@ -285,7 +307,16 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Venice Charter",
-      "map_maker": "ICOMOS"
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "建筑与场所保护、修复和真实性的核心框架；本轮不据题名追加公众参与编码。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "world-heritage",
@@ -346,7 +377,23 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "World Heritage Convention",
-      "map_maker": "UNESCO"
+      "map_maker": "UNESCO",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第4–5条规定识别、保护、保存、展示和传承文化与自然遗产的责任。",
+          "source_url": "https://whc.unesco.org/en/conventiontext/",
+          "location": "Articles 4–5"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第27条以教育和信息项目增强公众对遗产的认识、尊重及对威胁的了解；可作为公众阐释的教育政策背景。",
+          "source_url": "https://whc.unesco.org/en/conventiontext/",
+          "location": "Article 27"
+        }
+      ]
     },
     {
       "id": "burra",
@@ -413,7 +460,16 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Burra Charter",
-      "map_maker": "Australia ICOMOS"
+      "map_maker": "Australia ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "1979首次通过的价值导向保护框架。本轮保留保护主题；2013版的参与和阐释条文不能直接回填到1979年。",
+          "source_url": "https://australia.icomos.org/publications/burra-charter-practice-notes/",
+          "location": "Version history: first adoption 1979; current edition 2013"
+        }
+      ]
     },
     {
       "id": "gaze",
@@ -476,7 +532,16 @@
       "excerpts": [],
       "timeline_topic": "Interpretation & experience",
       "map_title": "The Tourist Gaze",
-      "map_maker": "John Urry"
+      "map_maker": "John Urry",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "游客观看、旅游体验与场所表征的理论参照；目前缺少已校核原文位置，不扩大主题归属。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "nara",
@@ -548,7 +613,23 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Nara Document",
-      "map_maker": "ICOMOS / UNESCO"
+      "map_maker": "ICOMOS / UNESCO",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第9–13段将真实性判断与遗产价值、信息来源及文化语境相连。",
+          "source_url": "https://whc.unesco.org/archive/nara94.htm",
+          "location": "Paragraphs 9–13"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "第5–8段强调文化与遗产多样性、文化冲突中的相互尊重，以及文化社群对自身遗产的责任；此归属侧重多元价值，不把它等同于共同创作操作手册。",
+          "source_url": "https://whc.unesco.org/archive/nara94.htm",
+          "location": "Paragraphs 5–8, 11"
+        }
+      ]
     },
     {
       "id": "dissonant",
@@ -612,7 +693,23 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Dissonant Heritage",
-      "map_maker": "Tunbridge & Ashworth"
+      "map_maker": "Tunbridge & Ashworth",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "遗产作为可能发生冲突的资源与价值选择；依据现有书目和研究摘要暂定，原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "不协和遗产可与叙事冲突、代表权及不同群体的过去进行比较；尚未完成原文逐章核对。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "xian",
@@ -673,7 +770,30 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Xi’an Declaration",
-      "map_maker": "ICOMOS"
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第1–4段将环境视为场所意义与特征的一部分，涵盖有形和无形关联。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/xian-declaration.pdf",
+          "location": "Paragraphs 1–4"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第13段要求提高公众对环境意义的认识，支持保护与管理；作为场所意义传播的政策背景。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/xian-declaration.pdf",
+          "location": "Paragraph 13"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "第12段倡议与当地及相关社群合作、认识不同群体的文化和社会关联。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/xian-declaration.pdf",
+          "location": "Paragraph 12"
+        }
+      ]
     },
     {
       "id": "faro",
@@ -741,7 +861,37 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Faro Convention",
-      "map_maker": "Council of Europe"
+      "map_maker": "Council of Europe",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第1–2条将遗产保护与不断演变的价值、人的发展和生活质量相连。",
+          "source_url": "https://rm.coe.int/1680083746",
+          "location": "Articles 1–2"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第12(d)、13条强调认识遗产价值、改善遗产接近机会及教育和知识共享；此处是公众学习主题，并非狭义阐释方法标准。",
+          "source_url": "https://rm.coe.int/1680083746",
+          "location": "Articles 12(d), 13"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "第2(b)、12条界定遗产社群并要求鼓励所有人参与识别、研究、阐释、保护和展示。",
+          "source_url": "https://rm.coe.int/1680083746",
+          "location": "Articles 2(b), 12"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "第14条明确以数字技术改善遗产接近机会、内容质量和文化语言多样性。",
+          "source_url": "https://rm.coe.int/1680083746",
+          "location": "Article 14"
+        }
+      ]
     },
     {
       "id": "smith",
@@ -816,7 +966,30 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Uses of Heritage",
-      "map_maker": "Laurajane Smith"
+      "map_maker": "Laurajane Smith",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "作者所在大学的官方书介将遗产重新理解为意义建构的实践，而非单纯物体或地点，并引出AHD。",
+          "source_url": "https://chms.cass.anu.edu.au/research/publications/uses-heritage",
+          "location": "Official book abstract"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "官方摘要明确指出遗产是意义建构的表演性实践，支持将其纳入阐释与意义主题；完整论证仍待逐章精读。",
+          "source_url": "https://chms.cass.anu.edu.au/research/publications/uses-heritage",
+          "location": "Official book abstract"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "不同遗产话语与AHD可用于讨论谁有权定义遗产、谁的声音被排除；此参与与多元叙事编码为研究者解释，具体章页待补。",
+          "source_url": "https://chms.cass.anu.edu.au/research/publications/uses-heritage",
+          "location": "Official abstract; chapter/page pending"
+        }
+      ]
     },
     {
       "id": "ename",
@@ -889,7 +1062,37 @@
       ],
       "timeline_topic": "Interpretation & experience",
       "map_title": "Interpretation Charter",
-      "map_maker": "ICOMOS"
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "原则4、5把真实性、可持续保护及阐释基础设施对场所的影响纳入公众阐释。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "location": "Principles 4–5"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "目标与原则1–3界定遗产场所的理解、信息来源和语境，是公众阐释与展示框架。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "location": "Objectives; Principles 1–3"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "原则6要求专业人员、当地及相关社群与其他利益相关方进行实质合作，并开放公众意见。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "location": "Principle 6.1–6.3"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "定义包含电子出版、多媒体和网站；原则6.4讨论数字媒体的材料所有权与文化权利。此处是数字阐释伦理背景。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "location": "Definitions; Principle 6.4"
+        }
+      ]
     },
     {
       "id": "hul",
@@ -950,7 +1153,37 @@
       "excerpts": [],
       "timeline_topic": "Conservation & values",
       "map_title": "Historic Urban Landscape",
-      "map_maker": "UNESCO"
+      "map_maker": "UNESCO",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第8–9段及24(b)以历史层积、价值、完整性与真实性扩展城市遗产保护视野。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/recommendation-historic-urban-landscape-including-glossary-definitions",
+          "location": "Paragraphs 8–9, 24(b)"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第26段要求理解城市的复杂层积、社群意义，并向访客作综合呈现。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/recommendation-historic-urban-landscape-including-glossary-definitions",
+          "location": "Paragraph 26"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "第23、24(a)段要求利益相关方参与、不同社群的对话以及冲突协商。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/recommendation-historic-urban-landscape-including-glossary-definitions",
+          "location": "Paragraphs 23, 24(a)"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "第27段明确鼓励信息与通信技术用于记录、理解与展示城市层积，并联系青年及代表不足群体。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/recommendation-historic-urban-landscape-including-glossary-definitions",
+          "location": "Paragraph 27"
+        }
+      ]
     },
     {
       "id": "participatory",
@@ -1023,7 +1256,23 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Participatory Heritage",
-      "map_maker": "Research topic"
+      "map_maker": "Research topic",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "研究主题占位：共同阐释与意义协商连接公众阐释；2010s只是索引时间，不是已核定的学科起点。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "研究主题占位：参与、共同创作和社群权力；需逐步补入具体文献与章页。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "plural",
@@ -1085,7 +1334,23 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Plural Narratives",
-      "map_maker": "Research topic"
+      "map_maker": "Research topic",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "研究主题占位：多个叙事视角如何改变遗产阐释设计；2020s只是索引时间。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "研究主题占位：多元声音、争议和代表权；不把该标签当作已成立的单一理论流。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "tourism",
@@ -1146,7 +1411,37 @@
       "excerpts": [],
       "timeline_topic": "Interpretation & experience",
       "map_title": "Heritage Tourism Charter",
-      "map_maker": "ICOMOS"
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "原则1、2要求将遗产保护、韧性、承载力及管理纳入负责任旅游。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
+          "location": "Principles 1–2"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "原则3专门讨论通过敏感的阐释与展示提高公众认识和访客体验。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
+          "location": "Principle 3"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "原则3、4要求承认多面且可能有争议的价值，尊重社群权利及参与旅游治理。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
+          "location": "Principles 3–4"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "原则3明确讨论基于科学研究的增强现实、虚拟重建，以及网络和社交媒体的机会。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
+          "location": "Principle 3"
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1194,7 +1489,16 @@
       ],
       "timeline_topic": "Digital methods",
       "map_title": "Mixed Reality Displays",
-      "map_maker": "Milgram & Kishino"
+      "map_maker": "Milgram & Kishino",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "provisional",
+          "evidence": "混合现实显示分类的技术参照；不因可用于遗产就自动编码为遗产阐释理论。",
+          "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
+          "location": "Publisher abstract; full-text reading pending"
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1235,7 +1539,16 @@
       "excerpts": [],
       "timeline_topic": "Digital methods",
       "map_title": "A Survey of AR",
-      "map_maker": "Ronald Azuma"
+      "map_maker": "Ronald Azuma",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "provisional",
+          "evidence": "增强现实技术综述；遗产应用的具体主题与实例须另找直接文献支持。",
+          "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
+          "location": ""
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1280,7 +1593,23 @@
       ],
       "timeline_topic": "Digital methods",
       "map_title": "Digital Heritage Charter",
-      "map_maker": "UNESCO"
+      "map_maker": "UNESCO",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第3、5–8条回应数字资源消失风险及保护连续性、选择与策略。对象为数字遗产本身。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/charter-preservation-digital-heritage",
+          "location": "Articles 3, 5–8"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "第1–2条界定数字遗产及获取机会；不把它当作实体遗产AR/MR阐释规范。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/charter-preservation-digital-heritage",
+          "location": "Articles 1–2"
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1326,7 +1655,30 @@
       ],
       "timeline_topic": "Digital methods",
       "map_title": "The London Charter",
-      "map_maker": "London Charter"
+      "map_maker": "London Charter",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "原则5、6强调可视化成果的长期保存及对遗产保存和管理的益处。",
+          "source_url": "https://londoncharter.org/principles.html",
+          "location": "Principles 5–6"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "原则6明确关联研究、理解与阐释，原则1适用于遗产研究与传播的计算机可视化。",
+          "source_url": "https://londoncharter.org/principles.html",
+          "location": "Principles 1, 6"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "原则2–4规范计算机可视化方法的适宜性、研究来源及文档透明度。",
+          "source_url": "https://londoncharter.org/principles.html",
+          "location": "Principles 2–4"
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1367,7 +1719,30 @@
       "excerpts": [],
       "timeline_topic": "Participation & plural voices",
       "map_title": "The Participatory Museum",
-      "map_maker": "Nina Simon"
+      "map_maker": "Nina Simon",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "序言将观众自行建构意义、不同文化视角及文化体验作为参与设计的基础。",
+          "source_url": "https://participatorymuseum.org/preface/",
+          "location": "Preface: Why Participate?"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "序言把参与机构界定为围绕内容创造、分享、连接的场所，邀请非专家贡献意见与故事。",
+          "source_url": "https://participatorymuseum.org/preface/",
+          "location": "Preface: Why Participate?"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "序言明确讨论社会化网络的工具和设计模式如何改善参与；是数字参与背景，不是AR/MR专项理论。",
+          "source_url": "https://participatorymuseum.org/preface/",
+          "location": "Preface: discussion of the social Web"
+        }
+      ]
     },
     {
       "node_type": "document",
@@ -1411,7 +1786,16 @@
       "excerpts": [],
       "timeline_topic": "Digital methods",
       "map_title": "Defining Gamification",
-      "map_maker": "Deterding et al."
+      "map_maker": "Deterding et al.",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "provisional",
+          "evidence": "游戏化的概念与设计术语参照；与遗产公众参与的具体关联须由应用研究论证。",
+          "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "delhi-declaration-2017",
@@ -1524,7 +1908,37 @@
       ],
       "timeline_topic": "Participation & plural voices",
       "map_title": "Delhi Declaration",
-      "map_maker": "ICOMOS"
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "第1节要求尊重价值、意义及真实性，并把多元的遗产资源纳入管理。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "location": "Section 1, p. 2"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第2节将阐释伦理、场所历史层积、文化多样性教育及信息接近机会联系起来。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "location": "Section 2, pp. 2–3"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "第3节要求包容性民主参与、传统知识及跨文化协作决策。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "location": "Section 3, p. 3"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "序言承认数字技术的作用；第2节要求用通信技术与媒介收集、分享、阐释和传播数据。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "location": "Preamble, p. 1; Section 2, p. 3"
+        }
+      ]
     },
     {
       "id": "case-robben-island",
@@ -1615,7 +2029,30 @@
           "evidence": "档案描述不同囚犯群体的经验及亲历者录音，支持将此案例与多元叙事议题并置分析。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
         }
       ],
-      "coding_status": "UNESCO World Heritage property; practice summary from official nomination file; present-day interpretation requires follow-up."
+      "coding_status": "UNESCO World Heritage property; practice summary from official nomination file; present-day interpretation requires follow-up.",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "联合监测报告讨论遗产价值保护与整体保护管理计划。图中1999是列入年份，不能当作报告或全部实践的发生年份。",
+          "source_url": "https://whc.unesco.org/document/141619",
+          "location": "WHC/ICOMOS mission report, 2011, sections 4.3–4.4"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "报告第4.4节评估阐释计划、展览和访客体验，也指出尚未落实的环节；案例不能仅作成功范例。",
+          "source_url": "https://whc.unesco.org/document/141619",
+          "location": "Section 4.4, printed pp. 20–21"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "报告讨论前政治犯的口述故事及其在阐释与管理中的代表角色，关联多元声音。",
+          "source_url": "https://whc.unesco.org/document/141619",
+          "location": "Section 4.4, printed p. 21; recommendation 8"
+        }
+      ]
     },
     {
       "id": "case-tongariro",
@@ -1631,9 +2068,9 @@
       "recognition_basis": "汤加里罗国家公园于1990年列入 UNESCO 世界遗产名录，1993年增列文化景观价值。UNESCO 官方案例页记录阐释活动；世界遗产认定针对遗产地，不等于对每项展示方法的单独认证。",
       "practice_date": "UNESCO 官方案例页记载列入后的阐释活动；具体展陈实施年份未逐项注明。",
       "map_title": "Tongariro Interpretation",
-      "map_maker": "DOC New Zealand · Māori partners",
-      "preview": "Māori participation shapes displays and interpretation of the park’s cultural and natural significance.",
-      "summary": "UNESCO 世界遗产中心的案例资料记载，汤加里罗的遗产价值通过标识、出版物和游客中心阐释；毛利社群参与展陈创作，以解释场所的文化与自然意义。UNESCO 资料也记录其作为文化景观的遗产价值。该条目将年份按首次列入世界遗产名录的1990年定位，官方资料未给出这些阐释项目各自的启动年份。",
+      "map_maker": "DOC New Zealand",
+      "preview": "Interpretation communicates cultural and natural values; community volunteers assist management.",
+      "summary": "UNESCO 世界遗产中心的案例页记载，以标识、出版物、游客中心视听展示及网站传播汤加里罗的世界遗产价值，并介绍社区和志愿者协助管理。页面确认毛利社群与山地环境的文化及精神关联，但未直接记载毛利共同创作展陈，因此该说法不作为已核实结论。图中按1990年首次列入世界遗产名录定位；文化景观认定为1993年，各项阐释项目的实施年份尚待补查。",
       "significance": "展示遗产价值阐释如何结合场所环境、原住民文化关联、游客中心媒介与社群参与。",
       "phd_relevance": "可作为公众阐释与共同创作的实践参照；涉及原住民知识时，应将授权、知识边界和社群治理纳入 MR 或游戏化设计。",
       "themes": [
@@ -1655,17 +2092,14 @@
       "interpretation_model": [
         "Education",
         "Narrative",
-        "Participation",
-        "Co-creation"
+        "Participation"
       ],
       "authority_structure": [
-        "Multi-stakeholder",
-        "Co-created"
+        "Multi-stakeholder"
       ],
       "public_role": [
         "Visitor",
-        "Contributor",
-        "Co-creator"
+        "Contributor"
       ],
       "narrative_structure": [
         "Community Narratives",
@@ -1697,7 +2131,7 @@
         {
           "target": "community",
           "type": "related_to",
-          "evidence": "UNESCO案例页记载毛利社群参与展陈创作及教育资源开发；关系表示实践关联，并非认定社区意见单一。Source: https://whc.unesco.org/en/activities/613/"
+          "evidence": "UNESCO案例页记载社区协助管理与志愿参与；未据此断言毛利社群共同创作展陈。Source: https://whc.unesco.org/en/activities/613/"
         },
         {
           "target": "heritage-values",
@@ -1710,7 +2144,38 @@
           "evidence": "案例涉及毛利文化与自然意义的共同阐释，可与多元叙事议题比较；此关联为分析性编码。Source: https://whc.unesco.org/en/activities/613/"
         }
       ],
-      "coding_status": "UNESCO World Heritage property; practice documented by UNESCO case page; specific intervention dates need follow-up."
+      "coding_status": "UNESCO World Heritage property; practice documented by UNESCO case page; specific intervention dates need follow-up.",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "UNESCO案例将文化与自然价值保护及管理政策相连；1990是首次列入年份，文化景观认定为1993年。",
+          "source_url": "https://whc.unesco.org/en/activities/613/",
+          "location": "Introduction; Increasing Protection"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "官方案例记录标识、出版物、游客中心及视听展示用于传播世界遗产价值。",
+          "source_url": "https://whc.unesco.org/en/activities/613/",
+          "location": "Raising Awareness"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "官方案例记载社区协助管理及个人、保护团体的志愿参与；毛利文化意义明确，但本页未证明毛利共同创作展陈。",
+          "source_url": "https://whc.unesco.org/en/activities/613/",
+          "location": "Introduction; Harnessing Tourism"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "官方案例明确提及网站向游客提供信息；本页未给出网站或展陈启动年份。",
+          "source_url": "https://whc.unesco.org/en/activities/613/",
+          "location": "Harnessing Tourism"
+        }
+      ],
+      "my_notes": "来源校核：UNESCO案例页支持社区协助管理和志愿参与；毛利展陈共同创作需要另补直接来源。时间轴是列入年份，不是所有实践方法的起始年份。"
     }
   ],
   "nodes": [
@@ -1718,13 +2183,45 @@
       "id": "authenticity",
       "title": "Authenticity",
       "title_zh": "真实性",
-      "node_type": "concept"
+      "node_type": "concept",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "significance",
       "title": "Cultural Significance",
       "title_zh": "文化意义",
-      "node_type": "concept"
+      "node_type": "concept",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "community",
@@ -1736,6 +2233,22 @@
           "target": "participatory",
           "type": "related_to",
           "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+        }
+      ],
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
         }
       ]
     },
@@ -1750,29 +2263,123 @@
           "type": "related_to",
           "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
         }
+      ],
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
       ]
     },
     {
       "id": "voices",
       "title": "Multiple Narratives",
       "title_zh": "多元叙事",
-      "node_type": "concept"
+      "node_type": "concept",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "meaning",
       "title": "Meaning-making",
       "title_zh": "意义建构",
-      "node_type": "concept"
+      "node_type": "concept",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "person-tilden",
       "title": "Freeman Tilden",
-      "node_type": "person"
+      "node_type": "person",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "person-smith",
       "title": "Laurajane Smith",
-      "node_type": "person"
+      "node_type": "person",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        }
+      ]
     },
     {
       "id": "heritage-values",
@@ -1838,6 +2445,29 @@
           "target": "community",
           "type": "related_to",
           "evidence": "The Faro Convention connects heritage's social value with communities, shared responsibility, and participation. This association does not assume that communities hold a single shared view. Source: https://www.coe.int/en/web/culture-and-heritage/the-faro-way"
+        }
+      ],
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "provisional",
+          "evidence": "概念 / 人物节点的工作主题编码，依据现有关系与摘要作初步归类；具体原文章页待补。",
+          "source_url": "",
+          "location": ""
         }
       ]
     }

@@ -18,6 +18,13 @@ invalid=clone();invalid.documents[0].relations=[{target:'missing',type:'related_
 invalid=clone();invalid.documents[0].year='invalid';assert.throws(()=>A.validate(invalid),/year/);
 invalid=clone();invalid.documents[0].node_type=4;assert.throws(()=>A.validate(invalid),/node_type/);
 A.validate([{id:'minimal',title:'Minimal record',year:2026}]);
+invalid=clone();invalid.documents[0].topic_memberships=[{topic:'Imaginary topic',status:'source',evidence:'Test'}];assert.throws(()=>A.validate(invalid),/主题归属/);
+invalid=clone();invalid.documents[0].topic_memberships.push({...invalid.documents[0].topic_memberships[0]});assert.throws(()=>A.validate(invalid),/重复/);
+invalid=clone();invalid.documents[0].topic_memberships[0].status='source';delete invalid.documents[0].topic_memberships[0].location;assert.throws(()=>A.validate(invalid),/来源和位置/);
+assert.equal(A.topicMemberships({timeline_topic:'Digital methods'})[0].status,'provisional','Legacy imports retain honest fallback');
+assert.equal(A.topicMemberships(A.byId.get('delhi-declaration-2017')).length,4);
+assert.equal(A.topicMemberships(A.byId.get('burra')).length,1,'Do not backdate later Burra provisions');
+A.state.filters={topic_memberships:new Set(['Digital methods'])};assert.ok(A.filtered().some(d=>d.id==='faro'));assert.ok(A.filtered().some(d=>d.id==='ename'));assert.ok(!A.filtered().some(d=>d.id==='tilden'));A.state.filters={};
 A.state.query='Tilden';assert.deepEqual(Array.from(A.filtered(),d=>d.id),['tilden']);
 A.state.query='';A.state.filters={type:new Set(['Book','Convention']),public_role:new Set(['Visitor'])};assert.equal(A.filtered().length,3,'OR within a field; AND across fields');
 A.state.filters={};A.state.minYear='2005';A.state.maxYear='2006';assert.equal(A.filtered().length,3);

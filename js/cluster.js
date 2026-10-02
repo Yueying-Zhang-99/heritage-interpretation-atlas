@@ -1,7 +1,7 @@
 Atlas.cluster=function(rows){
   const A=Atlas,key=A.state.cluster;
   const assignments=new Map();
-  for(const d of rows){const values=A.arr(d[key]).length?A.arr(d[key]).map(String):['Uncoded'];for(const value of values){if(!assignments.has(value))assignments.set(value,[]);assignments.get(value).push(d);}}
+  for(const d of rows){const values=A.values(d,key).length?A.values(d,key).map(String):['Uncoded'];for(const value of values){if(!assignments.has(value))assignments.set(value,[]);assignments.get(value).push(d);}}
   const board=A.el('div','cluster-board');
   for(const [group,items] of [...assignments].sort(([a],[b])=>a.localeCompare(b))){
     const section=A.el('section','cluster-group'),head=A.el('div','cluster-group-head');

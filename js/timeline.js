@@ -1,5 +1,6 @@
 /* Compact topic × time map. Labels remain visible; clicking a circle opens its record. */
 Atlas.timeline=function(rows){
+  if(Atlas.state.timelineMode==='flow'&&typeof d3!=='undefined')return Atlas.flow(rows);
   const A=Atlas,root=document.querySelector('#chart');
   root.classList.add('timeline-chart');
   const topics=['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'];

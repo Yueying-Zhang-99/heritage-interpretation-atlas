@@ -1,14 +1,17 @@
 /* Shared state and data helpers. No build step, ES modules or server required. */
 window.Atlas = (() => {
   const streams={A:{name:'Heritage Paradigm',zh:'遗产对象观与保护范式',color:'#a1813e'},B:{name:'Interpretation Paradigm',zh:'遗产阐释理论',color:'#6f7950'},C:{name:'Participatory / Plural',zh:'参与式与多元叙事',color:'#a55f48'}};
-  const fields={paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception',media:'Media / Technology'};
+  const flowTopics=['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'];
+  const fields={topic_memberships:'Flow themes',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception',media:'Media / Technology'};
   const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Technology']];
   const palette=['#a1813e','#6f7950','#a55f48','#586f70','#8b6a72','#6e6555','#8d8457','#59724c','#af725b','#616774','#967845'];
   const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward'];
-  const state={view:'timeline',lens:'stream',cluster:'paradigm',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1,dotScale:1};
-  const A={streams,fields,lenses,palette,relationTypes,state,data:null,records:[],nodes:[],byId:new Map(),visible:[],sim:null};
+  const state={view:'timeline',timelineMode:'flow',lens:'stream',cluster:'topic_memberships',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1,dotScale:1};
+  const A={streams,fields,lenses,palette,relationTypes,flowTopics,state,data:null,records:[],nodes:[],byId:new Map(),visible:[],sim:null};
   A.arr=v=>v==null||v===''?[]:Array.isArray(v)?v:[v];
   A.text=v=>A.arr(v).join(' · ');
+  A.topicMemberships=d=>Array.isArray(d.topic_memberships)?d.topic_memberships:d.timeline_topic?[{topic:d.timeline_topic,status:'provisional',evidence:'沿用原有 Timeline 工作分类；多主题编码待核对。'}]:[];
+  A.values=(d,key)=>key==='topic_memberships'?A.topicMemberships(d).map(m=>m.topic):A.arr(d[key]);
   A.el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;};
   A.validate=raw=>{
     const data=Array.isArray(raw)?{documents:raw,nodes:[],meta:{},vocabulary:{}}:raw;
@@ -24,6 +27,12 @@ window.Atlas = (() => {
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
       if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
       if(d.timeline_topic!=null&&!['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'].includes(d.timeline_topic))throw new Error(`${d.id} 的 timeline_topic 无效。`);
+      if(d.topic_memberships!=null){
+        if(!Array.isArray(d.topic_memberships))throw new Error(`${d.id} 的 topic_memberships 必须是数组。`);
+        const topics=new Set();
+        for(const m of d.topic_memberships){if(!m||!flowTopics.includes(m.topic)||!['source','provisional'].includes(m.status)||typeof m.evidence!=='string'||!m.evidence.trim())throw new Error(`${d.id} 的主题归属需包含有效 topic、status 和 evidence。`);if(topics.has(m.topic))throw new Error(`${d.id} 的主题归属重复。`);topics.add(m.topic);if(m.status==='source'&&(typeof m.source_url!=='string'||!/^https?:\/\//i.test(m.source_url)||typeof m.location!=='string'||!m.location.trim()))throw new Error(`${d.id} 已核对的主题归属需填写来源和位置（HTTP/HTTPS网址及条款或页码）。`);}
+        if(data.documents.includes(d)&&(!topics.size||!topics.has(d.timeline_topic)))throw new Error(`${d.id} 的主题归属必须包含 Bands 主分类。`);
+      }
       if(d.display_category!=null&&!['Charter / Policy','Theory / Book','Research Paper','Research Topic','Heritage Practice'].includes(d.display_category))throw new Error(`${d.id} 的 display_category 无效。`);
       if(d.importance!=null&&![1,2,3].includes(Number(d.importance)))throw new Error(`${d.id} 的 importance 必须为 1、2 或 3。`);
       if(d.annotations?.some(a=>!a||typeof a!=='object'))throw new Error(`${d.id} 包含无效标注。`);
@@ -36,9 +45,9 @@ window.Atlas = (() => {
   A.filtered=()=>A.records.filter(d=>{
     if(state.query&&!JSON.stringify(d).toLocaleLowerCase().includes(state.query.toLocaleLowerCase().trim()))return false;
     if(state.minYear!==''&&d.year<Number(state.minYear)||state.maxYear!==''&&d.year>Number(state.maxYear))return false;
-    return Object.entries(state.filters).every(([key,values])=>!values.size||A.arr(d[key]).some(x=>values.has(String(x))));
+    return Object.entries(state.filters).every(([key,values])=>!values.size||A.values(d,key).some(x=>values.has(String(x))));
   });
-  A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.arr(d[key])).map(String))].sort();
+  A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.values(d,key)).map(String))].sort();
   const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78','Heritage Practice':'#17806f'};
   A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Heritage Practice Case')return 'Heritage Practice';if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
   A.typeColors=typeColors;
