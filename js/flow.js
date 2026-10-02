@@ -106,7 +106,8 @@ Atlas.flow=function(rows){
   guides.append('line').attr('x1',x(start)).attr('x2',x(end)).attr('y1',axisY).attr('y2',axisY);
   for(let year=start;year<=end;year+=10){const t=guides.append('g').attr('transform',`translate(${x(year)},${axisY})`);t.append('line').attr('y2',5);t.append('text').attr('y',19).attr('text-anchor','middle').text(year);}
   guides.append('text').attr('x',18).attr('y',axisY+4).text('YEAR');
-  // An envelope unions local kernels and short chronological bridges. Long gaps remain open.
+  // Connect adjacent same-theme records across sparse years. These bridges show
+  // theme membership, not historical continuity or direct influence.
   const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=43;
   const contours=[];
   topics.forEach((topic,i)=>{
@@ -114,7 +115,7 @@ Atlas.flow=function(rows){
     if(!members.length)return;
     const samples=members.map(n=>[n.x,n.y]);
     for(let k=1;k<members.length;k++){
-      const a=members[k-1],b=members[k];if(b.d.year-a.d.year>22)continue;
+      const a=members[k-1],b=members[k];
       const count=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/24);
       for(let j=1;j<count;j++){const t=j/count,u=1-t,dx=b.x-a.x;samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x,a.y+(b.y-a.y)*(3*t*t-2*t*t*t)]);}
     }
