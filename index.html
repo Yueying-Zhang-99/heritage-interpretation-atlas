@@ -6,17 +6,17 @@
   <meta name="description" content="遗产阐释知识图谱：探索遗产价值、公众参与和多元叙事的理论发展。">
   <title>Heritage Interpretation · Knowledge Atlas</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffffff'/%3E%3Ccircle cx='12' cy='12' r='8' fill='%23a78745' fill-opacity='.7'/%3E%3Ccircle cx='21' cy='15' r='8' fill='%23747b53' fill-opacity='.7'/%3E%3Ccircle cx='16' cy='23' r='8' fill='%23a55d46' fill-opacity='.7'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=atlas-29">
+  <link rel="stylesheet" href="css/style.css?v=atlas-30">
   <script defer src="assets/vendor/d3.v7.min.js"></script>
-  <script defer src="data/knowledge-snapshot.js?v=atlas-29"></script>
-  <script defer src="js/core.js?v=atlas-29"></script>
-  <script defer src="js/timeline.js?v=atlas-29"></script>
-  <script defer src="js/cluster.js?v=atlas-29"></script>
-  <script defer src="js/network.js?v=atlas-29"></script>
+  <script defer src="data/knowledge-snapshot.js?v=atlas-30"></script>
+  <script defer src="js/core.js?v=atlas-30"></script>
+  <script defer src="js/timeline.js?v=atlas-30"></script>
+  <script defer src="js/cluster.js?v=atlas-30"></script>
+  <script defer src="js/network.js?v=atlas-30"></script>
   <script defer src="js/matrix.js"></script>
-  <script defer src="js/detail.js?v=atlas-29"></script>
-  <script defer src="js/editor.js?v=atlas-29"></script>
-  <script defer src="js/app.js?v=atlas-29"></script>
+  <script defer src="js/detail.js?v=atlas-30"></script>
+  <script defer src="js/editor.js?v=atlas-30"></script>
+  <script defer src="js/app.js?v=atlas-30"></script>
 </head>
 <body>
   <a class="skip-link" href="#workspace">跳至知识图谱</a>
@@ -32,7 +32,7 @@
     </section>
   </main>
   <dialog id="filter-dialog" class="side-panel" aria-labelledby="filter-title"><div class="panel-top"><span class="eyebrow">REFINE THE COLLECTION</span><button class="close-button" data-close="filter-dialog" aria-label="关闭筛选">×</button></div><h2 id="filter-title">Filters <span>筛选文献</span></h2><p class="small">同一维度满足任一选项；不同维度同时满足。</p><div id="filter-fields"></div><div class="filter-actions"><button id="clear-filters" class="outline-button">清空筛选</button><button data-close="filter-dialog" class="solid-button">查看结果</button></div></dialog>
-  <dialog id="detail-dialog" class="side-panel detail-panel" aria-labelledby="detail-title"><div class="panel-top"><span class="eyebrow">READING ROOM / 文献详情</span><button class="close-button" data-close="detail-dialog" aria-label="关闭详情">×</button></div><div id="detail-content"></div></dialog>
+  <dialog id="detail-dialog" class="detail-card" aria-labelledby="detail-title"><div class="detail-card-top"><div id="detail-move" class="detail-move" tabindex="0" role="button" aria-label="移动详情卡片：拖动或使用方向键"><span class="eyebrow">READING ROOM</span><span class="detail-card-hint">Drag to move · Resize from edges</span></div><button class="close-button" data-close="detail-dialog" aria-label="关闭详情">×</button></div><div id="detail-content" class="detail-card-content"></div><button type="button" class="detail-resize detail-resize-se" data-resize="se" aria-label="调整卡片大小：拖动或使用方向键" title="Resize"></button></dialog>
   <dialog id="editor-dialog" class="side-panel editor-panel" aria-labelledby="editor-title"><div class="panel-top"><span class="eyebrow">内容管理</span><button class="close-button" data-close="editor-dialog" aria-label="关闭编辑器">×</button></div><h2 id="editor-title">管理内容 <span>编辑条目与分类标签</span></h2><p class="small">保存到本机无需令牌。只有发布到 GitHub、让其他设备和访客看到时才需要令牌。</p><div class="editor-tabs" role="tablist"><button id="edit-entries-tab" class="active" type="button">条目</button><button id="edit-labels-tab" type="button">分类标签</button></div><div id="editor-content"></div><div class="editor-publish"><label>GitHub 授权令牌（仅发布时需要）<input id="github-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">创建仅限此仓库、Contents 读写权限的令牌 ↗</a><p class="small">令牌不会写入仓库或浏览器存储。发布前会检查仓库数据是否被他人修改，避免覆盖。</p><div class="editor-actions"><button id="discard-draft" class="text-button" type="button">放弃草稿</button><button id="download-json" class="outline-button" type="button">导出 JSON 备份</button><button id="publish-github" class="solid-button" type="button">发布到 GitHub</button></div><p id="editor-status" role="status" aria-live="polite"></p></div></dialog>
   <div id="tooltip" class="tooltip" role="tooltip" hidden></div>
   <noscript>请启用 JavaScript 以使用交互知识图谱。</noscript>

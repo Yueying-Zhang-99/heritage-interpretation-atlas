@@ -235,3 +235,26 @@ body.network-active .primary-bar,body.network-active .view-heading,body.network-
 body.network-active .chart-footer,body.network-active .data-bar{display:none}
 body.network-active #chart{flex:1;min-height:0;overflow:hidden;border:0}
 body.network-active #chart.network-chart{height:auto;min-height:0;background:transparent}
+
+/* A movable reading card leaves the atlas available behind it. */
+.detail-card{position:fixed;z-index:30;margin:0;padding:0;max-width:none;max-height:none;overflow:visible;border:1px solid #d7e0e2;border-radius:12px;background:#fff;color:var(--ink);box-shadow:0 12px 48px #18333d26}
+.detail-card[open]{display:flex;flex-direction:column}
+.detail-card-top{display:flex;align-items:center;flex:none;border-bottom:1px solid #e3e9ea;border-radius:12px 12px 0 0;background:#f8fafb}
+.detail-move{flex:1;min-width:0;padding:14px 20px;cursor:move;touch-action:none;user-select:none;border-radius:12px 0 0 0}
+.detail-card-hint{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.detail-card-top .close-button{margin-right:10px;flex:none}
+.detail-card-content{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;padding:4px 24px 24px;border-radius:0 0 12px 12px;scrollbar-width:thin}
+.detail-card h2{font-family:var(--sans);font-size:26px;line-height:1.3;overflow-wrap:anywhere}
+.detail-card h2>span{display:block;margin:8px 0 0;font-size:14px}
+.detail-card .entry-number{font-family:var(--sans);font-size:28px;margin-top:18px}
+.detail-card.is-adjusting{user-select:none}
+.detail-resize{position:absolute;touch-action:none;padding:0;border:0;background:transparent;z-index:2}
+.detail-resize-n,.detail-resize-s{left:12px;right:12px;height:8px;cursor:ns-resize}
+.detail-resize-n{top:-4px}.detail-resize-s{bottom:-4px}
+.detail-resize-e,.detail-resize-w{top:12px;bottom:12px;width:8px;cursor:ew-resize}
+.detail-resize-e{right:-4px}.detail-resize-w{left:-4px}
+.detail-resize-ne,.detail-resize-nw,.detail-resize-se,.detail-resize-sw{width:18px;height:18px}
+.detail-resize-ne{top:-4px;right:-4px;cursor:nesw-resize}.detail-resize-nw{top:-4px;left:-4px;cursor:nwse-resize}
+.detail-resize-sw{bottom:-4px;left:-4px;cursor:nesw-resize}.detail-resize-se{bottom:0;right:0;cursor:nwse-resize;border-radius:0 0 12px 0}
+.detail-resize-se::after{content:'';position:absolute;right:5px;bottom:5px;width:8px;height:8px;border-right:2px solid #93a7ad;border-bottom:2px solid #93a7ad}
+@media(max-width:480px){.detail-card-content{padding:4px 18px 20px}.detail-card .detail-meta{grid-template-columns:90px 1fr}.detail-card h2{font-size:23px}}
