@@ -1012,6 +1012,11 @@ window.ATLAS_SNAPSHOT = {
           "target": "plural",
           "type": "related_to",
           "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+        },
+        {
+          "target": "delhi-declaration-2017",
+          "type": "related_to",
+          "evidence": "《德里宣言》将民主社区参与与多元文化遗产纳入规范性框架；主题关联，不表示其对参与式遗产研究构成直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
         }
       ],
       "preview": "Working topic: visitor and community participation in heritage.",
@@ -1408,6 +1413,119 @@ window.ATLAS_SNAPSHOT = {
       "timeline_topic": "Digital methods",
       "map_title": "Defining Gamification",
       "map_maker": "Deterding et al."
+    },
+    {
+      "id": "delhi-declaration-2017",
+      "year": 2017,
+      "title": "Delhi Declaration on Heritage and Democracy",
+      "title_zh": "德里宣言：遗产与民主",
+      "stream": "A",
+      "type": "Declaration",
+      "author": [],
+      "organization": "ICOMOS",
+      "node_type": "document",
+      "year_label": "2017",
+      "paradigm": [
+        "Participation"
+      ],
+      "heritage_conception": [
+        "Community Heritage",
+        "Living Heritage"
+      ],
+      "interpretation_model": [
+        "Education",
+        "Participation"
+      ],
+      "authority_structure": [
+        "Multi-stakeholder",
+        "Community-led"
+      ],
+      "public_role": [
+        "Participant",
+        "Contributor"
+      ],
+      "narrative_structure": [
+        "Multiple Narratives",
+        "Community Narratives"
+      ],
+      "themes": [
+        "Heritage and Democracy",
+        "Inclusive Community Engagement",
+        "Cultural Diversity",
+        "Digital Communication"
+      ],
+      "concepts": [
+        "Heritage Values",
+        "Heritage Community",
+        "Multiple Narratives",
+        "Interpretation",
+        "Digital Communication"
+      ],
+      "media": [
+        "Digital Media"
+      ],
+      "public_actions": [
+        "Discuss",
+        "Collaborate",
+        "Create"
+      ],
+      "summary": "ICOMOS 第19届大会于2017年通过《德里宣言：遗产与民主》。宣言把遗产界定为所有人的权利与责任，强调文化多样性、不同群体的价值与意义、社区参与和民主协商；并明确提及通信技术与媒介可用于收集、共享、阐释和传播遗产信息。",
+      "paradigm_shift": "将遗产阐释与民主治理、文化权利和包容性社区参与相联。它提供价值与伦理方向，而非游戏化、MR或数字重建的具体操作方法。",
+      "significance": "第2部分提出遗产阐释伦理应吸纳地方及相关社群，并指出文化多样性应进入各层级的遗产阐释与教育。第3部分倡导包容的民主社区参与，并提到多种通信技术和媒介可用于收集、共享、阐释与传播数据。",
+      "phd_relevance": "可作为“多元叙事由谁参与、遗产价值由谁界定、数字媒介如何支持交流”的规范性背景。对本课题尤其有用的是社区参与、文化多样性与数字传播三条线索；但宣言提及数字技术不等于认可某一种MR或游戏化设计方案。",
+      "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+      "my_notes": "阅读提示：精读第2部分（阐释伦理、文化多样性与教育）及第3部分（民主社区参与、传统知识与协商）。后续案例分析可追问哪些社群参与、哪些声音缺席、数字媒介是否让价值协商变得可见；不要把规范性倡议直接当作实践成效证据。",
+      "pdf": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+      "annotations": [],
+      "importance": 1,
+      "citation_count": null,
+      "relevance": null,
+      "placeholder": true,
+      "coding_status": "ICOMOS 官方宣言；摘要依据原文初步整理，关系为主题关联，不表示直接影响；建议精读后校订。",
+      "relations": [
+        {
+          "target": "community",
+          "type": "supports",
+          "evidence": "第3部分明确倡导包容的民主社区参与，并将传统知识和跨文化对话纳入协作决策。此关系表示规范性支持，不代表任何具体项目已实现参与。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+        },
+        {
+          "target": "heritage-values",
+          "type": "related_to",
+          "evidence": "第1部分以价值、意义与真实性为遗产管理的重要议题，并强调遗产意义与价值体系的多样性。主题关联，不等同于一套独立的价值评估方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+        },
+        {
+          "target": "plural",
+          "type": "related_to",
+          "evidence": "宣言强调多样性、复数性与多元文化遗产，并提出延续多元遗产。可与多元叙事议题并置分析，但文件没有给出具体叙事设计方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+        },
+        {
+          "target": "ename",
+          "type": "supports",
+          "evidence": "第2部分提出阐释伦理应吸纳地方及相关社群，并将文化多样性纳入遗产阐释和教育。这里表示规范原则上的呼应，不主张文件间存在直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+        },
+        {
+          "target": "london-charter-2009",
+          "type": "related_to",
+          "evidence": "宣言提及数字技术和通信媒介在遗产管理、信息阐释与传播中的作用；《伦敦宪章》则聚焦文化遗产计算机可视化。二者为数字遗产议题上的主题关联，范围不同，不表示直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+        }
+      ],
+      "preview": "An ICOMOS policy declaration connecting heritage, democracy, cultural diversity, community participation and digital communication.",
+      "importance_note": "暂定研究编码：作为公众参与阐释的治理与伦理背景有参考价值，但不是专门的阐释方法手册；精读并与相关文件比较后再调整。",
+      "excerpts": [
+        {
+          "text": "“community participation in planning”",
+          "source": "ICOMOS, Delhi Declaration on Heritage and Democracy (2017)",
+          "location": "Section 3, “Promote inclusive democratic community engagement processes”"
+        },
+        {
+          "text": "“communication technologies and media” … “interpreting and disseminating data”",
+          "source": "ICOMOS, Delhi Declaration on Heritage and Democracy (2017)",
+          "location": "Section 2, heritage documentation and communication"
+        }
+      ],
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Delhi Declaration",
+      "map_maker": "ICOMOS"
     },
     {
       "id": "case-robben-island",

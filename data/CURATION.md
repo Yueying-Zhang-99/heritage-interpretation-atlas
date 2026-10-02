@@ -9,9 +9,12 @@ Source excerpts are stored as short verbatim quotations in `excerpts`, with `sou
 - ICOMOS Interpretation Charter, 2008, Principle 2.3: https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf
 - The London Charter, version 2.1, February 2009, Principle 2: https://londoncharter.org/principles.html ; version history: https://londoncharter.org/history.html
 - UNESCO Charter on the Preservation of Digital Heritage, 2003, Article 2: https://www.unesco.org/en/legal-affairs/charter-preservation-digital-heritage
+- ICOMOS Delhi Declaration on Heritage and Democracy, 2017, sections 2–3: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf
 - Milgram & Kishino, 1994, publisher abstract: https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p
 
 The UNESCO digital-heritage charter concerns preservation of digital resources. It should not be treated as a direct charter on interpreting physical historic places with AR/MR. The London Charter is more directly relevant to evidence, transparency and documentation in heritage visualisation.
+
+The Delhi Declaration on Heritage and Democracy links heritage management with rights, cultural plurality, interpretation ethics, community participation and communication technologies. It is a policy-level framework, not a practical specification for MR or gamified interpretation. Its network links to interpretation and digital-visualisation documents are thematic comparisons, not claims of direct influence.
 
 The Timeline plots publication year on the horizontal axis and a provisional, editable topic group on the vertical axis. These four working groups organize the current sample; they are not established theoretical streams. Each document has one `timeline_topic` for layout, and its other theme tags remain available in filters and the Cluster view. The author can reassign the topic in the editor as the review develops.
 
