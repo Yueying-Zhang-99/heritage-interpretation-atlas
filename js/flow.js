@@ -43,6 +43,8 @@ Atlas.flow=function(rows){
   const toolbar=A.el('div','flow-key');toolbar.append(A.el('span','flow-key-caption','THEME OVERLAPS'));
   const themeButtons=topics.map((topic,i)=>{const b=A.el('button','flow-theme-button',topic);b.type='button';b.dataset.theme=i;b.setAttribute('aria-pressed','false');toolbar.append(b);return b;});
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
+  const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
+  const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
   const width=Math.max(680,root.clientWidth),top=34,bottom=78,labelWidth=width<1400?140:166;
   let height=Math.max(700,window.innerHeight-root.getBoundingClientRect().top-122);
   const first=Math.min(1930,...rows.map(d=>d.year)),last=Math.max(2025,...rows.map(d=>d.year));
@@ -94,12 +96,12 @@ Atlas.flow=function(rows){
   // Defensive fallback for much larger imported libraries: grow vertically rather than hide records.
   for(const n of nodes.filter(n=>!placed.includes(n))){n.y=height-bottom;const labelX=Math.max(18,Math.min(width-n.box.width-18,n.x+18));n.labelX=labelX;placed.push(n);height+=n.box.height+35;}
   svg.attr('viewBox',`0 0 ${width} ${height}`).attr('height',height);
-  for(const n of nodes)n.g.attr('transform',`translate(${n.labelX},${n.y})`).attr('data-record',n.d.id).attr('tabindex',0).attr('role','button').attr('aria-label',`${n.d.year}: ${n.d.title}. Open record.`).on('click',()=>A.openDetail(n.d.id)).on('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();A.openDetail(n.d.id);}});
+  for(const n of nodes)n.g.attr('transform',`translate(${n.labelX},${n.y})`).attr('data-record',n.d.id).attr('tabindex',0).attr('role','button').attr('aria-describedby',themeTip.id).attr('aria-label',`${n.d.year}: ${n.d.title}. Open record.`).on('click',()=>openRecord(n)).on('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const dots=dotsLayer.selectAll('g').data(nodes).join('g').attr('class','flow-dot').attr('data-record',n=>n.d.id).attr('transform',n=>`translate(${n.x},${n.y})`).attr('role','button').attr('tabindex',0).attr('aria-label',n=>`${n.d.year}: ${n.d.title}. ${n.topics.map(i=>topics[i]).join('; ')}. Open record.`);
   dots.append('circle').attr('class','flow-dot-halo').attr('r',n=>n.r+4);
   dots.append('circle').attr('class',n=>'flow-circle'+(n.d.placeholder?' is-placeholder':'')).attr('r',n=>n.r).style('--entry-color',n=>n.d.type==='Heritage Practice Case'?'#82918d':A.color(n.d));
   dots.append('circle').attr('class','flow-hit').attr('r',18);
-  dots.on('click',(e,n)=>A.openDetail(n.d.id)).on('keydown',(e,n)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();A.openDetail(n.d.id);}});
+  dots.attr('aria-describedby',themeTip.id).on('click',(e,n)=>openRecord(n)).on('keydown',(e,n)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const axisY=height-28;
   guides.append('line').attr('x1',x(start)).attr('x2',x(end)).attr('y1',axisY).attr('y2',axisY);
   for(let year=start;year<=end;year+=10){const t=guides.append('g').attr('transform',`translate(${x(year)},${axisY})`);t.append('line').attr('y2',5);t.append('text').attr('y',19).attr('text-anchor','middle').text(year);}
@@ -126,6 +128,7 @@ Atlas.flow=function(rows){
   let selected=null;
   const highlight=(active=null,hover=null)=>{
     const themeSet=hover?new Set(hover.topics):active==null?null:new Set([active]);
+    themeButtons.forEach((b,i)=>b.classList.toggle('is-hovered',!!hover&&hover.topics.includes(i)));
     contours.forEach(p=>p.classed('is-active',themeSet?.has(p.datum().i)||false).classed('is-muted',!!themeSet&&!themeSet.has(p.datum().i)));
     const matches=n=>!themeSet||n.topics.some(i=>themeSet.has(i));
     nodes.forEach(n=>n.g.classed('is-muted',!matches(n)).classed('is-hovered',n===hover));dots.classed('is-muted',n=>!matches(n)).classed('is-hovered',n=>n===hover);
@@ -135,8 +138,21 @@ Atlas.flow=function(rows){
       for(const {a,b,r} of relationships){const bend=Math.max(24,Math.abs(b.x-a.x)*.35);const p=linksLayer.append('path').attr('d',`M${a.x},${a.y} C${a.x+bend},${a.y} ${b.x-bend},${b.y} ${b.x},${b.y}`);p.append('title').text(`${a.d.title} → ${b.d.title}: ${r.type} · ${r.evidence||'Evidence pending'}`);}
     }
   };
-  for(const n of nodes)n.g.on('mouseenter',()=>highlight(selected,n)).on('mouseleave',()=>highlight(selected)).on('focus',()=>highlight(selected,n)).on('blur',()=>highlight(selected));
-  dots.on('mouseenter',(e,n)=>highlight(selected,n)).on('mouseleave',()=>highlight(selected)).on('focus',(e,n)=>highlight(selected,n)).on('blur',()=>highlight(selected));
+  const positionTip=event=>{
+    const rect=event.currentTarget.getBoundingClientRect(),px=Number.isFinite(event.clientX)?event.clientX:rect.left+rect.width/2,py=Number.isFinite(event.clientY)?event.clientY:rect.top+rect.height/2;
+    themeTip.style.left=Math.max(8,Math.min(px+18,window.innerWidth-themeTip.offsetWidth-12))+'px';
+    themeTip.style.top=Math.max(8,Math.min(py+18,window.innerHeight-themeTip.offsetHeight-12))+'px';
+  };
+  const showThemes=(event,n)=>{
+    highlight(selected,n);themeTip.replaceChildren(A.el('strong','flow-tooltip-title',n.d.map_title||n.d.title),A.el('span','flow-tooltip-caption','THEMES'));
+    for(const i of n.topics){const row=A.el('div','flow-tooltip-theme'),line=A.el('i','flow-tooltip-line');line.dataset.theme=i;line.setAttribute('aria-hidden','true');row.append(line,A.el('span','',topics[i]));themeTip.append(row);}
+    if(!n.topics.length)themeTip.append(A.el('span','flow-tooltip-theme','Theme coding pending'));
+    themeTip.hidden=false;positionTip(event);
+  };
+  const hideThemes=()=>{themeTip.hidden=true;highlight(selected);};
+  for(const n of nodes)n.g.on('mouseenter',e=>showThemes(e,n)).on('mousemove',positionTip).on('mouseleave',hideThemes).on('focus',e=>showThemes(e,n)).on('blur',hideThemes);
+  dots.on('mouseenter',showThemes).on('mousemove',positionTip).on('mouseleave',hideThemes).on('focus',showThemes).on('blur',hideThemes);
+  svg.on('keydown.flow-themes',event=>{if(event.key==='Escape')hideThemes();});
   themeButtons.forEach((b,i)=>b.onclick=()=>{selected=selected===i?null:i;themeButtons.forEach((button,j)=>button.setAttribute('aria-pressed',String(j===selected)));highlight(selected);});
   reset.onclick=()=>{selected=null;themeButtons.forEach(b=>b.setAttribute('aria-pressed','false'));highlight();};
   const note=A.el('p','flow-note','One record, multiple themes. Select a theme to trace its envelope; hover a record for coded links. Overlap means shared subject matter, not proven influence.');root.append(note);
