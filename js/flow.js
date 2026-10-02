@@ -121,7 +121,7 @@ Atlas.flow=function(rows){
         const t=j/count,u=1-t,dx=b.x-a.x;
         // A gentle waist between records keeps the node lobes round and the
         // connecting ribbon continuous, with a smooth taper at both ends.
-        const bridgeSigma=sigma-13*Math.sin(Math.PI*t)**2;
+        const bridgeSigma=sigma-21*Math.sin(Math.PI*t)**2;
         samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x,a.y+(b.y-a.y)*(3*t*t-2*t*t*t),bridgeSigma]);
       }
     }
