@@ -37,6 +37,60 @@ Atlas.flowEnvelopePath=function(values,nx,ny,cell){
   }
   return paths.filter(Boolean).join('');
 };
+Atlas.flowTimeScale=function(rows,start,end,width){
+  // Chronological, deliberately non-uniform spacing gives densely documented
+  // recent years room without shrinking the type. The axis discloses this.
+  const counts=new Map();for(const row of rows)counts.set(row.year,(counts.get(row.year)||0)+1);
+  const years=[...new Set([start,...counts.keys(),end])].sort((a,b)=>a-b),positions=[0];
+  for(let i=1;i<years.length;i++)positions.push(positions.at(-1)+(years[i]-years[i-1])*.5+14+7*(Math.sqrt(counts.get(years[i-1])||0)+Math.sqrt(counts.get(years[i])||0)));
+  return d3.scaleLinear().domain(years).range(positions.map(p=>64+p/positions.at(-1)*(width-128)));
+};
+Atlas.placeFlowNodes=function(nodes,width,height,top,bottom,topics){
+  const overlap=(a,b)=>a.x-3<b.x+b.width&&a.x+a.width+3>b.x&&a.y-3<b.y+b.height&&a.y+a.height+3>b.y;
+  const conflict=(a,b)=>overlap(a.label,b.label)||overlap(a.label,b.dot)||overlap(a.dot,b.label)||overlap(a.dot,b.dot);
+  let seed=73;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+  const options=nodes.map(n=>{
+    const primary=topics.indexOf(n.d.timeline_topic),target=top+22+Math.max(0,primary)*(height-top-bottom-55)/3,choices=[];
+    for(let y=top+12;y<height-bottom-25;y+=4){
+      if(y+n.box.y<top||y+n.box.y+n.box.height>height-bottom)continue;
+      for(const side of ['right','left']){
+        const gap=Math.max(20,(n.r+4)*1.7+3),labelX=side==='right'?n.x+gap:n.x-gap-n.box.width;
+        const label={x:labelX+n.box.x,y:y+n.box.y,width:n.box.width,height:n.box.height};
+        if(label.x<12||label.x+label.width>width-12)continue;
+        choices.push({y,labelX,label,dot:{x:n.x-14,y:y-14,width:28,height:39},cost:Math.abs(y-target)/height+(side==='left'?.02:0)});
+      }
+    }
+    return choices.sort((a,b)=>a.cost-b.cost);
+  });
+  if(options.some(choices=>!choices.length))return false;
+  // Reconsider earlier placements instead of making the canvas taller when a
+  // late record has no free slot. Reproducible min-conflict search keeps labels
+  // at their original font sizes and returns only a collision-free solution.
+  for(let restart=0;restart<12;restart++){
+    const state=options.map(choices=>choices[Math.floor(random()*Math.min(8,choices.length))]);
+    for(let step=0;step<1400;step++){
+      const counts=state.map(()=>0);
+      for(let i=0;i<state.length;i++)for(let j=i+1;j<state.length;j++)if(conflict(state[i],state[j])){counts[i]++;counts[j]++;}
+      const troubled=counts.map((count,i)=>({count,i})).filter(item=>item.count);
+      if(!troubled.length){
+        for(let pass=0;pass<3;pass++)for(const i of state.map((s,i)=>({i,cost:s.cost})).sort((a,b)=>b.cost-a.cost).map(item=>item.i)){
+          const better=options[i].find(candidate=>candidate.cost<state[i].cost&&state.every((other,j)=>i===j||!conflict(candidate,other)));
+          if(better)state[i]=better;
+        }
+        nodes.forEach((n,i)=>Object.assign(n,state[i]));return true;
+      }
+      const index=troubled[Math.floor(random()*troubled.length)].i;
+      let chosen=null,best=Infinity;
+      for(const candidate of options[index]){
+        let clashes=0;for(let j=0;j<state.length;j++)if(j!==index&&conflict(candidate,state[j]))clashes++;
+        const score=clashes+candidate.cost*.04+random()*.08;
+        if(score<best){chosen=candidate;best=score;}
+      }
+      state[index]=random()<.035?options[index][Math.floor(random()*options[index].length)]:chosen;
+    }
+  }
+  return false;
+};
 Atlas.flow=function(rows){
   const A=Atlas,root=document.querySelector('#chart'),topics=A.flowTopics;
   root.classList.add('flow-chart');
@@ -45,12 +99,16 @@ Atlas.flow=function(rows){
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
-  const width=Math.max(680,root.clientWidth),top=34,bottom=78,labelWidth=width<1400?140:166;
-  let height=Math.max(700,window.innerHeight-root.getBoundingClientRect().top-122);
+  const note=A.el('p','flow-note','Year order · Uneven spacing to fit records · Hover for all themes; click for source notes. Shared themes do not imply direct influence.');root.append(note);
+  let width=Math.max(680,root.clientWidth);
+  const top=28,bottom=42,labelWidth=width<1400?128:150;
+  let height=Math.max(240,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
+  root.style.setProperty('--flow-height',height+'px');
   const first=Math.min(1930,...rows.map(d=>d.year)),last=Math.max(2025,...rows.map(d=>d.year));
   const start=Math.floor(first/10)*10,end=Math.ceil(last/5)*5;
-  const x=d3.scaleLinear().domain([start,end]).range([75,width-72]);
+  let x=A.flowTimeScale(rows,start,end,width);
   const svg=A.svg(width,height,'Timeline Flow: overlapping working themes across time').attr('width',width).attr('height',height);
+  root.insertBefore(svg.node(),note);
   const backdrop=svg.append('g').attr('class','flow-envelopes');
   const guides=svg.append('g').attr('class','flow-guides');
   const linksLayer=svg.append('g').attr('class','flow-links');
@@ -62,63 +120,46 @@ Atlas.flow=function(rows){
   // Measure actual labels, then keep time fixed while choosing the nearest free Y.
   for(const n of nodes){
     const g=labelsLayer.append('g').datum(n).attr('class','flow-label'+(n.d.type==='Heritage Practice Case'?' is-practice-case':''));
-    g.append('text').attr('class','flow-year').text(n.d.year_label||n.d.year);
-    g.append('text').attr('class','flow-title').attr('y',17).text(n.d.map_title||n.d.title).call(A.wrap,labelWidth,15);
+    g.append('text').attr('class','flow-title').text(n.d.map_title||n.d.title).call(A.wrap,labelWidth,14);
     const titleBox=g.select('.flow-title').node().getBBox();
-    g.append('text').attr('class','flow-maker').attr('y',titleBox.y+titleBox.height+13).text(n.d.map_maker||A.text(n.d.author)||n.d.organization||'Research topic').call(A.wrap,labelWidth,13);
+    g.append('text').attr('class','flow-maker').attr('y',titleBox.y+titleBox.height+12).text(n.d.map_maker||A.text(n.d.author)||n.d.organization||'Research topic').call(A.wrap,labelWidth,12);
     n.g=g;n.box=g.node().getBBox();
   }
-  const overlaps=(a,b,pad=13)=>a.x-pad<b.x+b.width&&a.x+a.width+pad>b.x&&a.y-pad<b.y+b.height&&a.y+a.height+pad>b.y;
-  // Pack primary-topic neighbourhoods independently. A dense recent cluster
-  // may grow its neighbourhood, but cannot displace older records into another
-  // topic. Secondary memberships are still drawn in every matching envelope.
-  const groups=topics.map((topic,i)=>({i,nodes:nodes.filter(n=>{
-    const primary=topics.indexOf(n.d.timeline_topic);
-    return (primary>=0?primary:n.topics[0]??0)===i;
-  })})).filter(group=>group.nodes.length);
-  for(const group of groups){
-    const placed=[];
-    for(const n of group.nodes.slice().sort((a,b)=>b.d.year-a.d.year||a.d.id.localeCompare(b.d.id))){
-      let chosen=null;
-      // Search from the top, then trim to the occupied extent. This avoids
-      // oversized empty halves around a densely packed neighbourhood.
-      for(let y=26;!chosen;y+=10){
-        for(const side of ['right','left']){
-          const gap=Math.max(n.r+10,(n.r+4)*1.7+4),labelX=side==='right'?n.x+gap:n.x-gap-n.box.width;
-          const label={x:labelX+n.box.x,y:y+n.box.y,width:n.box.width,height:n.box.height};
-          const dot={x:n.x-16,y:y-16,width:32,height:32};
-          if(label.x<18||label.x+label.width>width-18)continue;
-          if(placed.every(p=>!overlaps(label,p.label)&&!overlaps(label,p.dot)&&!overlaps(dot,p.label)&&!overlaps(dot,p.dot))){chosen={y,labelX,label,dot};break;}
-        }
-      }
-      Object.assign(n,chosen);placed.push(n);
-    }
-    group.height=Math.max(100,...placed.map(n=>Math.max(n.label.y+n.label.height,n.dot.y+n.dot.height)+12));
+  let fit=A.placeFlowNodes(nodes,width,height,top,bottom,topics);
+  // Very narrow windows or larger imported collections gain horizontal room,
+  // never overlapping labels or silently dropping records to meet the height.
+  for(let attempt=0;!fit&&attempt<3;attempt++){
+    width+=Math.max(240,rows.length*12);x=A.flowTimeScale(rows,start,end,width);
+    nodes.forEach(n=>n.x=x(n.d.year));fit=A.placeFlowNodes(nodes,width,height,top,bottom,topics);
   }
-  const gutter=48,contentHeight=groups.reduce((sum,g)=>sum+g.height,0)+Math.max(0,groups.length-1)*gutter;
-  height=Math.max(height,top+contentHeight+bottom);
-  let offsetY=top;
-  const spare=(height-top-bottom-contentHeight)/Math.max(1,groups.length);
-  for(const group of groups){
-    for(const n of group.nodes)n.y+=offsetY+spare/2;
-    guides.append('text').attr('class','flow-topic-guide').attr('x',18).attr('y',offsetY+spare/2-2).text(topics[group.i]);
-    offsetY+=group.height+gutter+spare;
+  if(!fit){
+    // An unusually dense import (for example many records in one year) still
+    // remains readable in a scrollable map rather than freezing the browser.
+    const step=Math.max(42,...nodes.map(n=>n.box.height))+32;
+    height=top+bottom+step*nodes.length;
+    nodes.forEach((n,i)=>{n.y=top+16+i*step;const gap=Math.max(20,(n.r+4)*1.7+3);n.labelX=n.x+gap+n.box.width<width-12?n.x+gap:n.x-gap-n.box.width;});
+    root.style.overflowY='auto';root.style.setProperty('--flow-height',height+'px');
   }
+  svg.style('width',width+'px');
+  if(width>root.clientWidth+1)note.append(document.createTextNode(' Scroll horizontally for the complete map.'));
+  svg.attr('data-layout-fit',String(fit));
   svg.attr('viewBox',`0 0 ${width} ${height}`).attr('height',height);
   for(const n of nodes)n.g.attr('transform',`translate(${n.labelX},${n.y})`).attr('data-record',n.d.id).attr('tabindex',0).attr('role','button').attr('aria-describedby',themeTip.id).attr('aria-label',`${n.d.year}: ${n.d.title}. Open record.`).on('click',()=>openRecord(n)).on('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const dots=dotsLayer.selectAll('g').data(nodes).join('g').attr('class','flow-dot').attr('data-record',n=>n.d.id).attr('transform',n=>`translate(${n.x},${n.y})`).attr('role','button').attr('tabindex',0).attr('aria-label',n=>`${n.d.year}: ${n.d.title}. ${n.topics.map(i=>topics[i]).join('; ')}. Open record.`);
+  dots.append('text').attr('class','flow-year').attr('y',24).attr('text-anchor','middle').text(n=>/^\d+s$/.test(n.d.year_label||'')?n.d.year_label:n.d.year);
   dots.append('circle').attr('class','flow-dot-halo').attr('r',n=>n.r+4);
   dots.append('circle').attr('class',n=>'flow-circle'+(n.d.placeholder?' is-placeholder':'')).attr('r',n=>n.r).style('--entry-color',n=>n.d.type==='Heritage Practice Case'?'#82918d':A.color(n.d));
   dots.append('circle').attr('class','flow-hit').attr('r',18);
   dots.attr('aria-describedby',themeTip.id).on('click',(e,n)=>openRecord(n)).on('keydown',(e,n)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const axisY=height-28;
   guides.append('line').attr('x1',x(start)).attr('x2',x(end)).attr('y1',axisY).attr('y2',axisY);
-  for(let year=start;year<=end;year+=10){const t=guides.append('g').attr('transform',`translate(${x(year)},${axisY})`);t.append('line').attr('y2',5);t.append('text').attr('y',19).attr('text-anchor','middle').text(year);}
+  let previousTick=-Infinity;
+  for(let year=start;year<=end;year+=10){if(x(year)-previousTick<36)continue;previousTick=x(year);const t=guides.append('g').attr('transform',`translate(${x(year)},${axisY})`);t.append('line').attr('y2',5);t.append('text').attr('y',19).attr('text-anchor','middle').text(year);}
   guides.append('text').attr('x',18).attr('y',axisY+4).text('YEAR');
   // A short branching scaffold avoids repeatedly sweeping across an entire
   // cluster when several same-year records sit at different heights. It is
   // graphic routing only, not a genealogical or chronological relationship.
-  const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=31;
+  const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=33;
   const contours=[];
   topics.forEach((topic,i)=>{
     const members=nodes.filter(n=>n.topics.includes(i)).sort((a,b)=>a.x-b.x||a.y-b.y);
@@ -140,10 +181,10 @@ Atlas.flow=function(rows){
         const t=j/count,u=1-t,dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy)||1;
         // A gentle waist between records keeps the node lobes round and the
         // connecting ribbon continuous, with a smooth taper at both ends.
-        const waist=Math.sin(Math.PI*t)**2,bridgeSigma=sigma-13*waist;
+        const waist=Math.sin(Math.PI*t)**2,bridgeSigma=sigma-11*waist;
         // Separate coincident routes between shared records, returning smoothly
         // to the true node at each end. The offset encodes no additional data.
-        const offset=(i-(topics.length-1)/2)*18*waist;
+        const offset=(i-(topics.length-1)/2)*10*waist;
         samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x-dy/length*offset,a.y+dy*(3*t*t-2*t*t*t)+dx/length*offset,bridgeSigma]);
       }
     }
@@ -173,7 +214,7 @@ Atlas.flow=function(rows){
     themeTip.style.top=Math.max(8,Math.min(py+18,window.innerHeight-themeTip.offsetHeight-12))+'px';
   };
   const showThemes=(event,n)=>{
-    highlight(selected,n);themeTip.replaceChildren(A.el('strong','flow-tooltip-title',n.d.map_title||n.d.title),A.el('span','flow-tooltip-caption','THEMES'));
+    highlight(selected,n);themeTip.replaceChildren(A.el('strong','flow-tooltip-title',n.d.map_title||n.d.title),A.el('span','flow-tooltip-meta',`${n.d.year_label||n.d.year} · ${A.text(n.d.author)||n.d.organization||'Research topic'}`),A.el('span','flow-tooltip-caption','THEMES'));
     for(const i of n.topics){const row=A.el('div','flow-tooltip-theme'),line=A.el('i','flow-tooltip-line');line.dataset.theme=i;line.setAttribute('aria-hidden','true');row.append(line,A.el('span','',topics[i]));themeTip.append(row);}
     if(!n.topics.length)themeTip.append(A.el('span','flow-tooltip-theme','Theme coding pending'));
     themeTip.hidden=false;positionTip(event);
@@ -184,5 +225,4 @@ Atlas.flow=function(rows){
   svg.on('keydown.flow-themes',event=>{if(event.key==='Escape')hideThemes();});
   themeButtons.forEach((b,i)=>b.onclick=()=>{selected=selected===i?null:i;themeButtons.forEach((button,j)=>button.setAttribute('aria-pressed',String(j===selected)));highlight(selected);});
   reset.onclick=()=>{selected=null;themeButtons.forEach(b=>b.setAttribute('aria-pressed','false'));highlight();};
-  const note=A.el('p','flow-note','Position: primary topic. Envelopes: all coded themes. Select a theme to trace its envelope; hover a record for coded links. Overlap means shared subject matter, not proven influence.');root.append(note);
 };
