@@ -27,6 +27,17 @@ invalid=clone();invalid.documents[0].topic_memberships[0].status='source';delete
 assert.equal(A.topicMemberships({timeline_topic:'Digital methods'})[0].status,'provisional','Legacy imports retain honest fallback');
 assert.equal(A.topicMemberships(A.byId.get('delhi-declaration-2017')).length,4);
 assert.equal(A.topicMemberships(A.byId.get('burra')).length,1,'Do not backdate later Burra provisions');
+assert.ok(A.flowTopics.includes('Heritage visitation & tourism'));
+assert.ok(A.flowTopics.indexOf('Heritage visitation & tourism')<A.flowTopics.indexOf('Digital methods'),'Visitation precedes digital methods in the reading order');
+for(const id of ['gaze','tourism-charter-1999','tourism','ename','case-robben-island','case-tongariro','salalah-guidelines-2017','case-new-philadelphia-ar'])assert.ok(A.values(A.byId.get(id),'topic_memberships').includes('Heritage visitation & tourism'),`${id} has visitation membership`);
+assert.equal(A.interpretiveSettings({})[0],'Unspecified / pending review','Old imports do not imply a setting');
+assert.equal(A.byId.get('london-charter-2009').interpretive_setting[0],'Unspecified / pending review');
+invalid=clone();invalid.documents[0].interpretive_setting='On-site';assert.throws(()=>A.validate(invalid),/阐释情境/);
+invalid=clone();invalid.documents[0].interpretive_setting=['On-site','On-site'];assert.throws(()=>A.validate(invalid),/阐释情境/);
+invalid=clone();invalid.documents[0].interpretive_setting_evidence={status:'source',evidence:'Test',source_url:'https://example.org'};assert.throws(()=>A.validate(invalid),/来源和位置/);
+A.state.filters={interpretive_setting:new Set(['On-site'])};assert.ok(A.filtered().some(d=>d.id==='ename'),'Both matches on-site');assert.ok(A.filtered().some(d=>d.id==='case-new-philadelphia-ar'));assert.ok(!A.filtered().some(d=>d.id==='azuma-1997'));
+A.state.filters={interpretive_setting:new Set(['Off-site'])};assert.ok(A.filtered().some(d=>d.id==='ename'),'Both matches off-site');assert.ok(!A.filtered().some(d=>d.id==='case-new-philadelphia-ar'));
+A.state.filters={interpretive_setting:new Set(['On-site']),topic_memberships:new Set(['Digital methods'])};assert.ok(A.filtered().some(d=>d.id==='case-new-philadelphia-ar'));assert.ok(!A.filtered().some(d=>d.id==='london-charter-2009'),'General digital guidelines do not imply a setting');A.state.filters={};
 A.state.filters={topic_memberships:new Set(['Digital methods'])};assert.ok(A.filtered().some(d=>d.id==='faro'));assert.ok(A.filtered().some(d=>d.id==='ename'));assert.ok(!A.filtered().some(d=>d.id==='tilden'));A.state.filters={};
 A.state.query='Tilden';assert.deepEqual(Array.from(A.filtered(),d=>d.id),['tilden']);
 A.state.query='';A.state.filters={type:new Set(['Book','Convention']),public_role:new Set(['Visitor'])};assert.equal(A.filtered().length,3,'OR within a field; AND across fields');

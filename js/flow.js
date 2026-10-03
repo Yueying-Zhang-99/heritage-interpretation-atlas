@@ -1,4 +1,42 @@
 /* Theme envelopes derived from coded records. Geometry never asserts influence. */
+Atlas.flowEnvelopePath=function(values,nx,ny,cell){
+  // Round kernel intersections in the field first; increasing SVG resolution alone
+  // cannot remove the cusps produced by a hard union of neighbouring kernels.
+  const sigma=12/cell,radius=Math.ceil(sigma*3),kernel=[];
+  let total=0;
+  for(let offset=-radius;offset<=radius;offset++){const weight=Math.exp(-offset*offset/(2*sigma*sigma));kernel.push(weight);total+=weight;}
+  for(let i=0;i<kernel.length;i++)kernel[i]/=total;
+  const horizontal=new Float32Array(values.length),smooth=new Float32Array(values.length);
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+    let sum=0;for(let k=-radius;k<=radius;k++)if(x+k>=0&&x+k<nx)sum+=values[y*nx+x+k]*kernel[k+radius];
+    horizontal[y*nx+x]=sum;
+  }
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+    let sum=0;for(let k=-radius;k<=radius;k++)if(y+k>=0&&y+k<ny)sum+=horizontal[(y+k)*nx+x]*kernel[k+radius];
+    smooth[y*nx+x]=sum;
+  }
+  const contour=d3.contours().size([nx,ny]).thresholds([.32])(smooth)[0];
+  const curve=d3.line().curve(d3.curveBasisClosed);
+  const paths=[];
+  for(const polygon of contour.coordinates)for(const ring of polygon){
+    // A closed B-spline follows a coarser, evenly spaced boundary without the
+    // tiny straight segments of marching squares. Keep separate islands/holes.
+    const points=ring.slice(0,-1).map(([x,y])=>[x*cell,y*cell]),spaced=[];
+    if(!points.length)continue;
+    spaced.push(points[0]);let distance=0,previous=points[0];
+    for(let i=1;i<=points.length;i++){
+      const next=points[i%points.length],dx=next[0]-previous[0],dy=next[1]-previous[1],length=Math.hypot(dx,dy);
+      if(!length){previous=next;continue;}
+      let travelled=0;
+      while(distance+length-travelled>=10){const step=10-distance;travelled+=step;spaced.push([previous[0]+dx*travelled/length,previous[1]+dy*travelled/length]);distance=0;}
+      distance+=length-travelled;previous=next;
+    }
+    if(spaced.length>1&&Math.hypot(spaced.at(-1)[0]-spaced[0][0],spaced.at(-1)[1]-spaced[0][1])<5)spaced.pop();
+    const path=curve(spaced.length>=4?spaced:points);
+    if(path)paths.push(path.endsWith('Z')?path:path+'Z');
+  }
+  return paths.filter(Boolean).join('');
+};
 Atlas.flowShellField=function(values,members,nx,ny,cell){
   if(!members.length)return new Float32Array(values.length);
   // A continuous chronological shell, with rounded shoulders around nearby dates.
@@ -118,7 +156,7 @@ Atlas.placeFlowNodes=function(nodes,width,height,top,bottom,topics){
   const conflict=(a,b)=>overlap(a.label,b.label)||overlap(a.label,b.dot)||overlap(a.dot,b.label)||overlap(a.dot,b.dot);
   let seed=73;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
   const options=nodes.map(n=>{
-    const primary=topics.indexOf(n.d.timeline_topic),target=top+22+Math.max(0,primary)*(height-top-bottom-55)/3,choices=[];
+    const primary=topics.indexOf(n.d.timeline_topic),target=top+22+Math.max(0,primary)*(height-top-bottom-55)/Math.max(1,topics.length-1),choices=[];
     for(let y=top+12;y<height-bottom-25;y+=4){
       if(y+n.box.y<top||y+n.box.y+n.box.height>height-bottom)continue;
       for(const side of ['right','left']){
@@ -285,6 +323,7 @@ Atlas.flow=function(rows){
     highlight(selected,n);themeTip.replaceChildren(A.el('strong','flow-tooltip-title',n.d.map_title||n.d.title),A.el('span','flow-tooltip-meta',`${n.d.year_label||n.d.year} · ${A.text(n.d.author)||n.d.organization||'Research topic'}`),A.el('span','flow-tooltip-caption','THEMES'));
     for(const i of n.topics){const row=A.el('div','flow-tooltip-theme'),line=A.el('i','flow-tooltip-line');line.dataset.theme=i;line.setAttribute('aria-hidden','true');row.append(line,A.el('span','',topics[i]));themeTip.append(row);}
     if(!n.topics.length)themeTip.append(A.el('span','flow-tooltip-theme','Theme coding pending'));
+    themeTip.append(A.el('span','flow-tooltip-caption','INTERPRETIVE SETTING'),A.el('span','flow-tooltip-setting',A.text(A.interpretiveSettings(n.d))));
     themeTip.hidden=false;positionTip(event);
   };
   const hideThemes=()=>{themeTip.hidden=true;highlight(selected);};

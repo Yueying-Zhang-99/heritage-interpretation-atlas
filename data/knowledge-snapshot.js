@@ -12,6 +12,10 @@ window.ATLAS_SNAPSHOT = {
     "document_nature": {
       "updated": "2026-10-03",
       "method": "Editable descriptive document forms within Charter / Policy; not a legal-status determination. Multiple forms allowed. Source excerpts and specified clauses checked; whole-document reading remains pending."
+    },
+    "interpretive_setting": {
+      "updated": "2026-10-03",
+      "method": "Setting and media are independent coding dimensions. On-site = at the heritage place; Off-site = elsewhere, including remote access; Both = explicitly covers both. Unknown or general technology papers remain Unspecified / pending review. Tags describe checked scope, not the full exclusive applicability of a document. Evidence records source/provisional status and locators. Both is included when filtering On-site or Off-site."
     }
   },
   "vocabulary": {
@@ -101,6 +105,12 @@ window.ATLAS_SNAPSHOT = {
       "Practice Note",
       "Recommendation",
       "Document"
+    ],
+    "interpretive_setting": [
+      "On-site",
+      "Off-site",
+      "Both",
+      "Unspecified / pending review"
     ]
   },
   "documents": [
@@ -175,6 +185,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Charter"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -257,8 +270,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "经典公众阐释理论条目；沿用现有编码，具体原则及页码待精读确认。",
           "source_url": "https://uncpress.org/9798890882950/interpreting-our-heritage/",
           "location": ""
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "provisional",
+          "evidence": "现场导览、直接接触遗产与公众体验是拟重点阅读的线索；本次仅增设暂定的访问主题，未将原书完整阅读视作完成。",
+          "source_url": "https://uncpress.org/9798890882950/interpreting-our-heritage/",
+          "location": ""
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "暂按现场遗产阐释的阅读方向编码；不据此排除其原则的场外适用性，待核对原书章节。",
+        "source_url": "https://uncpress.org/9798890882950/interpreting-our-heritage/",
+        "location": ""
+      }
     },
     {
       "id": "venice",
@@ -337,6 +366,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Charter"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -417,6 +449,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Convention"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -496,6 +531,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Charter"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -557,7 +595,7 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Tourism experiences are shaped by socially organized ways of seeing.",
       "importance_note": "Provisional research coding: Broader visitor theory. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Interpretation & experience",
+      "timeline_topic": "Heritage visitation & tourism",
       "map_title": "The Tourist Gaze",
       "map_maker": "John Urry",
       "topic_memberships": [
@@ -567,8 +605,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "游客观看、旅游体验与场所表征的理论参照；目前缺少已校核原文位置，不扩大主题归属。",
           "source_url": "",
           "location": ""
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "provisional",
+          "evidence": "旅游凝视可用于分析游客到访时的观看与体验；本次为研究者新增工作编码，需精读原书后补充章节页码。",
+          "source_url": "",
+          "location": ""
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "暂以游客到访目的地的观看与体验作为研究参照；具体章节与适用范围待核对。",
+        "source_url": "",
+        "location": ""
+      }
     },
     {
       "id": "nara",
@@ -659,6 +713,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Document"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -739,6 +796,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "",
           "location": ""
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -826,6 +886,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Declaration"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -927,6 +990,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Convention"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1025,6 +1091,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://chms.cass.anu.edu.au/research/publications/uses-heritage",
           "location": "Official abstract; chapter/page pending"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1127,11 +1196,27 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "定义包含电子出版、多媒体和网站；原则6.4讨论数字媒体的材料所有权与文化权利。此处是数字阐释伦理背景。",
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
           "location": "Definitions; Principle 6.4"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "定义部分以遗产场所及附近的展示为主要关注；原则1讨论公众的现场接近、个人体验与探索，原则5要求评估访客对场所的影响。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "location": "Definitions and footnote; Principles 1, 5"
         }
       ],
       "document_nature": [
         "Charter"
-      ]
+      ],
+      "interpretive_setting": [
+        "Both"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "定义明确涵盖现场及相关场外设施；原则1.6要求现场访问受限时提供场外阐释。该宪章主要关注现场及其附近，并不把所有公众等同于游客。",
+        "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+        "location": "Definitions and footnote; Principle 1.6"
+      }
     },
     {
       "id": "hul",
@@ -1225,6 +1310,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Recommendation"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1314,6 +1402,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "",
           "location": ""
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1392,6 +1483,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "",
           "location": ""
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1451,7 +1545,7 @@ window.ATLAS_SNAPSHOT = {
       "preview": "Responsible tourism connects visitor experience and community rights.",
       "importance_note": "Provisional research coding: Connects interpretation with community-oriented tourism. Reassess after close reading and citation review.",
       "excerpts": [],
-      "timeline_topic": "Interpretation & experience",
+      "timeline_topic": "Heritage visitation & tourism",
       "map_title": "Heritage Tourism Charter",
       "map_maker": "ICOMOS",
       "topic_memberships": [
@@ -1482,11 +1576,27 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "原则3明确讨论基于科学研究的增强现实、虚拟重建，以及网络和社交媒体的机会。",
           "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
           "location": "Principle 3"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "直接讨论遗产场所和目的地的旅游活动、公共使用与访问；原则2管理游客压力，原则3把阐释与访客体验连接起来。",
+          "source_url": "https://climateaction.icomos.org/wp-content/uploads/2025/08/ICOMOS-2022-International-Charter-for-Cultural-Heritage-Tourism.pdf",
+          "location": "Preamble; Who is this Charter for?; Principles 2–3"
         }
       ],
       "document_nature": [
         "Charter"
-      ]
+      ],
+      "interpretive_setting": [
+        "Both"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "原则3同时讨论目的地的访客体验、增强现实与虚拟重建，并在访问威胁遗产时要求远程阐释工具；数字媒介可支持现场或远程接触。",
+        "source_url": "https://climateaction.icomos.org/wp-content/uploads/2025/08/ICOMOS-2022-International-Charter-for-Cultural-Heritage-Tourism.pdf",
+        "location": "Principle 3, printed p. 9"
+      }
     },
     {
       "node_type": "document",
@@ -1543,7 +1653,16 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
           "location": "Publisher abstract; full-text reading pending"
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
+        "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
+        "location": ""
+      }
     },
     {
       "node_type": "document",
@@ -1593,7 +1712,16 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
           "location": ""
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
+        "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
+        "location": ""
+      }
     },
     {
       "node_type": "document",
@@ -1657,6 +1785,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Charter"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1729,7 +1860,16 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Charter"
-      ]
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "宪章规定数字可视化的研究、传播、证据与接近原则，不把技术限定为现场或场外。本次保持情境未明确；具体应用须按项目另外编码。",
+        "source_url": "https://londoncharter.org/principles.html",
+        "location": "Principles 1–2, 6"
+      }
     },
     {
       "node_type": "document",
@@ -1793,6 +1933,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://participatorymuseum.org/preface/",
           "location": "Preface: discussion of the social Web"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -1846,7 +1989,16 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
           "location": ""
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
+        "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
+        "location": ""
+      }
     },
     {
       "id": "delhi-declaration-2017",
@@ -1992,6 +2144,9 @@ window.ATLAS_SNAPSHOT = {
       ],
       "document_nature": [
         "Declaration"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -2003,7 +2158,7 @@ window.ATLAS_SNAPSHOT = {
       "node_type": "document",
       "type": "Heritage Practice Case",
       "display_category": "Heritage Practice",
-      "timeline_topic": "Interpretation & experience",
+      "timeline_topic": "Heritage visitation & tourism",
       "organization": "Robben Island Museum Council · UNESCO World Heritage Centre",
       "recognition_basis": "罗本岛于1999年列入 UNESCO 世界遗产名录。阐释实践依据：南非提交、由 UNESCO 世界遗产中心公开的提名档案；该列入认定针对遗产地，不等于 UNESCO 对每种阐释方法的单独认证。",
       "practice_date": "提名档案记录截至1999年的实践；具体项目启动时间未明。",
@@ -2105,8 +2260,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "报告讨论前政治犯的口述故事及其在阐释与管理中的代表角色，关联多元声音。",
           "source_url": "https://whc.unesco.org/document/141619",
           "location": "Section 4.4, printed p. 21; recommendation 8"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "2011联合监测报告将游客体验、旅游路线、导览及阐释计划纳入场所管理，同时记录尚未实施与需改进的内容。",
+          "source_url": "https://whc.unesco.org/document/141619",
+          "location": "Sections 4.3–4.4, printed pp. 18–21"
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "编码对象是报告描述的岛上访问、导览及展示。1999是列入世界遗产的时间锚点，不是全部实践发生的年份。",
+        "source_url": "https://whc.unesco.org/document/141619",
+        "location": "Sections 4.3–4.4, printed pp. 18–21"
+      }
     },
     {
       "id": "case-tongariro",
@@ -2117,7 +2288,7 @@ window.ATLAS_SNAPSHOT = {
       "node_type": "document",
       "type": "Heritage Practice Case",
       "display_category": "Heritage Practice",
-      "timeline_topic": "Participation & plural voices",
+      "timeline_topic": "Heritage visitation & tourism",
       "organization": "New Zealand Department of Conservation · UNESCO World Heritage Centre",
       "recognition_basis": "汤加里罗国家公园于1990年列入 UNESCO 世界遗产名录，1993年增列文化景观价值。UNESCO 官方案例页记录阐释活动；世界遗产认定针对遗产地，不等于对每项展示方法的单独认证。",
       "practice_date": "UNESCO 官方案例页记载列入后的阐释活动；具体展陈实施年份未逐项注明。",
@@ -2227,9 +2398,25 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "官方案例明确提及网站向游客提供信息；本页未给出网站或展陈启动年份。",
           "source_url": "https://whc.unesco.org/en/activities/613/",
           "location": "Harnessing Tourism"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "官方案例记录现场标识、游客中心、公众信息与游客管理，并讨论旅游增长对遗产保护的责任。",
+          "source_url": "https://whc.unesco.org/en/activities/613/",
+          "location": "Raising Awareness; Harnessing Tourism"
         }
       ],
-      "my_notes": "来源校核：UNESCO案例页支持社区协助管理和志愿参与；毛利展陈共同创作需要另补直接来源。时间轴是列入年份，不是所有实践方法的起始年份。"
+      "my_notes": "来源校核：UNESCO案例页支持社区协助管理和志愿参与；毛利展陈共同创作需要另补直接来源。时间轴是列入年份，不是所有实践方法的起始年份。",
+      "interpretive_setting": [
+        "Both"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "provisional",
+        "evidence": "案例同时记录现场标识与游客中心展示，以及网站、出版物和媒体信息；网站属于可在到访前或场外接触的渠道，这是基于官方渠道描述的研究编码，网站具体内容仍待查阅。",
+        "source_url": "https://whc.unesco.org/en/activities/613/",
+        "location": "Raising Awareness; Harnessing Tourism"
+      }
     },
     {
       "id": "lausanne-charter-1990",
@@ -2327,6 +2514,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
           "location": "Articles 2, 6–7"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -2417,8 +2607,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "以教育及公众访问促进遗产价值理解。",
           "source_url": "https://rm.coe.int/168007bd25",
           "location": "Article 9"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "第9(ii)条要求促进公众接近重要的考古遗产，尤其是遗址，作为遗产访问的政策依据。",
+          "source_url": "https://rm.coe.int/168007bd25",
+          "location": "Article 9(ii)"
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "本次选择的第9(ii)条明确提出公众接近考古遗址；教育与其他展示方式的完整情境尚待精读。",
+        "source_url": "https://rm.coe.int/168007bd25",
+        "location": "Article 9(ii)"
+      }
     },
     {
       "id": "tourism-charter-1999",
@@ -2491,7 +2697,7 @@ window.ATLAS_SNAPSHOT = {
           "location": "Principle 1.4, PDF p. 3"
         }
       ],
-      "timeline_topic": "Interpretation & experience",
+      "timeline_topic": "Heritage visitation & tourism",
       "map_title": "Cultural Tourism Charter",
       "map_maker": "ICOMOS / ICTC",
       "topic_memberships": [
@@ -2515,8 +2721,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "关注多样价值及当地社群参与旅游规划。",
           "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
           "location": "Principles 1.4, 4"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "以有遗产意义的场所旅游为对象，原则3讨论访客实际体验、在地理解及旅游路径的组织。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "location": "Introduction; Principle 3"
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "本次核对的原则3关注到访、游客移动及现场体验；该标签记录本次核对范围，不声称所有传播均发生在现场。",
+        "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+        "location": "Principle 3"
+      }
     },
     {
       "id": "intangible-convention-2003",
@@ -2614,6 +2836,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
           "location": "Articles 11(b), 15"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -2720,6 +2945,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
           "location": "Paragraphs 7, 9"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -2818,6 +3046,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
           "location": "Articles 12–13, 26.3"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -2925,6 +3156,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
           "location": "Section 2, Interpretive media (p. 3)"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -3025,6 +3259,9 @@ window.ATLAS_SNAPSHOT = {
           "source_url": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
           "location": "Principle 7; Preamble"
         }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
       ]
     },
     {
@@ -3098,7 +3335,7 @@ window.ATLAS_SNAPSHOT = {
           "location": "Preamble to Guidelines, PDF p. 1"
         }
       ],
-      "timeline_topic": "Conservation & values",
+      "timeline_topic": "Heritage visitation & tourism",
       "map_title": "Salalah Guidelines",
       "map_maker": "ICOMOS / ICAHM",
       "topic_memberships": [
@@ -3122,8 +3359,24 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "尊重当地管理背景，并关注地方居民的受益。",
           "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
           "location": "Preamble; Objectives, p. 1"
+        },
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "明确强调考古遗址现场访问的直接体验，要求在不损害原始证据的前提下扩大公众接近；管理需监测游客数量、流线和满意度。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "location": "Purposes and Objectives, printed pp. 1–2; section 1.4.1.3"
         }
-      ]
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "指南对象是向公众开放的考古遗址，重点在实际到访、现场体验与访问影响管理。",
+        "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+        "location": "Purposes and Objectives; The Need for These Guidelines, printed pp. 1–3"
+      }
     },
     {
       "id": "intangible-sites-charter-2024",
@@ -3221,6 +3474,132 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "社群持有知识，专业人员以尊重权利的方式协助。",
           "source_url": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
           "location": "Section I, Objectives 3–4; Principle 3"
+        }
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ]
+    },
+    {
+      "id": "case-new-philadelphia-ar",
+      "year": 2025,
+      "year_label": "2025 · NPS source update",
+      "title": "New Philadelphia National Historic Site: Self-Guided Augmented Reality Tour",
+      "title_zh": "新费城国家历史遗址：自助增强现实导览（中文工作译名）",
+      "node_type": "document",
+      "type": "Heritage Practice Case",
+      "display_category": "Heritage Practice",
+      "stream": "B",
+      "author": [],
+      "organization": "New Philadelphia Association · U.S. National Park Service",
+      "map_title": "New Philadelphia AR Tour",
+      "map_maker": "New Philadelphia / NPS",
+      "recognition_basis": "NPS国家历史遗址官方页面介绍的实际导览；NPS机构收录依据，不声称具有UNESCO或ICOMOS认证。",
+      "practice_date": "AR导览启动年份未在本次核对的NPS页面注明；2025-03-31为页面最后更新日期，时间轴以此为资料锚点。",
+      "paradigm": [
+        "Interpretation"
+      ],
+      "themes": [
+        "Site-based Experience",
+        "Digital Interpretation"
+      ],
+      "concepts": [
+        "Situated Interpretation",
+        "Augmented Reality",
+        "Visitor Experience"
+      ],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Narrative",
+        "Experience"
+      ],
+      "authority_structure": [
+        "Institution-led"
+      ],
+      "public_role": [
+        "Visitor"
+      ],
+      "narrative_structure": [
+        "Multiple Narratives"
+      ],
+      "media": [
+        "AR",
+        "Audio",
+        "Text"
+      ],
+      "public_actions": [
+        "Explore",
+        "Observe",
+        "Listen"
+      ],
+      "preview": "An on-site AR trail connects vanished buildings and residents’ stories to the surviving landscape.",
+      "summary": "NPS官方页面介绍新费城协会的自助AR应用：访客沿约四分之一英里的现场路线访问11个站点，用手机摄像头对准站点标记，观看叠加在面前景观中的建筑与人物动画，并收听建镇者、反奴隶制与多文化社区的故事。",
+      "significance": "为现场访问与数字阐释交汇提供官方机构介绍的实践参照；官方网页证明活动形式，不构成阐释效果的实验验证。",
+      "phd_relevance": "观察遗址中已消失的建筑如何通过数字叙事与现场空间对应，以及路线、叙事和身体行动如何支持公众理解。",
+      "my_notes": "案例编码待进一步精读。区分遗址保护认定、导览实施时间与网页更新日期；本节点2025为资料时间锚点。NPS页面也列出字幕及音频描述的可访问性限制，设计时需单独评估。",
+      "source_url": "https://www.nps.gov/thingstodo/augmented-reality-tour.htm",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "placeholder": true,
+      "coding_status": "2026-10-03：NPS活动描述、现场路线及AR用法已核对；实施时间、完整案例研究与效果评价待补充。",
+      "timeline_topic": "Heritage visitation & tourism",
+      "topic_memberships": [
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "官方活动描述为现场步行自助导览，提供路线、站点及访客使用说明。",
+          "source_url": "https://www.nps.gov/thingstodo/augmented-reality-tour.htm",
+          "location": "Activity description; How to start; Details"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "语音叙事介绍建镇者、反奴隶制与多文化社区，建筑和人物动画用于帮助访客理解遗址。",
+          "source_url": "https://www.nps.gov/thingstodo/augmented-reality-tour.htm",
+          "location": "Activity description, paragraphs 2–3"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "访客用移动设备摄像头对准现场标记，使动画叠加在面前的真实景观中。",
+          "source_url": "https://www.nps.gov/thingstodo/augmented-reality-tour.htm",
+          "location": "Activity description; Accessibility Information"
+        }
+      ],
+      "interpretive_setting": [
+        "On-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "路线从停车场出发；设备摄像头对准现场站点标记，数字建筑与人物叠加在面前景观中。这是现场AR案例，不能由此推论所有AR均用于现场访问。",
+        "source_url": "https://www.nps.gov/thingstodo/augmented-reality-tour.htm",
+        "location": "Activity description; How to start"
+      },
+      "excerpts": [
+        {
+          "text": "Animated buildings and people will appear on the landscape in front of you.",
+          "source": "U.S. National Park Service, Take a Self-Guided Augmented Reality Tour!",
+          "location": "Activity description; page last updated 31 March 2025"
+        }
+      ],
+      "relations": [
+        {
+          "target": "ename",
+          "type": "related_to",
+          "evidence": "研究者主题比较：具体现场导览可与2008宪章的接近、理解和个人体验原则对照；未发现该项目直接引用宪章的证据。"
+        },
+        {
+          "target": "azuma-1997",
+          "type": "related_to",
+          "evidence": "研究者技术对照：现场实景与数字建筑叠加可联系AR概念；不声称该项目直接受论文影响。"
+        },
+        {
+          "target": "tourism",
+          "type": "related_to",
+          "evidence": "研究者主题比较：现场AR导览可对照2022旅游宪章原则3的访客体验与增强现实讨论；不构成执行认证或效果验证。"
         }
       ]
     }

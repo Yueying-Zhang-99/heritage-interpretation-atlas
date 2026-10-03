@@ -3,7 +3,7 @@ Atlas.timeline=function(rows){
   if(Atlas.state.timelineMode==='flow'&&typeof d3!=='undefined')return Atlas.flow(rows);
   const A=Atlas,root=document.querySelector('#chart');
   root.classList.add('timeline-chart');
-  const topics=['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'];
+  const topics=A.flowTopics;
   const topicOf=d=>d.timeline_topic||(
     d.paradigm?.includes('Participation')?'Participation & plural voices':
     d.paradigm?.includes('Interpretation')?'Interpretation & experience':
@@ -11,7 +11,7 @@ Atlas.timeline=function(rows){
   const start=1930,end=2025,width=Math.max(680,root.clientWidth),large=width>=1500;
   const left=large?205:168,right=large?55:34,nodeWidth=large?190:140,markerWidth=large?30:22,trackStep=large?46:31;
   const chartTop=root.getBoundingClientRect().top+window.scrollY;
-  const minBandHeight=width>=900?Math.max(0,Math.floor((window.innerHeight-chartTop-(large?110:130)-35)/4)):0;
+  const minBandHeight=width>=900?Math.max(0,Math.floor((window.innerHeight-chartTop-(large?110:130)-35)/topics.length)):0;
   const xFor=year=>left+(Number(year)-start)/(end-start)*(width-left-right);
   const plot=A.el('div','timeline-plot compact-map');plot.style.width=width+'px';
   const axis=A.el('div','timeline-axis');axis.append(A.el('span','timeline-axis-label','YEAR →'));

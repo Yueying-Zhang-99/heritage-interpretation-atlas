@@ -37,3 +37,26 @@ Local HTTP preview at `http://127.0.0.1:4173`:
 - The browser automation environment blocks `file://` navigation, so double-click/offline mode was not browser-tested. Its snapshot parity and script syntax were checked; the normal HTTP mode and local JSON chooser were browser-tested.
 - No PDF files were supplied; the missing-PDF state was tested. Actual PDF opening should be checked after adding a PDF.
 - Research text and relationships are explicitly marked as sample coding pending source-level verification.
+
+## Visitation / setting update — 2026-10-03
+
+`node tools/check.cjs` passes with 36 records and 9 auxiliary nodes. Added checks cover fifth-theme membership, old-import setting fallback, malformed/duplicate tags, source-evidence locators, Both matching On-site/Off-site and compound digital/setting filtering. Offline snapshot parity and script syntax pass; `git diff --check` reports no whitespace errors.
+
+Browser verification at http://127.0.0.1:4173:
+
+- Flow renders 36 dots and 5 theme paths. At 1920×1080 and 1366×768, `data-layout-fit=true`, the chart does not require horizontal scrolling, and document height equals viewport height.
+- Visitation selection highlights related records; the NPS AR record has visitation, interpretation and digital memberships.
+- On-site + AR filtering yields the New Philadelphia case. Its reading card shows On-site evidence, official source link, source-update date distinction and thematic relations.
+- Chinese editor exposes five membership choices and setting/source-evidence fields. Saving then reopening the test case retains On-site and source-checked evidence. The temporary test draft was discarded after verification; no GitHub publish action was made.
+- Label management exposes the four preset setting labels. Cluster offers Interpretive setting and groups 3 Both, 7 On-site, 26 unspecified records. Library shows and sorts the new column.
+- Network loads the new case and its connections. Bands renders all five rows / all 36 records; with the current dense dataset it remains vertically scrollable at 1920×1080. The default Flow mode fits the viewport.
+- No browser console errors found.
+
+Final layout restores the continuous outer shell, enclosed internal cavities and equal early decades. Tourism now precedes digital methods in the theme reading order. Verification of the final geometry and published website is recorded below.
+
+
+## Final Flow layout / release checks — 2026-10-03
+
+- `tools/check.cjs` and `tools/check-flow-shell.cjs` pass: 36 records, 9 auxiliary nodes; tourism-before-digital reading order, continuous shells, protected member dots, enclosed cavities and equal 1930–1990 decades.
+- Final Flow renders 36 dots / 5 envelopes at 1920×1080 and 2560×1440 without horizontal or page scrolling. At 1366×768 it preserves page height and uses internal horizontal scrolling to retain readable labels. This supersedes the earlier viewport result for the branching geometry.
+- Tourism selection visibly retains a connected outer outline with internal openings; no browser console errors. Asset query versions are bumped to atlas-43 for the changed website scripts/styles.

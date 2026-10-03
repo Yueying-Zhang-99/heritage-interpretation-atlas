@@ -279,7 +279,8 @@ body.flow-active .empty-state{min-height:0;flex:1}
 .flow-theme-button{font-size:11px;padding:5px 8px;border-bottom:1px solid #8a969a;color:#596970}
 .flow-theme-button[data-theme="1"]{border-bottom:2px solid #596970}
 .flow-theme-button[data-theme="2"]{border-bottom:1px dashed #596970}
-.flow-theme-button[data-theme="3"]{border-bottom:1px dotted #596970}
+.flow-theme-button[data-theme="4"]{border-bottom:1px dotted #596970}
+.flow-theme-button[data-theme="3"]{border-bottom:3px double #596970}
 .flow-theme-button[aria-pressed="true"]{background:#edf1f2;color:#152a32}
 .flow-theme-button.is-hovered{background:#edf1f2;color:#152a32}
 .flow-theme-tooltip{position:fixed;z-index:12;max-width:min(300px,calc(100vw - 24px));padding:12px 15px;border:1px solid #dce4e7;border-radius:7px;background:#fffffff5;color:#30454e;box-shadow:0 4px 16px #20343d12;pointer-events:none;font-size:12px;line-height:1.5}
@@ -290,12 +291,16 @@ body.flow-active .empty-state{min-height:0;flex:1}
 .flow-tooltip-line{width:19px;flex:none;border-top:1px solid #889496}
 .flow-tooltip-line[data-theme="1"]{border-top:2px solid #56666c}
 .flow-tooltip-line[data-theme="2"]{border-top:1px dashed #657478}
-.flow-tooltip-line[data-theme="3"]{border-top:1px dotted #657478}
+.flow-tooltip-line[data-theme="4"]{border-top:1px dotted #657478}
+.flow-tooltip-line[data-theme="3"]{border-top:3px double #657478}
+.flow-tooltip-setting{display:block;color:#596970;margin-top:4px}
+.flow-tooltip-theme + .flow-tooltip-caption{margin-top:12px}
 .flow-key .text-button{font-size:11px;margin-left:auto}
 .flow-envelope{fill:#829092;fill-opacity:.014;stroke:#9aa6a8;stroke-width:.8;stroke-opacity:.56;stroke-linejoin:round;stroke-linecap:round;pointer-events:none;transition:opacity .15s,fill-opacity .15s,stroke-opacity .15s}
 .flow-envelope[data-theme="1"]{stroke:#819094;stroke-width:1;fill-opacity:.012}
 .flow-envelope[data-theme="2"]{stroke:#8d9b9f;stroke-dasharray:6 4;fill-opacity:.012}
-.flow-envelope[data-theme="3"]{stroke:#8d9b9f;stroke-dasharray:1.5 3;fill-opacity:.016}
+.flow-envelope[data-theme="4"]{stroke:#8d9b9f;stroke-dasharray:1.5 3;fill-opacity:.016}
+.flow-envelope[data-theme="3"]{stroke:#83938b;stroke-dasharray:9 3 2 3;fill:#83938b;fill-opacity:.014}
 .flow-envelope.is-active{fill-opacity:.055;stroke-width:1.1;stroke-opacity:.85;stroke-dasharray:none}
 .flow-envelope.is-muted{opacity:.17}
 .flow-guides line{stroke:#acb8bb;stroke-width:1}
