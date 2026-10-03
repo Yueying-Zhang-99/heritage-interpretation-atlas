@@ -2,7 +2,7 @@
 Atlas.flowEnvelopePath=function(values,nx,ny,cell){
   // Round kernel intersections in the field first; increasing SVG resolution alone
   // cannot remove the cusps produced by a hard union of neighbouring kernels.
-  const sigma=18/cell,radius=Math.ceil(sigma*3),kernel=[];
+  const sigma=12/cell,radius=Math.ceil(sigma*3),kernel=[];
   let total=0;
   for(let offset=-radius;offset<=radius;offset++){const weight=Math.exp(-offset*offset/(2*sigma*sigma));kernel.push(weight);total+=weight;}
   for(let i=0;i<kernel.length;i++)kernel[i]/=total;
@@ -68,17 +68,21 @@ Atlas.flow=function(rows){
     g.append('text').attr('class','flow-maker').attr('y',titleBox.y+titleBox.height+13).text(n.d.map_maker||A.text(n.d.author)||n.d.organization||'Research topic').call(A.wrap,labelWidth,13);
     n.g=g;n.box=g.node().getBBox();
   }
-  const overlaps=(a,b,pad=7)=>a.x-pad<b.x+b.width&&a.x+a.width+pad>b.x&&a.y-pad<b.y+b.height&&a.y+a.height+pad>b.y;
-  let placed=[];
-  for(let attempt=0;attempt<8;attempt++){
-    placed=[];let complete=true;
-    const anchor=i=>top+62+i*(height-top-bottom-140)/3;
-    for(const n of nodes.slice().sort((a,b)=>b.d.year-a.d.year||a.d.id.localeCompare(b.d.id))){
-      const primary=topics.indexOf(n.d.timeline_topic),themeY=n.topics.length?n.topics.reduce((s,i)=>s+anchor(i),0)/n.topics.length:anchor(Math.max(0,primary));
-      const target=(themeY+2*anchor(Math.max(0,primary)))/3;
+  const overlaps=(a,b,pad=13)=>a.x-pad<b.x+b.width&&a.x+a.width+pad>b.x&&a.y-pad<b.y+b.height&&a.y+a.height+pad>b.y;
+  // Pack primary-topic neighbourhoods independently. A dense recent cluster
+  // may grow its neighbourhood, but cannot displace older records into another
+  // topic. Secondary memberships are still drawn in every matching envelope.
+  const groups=topics.map((topic,i)=>({i,nodes:nodes.filter(n=>{
+    const primary=topics.indexOf(n.d.timeline_topic);
+    return (primary>=0?primary:n.topics[0]??0)===i;
+  })})).filter(group=>group.nodes.length);
+  for(const group of groups){
+    const placed=[];
+    for(const n of group.nodes.slice().sort((a,b)=>b.d.year-a.d.year||a.d.id.localeCompare(b.d.id))){
       let chosen=null;
-      for(let delta=0;delta<height&&!chosen;delta+=10)for(const sign of delta===0?[1]:[1,-1]){
-        const y=target+delta*sign;if(y<top+30||y>height-bottom-56)continue;
+      // Search from the top, then trim to the occupied extent. This avoids
+      // oversized empty halves around a densely packed neighbourhood.
+      for(let y=26;!chosen;y+=10){
         for(const side of ['right','left']){
           const gap=Math.max(n.r+10,(n.r+4)*1.7+4),labelX=side==='right'?n.x+gap:n.x-gap-n.box.width;
           const label={x:labelX+n.box.x,y:y+n.box.y,width:n.box.width,height:n.box.height};
@@ -87,14 +91,19 @@ Atlas.flow=function(rows){
           if(placed.every(p=>!overlaps(label,p.label)&&!overlaps(label,p.dot)&&!overlaps(dot,p.label)&&!overlaps(dot,p.dot))){chosen={y,labelX,label,dot};break;}
         }
       }
-      if(!chosen){complete=false;break;}
       Object.assign(n,chosen);placed.push(n);
     }
-    if(complete)break;height+=120;
+    group.height=Math.max(100,...placed.map(n=>Math.max(n.label.y+n.label.height,n.dot.y+n.dot.height)+12));
   }
-  svg.attr('viewBox',`0 0 ${width} ${height}`).attr('height',height);
-  // Defensive fallback for much larger imported libraries: grow vertically rather than hide records.
-  for(const n of nodes.filter(n=>!placed.includes(n))){n.y=height-bottom;const labelX=Math.max(18,Math.min(width-n.box.width-18,n.x+18));n.labelX=labelX;placed.push(n);height+=n.box.height+35;}
+  const gutter=48,contentHeight=groups.reduce((sum,g)=>sum+g.height,0)+Math.max(0,groups.length-1)*gutter;
+  height=Math.max(height,top+contentHeight+bottom);
+  let offsetY=top;
+  const spare=(height-top-bottom-contentHeight)/Math.max(1,groups.length);
+  for(const group of groups){
+    for(const n of group.nodes)n.y+=offsetY+spare/2;
+    guides.append('text').attr('class','flow-topic-guide').attr('x',18).attr('y',offsetY+spare/2-2).text(topics[group.i]);
+    offsetY+=group.height+gutter+spare;
+  }
   svg.attr('viewBox',`0 0 ${width} ${height}`).attr('height',height);
   for(const n of nodes)n.g.attr('transform',`translate(${n.labelX},${n.y})`).attr('data-record',n.d.id).attr('tabindex',0).attr('role','button').attr('aria-describedby',themeTip.id).attr('aria-label',`${n.d.year}: ${n.d.title}. Open record.`).on('click',()=>openRecord(n)).on('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const dots=dotsLayer.selectAll('g').data(nodes).join('g').attr('class','flow-dot').attr('data-record',n=>n.d.id).attr('transform',n=>`translate(${n.x},${n.y})`).attr('role','button').attr('tabindex',0).attr('aria-label',n=>`${n.d.year}: ${n.d.title}. ${n.topics.map(i=>topics[i]).join('; ')}. Open record.`);
@@ -106,23 +115,36 @@ Atlas.flow=function(rows){
   guides.append('line').attr('x1',x(start)).attr('x2',x(end)).attr('y1',axisY).attr('y2',axisY);
   for(let year=start;year<=end;year+=10){const t=guides.append('g').attr('transform',`translate(${x(year)},${axisY})`);t.append('line').attr('y2',5);t.append('text').attr('y',19).attr('text-anchor','middle').text(year);}
   guides.append('text').attr('x',18).attr('y',axisY+4).text('YEAR');
-  // Connect adjacent same-theme records across sparse years. These bridges show
-  // theme membership, not historical continuity or direct influence.
-  const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=43;
+  // A short branching scaffold avoids repeatedly sweeping across an entire
+  // cluster when several same-year records sit at different heights. It is
+  // graphic routing only, not a genealogical or chronological relationship.
+  const cell=5,nx=Math.ceil(width/cell)+1,ny=Math.ceil(height/cell)+1,sigma=31;
   const contours=[];
   topics.forEach((topic,i)=>{
     const members=nodes.filter(n=>n.topics.includes(i)).sort((a,b)=>a.x-b.x||a.y-b.y);
     if(!members.length)return;
     const samples=members.map(n=>[n.x,n.y,sigma]);
-    for(let k=1;k<members.length;k++){
-      const a=members[k-1],b=members[k];
+    const connected=new Set([members[0]]),bridges=[];
+    while(connected.size<members.length){
+      let nearest=null;
+      for(const a of connected)for(const b of members)if(!connected.has(b)){
+        const distance=Math.hypot(b.x-a.x,b.y-a.y);
+        if(!nearest||distance<nearest.distance)nearest={a,b,distance};
+      }
+      bridges.push(nearest);connected.add(nearest.b);
+    }
+    for(const edge of bridges){
+      const [a,b]=edge.a.x<=edge.b.x?[edge.a,edge.b]:[edge.b,edge.a];
       const count=Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/24);
       for(let j=1;j<count;j++){
-        const t=j/count,u=1-t,dx=b.x-a.x;
+        const t=j/count,u=1-t,dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy)||1;
         // A gentle waist between records keeps the node lobes round and the
         // connecting ribbon continuous, with a smooth taper at both ends.
-        const bridgeSigma=sigma-21*Math.sin(Math.PI*t)**2;
-        samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x,a.y+(b.y-a.y)*(3*t*t-2*t*t*t),bridgeSigma]);
+        const waist=Math.sin(Math.PI*t)**2,bridgeSigma=sigma-13*waist;
+        // Separate coincident routes between shared records, returning smoothly
+        // to the true node at each end. The offset encodes no additional data.
+        const offset=(i-(topics.length-1)/2)*18*waist;
+        samples.push([u*u*u*a.x+3*u*u*t*(a.x+dx*.5)+3*u*t*t*(b.x-dx*.5)+t*t*t*b.x-dy/length*offset,a.y+dy*(3*t*t-2*t*t*t)+dx/length*offset,bridgeSigma]);
       }
     }
     const values=new Float32Array(nx*ny);
@@ -162,5 +184,5 @@ Atlas.flow=function(rows){
   svg.on('keydown.flow-themes',event=>{if(event.key==='Escape')hideThemes();});
   themeButtons.forEach((b,i)=>b.onclick=()=>{selected=selected===i?null:i;themeButtons.forEach((button,j)=>button.setAttribute('aria-pressed',String(j===selected)));highlight(selected);});
   reset.onclick=()=>{selected=null;themeButtons.forEach(b=>b.setAttribute('aria-pressed','false'));highlight();};
-  const note=A.el('p','flow-note','One record, multiple themes. Select a theme to trace its envelope; hover a record for coded links. Overlap means shared subject matter, not proven influence.');root.append(note);
+  const note=A.el('p','flow-note','Position: primary topic. Envelopes: all coded themes. Select a theme to trace its envelope; hover a record for coded links. Overlap means shared subject matter, not proven influence.');root.append(note);
 };
