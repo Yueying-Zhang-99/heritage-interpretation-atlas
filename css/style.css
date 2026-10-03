@@ -296,7 +296,7 @@ body.flow-active .empty-state{min-height:0;flex:1}
 .flow-envelope[data-theme="1"]{stroke:#819094;stroke-width:1;fill-opacity:.012}
 .flow-envelope[data-theme="2"]{stroke:#8d9b9f;stroke-dasharray:6 4;fill-opacity:.012}
 .flow-envelope[data-theme="3"]{stroke:#8d9b9f;stroke-dasharray:1.5 3;fill-opacity:.016}
-.flow-envelope.is-active{fill-opacity:.055;stroke-width:1.1;stroke-opacity:.85}
+.flow-envelope.is-active{fill-opacity:.055;stroke-width:1.1;stroke-opacity:.85;stroke-dasharray:none}
 .flow-envelope.is-muted{opacity:.17}
 .flow-guides line{stroke:#acb8bb;stroke-width:1}
 .flow-guides text{font-size:10px;fill:#708087}

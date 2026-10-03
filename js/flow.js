@@ -1,4 +1,61 @@
 /* Theme envelopes derived from coded records. Geometry never asserts influence. */
+Atlas.flowShellField=function(values,members,nx,ny,cell){
+  if(!members.length)return new Float32Array(values.length);
+  // A continuous chronological shell, with rounded shoulders around nearby dates.
+  const padding=32,groups=[],outline=[],lower=[];
+  for(const n of [...members].sort((a,b)=>a.x-b.x)){
+    let g=groups.at(-1);
+    if(!g||n.x-g.start>64){g={start:n.x,end:n.x,top:n.y-padding,bottom:n.y+padding};groups.push(g);}
+    else{g.end=n.x;g.top=Math.min(g.top,n.y-padding);g.bottom=Math.max(g.bottom,n.y+padding);}
+  }
+  const cloud=[];
+  for(const n of members)for(let i=0;i<32;i++){const a=i*Math.PI/16;cloud.push([n.x+padding*Math.cos(a),n.y+padding*Math.sin(a)]);}
+  const hull=d3.polygonHull(cloud);
+  const broadExtent=x=>{const crossings=[];
+    for(let i=0;i<hull.length;i++){const a=hull[i],b=hull[(i+1)%hull.length];
+      if(a[0]!==b[0]&&x>=Math.min(a[0],b[0])&&x<=Math.max(a[0],b[0]))crossings.push(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]));}
+    return [Math.min(...crossings),Math.max(...crossings)];
+  };
+  const soften=(x,y,side)=>{const bound=broadExtent(x)[side];return Number.isFinite(bound)?y*.35+bound*.65:y;};
+  const first=groups[0],last=groups.at(-1);
+  const cap=(g,x,left)=>{const middle=(g.top+g.bottom)/2,radius=(g.bottom-g.top)/2;
+    for(let i=0;i<=24;i++){const angle=(left?Math.PI/2:-Math.PI/2)+i*Math.PI/24;outline.push([x+padding*Math.cos(angle),middle+radius*Math.sin(angle)]);}
+  };
+  for(let i=0;i<groups.length;i++){
+    const g=groups[i];outline.push([g.start,g.top],[g.end,g.top]);lower.push([g.start,g.bottom],[g.end,g.bottom]);
+    const next=groups[i+1];if(!next)continue;
+    const steps=Math.max(2,Math.ceil((next.start-g.end)/8));
+    for(let j=1;j<steps;j++){const t=j/steps,ease=(1-Math.cos(Math.PI*t))/2,x=g.end+(next.start-g.end)*t;
+      outline.push([x,g.top+(next.top-g.top)*ease]);lower.push([x,g.bottom+(next.bottom-g.bottom)*ease]);}
+  }
+  for(const p of outline)p[1]=soften(p[0],p[1],0);
+  for(const p of lower)p[1]=soften(p[0],p[1],1);
+  const capGroup=g=>({top:soften(g.end,g.top,0),bottom:soften(g.end,g.bottom,1)});
+  cap(capGroup(last),last.end,false);outline.push(...lower.reverse());
+  cap({top:soften(first.start,first.top,0),bottom:soften(first.start,first.bottom,1)},first.start,true);
+  const shell=new Float32Array(values.length),distance=new Float32Array(values.length),wall=24/cell;
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+    const k=y*nx+x,inside=d3.polygonContains(outline,[x*cell,y*cell]);
+    shell[k]=inside?1:0;distance[k]=inside&&x>0&&y>0&&x<nx-1&&y<ny-1?1e6:0;
+  }
+  // Protect a continuous outside rim: cavities can only occur inside it.
+  const diagonal=Math.SQRT2;
+  for(let y=1;y<ny;y++)for(let x=1;x<nx;x++){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k-1]+1,distance[k-nx]+1,distance[k-nx-1]+diagonal,x+1<nx?distance[k-nx+1]+diagonal:1e6);}
+  for(let y=ny-2;y>=0;y--)for(let x=nx-2;x>=0;x--){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k+1]+1,distance[k+nx]+1,distance[k+nx+1]+diagonal,x>0?distance[k+nx-1]+diagonal:1e6);}
+  const visited=new Uint8Array(values.length),holes=[];
+  const eligible=k=>shell[k]&&distance[k]>=wall&&values[k]<.72;
+  for(let k=0;k<values.length;k++)if(!visited[k]&&eligible(k)){
+    const cells=[k];visited[k]=1;
+    for(let i=0;i<cells.length;i++){
+      const p=cells[i],x=p%nx,y=Math.floor(p/nx);
+      for(const next of [x>0?p-1:-1,x<nx-1?p+1:-1,y>0?p-nx:-1,y<ny-1?p+nx:-1])if(next>=0&&!visited[next]&&eligible(next)){visited[next]=1;cells.push(next);}
+    }
+    if(cells.length*cell*cell>=1500)holes.push(cells);
+  }
+  // Keep only broad internal openings. The original field protects member dots.
+  for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3))for(const k of hole)shell[k]=0;
+  return shell;
+};
 Atlas.flowEnvelopePath=function(values,nx,ny,cell){
   // Round kernel intersections in the field first; increasing SVG resolution alone
   // cannot remove the cusps produced by a hard union of neighbouring kernels.
@@ -192,7 +249,7 @@ Atlas.flow=function(rows){
     for(const [px,py,sampleSigma] of samples){const loX=Math.max(0,Math.floor((px-95)/cell)),hiX=Math.min(nx-1,Math.ceil((px+95)/cell)),loY=Math.max(0,Math.floor((py-95)/cell)),hiY=Math.min(ny-1,Math.ceil((py+95)/cell));
       for(let gy=loY;gy<=hiY;gy++)for(let gx=loX;gx<=hiX;gx++){const value=Math.exp(-((gx*cell-px)**2+(gy*cell-py)**2)/(2*sampleSigma*sampleSigma));const index=gy*nx+gx;values[index]=Math.max(values[index],value);}
     }
-    contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(values,nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
+    contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(A.flowShellField(values,members,nx,ny,cell),nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
   });
   const byId=new Map(nodes.map(n=>[n.d.id,n]));
   let selected=null;
