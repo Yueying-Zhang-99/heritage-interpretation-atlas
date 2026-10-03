@@ -330,3 +330,11 @@ body.flow-active .empty-state{min-height:0;flex:1}
 .membership-fields .editor-field{margin:7px 0}
 @media(max-width:760px){.flow-key{gap:5px}.flow-key-caption{width:100%}.flow-theme-button{font-size:10px}.timeline-modes button{padding:4px 9px}.flow-note{min-width:300px}}
 @media(prefers-reduced-motion:reduce){.flow-envelope,.flow-label,.flow-dot{transition:none}}
+
+/* Bands shares the desktop viewport budget; dense rows receive the space they need. */
+body.bands-active main{height:100vh;height:100dvh;display:flex;flex-direction:column;padding-bottom:4px}
+body.bands-active .document-heading{flex:none}
+body.bands-active .workspace{flex:1;min-height:0;display:flex;flex-direction:column}
+body.bands-active .primary-bar,body.bands-active .view-heading,body.bands-active .legend,body.bands-active .chart-footer,body.bands-active .data-bar{flex:none}
+body.bands-active #chart{flex:1;min-height:0;overflow:auto}
+body.bands-active .empty-state{min-height:0;flex:1}

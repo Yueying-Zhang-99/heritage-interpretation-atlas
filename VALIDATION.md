@@ -60,3 +60,11 @@ Final layout restores the continuous outer shell, enclosed internal cavities and
 - `tools/check.cjs` and `tools/check-flow-shell.cjs` pass: 36 records, 9 auxiliary nodes; tourism-before-digital reading order, continuous shells, protected member dots, enclosed cavities and equal 1930–1990 decades.
 - Final Flow renders 36 dots / 5 envelopes at 1920×1080 and 2560×1440 without horizontal or page scrolling. At 1366×768 it preserves page height and uses internal horizontal scrolling to retain readable labels. This supersedes the earlier viewport result for the branching geometry.
 - Tourism selection visibly retains a connected outer outline with internal openings; no browser console errors. Asset query versions are bumped to atlas-43 for the changed website scripts/styles.
+
+
+## Compact Bands update — 2026-10-03
+
+- `tools/check-bands.cjs` validates non-overlapping horizontal intervals, circle/year alignment, equal early decades, monotonic chronology, plot bounds, empty/single cases and at most three tracks per topic for the current desktop dataset. `tools/check.cjs` continues to pass.
+- Browser checks show all 36 records in five bands. At 1920×1080 and 2560×1440 there is no chart or document scrolling; actual label/circle bounds at 1920×1080 have no collisions. The 1920×1080 track counts are 3 / 1 / 3 / 2 / 2, versus 3 / 2 / 7 / 4 / 3 in the old linear layout.
+- At 1280×720 and 1366×768 there is no vertical chart or document scrolling. The time plot expands horizontally, retains all five topic rows and discloses horizontal reading in the footer. Titles and makers keep their existing font sizes. The five-step width fallback is bounded; denser imported datasets may still need internal scrolling.
+- No browser console errors observed. Flow shell geometry and its cavity settings are unchanged.
