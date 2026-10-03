@@ -5,8 +5,12 @@
     "is_sample": true,
     "notice": "示例与研究编码数据库：重要性评分为研究者初步判断，不代表引用量或客观学术影响；虚线节点待原文精读，摘要与关系须逐条校核。",
     "topic_coding": {
-      "updated": "2026-10-02",
+      "updated": "2026-10-03",
       "method": "Qualitative working codes: source = checked original or official description; provisional = interpretation pending close reading. Shared subject matter is not proof of direct influence. Publication / inscription dates retain their existing meaning."
+    },
+    "document_nature": {
+      "updated": "2026-10-03",
+      "method": "Editable descriptive document forms within Charter / Policy; not a legal-status determination. Multiple forms allowed. Source excerpts and specified clauses checked; whole-document reading remains pending."
     }
   },
   "vocabulary": {
@@ -86,6 +90,16 @@
       "Recommendation",
       "Research theme",
       "Heritage Practice Case"
+    ],
+    "document_nature": [
+      "Convention",
+      "Charter",
+      "Declaration",
+      "Principles",
+      "Guidelines",
+      "Practice Note",
+      "Recommendation",
+      "Document"
     ]
   },
   "documents": [
@@ -157,6 +171,9 @@
           "source_url": "https://www.icomos.org/en/resources/charters-and-texts",
           "location": ""
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -316,6 +333,9 @@
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/venice_e.pdf",
           "location": ""
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -393,6 +413,9 @@
           "source_url": "https://whc.unesco.org/en/conventiontext/",
           "location": "Article 27"
         }
+      ],
+      "document_nature": [
+        "Convention"
       ]
     },
     {
@@ -469,6 +492,9 @@
           "source_url": "https://australia.icomos.org/publications/burra-charter-practice-notes/",
           "location": "Version history: first adoption 1979; current edition 2013"
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -629,6 +655,9 @@
           "source_url": "https://whc.unesco.org/archive/nara94.htm",
           "location": "Paragraphs 5–8, 11"
         }
+      ],
+      "document_nature": [
+        "Document"
       ]
     },
     {
@@ -793,6 +822,9 @@
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/xian-declaration.pdf",
           "location": "Paragraph 12"
         }
+      ],
+      "document_nature": [
+        "Declaration"
       ]
     },
     {
@@ -891,6 +923,9 @@
           "source_url": "https://rm.coe.int/1680083746",
           "location": "Article 14"
         }
+      ],
+      "document_nature": [
+        "Convention"
       ]
     },
     {
@@ -1092,6 +1127,9 @@
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
           "location": "Definitions; Principle 6.4"
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -1183,6 +1221,9 @@
           "source_url": "https://www.unesco.org/en/legal-affairs/recommendation-historic-urban-landscape-including-glossary-definitions",
           "location": "Paragraph 27"
         }
+      ],
+      "document_nature": [
+        "Recommendation"
       ]
     },
     {
@@ -1441,6 +1482,9 @@
           "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2117.pdf&html=Bur&path=eng-spa_ICHT_Charter.pdf",
           "location": "Principle 3"
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -1609,6 +1653,9 @@
           "source_url": "https://www.unesco.org/en/legal-affairs/charter-preservation-digital-heritage",
           "location": "Articles 1–2"
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -1678,6 +1725,9 @@
           "source_url": "https://londoncharter.org/principles.html",
           "location": "Principles 2–4"
         }
+      ],
+      "document_nature": [
+        "Charter"
       ]
     },
     {
@@ -1938,6 +1988,9 @@
           "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
           "location": "Preamble, p. 1; Section 2, p. 3"
         }
+      ],
+      "document_nature": [
+        "Declaration"
       ]
     },
     {
@@ -2176,6 +2229,999 @@
         }
       ],
       "my_notes": "来源校核：UNESCO案例页支持社区协助管理和志愿参与；毛利展陈共同创作需要另补直接来源。时间轴是列入年份，不是所有实践方法的起始年份。"
+    },
+    {
+      "id": "lausanne-charter-1990",
+      "year": 1990,
+      "title": "Charter for the Protection and Management of the Archaeological Heritage",
+      "title_zh": "考古遗产保护与管理宪章（洛桑宪章）",
+      "stream": "A",
+      "type": "Charter",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Charter"
+      ],
+      "author": [],
+      "organization": "ICOMOS / ICAHM",
+      "node_type": "document",
+      "year_label": "1990",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Multiple Narratives"
+      ],
+      "concepts": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Multiple Narratives"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "将考古遗产保护、公众参与及展示纳入管理框架。第7条要求展示随知识发展更新，并考虑理解过去的多面路径。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "比较实体重建与MR重建：如何让公众区分证据、推断与展示？",
+      "source_url": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+      "pdf": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+      "my_notes": "阅读提示：比较实体重建与MR重建：如何让公众区分证据、推断与展示？",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "venice",
+          "type": "related_to",
+          "evidence": "引言明确以威尼斯宪章为思想参照。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf"
+        },
+        {
+          "target": "ename",
+          "type": "related_to",
+          "evidence": "第7条与阐释宪章可作公众展示议题比较，不主张直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf"
+        }
+      ],
+      "preview": "Archaeological protection, public participation and interpretation that evolves with evidence.",
+      "excerpts": [
+        {
+          "text": "the multifaceted approaches to an understanding of the past.",
+          "source": "ICOMOS / ICAHM, Charter for the Protection and Management of the Archaeological Heritage (1990)",
+          "location": "Article 7, PDF pp. 4–5"
+        }
+      ],
+      "timeline_topic": "Conservation & values",
+      "map_title": "Lausanne Charter",
+      "map_maker": "ICOMOS / ICAHM",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "强调综合保护与原址保存。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+          "location": "Articles 2, 6"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "展示与重建服务公众理解，内容应随知识更新。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+          "location": "Article 7"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "要求公众及地方文化群体参与，并容纳对过去的多面理解。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+          "location": "Articles 2, 6–7"
+        }
+      ]
+    },
+    {
+      "id": "valletta-convention-1992",
+      "year": 1992,
+      "title": "European Convention on the Protection of the Archaeological Heritage (Revised)",
+      "title_zh": "欧洲考古遗产保护公约（修订）（瓦莱塔公约）",
+      "stream": "A",
+      "type": "Convention",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Convention"
+      ],
+      "author": [],
+      "organization": "Council of Europe",
+      "node_type": "document",
+      "year_label": "1992",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Education"
+      ],
+      "concepts": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Education"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "将考古保护与规划协调纳入欧洲条约框架。第9条涉及公众教育及遗址访问，第5条要求公众开放避免损害遗址。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "研究公众可达性与遗址保护如何共同约束阐释设施；1992是签订日期，非1995生效日期。",
+      "source_url": "https://rm.coe.int/168007bd25",
+      "pdf": "https://rm.coe.int/168007bd25",
+      "my_notes": "阅读提示：研究公众可达性与遗址保护如何共同约束阐释设施；1992是签订日期，非1995生效日期。",
+      "annotations": [],
+      "importance": 1,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "lausanne-charter-1990",
+          "type": "related_to",
+          "evidence": "考古保护与公众开放的主题比较；文件性质不同。 Source: https://rm.coe.int/168007bd25"
+        },
+        {
+          "target": "faro",
+          "type": "related_to",
+          "evidence": "欧洲委员会两份公约可比较公众访问与遗产参与的不同范围。 Source: https://rm.coe.int/168007bd25"
+        }
+      ],
+      "preview": "Archaeological protection, public awareness and access within a European treaty framework.",
+      "excerpts": [
+        {
+          "text": "to promote public access to important elements of its archaeological heritage",
+          "source": "Council of Europe, European Convention on the Protection of the Archaeological Heritage (Revised) (1992)",
+          "location": "Article 9(ii), PDF p. 5"
+        }
+      ],
+      "timeline_topic": "Conservation & values",
+      "map_title": "Valletta Convention",
+      "map_maker": "Council of Europe",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "规定原址保护及考古与规划协调。",
+          "source_url": "https://rm.coe.int/168007bd25",
+          "location": "Articles 4–5"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "以教育及公众访问促进遗产价值理解。",
+          "source_url": "https://rm.coe.int/168007bd25",
+          "location": "Article 9"
+        }
+      ]
+    },
+    {
+      "id": "tourism-charter-1999",
+      "year": 1999,
+      "title": "International Cultural Tourism Charter: Managing Tourism at Places of Heritage Significance",
+      "title_zh": "国际文化旅游宪章：具有遗产意义场所的旅游管理",
+      "stream": "B",
+      "type": "Charter",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Charter"
+      ],
+      "author": [],
+      "organization": "ICOMOS / ICTC",
+      "node_type": "document",
+      "year_label": "1999",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Cultural Tourism",
+        "Multiple Narratives",
+        "Heritage Values"
+      ],
+      "concepts": [
+        "Cultural Tourism",
+        "Multiple Narratives",
+        "Heritage Values"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "将阐释、旅游与当地社群联系起来。第1.4条涉及少数文化及语言群体，并要求告知访客同一遗产的不同文化价值。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "比较1999与2022版本：当地社群在阐释内容和旅游决策中有哪些权力？",
+      "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+      "pdf": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+      "my_notes": "阅读提示：比较1999与2022版本：当地社群在阐释内容和旅游决策中有哪些权力？",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "tourism",
+          "type": "related_to",
+          "evidence": "同一文化旅游宪章系列的1999与2022版本，适合比较。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548"
+        },
+        {
+          "target": "voices",
+          "type": "related_to",
+          "evidence": "第1.4条为多种文化价值进入阐释提供规范参照。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548"
+        }
+      ],
+      "preview": "Interpretation connects visitors with host communities and their diverse cultural values.",
+      "excerpts": [
+        {
+          "text": "including that of minority cultural or linguistic groups.",
+          "source": "ICOMOS / ICTC, International Cultural Tourism Charter: Managing Tourism at Places of Heritage Significance (1999)",
+          "location": "Principle 1.4, PDF p. 3"
+        }
+      ],
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "Cultural Tourism Charter",
+      "map_maker": "ICOMOS / ICTC",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "遗产价值、真实性与可持续保护约束旅游管理。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "location": "Principles 2.1, 2.3–2.4"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "要求以易理解的方式传达遗产意义。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "location": "Principles 1.1–1.4"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "关注多样价值及当地社群参与旅游规划。",
+          "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "location": "Principles 1.4, 4"
+        }
+      ]
+    },
+    {
+      "id": "intangible-convention-2003",
+      "year": 2003,
+      "title": "Convention for the Safeguarding of the Intangible Cultural Heritage",
+      "title_zh": "保护非物质文化遗产公约",
+      "stream": "C",
+      "type": "Convention",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Convention"
+      ],
+      "author": [],
+      "organization": "UNESCO",
+      "node_type": "document",
+      "year_label": "2003",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Living Heritage",
+        "Community Participation",
+        "Transmission"
+      ],
+      "concepts": [
+        "Living Heritage",
+        "Community Participation",
+        "Transmission"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "将社群认可的实践、表达、知识及技能纳入非物质遗产保护。第14条涉及公众教育，第15条涉及传承社群参与管理。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "口述、仪式和日常实践如何进入场所叙事？谁有权决定展示和传播的边界？",
+      "source_url": "https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+      "pdf": "",
+      "my_notes": "阅读提示：口述、仪式和日常实践如何进入场所叙事？谁有权决定展示和传播的边界？",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "quebec-declaration-2008",
+          "type": "related_to",
+          "evidence": "活态遗产及场所意义的主题比较。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage"
+        },
+        {
+          "target": "community",
+          "type": "related_to",
+          "evidence": "传承社群参与是第15条的明确要求。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage"
+        }
+      ],
+      "preview": "Living heritage, transmission, public education and participation by its bearer communities.",
+      "excerpts": [
+        {
+          "text": "the widest possible participation of communities, groups",
+          "source": "UNESCO, Convention for the Safeguarding of the Intangible Cultural Heritage (2003)",
+          "location": "Article 15"
+        }
+      ],
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Intangible Heritage Convention",
+      "map_maker": "UNESCO",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "界定非物质遗产及其保护，包括相关文化空间。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+          "location": "Article 2"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "涉及公众教育、信息传播与记忆场所。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+          "location": "Article 14"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "相关社群参与识别遗产及其管理。",
+          "source_url": "https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+          "location": "Articles 11(b), 15"
+        }
+      ]
+    },
+    {
+      "id": "quebec-declaration-2008",
+      "year": 2008,
+      "title": "Québec Declaration on the Preservation of the Spirit of Place",
+      "title_zh": "魁北克宣言：保护场所精神",
+      "stream": "C",
+      "type": "Declaration",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Declaration"
+      ],
+      "author": [],
+      "organization": "ICOMOS",
+      "node_type": "document",
+      "year_label": "2008",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Spirit of Place",
+        "Memory",
+        "Multiple Narratives"
+      ],
+      "concepts": [
+        "Spirit of Place",
+        "Memory",
+        "Multiple Narratives"
+      ],
+      "media": [
+        "Text",
+        "Digital Media"
+      ],
+      "public_actions": [],
+      "summary": "把物质与非物质要素共同理解为场所精神，承认其多元且持续变化。宣言同时涉及社群参与和数字记录、传播。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "区分场所精神与单一官方叙事；多种记忆如何通过MR被并置、协商和传递？",
+      "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+      "pdf": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+      "my_notes": "阅读提示：区分场所精神与单一官方叙事；多种记忆如何通过MR被并置、协商和传递？",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "xian",
+          "type": "related_to",
+          "evidence": "序言明确提及西安宣言的环境及非物质要素。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf"
+        },
+        {
+          "target": "voices",
+          "type": "related_to",
+          "evidence": "第3、5条承认不同群体与多种场所精神。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf"
+        }
+      ],
+      "preview": "Plural spirits of place connect memory, communities and digital transmission.",
+      "excerpts": [
+        {
+          "text": "a place can have several spirits and be shared by different groups.",
+          "source": "ICOMOS, Québec Declaration on the Preservation of the Spirit of Place (2008)",
+          "location": "Paragraph 3, PDF p. 3"
+        }
+      ],
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Québec Declaration",
+      "map_maker": "ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "保护物质与非物质要素共同构成的场所精神。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "location": "Paragraphs 1, 4–6"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "互动传播与叙事等传递方式维系场所精神。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "location": "Paragraphs 8–9"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "承认多种场所精神、不同群体及社群的参与。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "location": "Paragraphs 3, 5, 8–10"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "建议使用数字数据库、网站和多媒体进行记录传播。",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "location": "Paragraphs 7, 9"
+        }
+      ]
+    },
+    {
+      "id": "burra-charter-2013",
+      "year": 2013,
+      "title": "The Burra Charter: The Australia ICOMOS Charter for Places of Cultural Significance (2013)",
+      "title_zh": "巴拉宪章：具有文化意义场所的宪章（2013年修订版）",
+      "stream": "A",
+      "type": "Charter",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Charter"
+      ],
+      "author": [],
+      "organization": "Australia ICOMOS",
+      "node_type": "document",
+      "year_label": "2013 · revision",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Cultural Significance",
+        "Co-existence of Values",
+        "Interpretation"
+      ],
+      "concepts": [
+        "Cultural Significance",
+        "Co-existence of Values",
+        "Interpretation"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "2013版将价值、参与、意义与阐释纳入场所保护。第12、13、24、25条分别涉及参与、价值共存、关联与意义、阐释。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "用价值识别指导叙事与设计；比较各修订版，勿把2013条款回填至1979。",
+      "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+      "pdf": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+      "my_notes": "阅读提示：用价值识别指导叙事与设计；比较各修订版，勿把2013条款回填至1979。",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "burra",
+          "type": "extends",
+          "evidence": "2013为同一宪章的修订版，序言列明历次版本。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf"
+        },
+        {
+          "target": "heritage-values",
+          "type": "related_to",
+          "evidence": "第1.2及13条提供文化意义与价值共存的参照。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf"
+        }
+      ],
+      "preview": "Cultural significance, participation and culturally appropriate interpretation in the 2013 revision.",
+      "excerpts": [
+        {
+          "text": "Interpretation should enhance understanding and engagement, and be culturally appropriate.",
+          "source": "Australia ICOMOS, The Burra Charter: The Australia ICOMOS Charter for Places of Cultural Significance (2013) (2013)",
+          "location": "Article 25, printed p. 8 (PDF p. 10)"
+        }
+      ],
+      "timeline_topic": "Conservation & values",
+      "map_title": "Burra Charter · 2013",
+      "map_maker": "Australia ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "以文化意义和关联为保护、管理依据。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "location": "Articles 1.2, 5–6, 24"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "要求阐释促进理解和投入，尊重文化适宜性。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "location": "Articles 24–25"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "相关人群参与，并尊重文化价值共存。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "location": "Articles 12–13, 26.3"
+        }
+      ]
+    },
+    {
+      "id": "interpretation-practice-note-2013",
+      "year": 2013,
+      "title": "Practice Note: Interpretation",
+      "title_zh": "阐释实践说明（巴拉宪章配套文件）",
+      "stream": "B",
+      "type": "Document",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Practice Note"
+      ],
+      "author": [],
+      "organization": "Australia ICOMOS",
+      "node_type": "document",
+      "year_label": "2013 · v1",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Interpretation Planning",
+        "Audience",
+        "Story Ownership"
+      ],
+      "concepts": [
+        "Interpretation Planning",
+        "Audience",
+        "Story Ownership"
+      ],
+      "media": [
+        "Text",
+        "Audio",
+        "Digital Media"
+      ],
+      "public_actions": [],
+      "summary": "将宪章原则转为阐释规划：资源调查、受众识别、主题与媒介选择及评价。强调故事持有者参与，阐释不能替代实体保护。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "可作设计流程参照：资源—受众—主题—媒介—实施—评价；检查社群对故事的权利。",
+      "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+      "pdf": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+      "my_notes": "阅读提示：可作设计流程参照：资源—受众—主题—媒介—实施—评价；检查社群对故事的权利。",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "burra-charter-2013",
+          "type": "supports",
+          "evidence": "第1节说明服务于2013版巴拉宪章第25条的实践。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf"
+        },
+        {
+          "target": "ename",
+          "type": "related_to",
+          "evidence": "第2节引用ICOMOS阐释宪章的目标。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf"
+        }
+      ],
+      "preview": "Practical interpretation planning links significance, audiences, storytellers and evaluation.",
+      "excerpts": [
+        {
+          "text": "An inclusive approach is essential.",
+          "source": "Australia ICOMOS, Practice Note: Interpretation (2013)",
+          "location": "Section 4, printed p. 7 (PDF p. 7)"
+        }
+      ],
+      "timeline_topic": "Interpretation & experience",
+      "map_title": "Interpretation Practice Note",
+      "map_maker": "Australia ICOMOS",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "阐释与文化意义保护相连，不能代替实体保护。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "location": "Sections 1, 4 (pp. 1, 9)"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "讨论阐释规划、受众及实施评价。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "location": "Sections 2–3 (pp. 2–5)"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "要求相关社群和故事持有者参与。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "location": "Section 4 (p. 7)"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "媒介选项包括声音导览和手机应用。",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "location": "Section 2, Interpretive media (p. 3)"
+        }
+      ]
+    },
+    {
+      "id": "seville-principles-2017",
+      "year": 2017,
+      "title": "The Seville Principles: International Principles of Virtual Archaeology",
+      "title_zh": "塞维利亚原则：虚拟考古国际原则（2017年ICOMOS认可版）",
+      "stream": "C",
+      "type": "Document",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Principles"
+      ],
+      "author": [],
+      "organization": "ICOMOS / CIPA",
+      "node_type": "document",
+      "year_label": "2017 · ICOMOS endorsement",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Virtual Archaeology",
+        "Scientific Transparency",
+        "Visitor Studies"
+      ],
+      "concepts": [
+        "Virtual Archaeology",
+        "Scientific Transparency",
+        "Visitor Studies"
+      ],
+      "media": [
+        "Text",
+        "Digital Media",
+        "VR"
+      ],
+      "public_actions": [],
+      "summary": "面向虚拟考古的计算机可视化原则，强调科学透明性、真实性和评价。数字展示的质量应依据工作过程的严谨性，而非视觉奇观。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "MR重建应显示证据与推断过程；用于教育和娱乐的系统应做访客评价。节点年份指2017认可版，非首次提出。",
+      "source_url": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+      "pdf": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+      "my_notes": "阅读提示：MR重建应显示证据与推断过程；用于教育和娱乐的系统应做访客评价。节点年份指2017认可版，非首次提出。",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "london-charter-2009",
+          "type": "extends",
+          "evidence": "序言明确提出在考古领域实践伦敦宪章原则。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf"
+        },
+        {
+          "target": "authenticity",
+          "type": "related_to",
+          "evidence": "第4原则讨论虚拟重建与真实性。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf"
+        }
+      ],
+      "preview": "Virtual archaeology grounded in transparent evidence and evaluated through visitor studies.",
+      "excerpts": [
+        {
+          "text": "the rigour of the work process and not the spectacular nature of the results.",
+          "source": "ICOMOS / CIPA, The Seville Principles: International Principles of Virtual Archaeology (2017)",
+          "location": "Principle 8.4, PDF p. 9"
+        }
+      ],
+      "timeline_topic": "Digital methods",
+      "map_title": "Seville Principles",
+      "map_maker": "ICOMOS / CIPA",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "虚拟方法服务保护，并处理真实性及历史严谨性。",
+          "source_url": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+          "location": "Principles 3–5"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "面向学习、教育和娱乐的可视化应采用访客研究评价。",
+          "source_url": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+          "location": "Principle 8.2"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "规定过程记录、元数据及推理记录，回应伦敦宪章。",
+          "source_url": "https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+          "location": "Principle 7; Preamble"
+        }
+      ]
+    },
+    {
+      "id": "salalah-guidelines-2017",
+      "year": 2017,
+      "title": "Salalah Guidelines for the Management of Public Archaeological Sites",
+      "title_zh": "萨拉拉公共考古遗址管理指南",
+      "stream": "A",
+      "type": "Document",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Guidelines"
+      ],
+      "author": [],
+      "organization": "ICOMOS / ICAHM",
+      "node_type": "document",
+      "year_label": "2017",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Sustainable Management"
+      ],
+      "concepts": [
+        "Archaeological Heritage",
+        "Public Access",
+        "Sustainable Management"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "指导公众开放遗址的可行性评估与可持续管理，兼顾证据保护、公众理解和地方利益。序言明确其为指导建议，而非法规或标准。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "分析实践案例时同时评价访客体验、遗址保护及当地收益；不要把指南标成具有法律效力的法规。",
+      "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+      "pdf": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+      "my_notes": "阅读提示：分析实践案例时同时评价访客体验、遗址保护及当地收益；不要把指南标成具有法律效力的法规。",
+      "annotations": [],
+      "importance": 1,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "lausanne-charter-1990",
+          "type": "related_to",
+          "evidence": "同属考古遗产管理文件，可比较公众开放的实践要求。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf"
+        },
+        {
+          "target": "tourism",
+          "type": "related_to",
+          "evidence": "公众开放与可持续旅游议题相交，不表示直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf"
+        }
+      ],
+      "preview": "Sustainable public access balances archaeological evidence, cultural diversity and local benefits.",
+      "excerpts": [
+        {
+          "text": "These guidelines are not intended to be regulations or standards",
+          "source": "ICOMOS / ICAHM, Salalah Guidelines for the Management of Public Archaeological Sites (2017)",
+          "location": "Preamble to Guidelines, PDF p. 1"
+        }
+      ],
+      "timeline_topic": "Conservation & values",
+      "map_title": "Salalah Guidelines",
+      "map_maker": "ICOMOS / ICAHM",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "强调保存遗址原境证据及可持续管理。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "location": "Purposes and Objectives, p. 1"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "公众访问及展示促进对人类过去与文化多样性的理解。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "location": "Purposes and Objectives, p. 1"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "尊重当地管理背景，并关注地方居民的受益。",
+          "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "location": "Preamble; Objectives, p. 1"
+        }
+      ]
+    },
+    {
+      "id": "intangible-sites-charter-2024",
+      "year": 2024,
+      "title": "International Charter and Guidance on Sites with Intangible Cultural Heritage",
+      "title_zh": "具有非物质文化遗产的场所国际宪章与指南（中文工作译名）",
+      "stream": "C",
+      "type": "Charter",
+      "display_category": "Charter / Policy",
+      "document_nature": [
+        "Charter",
+        "Guidelines"
+      ],
+      "author": [],
+      "organization": "ICOMOS / ICICH",
+      "node_type": "document",
+      "year_label": "2024",
+      "paradigm": [],
+      "heritage_conception": [
+        "Site"
+      ],
+      "interpretation_model": [
+        "Meaning-making"
+      ],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [
+        "Living Heritage",
+        "Community Expertise",
+        "Memory"
+      ],
+      "concepts": [
+        "Living Heritage",
+        "Community Expertise",
+        "Memory"
+      ],
+      "media": [
+        "Text"
+      ],
+      "public_actions": [],
+      "summary": "把非物质遗产视为场所遗产的组成部分，强调社群知识、记忆与物质空间的联系。专业人员应尊重社群权利并协助相关实践。",
+      "paradigm_shift": "",
+      "significance": "作为遗产阐释研究的规范或实践参照；完整阅读及横向比较待完成。",
+      "phd_relevance": "阐释设计如何使活态实践进入场所叙事，同时尊重社群对知识和文化的权利？",
+      "source_url": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+      "pdf": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+      "my_notes": "阅读提示：阐释设计如何使活态实践进入场所叙事，同时尊重社群对知识和文化的权利？",
+      "annotations": [],
+      "importance": 2,
+      "importance_note": "研究者暂定贡献度，待精读后调整；不表示客观影响排名。",
+      "placeholder": true,
+      "coding_status": "2026-10-03：指定条款与短摘录已核对，完整阅读待完成；主题编码为研究工作分类。",
+      "relations": [
+        {
+          "target": "intangible-convention-2003",
+          "type": "extends",
+          "evidence": "序言明确说明与UNESCO2003公约衔接；这是专业实践扩展，不是公约修订。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf"
+        },
+        {
+          "target": "quebec-declaration-2008",
+          "type": "related_to",
+          "evidence": "背景部分明确提及魁北克宣言的场所精神。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf"
+        }
+      ],
+      "preview": "Site-based heritage integrates living practices, community expertise and memory.",
+      "excerpts": [
+        {
+          "text": "The community is the primary holder of expertise on intangible cultural heritage.",
+          "source": "ICOMOS / ICICH, International Charter and Guidance on Sites with Intangible Cultural Heritage (2024)",
+          "location": "Section I, Principle 3, PDF p. 6"
+        }
+      ],
+      "timeline_topic": "Participation & plural voices",
+      "map_title": "Intangible Heritage Sites Charter",
+      "map_maker": "ICOMOS / ICICH",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "将物质与非物质视为不可分的场所遗产。",
+          "source_url": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+          "location": "Section I, Preamble; Objectives 1–2"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "讨论文化实践赋予场所意义及跨代传播。",
+          "source_url": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+          "location": "Section I, Preamble; Background"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "社群持有知识，专业人员以尊重权利的方式协助。",
+          "source_url": "https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+          "location": "Section I, Objectives 3–4; Principle 3"
+        }
+      ]
     }
   ],
   "nodes": [

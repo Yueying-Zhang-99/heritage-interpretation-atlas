@@ -17,6 +17,9 @@ let invalid=clone();invalid.documents.push(invalid.documents[0]);assert.throws((
 invalid=clone();invalid.documents[0].relations=[{target:'missing',type:'related_to'}];assert.throws(()=>A.validate(invalid),/目标不存在/);
 invalid=clone();invalid.documents[0].year='invalid';assert.throws(()=>A.validate(invalid),/year/);
 invalid=clone();invalid.documents[0].node_type=4;assert.throws(()=>A.validate(invalid),/node_type/);
+invalid=clone();invalid.documents[0].document_nature='Charter';assert.throws(()=>A.validate(invalid),/文件性质/);
+invalid=clone();invalid.documents[0].document_nature=['Charter','Charter'];assert.throws(()=>A.validate(invalid),/文件性质/);
+invalid=clone();invalid.documents[0].document_nature=[''];assert.throws(()=>A.validate(invalid),/文件性质/);
 A.validate([{id:'minimal',title:'Minimal record',year:2026}]);
 invalid=clone();invalid.documents[0].topic_memberships=[{topic:'Imaginary topic',status:'source',evidence:'Test'}];assert.throws(()=>A.validate(invalid),/主题归属/);
 invalid=clone();invalid.documents[0].topic_memberships.push({...invalid.documents[0].topic_memberships[0]});assert.throws(()=>A.validate(invalid),/重复/);
@@ -28,6 +31,9 @@ A.state.filters={topic_memberships:new Set(['Digital methods'])};assert.ok(A.fil
 A.state.query='Tilden';assert.deepEqual(Array.from(A.filtered(),d=>d.id),['tilden']);
 A.state.query='';A.state.filters={type:new Set(['Book','Convention']),public_role:new Set(['Visitor'])};assert.equal(A.filtered().length,3,'OR within a field; AND across fields');
 A.state.filters={};A.state.minYear='2005';A.state.maxYear='2006';assert.equal(A.filtered().length,3);
+A.state.minYear='';A.state.maxYear='';A.state.filters={document_nature:new Set(['Guidelines'])};assert.deepEqual(Array.from(A.filtered(),d=>d.id).sort(),['intangible-sites-charter-2024','salalah-guidelines-2017']);
+A.state.filters={document_nature:new Set(['Guidelines','Principles']),topic_memberships:new Set(['Digital methods'])};assert.deepEqual(Array.from(A.filtered(),d=>d.id),['seville-principles-2017'],'OR document forms; AND theme filter');
+A.state.filters={};
 A.state.query='no-such-entry';assert.equal(A.filtered().length,0);
 assert.equal(A.safeURL('javascript:alert(1)'),null);
 for(const d of data.documents){if(d.pdf&&!/^https?:/.test(d.pdf))assert.ok(fs.existsSync(path.join(root,d.pdf)),`Missing PDF ${d.pdf}`);}

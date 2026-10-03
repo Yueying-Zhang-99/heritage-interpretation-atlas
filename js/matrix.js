@@ -1,5 +1,5 @@
 Atlas.matrix=function(rows){
-  const A=Atlas,columns=[['year','Year'],['title','Title'],['creator','Author / Organisation'],['type','Type'],['paradigm','Paradigm'],['themes','Themes'],['heritage_conception','Heritage Conception'],['interpretation_model','Interpretation Model'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Media']];
+  const A=Atlas,columns=[['year','Year'],['title','Title'],['creator','Author / Organisation'],['type','Type'],['document_nature','Document nature'],['paradigm','Paradigm'],['themes','Themes'],['heritage_conception','Heritage Conception'],['interpretation_model','Interpretation Model'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Media']];
   const value=(d,key)=>key==='creator'?[A.text(d.author),d.organization].filter(Boolean).join(' / '):A.text(d[key]);
   const sorted=[...rows].sort((a,b)=>A.state.direction*(A.state.sort==='year'?a.year-b.year:value(a,A.state.sort).localeCompare(value(b,A.state.sort),'zh-CN',{numeric:true})));
   const table=A.el('table','library'),head=A.el('thead'),header=A.el('tr');

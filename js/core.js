@@ -2,7 +2,7 @@
 window.Atlas = (() => {
   const streams={A:{name:'Heritage Paradigm',zh:'遗产对象观与保护范式',color:'#a1813e'},B:{name:'Interpretation Paradigm',zh:'遗产阐释理论',color:'#6f7950'},C:{name:'Participatory / Plural',zh:'参与式与多元叙事',color:'#a55f48'}};
   const flowTopics=['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'];
-  const fields={topic_memberships:'Flow themes',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception',media:'Media / Technology'};
+  const fields={topic_memberships:'Flow themes',document_nature:'Document nature',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception',media:'Media / Technology'};
   const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Technology']];
   const palette=['#a1813e','#6f7950','#a55f48','#586f70','#8b6a72','#6e6555','#8d8457','#59724c','#af725b','#616774','#967845'];
   const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward'];
@@ -26,6 +26,7 @@ window.Atlas = (() => {
       if(d.relations!=null&&!Array.isArray(d.relations))throw new Error(`${d.id} 的 relations 必须为数组。`);
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
       if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
+      if(d.document_nature!=null&&(!Array.isArray(d.document_nature)||d.document_nature.some(v=>typeof v!=='string'||!v.trim())||new Set(d.document_nature).size!==d.document_nature.length))throw new Error(`${d.id} 的文件性质必须为不重复的非空文字标签数组。`);
       if(d.timeline_topic!=null&&!['Conservation & values','Interpretation & experience','Participation & plural voices','Digital methods'].includes(d.timeline_topic))throw new Error(`${d.id} 的 timeline_topic 无效。`);
       if(d.topic_memberships!=null){
         if(!Array.isArray(d.topic_memberships))throw new Error(`${d.id} 的 topic_memberships 必须是数组。`);
