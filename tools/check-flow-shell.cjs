@@ -20,4 +20,12 @@ function check(members,expectHole=false){
 check([]);check([{x:100,y:100}]);check([{x:100,y:100},{x:100,y:250}]);
 check([{x:100,y:100},{x:100,y:300},{x:500,y:100},{x:500,y:300}],true);
 check([{x:100,y:100},{x:300,y:100},{x:500,y:100}]);
-process.stdout.write('PASS: continuous shells, enclosed cavities, protected members, empty/single/collinear cases.\n');
+for(const width of [1175,1805,2406]){
+  const scale=A.flowTimeScale([{year:1931},{year:1957},{year:1964},{year:1990},{year:2008},{year:2017}],1930,2025,width);
+  const decade=scale(1940)-scale(1930);
+  for(let year=1940;year<=1990;year+=10)assert(Math.abs(scale(year)-scale(year-10)-decade)<1e-7,'equal early decade spacing');
+  assert(Math.abs(scale(1964)-(scale(1930)+3.4*decade))<1e-7,'early records follow elapsed time');
+  for(let year=1930;year<2025;year++)assert(scale(year)<scale(year+1),'monotonic chronology across 1990');
+  for(let year=1930;year<=2025;year++)assert(Math.abs(scale.invert(scale(year))-year)<1e-7,'invertible hybrid time scale');
+}
+process.stdout.write('PASS: continuous shells, enclosed cavities, protected members, empty/single/collinear cases, equal early decades and monotonic hybrid time.\n');

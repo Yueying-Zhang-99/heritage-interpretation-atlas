@@ -2,7 +2,7 @@
 Atlas.flowShellField=function(values,members,nx,ny,cell){
   if(!members.length)return new Float32Array(values.length);
   // A continuous chronological shell, with rounded shoulders around nearby dates.
-  const padding=32,groups=[],outline=[],lower=[];
+  const scale=Math.max(1,Math.min(1.65,Math.min(nx*cell/1805,ny*cell/695))),padding=32*scale,groups=[],outline=[],lower=[];
   for(const n of [...members].sort((a,b)=>a.x-b.x)){
     let g=groups.at(-1);
     if(!g||n.x-g.start>64){g={start:n.x,end:n.x,top:n.y-padding,bottom:n.y+padding};groups.push(g);}
@@ -33,17 +33,19 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
   const capGroup=g=>({top:soften(g.end,g.top,0),bottom:soften(g.end,g.bottom,1)});
   cap(capGroup(last),last.end,false);outline.push(...lower.reverse());
   cap({top:soften(first.start,first.top,0),bottom:soften(first.start,first.bottom,1)},first.start,true);
-  const shell=new Float32Array(values.length),distance=new Float32Array(values.length),wall=24/cell;
-  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
-    const k=y*nx+x,inside=d3.polygonContains(outline,[x*cell,y*cell]);
-    shell[k]=inside?1:0;distance[k]=inside&&x>0&&y>0&&x<nx-1&&y<ny-1?1e6:0;
-  }
-  // Protect a continuous outside rim: cavities can only occur inside it.
-  const diagonal=Math.SQRT2;
-  for(let y=1;y<ny;y++)for(let x=1;x<nx;x++){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k-1]+1,distance[k-nx]+1,distance[k-nx-1]+diagonal,x+1<nx?distance[k-nx+1]+diagonal:1e6);}
-  for(let y=ny-2;y>=0;y--)for(let x=nx-2;x>=0;x--){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k+1]+1,distance[k+nx]+1,distance[k+nx+1]+diagonal,x>0?distance[k+nx-1]+diagonal:1e6);}
+  const shell=new Float32Array(values.length),wall=44*scale/cell;
+  for(let y=0;y<ny;y++)for(let x=0;x<nx;x++)shell[y*nx+x]=d3.polygonContains(outline,[x*cell,y*cell])?1:0;
+  const distanceToEdge=mask=>{
+    const distance=Float32Array.from(mask,(inside,k)=>inside&&k%nx>0&&k%nx<nx-1&&k>=nx&&k<(ny-1)*nx?1e6:0),diagonal=Math.SQRT2;
+    for(let y=1;y<ny;y++)for(let x=1;x<nx;x++){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k-1]+1,distance[k-nx]+1,distance[k-nx-1]+diagonal,x+1<nx?distance[k-nx+1]+diagonal:1e6);}
+    for(let y=ny-2;y>=0;y--)for(let x=nx-2;x>=0;x--){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k+1]+1,distance[k+nx]+1,distance[k+nx+1]+diagonal,x>0?distance[k+nx-1]+diagonal:1e6);}
+    return distance;
+  };
+  // A responsive rim and inward erosion keep large-screen cavities from
+  // reducing the whole theme to thin tubes. Openings never reach the outside.
+  const distance=distanceToEdge(shell);
   const visited=new Uint8Array(values.length),holes=[];
-  const eligible=k=>shell[k]&&distance[k]>=wall&&values[k]<.72;
+  const eligible=k=>shell[k]&&distance[k]>=wall&&values[k]<.55;
   for(let k=0;k<values.length;k++)if(!visited[k]&&eligible(k)){
     const cells=[k];visited[k]=1;
     for(let i=0;i<cells.length;i++){
@@ -53,7 +55,13 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
     if(cells.length*cell*cell>=1500)holes.push(cells);
   }
   // Keep only broad internal openings. The original field protects member dots.
-  for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3))for(const k of hole)shell[k]=0;
+  for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3)){
+    const mask=new Uint8Array(values.length);for(const k of hole)mask[k]=1;
+    const depth=distanceToEdge(mask),ordered=hole.map(k=>depth[k]).sort((a,b)=>a-b);
+    const inset=Math.max(12*scale/cell,ordered[Math.floor(ordered.length*.45)]);
+    const interior=hole.filter(k=>depth[k]>=inset);
+    if(interior.length*cell*cell>=1500)for(const k of interior)shell[k]=0;
+  }
   return shell;
 };
 Atlas.flowEnvelopePath=function(values,nx,ny,cell){
@@ -95,12 +103,15 @@ Atlas.flowEnvelopePath=function(values,nx,ny,cell){
   return paths.filter(Boolean).join('');
 };
 Atlas.flowTimeScale=function(rows,start,end,width){
-  // Chronological, deliberately non-uniform spacing gives densely documented
-  // recent years room without shrinking the type. The axis discloses this.
-  const counts=new Map();for(const row of rows)counts.set(row.year,(counts.get(row.year)||0)+1);
-  const years=[...new Set([start,...counts.keys(),end])].sort((a,b)=>a-b),positions=[0];
+  // Equal elapsed-time spacing through 1990; later dates get reading room.
+  const split=1990,counts=new Map();for(const row of rows)counts.set(row.year,(counts.get(row.year)||0)+1);
+  if(end<=split||end===start)return d3.scaleLinear().domain([start,end]).range([64,width-64]);
+  const laterStart=Math.max(start,split),years=[...new Set([laterStart,...[...counts.keys()].filter(y=>y>laterStart),end])].sort((a,b)=>a-b),positions=[0];
   for(let i=1;i<years.length;i++)positions.push(positions.at(-1)+(years[i]-years[i-1])*.5+14+7*(Math.sqrt(counts.get(years[i-1])||0)+Math.sqrt(counts.get(years[i])||0)));
-  return d3.scaleLinear().domain(years).range(positions.map(p=>64+p/positions.at(-1)*(width-128)));
+  const available=width-128,earlyShare=start<split?(.24+.12*Math.max(0,Math.min(1,(width-1280)/1000))):0,boundary=64+available*earlyShare;
+  const domain=start<split?[start,...years]:years;
+  const range=positions.map(p=>boundary+p/positions.at(-1)*available*(1-earlyShare));
+  return d3.scaleLinear().domain(domain).range(start<split?[64,...range]:range);
 };
 Atlas.placeFlowNodes=function(nodes,width,height,top,bottom,topics){
   const overlap=(a,b)=>a.x-3<b.x+b.width&&a.x+a.width+3>b.x&&a.y-3<b.y+b.height&&a.y+a.height+3>b.y;
@@ -156,7 +167,7 @@ Atlas.flow=function(rows){
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
-  const note=A.el('p','flow-note','Year order · Uneven spacing to fit records · Hover for all themes; click for source notes. Shared themes do not imply direct influence.');root.append(note);
+  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Hover: themes · Click: sources. Themes do not imply influence.');root.append(note);
   let width=Math.max(680,root.clientWidth);
   const top=28,bottom=42,labelWidth=width<1400?128:150;
   let height=Math.max(240,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
