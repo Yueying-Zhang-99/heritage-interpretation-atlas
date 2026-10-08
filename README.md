@@ -199,3 +199,6 @@ The collection now contains 36 displayed records, including an official NPS-desc
 请先阅读 [研究编码与候选评价框架](data/RESEARCH_FRAMEWORK.md) 和 [收录对照表](data/REVIEW_COVERAGE.md)。这是一套研究中的比较编码，首批来源提取不等于完成全文阅读、系统综述、量表验证或设计效果验证。
 
 验证命令：ode tools/check.cjs`、ode tools/check-research.cjs`、ode tools/check-bands.cjs`、ode tools/check-flow-shell.cjs`。编辑JSON后用 ode tools/sync-snapshot.cjs` 同步本地双击预览。
+# Flow viewport update (2026-10-08)
+
+Flow按浏览器实际可用宽高计算画布。先排布密集年份的标签，必要时等比例调整整图，使当前48条记录在1080p及常见系统缩放后的桌面窗口内完整显示。短窗口收紧标题与工具区，机构/作者保持单行并可在详情查看全名；极端密集的导入仍保留滚动回退。内部孔洞采用较薄保护边界与较小内缩，扩大中央留白，同时保留连续外轮廓与成员节点。

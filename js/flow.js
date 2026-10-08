@@ -33,7 +33,7 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
   const capGroup=g=>({top:soften(g.end,g.top,0),bottom:soften(g.end,g.bottom,1)});
   cap(capGroup(last),last.end,false);outline.push(...lower.reverse());
   cap({top:soften(first.start,first.top,0),bottom:soften(first.start,first.bottom,1)},first.start,true);
-  const shell=new Float32Array(values.length),wall=44*scale/cell;
+  const shell=new Float32Array(values.length),wall=28*scale/cell;
   for(let y=0;y<ny;y++)for(let x=0;x<nx;x++)shell[y*nx+x]=d3.polygonContains(outline,[x*cell,y*cell])?1:0;
   const distanceToEdge=mask=>{
     const distance=Float32Array.from(mask,(inside,k)=>inside&&k%nx>0&&k%nx<nx-1&&k>=nx&&k<(ny-1)*nx?1e6:0),diagonal=Math.SQRT2;
@@ -41,11 +41,11 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
     for(let y=ny-2;y>=0;y--)for(let x=nx-2;x>=0;x--){const k=y*nx+x;distance[k]=Math.min(distance[k],distance[k+1]+1,distance[k+nx]+1,distance[k+nx+1]+diagonal,x>0?distance[k+nx-1]+diagonal:1e6);}
     return distance;
   };
-  // A responsive rim and inward erosion keep large-screen cavities from
-  // reducing the whole theme to thin tubes. Openings never reach the outside.
+  // A protected outer rim keeps openings enclosed. The lighter inset allows
+  // broad central cavities instead of eroding most of their usable area.
   const distance=distanceToEdge(shell);
   const visited=new Uint8Array(values.length),holes=[];
-  const eligible=k=>shell[k]&&distance[k]>=wall&&values[k]<.55;
+  const eligible=k=>shell[k]&&distance[k]>=wall&&values[k]<.62;
   for(let k=0;k<values.length;k++)if(!visited[k]&&eligible(k)){
     const cells=[k];visited[k]=1;
     for(let i=0;i<cells.length;i++){
@@ -58,7 +58,7 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
   for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3)){
     const mask=new Uint8Array(values.length);for(const k of hole)mask[k]=1;
     const depth=distanceToEdge(mask),ordered=hole.map(k=>depth[k]).sort((a,b)=>a-b);
-    const inset=Math.max(10*scale/cell,ordered[Math.floor(ordered.length*.38)]);
+    const inset=Math.max(4*scale/cell,ordered[Math.floor(ordered.length*.12)]);
     const interior=hole.filter(k=>depth[k]>=inset);
     if(interior.length*cell*cell>=1500)for(const k of interior)shell[k]=0;
   }
@@ -131,12 +131,22 @@ Atlas.placeFlowNodes=function(nodes,width,height,top,bottom,topics){
     return choices.sort((a,b)=>a.cost-b.cost);
   });
   if(options.some(choices=>!choices.length))return false;
+  // Try dense dates first; most collections fit without iterative search.
+  const indexes=nodes.map((n,i)=>i),density=i=>nodes.filter(n=>Math.abs(n.x-nodes[i].x)<170).length;
+  for(const order of [
+    [...indexes].sort((a,b)=>density(b)-density(a)||nodes[b].box.height-nodes[a].box.height),
+    [...indexes].sort((a,b)=>options[a].length-options[b].length||nodes[b].box.height-nodes[a].box.height)
+  ]){
+    const placed=[];let complete=true;
+    for(const i of order){const slot=options[i].find(candidate=>placed.every(other=>!conflict(candidate,other.slot)));if(!slot){complete=false;break;}placed.push({i,slot});}
+    if(complete){for(const {i,slot}of placed)Object.assign(nodes[i],slot);return true;}
+  }
   // Reconsider earlier placements instead of making the canvas taller when a
   // late record has no free slot. Reproducible min-conflict search keeps labels
   // at their original font sizes and returns only a collision-free solution.
-  for(let restart=0;restart<12;restart++){
+  for(let restart=0;restart<3;restart++){
     const state=options.map(choices=>choices[Math.floor(random()*Math.min(8,choices.length))]);
-    for(let step=0;step<1400;step++){
+    for(let step=0;step<550;step++){
       const counts=state.map(()=>0);
       for(let i=0;i<state.length;i++)for(let j=i+1;j<state.length;j++)if(conflict(state[i],state[j])){counts[i]++;counts[j]++;}
       const troubled=counts.map((count,i)=>({count,i})).filter(item=>item.count);
@@ -162,16 +172,18 @@ Atlas.placeFlowNodes=function(nodes,width,height,top,bottom,topics){
 Atlas.flow=function(rows){
   const A=Atlas,root=document.querySelector('#chart'),topics=A.flowTopics;
   root.classList.add('flow-chart');
+  root.style.removeProperty('overflow-x');
   const toolbar=A.el('div','flow-key');toolbar.append(A.el('span','flow-key-caption','THEME OVERLAPS'));
   const themeButtons=topics.map((topic,i)=>{const b=A.el('button','flow-theme-button',topic);b.type='button';b.dataset.theme=i;b.setAttribute('aria-pressed','false');toolbar.append(b);return b;});
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
   const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Hover: themes · Click: sources. Themes do not imply influence.');root.append(note);
-  let width=Math.max(680,root.clientWidth);
-  const top=28,bottom=42,labelWidth=width<1400?128:150;
-  let height=Math.max(240,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
-  root.style.setProperty('--flow-height',height+'px');
+  // CSS pixels already account for browser chrome, page zoom and OS scaling.
+  const viewportWidth=Math.max(320,root.clientWidth),viewportHeight=Math.max(120,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
+  let width=viewportWidth,height=viewportHeight;
+  const top=28,bottom=42,labelWidth=viewportWidth<1400?112:150;
+  root.style.setProperty('--flow-height',viewportHeight+'px');
   const first=Math.min(1930,...rows.map(d=>d.year)),last=Math.max(2025,...rows.map(d=>d.year));
   const start=Math.floor(first/10)*10,end=Math.ceil(last/5)*5;
   let x=A.flowTimeScale(rows,start,end,width);
@@ -190,15 +202,20 @@ Atlas.flow=function(rows){
     const g=labelsLayer.append('g').datum(n).attr('class','flow-label'+(n.d.type==='Heritage Practice Case'?' is-practice-case':''));
     g.append('text').attr('class','flow-title').text(n.d.map_title||n.d.title).call(A.wrap,labelWidth,14);
     const titleBox=g.select('.flow-title').node().getBBox();
-    g.append('text').attr('class','flow-maker').attr('y',titleBox.y+titleBox.height+12).text(n.d.map_maker||A.text(n.d.author)||n.d.organization||'Research topic').call(A.wrap,labelWidth,12);
+    const makerText=n.d.map_maker||A.text(n.d.author)||n.d.organization||'Research topic';
+    const maker=g.append('text').attr('class','flow-maker').attr('y',titleBox.y+titleBox.height+12).text(makerText);
+    // Keep the author line compact; the full name remains in the record.
+    let short=makerText;while(short.length>1&&maker.node().getComputedTextLength()>labelWidth){short=short.slice(0,-1);maker.text(short+'…');}
+    maker.append('title').text(makerText);
     n.g=g;n.box=g.node().getBBox();
   }
-  let fit=A.placeFlowNodes(nodes,width,height,top,bottom,topics);
-  // Very narrow windows or larger imported collections gain horizontal room,
-  // never overlapping labels or silently dropping records to meet the height.
-  for(let attempt=0;!fit&&attempt<3;attempt++){
-    width+=Math.max(240,rows.length*12);x=A.flowTimeScale(rows,start,end,width);
-    nodes.forEach(n=>n.x=x(n.d.year));fit=A.placeFlowNodes(nodes,width,height,top,bottom,topics);
+  let fit=false,displayScale=1;
+  // Grow both layout dimensions proportionally, then fit the SVG to the actual
+  // viewport. Expanding only its width caused multi-screen horizontal scrolling.
+  for(const scale of [1,.9,.8,.7,.6]){
+    displayScale=scale;width=viewportWidth/scale;height=viewportHeight/scale;
+    x=A.flowTimeScale(rows,start,end,width);nodes.forEach(n=>n.x=x(n.d.year));
+    if(A.placeFlowNodes(nodes,width,height,top,bottom,topics)){fit=true;break;}
   }
   if(!fit){
     // An unusually dense import (for example many records in one year) still
@@ -206,12 +223,13 @@ Atlas.flow=function(rows){
     const step=Math.max(42,...nodes.map(n=>n.box.height))+32;
     height=top+bottom+step*nodes.length;
     nodes.forEach((n,i)=>{n.y=top+16+i*step;const gap=Math.max(20,(n.r+4)*1.7+3);n.labelX=n.x+gap+n.box.width<width-12?n.x+gap:n.x-gap-n.box.width;});
-    root.style.overflowY='auto';root.style.setProperty('--flow-height',height+'px');
+    root.style.overflowX='auto';root.style.overflowY='auto';root.style.setProperty('--flow-height',height+'px');
   }
-  svg.style('width',width+'px');
-  if(width>root.clientWidth+1)note.append(document.createTextNode(' Scroll horizontally for the complete map.'));
-  svg.attr('data-layout-fit',String(fit));
-  svg.attr('viewBox',`0 0 ${width} ${height}`).attr('height',height);
+  const displayWidth=fit?viewportWidth:width,displayHeight=fit?viewportHeight:height;
+  svg.style('width',displayWidth+'px').style('height',displayHeight+'px');
+  if(!fit)note.append(document.createTextNode(' Dense collection: scroll to explore the complete map.'));
+  svg.attr('data-layout-fit',String(fit)).attr('data-layout-scale',String(displayScale));
+  svg.attr('viewBox',`0 0 ${width} ${height}`).attr('width',displayWidth).attr('height',displayHeight);
   for(const n of nodes)n.g.attr('transform',`translate(${n.labelX},${n.y})`).attr('data-record',n.d.id).attr('tabindex',0).attr('role','button').attr('aria-describedby',themeTip.id).attr('aria-label',`${n.d.year}: ${n.d.title}. Open record.`).on('click',()=>openRecord(n)).on('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const dots=dotsLayer.selectAll('g').data(nodes).join('g').attr('class','flow-dot').attr('data-record',n=>n.d.id).attr('transform',n=>`translate(${n.x},${n.y})`).attr('role','button').attr('tabindex',0).attr('aria-label',n=>`${n.d.year}: ${n.d.title}. ${n.topics.map(i=>topics[i]).join('; ')}. Open record.`);
   dots.append('text').attr('class','flow-year').attr('y',24).attr('text-anchor','middle').text(n=>/^\d+s$/.test(n.d.year_label||'')?n.d.year_label:n.d.year);

@@ -352,3 +352,22 @@ body.bands-active .empty-state{min-height:0;flex:1}
 .research-detail .claim-card{padding:14px;}
 .research-detail details{margin-top:16px;}
 @media(max-width:900px){.claim-steps{grid-template-columns:1fr}.evidence-library{padding:12px}.primary-bar{flex-wrap:wrap}.views{flex-wrap:wrap}}
+
+/* Flow fills the available browser viewport, including scaled 1080p desktops. */
+body.flow-active{height:100vh;height:100dvh;overflow:hidden}
+body.flow-active main{width:100%;max-width:none;padding-left:clamp(14px,2vw,40px);padding-right:clamp(14px,2vw,40px)}
+body.flow-active .flow-chart{overflow:hidden}
+body.flow-active .flow-chart svg{max-width:none;max-height:none}
+body.flow-active .flow-key{padding-top:8px}
+body.flow-active .flow-note{font-size:10px;padding:5px 4px 6px;max-width:none}
+@media(max-height:800px){
+  body.flow-active .document-heading h1{font-size:25px}
+  body.flow-active .document-heading p{display:none}
+  body.flow-active .view-heading{padding-top:5px}
+  body.flow-active .view-heading h2{font-size:18px}
+  body.flow-active .primary-bar{min-height:40px}
+  body.flow-active .primary-bar .views button{padding-top:8px;padding-bottom:8px}
+  body.flow-active .data-bar{padding:4px 0}
+  body.flow-active .data-bar p{max-width:60%;font-size:10px}
+  body.flow-active .flow-key{gap:5px;padding-top:5px}
+}

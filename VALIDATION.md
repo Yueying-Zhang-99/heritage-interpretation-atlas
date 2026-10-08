@@ -71,3 +71,10 @@ Final layout restores the continuous outer shell, enclosed internal cavities and
 # Research update validation (2026-10-08)
 
 48 records, 9 auxiliary nodes, 19 extracted claims. JSON/schema, snapshot parity, malformed claim rejection, provenance fields, compound filters, Bands packing and Flow shell checks pass. Headless Edge smoke test passes all five views, source-scope display, filters, editing claims without field loss, persisted draft reload, a 390px mobile layout and file:// offline preview. Desktop and mobile screenshots reviewed. No browser page errors observed. New claims are not a substitute for full-text reading or validation of the proposed evaluation framework.
+# Flow viewport regression (2026-10-08)
+
+Before: 1366×768 produced a 2406px-wide map inside a 1254px chart; 1280×720 produced a 2903px-wide map inside a 1175px chart; 1280×600 fell back to a 4342px-high map.
+
+After: tested 1920×1080, 1920×940, 1536×864, 1366×768, 1280×720, 1280×600 and 2560×1440. All 48 records fit within the available chart; no chart scrolling, clipped labels, label overlaps or page overflow. Verified resize, theme selection, opening a record, Flow/Bands switching, search and reset. No browser page errors. Screenshots reviewed at 1920×940, 1280×720 and 1280×600.
+
+The synthetic broad-centre geometry check now requires internal openings to exceed half the outer area, while retaining one continuous outer shell and all member dots. Existing schema, research coding, Flow shell and Bands checks pass.

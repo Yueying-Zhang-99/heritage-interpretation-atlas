@@ -14,7 +14,11 @@ function check(members,expectHole=false){
   const polygon=contours.coordinates[0];
   for(const n of members)assert(inside([n.x/cell,n.y/cell],polygon),'member dot remains filled');
   for(const hole of polygon.slice(1))for(const p of hole)assert(d3.polygonContains(polygon[0],p),'hole stays enclosed');
-  if(expectHole)assert(polygon.length>1,'broad internal space becomes a cavity');
+  if(expectHole){
+    assert(polygon.length>1,'broad internal space becomes a cavity');
+    const openingArea=polygon.slice(1).reduce((sum,ring)=>sum+Math.abs(d3.polygonArea(ring)),0);
+    assert(openingArea>Math.abs(d3.polygonArea(polygon[0]))*.5,'broad empty centres retain a large opening');
+  }
   const path=A.flowEnvelopePath(shell,nx,ny,cell);assert(path&& !path.includes('NaN'),'finite rounded path');
 }
 check([]);check([{x:100,y:100}]);check([{x:100,y:100},{x:100,y:250}]);
