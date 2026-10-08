@@ -58,7 +58,7 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
   for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3)){
     const mask=new Uint8Array(values.length);for(const k of hole)mask[k]=1;
     const depth=distanceToEdge(mask),ordered=hole.map(k=>depth[k]).sort((a,b)=>a-b);
-    const inset=Math.max(5*scale/cell,ordered[Math.floor(ordered.length*.18)]);
+    const inset=Math.max(7*scale/cell,ordered[Math.floor(ordered.length*.25)]);
     const interior=hole.filter(k=>depth[k]>=inset);
     if(interior.length*cell*cell>=1500)for(const k of interior)shell[k]=0;
   }
@@ -83,7 +83,7 @@ Atlas.flowEnvelopePath=function(values,nx,ny,cell){
   const contour=d3.contours().size([nx,ny]).thresholds([.32])(smooth)[0];
   const curve=d3.line().curve(d3.curveBasisClosed);
   const paths=[];
-  for(const polygon of contour.coordinates)for(const ring of polygon){
+  for(const polygon of contour.coordinates)for(const [ringIndex,ring] of polygon.entries()){
     // A closed B-spline follows a coarser, evenly spaced boundary without the
     // tiny straight segments of marching squares. Keep separate islands/holes.
     const points=ring.slice(0,-1).map(([x,y])=>[x*cell,y*cell]),spaced=[];
@@ -97,7 +97,17 @@ Atlas.flowEnvelopePath=function(values,nx,ny,cell){
       distance+=length-travelled;previous=next;
     }
     if(spaced.length>1&&Math.hypot(spaced.at(-1)[0]-spaced[0][0],spaced.at(-1)[1]-spaced[0][1])<5)spaced.pop();
-    const path=curve(spaced.length>=4?spaced:points);
+    let boundary=spaced.length>=4?spaced:points;
+    // Smooth only cavity edges along their evenly spaced perimeter. The circular
+    // average rounds small inward notches without changing the outer silhouette.
+    if(ringIndex>0&&spaced.length>=4){
+      const weights=Array.from({length:11},(_,i)=>Math.exp(-((i-5)**2)/(2*1.8**2))),sum=weights.reduce((a,b)=>a+b,0);
+      boundary=spaced.map((_,i)=>weights.reduce((point,weight,k)=>{
+        const neighbour=spaced[(i+k-5+spaced.length*2)%spaced.length];
+        point[0]+=neighbour[0]*weight/sum;point[1]+=neighbour[1]*weight/sum;return point;
+      },[0,0]));
+    }
+    const path=curve(boundary);
     if(path)paths.push(path.endsWith('Z')?path:path+'Z');
   }
   return paths.filter(Boolean).join('');
