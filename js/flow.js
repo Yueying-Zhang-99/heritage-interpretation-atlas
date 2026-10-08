@@ -58,7 +58,7 @@ Atlas.flowShellField=function(values,members,nx,ny,cell){
   for(const hole of holes.sort((a,b)=>b.length-a.length).slice(0,3)){
     const mask=new Uint8Array(values.length);for(const k of hole)mask[k]=1;
     const depth=distanceToEdge(mask),ordered=hole.map(k=>depth[k]).sort((a,b)=>a-b);
-    const inset=Math.max(4*scale/cell,ordered[Math.floor(ordered.length*.12)]);
+    const inset=Math.max(5*scale/cell,ordered[Math.floor(ordered.length*.18)]);
     const interior=hole.filter(k=>depth[k]>=inset);
     if(interior.length*cell*cell>=1500)for(const k of interior)shell[k]=0;
   }
