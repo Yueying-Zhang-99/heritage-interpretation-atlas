@@ -4,7 +4,7 @@ Atlas.network=function(rows){
   const W=Math.max(1000,root.clientWidth),H=Math.max(600,root.clientHeight),svg=A.svg(W,H,'可拖动和缩放的文献关系网络');
   const selected=new Set(rows.map(d=>d.id)),auxIds=new Set(A.nodes.map(d=>d.id)),all=[...A.records,...A.nodes];
   if(rows.length===A.records.length)for(const d of A.nodes)selected.add(d.id);
-  const candidates=all.flatMap(d=>(d.relations||[]).map(r=>({source:d.id,target:r.target,type:r.type,evidence:r.evidence||''})))
+  const candidates=all.flatMap(d=>(d.relations||[]).map(r=>({source:d.id,target:r.target,type:r.type,basis:r.claim_basis||'pending',validation:r.validation_status||'pending_source_review',evidence:r.evidence||''})))
     .filter(l=>!A.state.relation||l.type===A.state.relation);
   for(const l of candidates){if(selected.has(l.source)&&auxIds.has(l.target))selected.add(l.target);if(selected.has(l.target)&&auxIds.has(l.source))selected.add(l.source);}
   const nodes=all.filter(d=>selected.has(d.id)).map(d=>({...d}));
@@ -12,8 +12,8 @@ Atlas.network=function(rows){
   const nodeIds=new Set(nodes.map(d=>d.id)),links=candidates.filter(l=>nodeIds.has(l.source)&&nodeIds.has(l.target));
   const world=svg.append('g').attr('class','network-world');
   const linkLayer=world.append('g').attr('class','network-links');
-  const link=linkLayer.selectAll('line').data(links).join('line').attr('stroke','#a9b8bd').attr('stroke-width',d=>d.type==='influences'?1.7:1.3).attr('stroke-dasharray',d=>d.type==='related_to'?'4 5':null).attr('opacity',.48).attr('tabindex',0).attr('aria-label',d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}: ${d.type}`);
-  link.append('title').text(d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}\n${d.type}\n${d.evidence||'Relation coding needs source review.'}`);
+  const link=linkLayer.selectAll('line').data(links).join('line').attr('stroke','#a9b8bd').attr('stroke-width',d=>d.type==='influences'?1.7:1.3).attr('stroke-dasharray',d=>d.basis==='explicit_source'&&d.validation==='source_checked'?null:'4 5').attr('opacity',.48).attr('tabindex',0).attr('aria-label',d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}: ${d.type}`);
+  link.append('title').text(d=>`${A.byId.get(typeof d.source==='string'?d.source:d.source.id)?.title||''} → ${A.byId.get(typeof d.target==='string'?d.target:d.target.id)?.title||''}\n${d.type} · ${d.basis} · ${d.validation}\n${d.evidence||'Relation coding needs source review.'}`);
   const nodeLayer=world.append('g').attr('class','network-nodes');
   const markerLayer=world.append('g').attr('class','network-markers').style('pointer-events','none');
   const practice=d=>d.type==='Heritage Practice Case';

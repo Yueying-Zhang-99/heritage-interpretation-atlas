@@ -4,18 +4,19 @@
 
 ## 1. Project Overview
 
-研究课题：**面向历史场所多元叙事的公众阐释设计研究——基于游戏化与混合现实**。
+研究方向：**建成遗产阐释、公众体验与设计（包括游戏和MR）**。主研究问题尚未固定，由理论综述、场所研究与可行性判断逐步形成。
 
 采用 HTML5、CSS、Vanilla JavaScript、D3.js 7.9.0 和 JSON。阅读无需账户、npm、构建、数据库或外部 CDN；从网页发布修改到 GitHub 时需要一个仅限此仓库的授权令牌。D3 已放入本地 `assets/vendor/`，许可见同目录。
 
 - Timeline：Bands 使用分段时间轴与文字避让，在保留字号的同时减少纵向堆叠；较矮窗口优先横向展开。Flow 外轮廓连续，留白仅在内部形成孔洞；旅游主题排在数字方法之前。1930–1990 年的十年间距相等，之后按文献密度展开。横轴年份、纵轴工作性主题聚类；图谱随桌面窗口尺寸伸展。圆点旁常显英文短标题与机构/作者，点击查看含完整英中标题与内容摘要的详情。点大小为 1–3 级初步理论贡献编码，虚线圈表示待精读；页面上方的 Dot size 滑杆可将所有圆点缩放至 70%–170%。
 - Cluster：按选定研究编码分组显示气泡与标题；多值条目在各组重复显示。分类维度可在图上方切换。
 - Network：进入时自动排布并适配全部节点，工作区直接占满浏览器可用高度，不带单独背景画布；节点显示 Timeline 同款年份、短标题和作者/机构，支持缩放、平移、拖动和邻居高亮。连线只反映当前录入的关系和筛选结果。
-- Matrix / Library：13列结构化表格，所有列可排序，全局搜索与多选筛选。
+- Matrix / Library：以材料性质、核查范围、具体主张、章节用途及设计依据为重点的结构化表格，所有列可排序，全局搜索与多选筛选。
+- Evidence：来源主张、来源定位、研究者设计推导与待检验评价建议并列。可按材料性质、概念作用、阅读状态和章节用途筛选；不预设阐释效果等于现场理解。
 - 颜色按条目类型区分：宪章/政策、理论著作、研究论文、研究主题。
 - Detail：摘要、经过核对的短篇原文摘录及定位、理论转向、意义、博士关联、笔记、相关节点与来源。
 
-**数据说明：当前数据库有36个展示条目与9个辅助节点。新增政策文献与实践案例保留虚线占位，正式阅读与研究编码尚待完成。原有条目的贡献度为研究者初步判断，不代表引用量或客观影响力；摘要、编码与关系需对原文逐条校核后才能作为论文证据。**
+**数据说明：当前数据库有48个展示条目与9个辅助节点。新增政策文献与实践案例保留虚线占位，正式阅读与研究编码尚待完成。原有条目的贡献度为研究者初步判断，不代表引用量或客观影响力；摘要、编码与关系需对原文逐条校核后才能作为论文证据。**
 
 “2010s Participatory Heritage”和“2020s Plural Narratives”作为 concept 分类，以2015和2020作为显示锚点，不能视作单篇文献或思想起点。《国际文化遗产旅游宪章》采用正式新版年份2022，区别于2021草案。巴拉宪章1979为首次通过年份，具体引文需注明实际阅读的版本。
 
@@ -48,7 +49,7 @@ tools/check.cjs            数据与文件检查
 
 可立即离线使用全部视图。由于浏览器对 `file://` 的 JSON fetch 限制，默认加载明确标注的离线快照。
 
-修改 `data/knowledge.json` 后，点击页面下方 **打开本地 JSON** 并选择该文件，即可使用新数据。文件只在本机读取；网页编辑后可保存浏览器草稿或导出 JSON。可选运行 `node tools/sync-snapshot.cjs` 来同步默认快照。
+修改 `data/knowledge.json` 后，点击页面下方 **打开本地 JSON** 并选择该文件，即可使用新数据。文件只在本机读取；网页编辑后可保存浏览器草稿或导出 JSON。可选运行 ode tools/sync-snapshot.cjs` 来同步默认快照。
 
 ### 持续研究编辑：建议使用本地服务
 
@@ -133,7 +134,7 @@ ChatGPT 与 GitHub 的连接不会自动授权公开网页；因此在网页内�
 
 `target` 必须对应现存且唯一的 id。支持 `influences`、`extends`、`critiques`、`related_to`、`supports`、`shifts_toward`。箭头由起点指向 target；应明确写出主语和宾语，勿仅凭年代先后断言影响。
 
-无年份的概念与人物放入顶层 `nodes` 数组，`node_type` 取 `concept` 或 `person`；它们不计入文献筛选结果数量，只在网络和相关详情中出现。示例：
+无年份的概念与人物放入顶层 odes` 数组，ode_type` 取 `concept` 或 `person`；它们不计入文献筛选结果数量，只在网络和相关详情中出现。示例：
 
 ```json
 { "id": "concept-example", "title": "Example concept", "node_type": "concept", "relations": [] }
@@ -176,7 +177,7 @@ Timeline 按年份与可编辑主题显示筛选后的条目，不根据未经�
 
 ## Validation and limitations
 
-运行 `node tools/check.cjs` 检查数据结构、唯一 ID、关系目标、本地引用及脚本语法。无需安装依赖。
+运行 ode tools/check.cjs` 检查数据结构、唯一 ID、关系目标、本地引用及脚本语法。无需安装依赖。
 
 建议在新增数据后检查四个视图、搜索、筛选、详情与 PDF。当前布局面向数十至数百条目的个人研究库；大型网络后续需要分层加载或按中心节点展开。主题年代、受控词表和关系均是可修订的研究工具，不应代替文献证据。
 
@@ -188,4 +189,13 @@ Timeline 使用横轴年份、纵轴可编辑的研究主题分类（`timeline_t
 
 Flow / Bands now support a fifth working theme, **Heritage visitation & tourism**, alongside the existing four. The setting dimension is independent of the media dimension. **Interpretive setting** can be filtered, grouped in Cluster, sorted in Library, read with evidence in detail cards and edited in Chinese content/tag management. Defaults are On-site (现场), Off-site (场外), Both (两者兼有), and Unspecified / pending review (未明确／待核查); filtering On-site or Off-site also includes Both. Unknown older imports remain unspecified. Digital technology papers do not automatically become off-site records.
 
-The collection now contains 36 displayed records, including an official NPS-described New Philadelphia on-site AR tour. Its 2025 date is the NPS source-page update anchor, not the unknown project launch year. Membership and setting evidence include source locations; broad reading remains pending. Details are in `data/CURATION.md`. Update `knowledge-snapshot.js` with `node tools/sync-snapshot.cjs` after changing JSON if double-click preview is used.
+The collection now contains 36 displayed records, including an official NPS-described New Philadelphia on-site AR tour. Its 2025 date is the NPS source-page update anchor, not the unknown project launch year. Membership and setting evidence include source locations; broad reading remains pending. Details are in `data/CURATION.md`. Update `knowledge-snapshot.js` with ode tools/sync-snapshot.cjs` after changing JSON if double-click preview is used.
+
+
+# 2026-10-08 research update
+
+新增12项来源，首批提取19条可定位主张；原有来源不重复录入。数据结构2.0增加材料性质、概念角色、阅读核查、出版形式、主张、设计推导、候选效果及章节用途。原有媒介/活动编码保留于 legacy_coding，避免把文献载体误作阐释体验。
+
+请先阅读 [研究编码与候选评价框架](data/RESEARCH_FRAMEWORK.md) 和 [收录对照表](data/REVIEW_COVERAGE.md)。这是一套研究中的比较编码，首批来源提取不等于完成全文阅读、系统综述、量表验证或设计效果验证。
+
+验证命令：ode tools/check.cjs`、ode tools/check-research.cjs`、ode tools/check-bands.cjs`、ode tools/check-flow-shell.cjs`。编辑JSON后用 ode tools/sync-snapshot.cjs` 同步本地双击预览。

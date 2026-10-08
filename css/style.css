@@ -338,3 +338,17 @@ body.bands-active .workspace{flex:1;min-height:0;display:flex;flex-direction:col
 body.bands-active .primary-bar,body.bands-active .view-heading,body.bands-active .legend,body.bands-active .chart-footer,body.bands-active .data-bar{flex:none}
 body.bands-active #chart{flex:1;min-height:0;overflow:auto}
 body.bands-active .empty-state{min-height:0;flex:1}
+/* Source claims and researcher proposals remain visually separate. */
+.evidence-library{padding:24px;max-width:1400px;margin:0 auto;}
+.research-notice{padding:14px 18px;background:#f1f5f3;border-left:3px solid #6f7950;line-height:1.7;}
+.evidence-record{margin:26px 0;}
+.evidence-record>.text-button{text-align:left;font-size:17px;}
+.claim-card{padding:18px;margin:14px 0;background:#fff;border:1px solid #d9e0dd;border-radius:8px;overflow-wrap:anywhere;}
+.claim-card h4{margin:0 0 10px;line-height:1.65;}
+.claim-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:16px 0;}
+.claim-steps h5{font-size:13px;margin:0 0 8px;color:#53634d;}
+.claim-steps p{font-size:14px;line-height:1.75;margin:0;}
+.research-detail .claim-steps{grid-template-columns:1fr;}
+.research-detail .claim-card{padding:14px;}
+.research-detail details{margin-top:16px;}
+@media(max-width:900px){.claim-steps{grid-template-columns:1fr}.evidence-library{padding:12px}.primary-bar{flex-wrap:wrap}.views{flex-wrap:wrap}}

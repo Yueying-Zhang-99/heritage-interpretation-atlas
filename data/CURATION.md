@@ -67,3 +67,6 @@ The final layout restores the continuous outer shell with enclosed internal cavi
 
 
 Minor cavity adjustment: the inward erosion percentile is 38% and the minimum inset is 10 responsive pixels. The original 44-pixel responsive outside rim and member protection are retained, so larger interior openings do not cut through the outer boundary.
+# 2026-10-08: claims, design grounds and evaluation
+
+本轮新增12个来源，补充7个已有条目的主张。完整对照见 [REVIEW_COVERAGE.md](REVIEW_COVERAGE.md)，字段与缺失值规则、真实性设计依据、候选效果维度见 [RESEARCH_FRAMEWORK.md](RESEARCH_FRAMEWORK.md)。旧来源的未核查程度不因迁移升级；unknown与absence分别处理。原有媒介和行动编码归档后，需继续根据文献具体讨论重新编码。

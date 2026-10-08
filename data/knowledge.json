@@ -1,9 +1,9 @@
 {
   "meta": {
     "title": "Heritage Interpretation Knowledge Atlas",
-    "schema_version": "1.0",
+    "schema_version": "2.0",
     "is_sample": true,
-    "notice": "示例与研究编码数据库：重要性评分为研究者初步判断，不代表引用量或客观学术影响；虚线节点待原文精读，摘要与关系须逐条校核。",
+    "notice": "研究中的Atlas：来源主张与研究者推导分别记录；精读与验证状态逐条标明。未知不等于没有；效果维度不是已验证量表。",
     "topic_coding": {
       "updated": "2026-10-03",
       "method": "Qualitative working codes: source = checked original or official description; provisional = interpretation pending close reading. Shared subject matter is not proof of direct influence. Publication / inscription dates retain their existing meaning."
@@ -15,6 +15,20 @@
     "interpretive_setting": {
       "updated": "2026-10-03",
       "method": "Setting and media are independent coding dimensions. On-site = at the heritage place; Off-site = elsewhere, including remote access; Both = explicitly covers both. Unknown or general technology papers remain Unspecified / pending review. Tags describe checked scope, not the full exclusive applicability of a document. Evidence records source/provisional status and locators. Both is included when filtering On-site or Off-site."
+    },
+    "updated": "2026-10-08",
+    "research_position": {
+      "status": "exploratory",
+      "main_research_question": "Not fixed: review will inform selection",
+      "outcome_model": "Multidimensional candidates; no assumed hierarchy, total score or causal validation",
+      "design_basis": "Authenticity, plurality and participation are candidate design grounds with context-specific tensions."
+    },
+    "claim_coding": {
+      "source_claim": "claim_paraphrase + source_url + source_locator + source_context",
+      "researcher_inference": "researcher_implication / evaluation_proposal; not source quotations or established effects",
+      "validation": "Relevant passage, abstract or publisher-description checks do not mean full text read.",
+      "missing_values": "Empty array = not yet coded, never evidence of absence; not_reported / not_applicable may be used only after checking scope.",
+      "legacy_media": "Original media/public_actions preserved in legacy_coding; cleared from current tags because publication format and public experience were conflated."
     }
   },
   "vocabulary": {
@@ -93,7 +107,8 @@
       "Document",
       "Recommendation",
       "Research theme",
-      "Heritage Practice Case"
+      "Heritage Practice Case",
+      "Book chapter"
     ],
     "document_nature": [
       "Convention",
@@ -110,6 +125,78 @@
       "Off-site",
       "Both",
       "Unspecified / pending review"
+    ],
+    "record_kind": [
+      "normative",
+      "theoretical",
+      "empirical",
+      "evidence_synthesis",
+      "methodological",
+      "institutional_report",
+      "practice",
+      "topic",
+      "research_pending_classification"
+    ],
+    "reading_status": [
+      "not_assessed",
+      "metadata_checked",
+      "relevant_passages_checked",
+      "full_text_read",
+      "coded"
+    ],
+    "concept_roles": [
+      "object_value",
+      "authority",
+      "evidence",
+      "context",
+      "mediation",
+      "outcome",
+      "review_method"
+    ],
+    "interpretive_media": [
+      "Text panel",
+      "Exhibition",
+      "Guided tour",
+      "Audio",
+      "Computer-based visualisation",
+      "Digital media",
+      "AR",
+      "VR",
+      "MR",
+      "XR",
+      "Game"
+    ],
+    "interpretive_operations": [
+      "observe",
+      "compare",
+      "infer",
+      "perspective_take",
+      "discuss",
+      "create",
+      "reflect"
+    ],
+    "chapter_use": [
+      "2.1.1",
+      "2.1.2",
+      "2.1.3",
+      "2.1.4",
+      "2.1.5",
+      "2.1.6",
+      "2.1.7",
+      "2.2",
+      "2.3",
+      "3",
+      "4",
+      "5"
+    ],
+    "publication_format": [
+      "Book",
+      "Book chapter",
+      "PDF / linked document",
+      "Linked document",
+      "Webpage",
+      "Research topic",
+      "Journal article"
     ]
   },
   "documents": [
@@ -148,12 +235,8 @@
       "concepts": [
         "Conservation"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "奠定历史古迹保护的国际合作背景。",
       "paradigm_shift": "保护原则开始以国际文件形式协调。",
       "significance": "作为阐释设计的保护思想背景，不应等同于阐释理论起点。",
@@ -187,7 +270,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "tilden",
@@ -226,12 +332,8 @@
       "concepts": [
         "Meaning-making"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "强调揭示意义与关系，将遗产与访客经验联系起来。",
       "paradigm_shift": "阐释超越事实罗列，关注理解与思考。",
       "significance": "为公共阐释的目的与方法提供经典参照。",
@@ -248,12 +350,16 @@
         {
           "target": "meaning",
           "type": "supports",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "person-tilden",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Interpretation connects facts to meaning and provokes visitor reflection.",
@@ -286,6 +392,29 @@
         "evidence": "暂按现场遗产阐释的阅读方向编码；不据此排除其原则的场外适用性，待核对原书章节。",
         "source_url": "https://uncpress.org/9798890882950/interpreting-our-heritage/",
         "location": ""
+      },
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -323,12 +452,8 @@
       "concepts": [
         "Authenticity"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "提出古迹与遗址保护修复原则，关注历史证据与环境。",
       "paradigm_shift": "建立保护修复的国际专业原则。",
       "significance": "对现场展示和设计介入形成保护约束。",
@@ -345,7 +470,9 @@
         {
           "target": "authenticity",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "International principles for conserving and restoring monuments and sites.",
@@ -368,7 +495,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "world-heritage",
@@ -405,12 +555,8 @@
       "concepts": [
         "Conservation"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "建立文化和自然遗产保护的国际合作框架。",
       "paradigm_shift": "遗产保护进入跨国制度与责任框架。",
       "significance": "有助于理解遗产认定和管理的制度背景。",
@@ -451,7 +597,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "burra",
@@ -488,12 +657,8 @@
       "concepts": [
         "Cultural Significance"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "以文化意义为核心组织场所保护；本节点表示1979年首次通过。",
       "paradigm_shift": "保护讨论从物质对象拓展到文化意义。",
       "significance": "后续版本持续修订，具体条款应对应所读版本。",
@@ -510,7 +675,9 @@
         {
           "target": "significance",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Cultural significance guides conservation decisions for places.",
@@ -533,7 +700,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "gaze",
@@ -572,12 +762,8 @@
       "concepts": [
         "Tourist Gaze"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "讨论旅游观看如何受到社会文化条件组织。",
       "paradigm_shift": "将观看理解为具有社会条件的实践。",
       "significance": "为分析旅游体验与展示选择提供视角。",
@@ -621,6 +807,29 @@
         "evidence": "暂以游客到访目的地的观看与体验作为研究参照；具体章节与适用范围待核对。",
         "source_url": "",
         "location": ""
+      },
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -658,12 +867,8 @@
       "concepts": [
         "Cultural Diversity"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "真实性判断需考虑文化语境和多样的信息来源。",
       "paradigm_shift": "真实性评价更重视文化差异与语境。",
       "significance": "为不同价值体系的理解提供规范参照。",
@@ -680,12 +885,16 @@
         {
           "target": "authenticity",
           "type": "extends",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "voices",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Authenticity must be understood within diverse cultural contexts.",
@@ -715,7 +924,67 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "adoption",
+      "concept_roles": [
+        "object_value",
+        "evidence",
+        "context"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [
+        "Credibility and truthfulness of information sources",
+        "Culturally situated authenticity judgments"
+      ],
+      "context_dimensions": [
+        "cultural",
+        "historical"
+      ],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "2.1.4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "nara-c1",
+          "claim_paraphrase": "遗产价值及信息来源可信性的判断具有文化语境，真实性判断可涉及形制、材料、用途、传统、场所和精神感受等来源。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "ICOMOS / UNESCO / ICCROM",
+          "source_context": "relevant_passage",
+          "source_url": "https://whc.unesco.org/archive/nara94.htm",
+          "source_locator": "Paragraphs 9–13",
+          "concept_roles": [
+            "object_value",
+            "evidence",
+            "context"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "2.1.4",
+            "5"
+          ],
+          "researcher_implication": "根据场所文化语境列明证据及表达边界；不把视觉逼真或访客主观感受当作历史正确性的证明。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": "设计内容与证据由专业人员及相关社群复核；另行调查访客的感知真实性。"
+        }
+      ],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "dissonant",
@@ -754,13 +1023,8 @@
       "concepts": [
         "Dissonance"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "讨论遗产选择和使用中的冲突与排斥。",
       "paradigm_shift": "将价值冲突纳入遗产分析。",
       "significance": "提醒研究者避免将遗产假定为一致共享。",
@@ -798,7 +1062,31 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "xian",
@@ -835,12 +1123,8 @@
       "concepts": [
         "Setting"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "强调遗产建筑、遗址与区域的环境保护。",
       "paradigm_shift": "进一步关注遗产与周边环境的关系。",
       "significance": "将场所环境纳入保护和理解。",
@@ -888,7 +1172,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "faro",
@@ -925,13 +1232,8 @@
       "concepts": [
         "Heritage Community"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "强调遗产对社会的价值、遗产共同体与共同责任。",
       "paradigm_shift": "加强遗产与社会参与、权利的联系。",
       "significance": "为讨论社区参与和遗产共同体提供依据。",
@@ -948,7 +1250,9 @@
         {
           "target": "community",
           "type": "supports",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Heritage value is linked to communities, rights, and participation.",
@@ -992,7 +1296,62 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "adoption",
+      "concept_roles": [
+        "authority",
+        "object_value"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [
+        "research",
+        "design",
+        "maintenance"
+      ],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "2.1.3"
+      ],
+      "claims": [
+        {
+          "claim_id": "faro-c1",
+          "claim_paraphrase": "公约以遗产社区及公众参与文化遗产识别、研究、阐释、保护和呈现等活动为重要议题。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Council of Europe",
+          "source_context": "relevant_passage",
+          "source_url": "https://www.coe.int/en/web/culture-and-heritage/faro-convention",
+          "source_locator": "Articles 2(b), 12",
+          "concept_roles": [
+            "authority",
+            "object_value"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "2.1.3"
+          ],
+          "researcher_implication": "讨论参与权与责任；说明其欧洲公约背景，不当作中国项目直接适用的法律。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "smith",
@@ -1031,13 +1390,8 @@
       "concepts": [
         "Authorized Heritage Discourse"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "将遗产作为文化过程讨论，批判授权遗产话语。",
       "paradigm_shift": "将价值建构与解释权纳入遗产研究。",
       "significance": "促使研究者检视被认可与被排除的声音。",
@@ -1054,12 +1408,16 @@
         {
           "target": "ahd",
           "type": "critiques",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "person-smith",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Heritage is a cultural process shaped by power and practice.",
@@ -1093,7 +1451,31 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "ename",
@@ -1130,12 +1512,8 @@
       "concepts": [
         "Interpretation"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "提出可及性、信息来源、语境、真实性、可持续性、包容性及研究评价原则。",
       "paradigm_shift": "将阐释与展示明确纳入遗产保护管理。",
       "significance": "提供阐释规划与评估的规范框架。",
@@ -1152,7 +1530,9 @@
         {
           "target": "meaning",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Principles for public interpretation and presentation of heritage sites.",
@@ -1161,7 +1541,7 @@
         {
           "text": "Interpretation should also take into account all groups that have contributed to the historical and cultural significance of the site.",
           "source": "ICOMOS Interpretation Charter, 2008",
-          "location": "Principle 2, Context and Setting, item 3"
+          "location": "Principle 3.3 (Context and Setting), PDF p. 5"
         }
       ],
       "timeline_topic": "Interpretation & experience",
@@ -1215,6 +1595,66 @@
         "evidence": "定义明确涵盖现场及相关场外设施；原则1.6要求现场访问受限时提供场外阐释。该宪章主要关注现场及其附近，并不把所有公众等同于游客。",
         "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
         "location": "Definitions and footnote; Principle 1.6"
+      },
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "adoption",
+      "concept_roles": [
+        "authority",
+        "context",
+        "evidence",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [
+        "Respect for authenticity (Principle 4)"
+      ],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.3",
+        "2.1.4",
+        "2.1.7",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "ename-c1",
+          "claim_paraphrase": "阐释应考虑对场所历史与文化意义有贡献的不同群体。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "ICOMOS",
+          "source_context": "relevant_passage",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
+          "source_locator": "Principle 3.3; PDF p. 5",
+          "concept_roles": [
+            "authority",
+            "context",
+            "evidence",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.3",
+            "2.1.4",
+            "2.1.7",
+            "5"
+          ],
+          "researcher_implication": "内容选择时检查群体遗漏；多群体呈现不自动意味着公众具有内容决定权。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": "比较不同群体资料进入内容的过程；由相关群体核查其呈现方式。"
+        }
+      ],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -1252,12 +1692,8 @@
       "concepts": [
         "Urban Landscape"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "将城市遗产置于历史层积、社会文化和发展环境中理解。",
       "paradigm_shift": "从孤立对象拓展到城市整体关系。",
       "significance": "为历史场所的空间与生活关联提供视角。",
@@ -1312,7 +1748,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "participatory",
@@ -1349,13 +1808,8 @@
       "concepts": [
         "Participation"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "2010年代研究主题示意，不对应单篇文献。",
       "paradigm_shift": "关注公众对遗产内容及意义生产的参与。",
       "significance": "用于组织后续阅读，不作为独立学术证据。",
@@ -1372,12 +1826,16 @@
         {
           "target": "plural",
           "type": "related_to",
-          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。"
+          "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "delhi-declaration-2017",
           "type": "related_to",
-          "evidence": "《德里宣言》将民主社区参与与多元文化遗产纳入规范性框架；主题关联，不表示其对参与式遗产研究构成直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "《德里宣言》将民主社区参与与多元文化遗产纳入规范性框架；主题关联，不表示其对参与式遗产研究构成直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Working topic: visitor and community participation in heritage.",
@@ -1404,7 +1862,31 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "topic",
+      "publication_format": "Research topic",
+      "reading_status": "not_assessed",
+      "date_basis": "topic_anchor_not_origin",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "plural",
@@ -1441,13 +1923,8 @@
       "concepts": [
         "Multiple Narratives"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "2020年代研究方向示意，不表示该思想始于2020年。",
       "paradigm_shift": "将多主体解释与叙事协商作为设计问题。",
       "significance": "用于组织博士研究问题。",
@@ -1485,7 +1962,31 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "topic",
+      "publication_format": "Research topic",
+      "reading_status": "not_assessed",
+      "date_basis": "topic_anchor_not_origin",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "tourism",
@@ -1522,12 +2023,8 @@
       "concepts": [
         "Responsible Tourism"
       ],
-      "media": [
-        "Text"
-      ],
-      "public_actions": [
-        "Read"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "关注负责任的旅游、社区参与、包容性阐释与访客体验。",
       "paradigm_shift": "将旅游体验与社区权利和保护责任结合。",
       "significance": "正式新版采用2022年，区别于草案年份。",
@@ -1595,6 +2092,29 @@
         "evidence": "原则3同时讨论目的地的访客体验、增强现实与虚拟重建，并在访问威胁遗产时要求远程阐释工具；数字媒介可支持现场或远程接触。",
         "source_url": "https://climateaction.icomos.org/wp-content/uploads/2025/08/ICOMOS-2022-International-Charter-for-Cultural-Heritage-Tourism.pdf",
         "location": "Principle 3, printed p. 9"
+      },
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [
+          "Read"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -1661,6 +2181,25 @@
         "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
         "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
         "location": ""
+      },
+      "record_kind": "research_pending_classification",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -1720,6 +2259,25 @@
         "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
         "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
         "location": ""
+      },
+      "record_kind": "research_pending_classification",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -1787,7 +2345,26 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "node_type": "document",
@@ -1868,6 +2445,58 @@
         "evidence": "宪章规定数字可视化的研究、传播、证据与接近原则，不把技术限定为现场或场外。本次保持情境未明确；具体应用须按项目另外编码。",
         "source_url": "https://londoncharter.org/principles.html",
         "location": "Principles 1–2, 6"
+      },
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "concept_roles": [
+        "evidence",
+        "mediation"
+      ],
+      "interpretive_media": [
+        "Computer-based visualisation"
+      ],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [
+        "Source documentation and intellectual transparency"
+      ],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.4",
+        "2.2",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "london-charter-2009-c1",
+          "claim_paraphrase": "计算机可视化应选择适当的方法，系统识别和评价来源，并提供足以理解和评价方法及成果的文档。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "London Charter",
+          "source_context": "relevant_passage",
+          "source_url": "https://londoncharter.org/principles.html",
+          "source_locator": "Principles 2, 3 and 4; official principles page",
+          "concept_roles": [
+            "evidence",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.4",
+            "2.2",
+            "5"
+          ],
+          "researcher_implication": "给数字表达附来源和推断说明；区分遗存、资料支持的重建与表达性补充。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": "检查用户能否区分证据与推测，以及设计资料是否允许追溯重建依据。"
+        }
+      ],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -1935,7 +2564,60 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "concept_roles": [
+        "authority",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [
+        "design",
+        "visit"
+      ],
+      "decision_rights": [
+        "Project-specific: contribution / collaboration / co-creation / hosting"
+      ],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.3",
+        "4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "simon-2010-c1",
+          "claim_paraphrase": "参与式项目可采用贡献、协作、共同创造和承载等不同组织形式。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Nina Simon",
+          "source_context": "relevant_passage",
+          "source_url": "https://participatorymuseum.org/",
+          "source_locator": "Chapter 5, Defining Participation",
+          "concept_roles": [
+            "authority",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.3",
+            "4",
+            "5"
+          ],
+          "researcher_implication": "分别记录参与阶段、活动以及可决定的内容；不把互动次数当作共同决策权。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": "记录哪些公众意见改变了主题、选材或发布决定。"
+        }
+      ],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "node_type": "document",
@@ -1997,6 +2679,25 @@
         "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
         "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
         "location": ""
+      },
+      "record_kind": "research_pending_classification",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -2046,14 +2747,8 @@
         "Interpretation",
         "Digital Communication"
       ],
-      "media": [
-        "Digital Media"
-      ],
-      "public_actions": [
-        "Discuss",
-        "Collaborate",
-        "Create"
-      ],
+      "media": [],
+      "public_actions": [],
       "summary": "ICOMOS 第19届大会于2017年通过《德里宣言：遗产与民主》。宣言把遗产界定为所有人的权利与责任，强调文化多样性、不同群体的价值与意义、社区参与和民主协商；并明确提及通信技术与媒介可用于收集、共享、阐释和传播遗产信息。",
       "paradigm_shift": "将遗产阐释与民主治理、文化权利和包容性社区参与相联。它提供价值与伦理方向，而非游戏化、MR或数字重建的具体操作方法。",
       "significance": "第2部分提出遗产阐释伦理应吸纳地方及相关社群，并指出文化多样性应进入各层级的遗产阐释与教育。第3部分倡导包容的民主社区参与，并提到多种通信技术和媒介可用于收集、共享、阐释与传播数据。",
@@ -2071,27 +2766,37 @@
         {
           "target": "community",
           "type": "supports",
-          "evidence": "第3部分明确倡导包容的民主社区参与，并将传统知识和跨文化对话纳入协作决策。此关系表示规范性支持，不代表任何具体项目已实现参与。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "第3部分明确倡导包容的民主社区参与，并将传统知识和跨文化对话纳入协作决策。此关系表示规范性支持，不代表任何具体项目已实现参与。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "heritage-values",
           "type": "related_to",
-          "evidence": "第1部分以价值、意义与真实性为遗产管理的重要议题，并强调遗产意义与价值体系的多样性。主题关联，不等同于一套独立的价值评估方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "第1部分以价值、意义与真实性为遗产管理的重要议题，并强调遗产意义与价值体系的多样性。主题关联，不等同于一套独立的价值评估方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "plural",
           "type": "related_to",
-          "evidence": "宣言强调多样性、复数性与多元文化遗产，并提出延续多元遗产。可与多元叙事议题并置分析，但文件没有给出具体叙事设计方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "宣言强调多样性、复数性与多元文化遗产，并提出延续多元遗产。可与多元叙事议题并置分析，但文件没有给出具体叙事设计方法。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "ename",
           "type": "supports",
-          "evidence": "第2部分提出阐释伦理应吸纳地方及相关社群，并将文化多样性纳入遗产阐释和教育。这里表示规范原则上的呼应，不主张文件间存在直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "第2部分提出阐释伦理应吸纳地方及相关社群，并将文化多样性纳入遗产阐释和教育。这里表示规范原则上的呼应，不主张文件间存在直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "london-charter-2009",
           "type": "related_to",
-          "evidence": "宣言提及数字技术和通信媒介在遗产管理、信息阐释与传播中的作用；《伦敦宪章》则聚焦文化遗产计算机可视化。二者为数字遗产议题上的主题关联，范围不同，不表示直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf"
+          "evidence": "宣言提及数字技术和通信媒介在遗产管理、信息阐释与传播中的作用；《伦敦宪章》则聚焦文化遗产计算机可视化。二者为数字遗产议题上的主题关联，范围不同，不表示直接影响。Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA2017_Delhi-Declaration_20180117_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "An ICOMOS policy declaration connecting heritage, democracy, cultural diversity, community participation and digital communication.",
@@ -2146,7 +2851,32 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Digital Media"
+        ],
+        "public_actions": [
+          "Discuss",
+          "Collaborate",
+          "Create"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "case-robben-island",
@@ -2199,15 +2929,8 @@
         "Multiple Narratives",
         "Personal Narratives"
       ],
-      "media": [
-        "Exhibition",
-        "Audio"
-      ],
-      "public_actions": [
-        "Observe",
-        "Listen",
-        "Explore"
-      ],
+      "media": [],
+      "public_actions": [],
       "importance": null,
       "importance_note": "不评定理论贡献度；此处为阐释实践案例，规模不表示案例质量。",
       "placeholder": false,
@@ -2224,17 +2947,23 @@
         {
           "target": "authenticity",
           "type": "related_to",
-          "evidence": "UNESCO公开的1999年提名档案将场所真实性与传达不同居住者经验联系起来；这里标注概念关联，不主张单一真实性定义。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+          "evidence": "UNESCO公开的1999年提名档案将场所真实性与传达不同居住者经验联系起来；这里标注概念关联，不主张单一真实性定义。Source: https://whc.unesco.org/uploads/nominations/916.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "heritage-values",
           "type": "related_to",
-          "evidence": "UNESCO提名档案记载监狱空间、物件与亲历者声音如何传达场所历史意义。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+          "evidence": "UNESCO提名档案记载监狱空间、物件与亲历者声音如何传达场所历史意义。Source: https://whc.unesco.org/uploads/nominations/916.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "plural",
           "type": "related_to",
-          "evidence": "档案描述不同囚犯群体的经验及亲历者录音，支持将此案例与多元叙事议题并置分析。Source: https://whc.unesco.org/uploads/nominations/916.pdf"
+          "evidence": "档案描述不同囚犯群体的经验及亲历者录音，支持将此案例与多元叙事议题并置分析。Source: https://whc.unesco.org/uploads/nominations/916.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "coding_status": "UNESCO World Heritage property; practice summary from official nomination file; present-day interpretation requires follow-up.",
@@ -2276,6 +3005,32 @@
         "evidence": "编码对象是报告描述的岛上访问、导览及展示。1999是列入世界遗产的时间锚点，不是全部实践发生的年份。",
         "source_url": "https://whc.unesco.org/document/141619",
         "location": "Sections 4.3–4.4, printed pp. 18–21"
+      },
+      "record_kind": "practice",
+      "publication_format": "Webpage",
+      "reading_status": "not_assessed",
+      "date_basis": "recognition_or_source_update_pending",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Exhibition",
+          "Audio"
+        ],
+        "public_actions": [
+          "Observe",
+          "Listen",
+          "Explore"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -2329,17 +3084,8 @@
         "Community Narratives",
         "Multiple Narratives"
       ],
-      "media": [
-        "Text",
-        "Exhibition",
-        "Digital Media"
-      ],
-      "public_actions": [
-        "Read",
-        "Observe",
-        "Explore",
-        "Discuss"
-      ],
+      "media": [],
+      "public_actions": [],
       "importance": null,
       "importance_note": "不评定理论贡献度；此处为阐释实践案例，规模不表示案例质量。",
       "placeholder": false,
@@ -2355,17 +3101,23 @@
         {
           "target": "community",
           "type": "related_to",
-          "evidence": "UNESCO案例页记载社区协助管理与志愿参与；未据此断言毛利社群共同创作展陈。Source: https://whc.unesco.org/en/activities/613/"
+          "evidence": "UNESCO案例页记载社区协助管理与志愿参与；未据此断言毛利社群共同创作展陈。Source: https://whc.unesco.org/en/activities/613/",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "heritage-values",
           "type": "related_to",
-          "evidence": "官方案例将标识、出版物和游客中心阐释与场所世界遗产价值传播相连。Source: https://whc.unesco.org/en/activities/613/"
+          "evidence": "官方案例将标识、出版物和游客中心阐释与场所世界遗产价值传播相连。Source: https://whc.unesco.org/en/activities/613/",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "plural",
           "type": "related_to",
-          "evidence": "案例涉及毛利文化与自然意义的共同阐释，可与多元叙事议题比较；此关联为分析性编码。Source: https://whc.unesco.org/en/activities/613/"
+          "evidence": "案例涉及毛利文化与自然意义的共同阐释，可与多元叙事议题比较；此关联为分析性编码。Source: https://whc.unesco.org/en/activities/613/",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "coding_status": "UNESCO World Heritage property; practice documented by UNESCO case page; specific intervention dates need follow-up.",
@@ -2415,6 +3167,34 @@
         "evidence": "案例同时记录现场标识与游客中心展示，以及网站、出版物和媒体信息；网站属于可在到访前或场外接触的渠道，这是基于官方渠道描述的研究编码，网站具体内容仍待查阅。",
         "source_url": "https://whc.unesco.org/en/activities/613/",
         "location": "Raising Awareness; Harnessing Tourism"
+      },
+      "record_kind": "practice",
+      "publication_format": "Webpage",
+      "reading_status": "not_assessed",
+      "date_basis": "recognition_or_source_update_pending",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text",
+          "Exhibition",
+          "Digital Media"
+        ],
+        "public_actions": [
+          "Read",
+          "Observe",
+          "Explore",
+          "Discuss"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -2452,9 +3232,7 @@
         "Public Access",
         "Multiple Narratives"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "将考古遗产保护、公众参与及展示纳入管理框架。第7条要求展示随知识发展更新，并考虑理解过去的多面路径。",
       "paradigm_shift": "",
@@ -2472,12 +3250,16 @@
         {
           "target": "venice",
           "type": "related_to",
-          "evidence": "引言明确以威尼斯宪章为思想参照。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf"
+          "evidence": "引言明确以威尼斯宪章为思想参照。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "ename",
           "type": "related_to",
-          "evidence": "第7条与阐释宪章可作公众展示议题比较，不主张直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf"
+          "evidence": "第7条与阐释宪章可作公众展示议题比较，不主张直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2017/01/1990-Lausanne-Charter-for-Protection-and-Management-of-Archaeological-Heritage.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Archaeological protection, public participation and interpretation that evolves with evidence.",
@@ -2516,7 +3298,28 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "valletta-convention-1992",
@@ -2553,9 +3356,7 @@
         "Public Access",
         "Education"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "将考古保护与规划协调纳入欧洲条约框架。第9条涉及公众教育及遗址访问，第5条要求公众开放避免损害遗址。",
       "paradigm_shift": "",
@@ -2573,12 +3374,16 @@
         {
           "target": "lausanne-charter-1990",
           "type": "related_to",
-          "evidence": "考古保护与公众开放的主题比较；文件性质不同。 Source: https://rm.coe.int/168007bd25"
+          "evidence": "考古保护与公众开放的主题比较；文件性质不同。 Source: https://rm.coe.int/168007bd25",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "faro",
           "type": "related_to",
-          "evidence": "欧洲委员会两份公约可比较公众访问与遗产参与的不同范围。 Source: https://rm.coe.int/168007bd25"
+          "evidence": "欧洲委员会两份公约可比较公众访问与遗产参与的不同范围。 Source: https://rm.coe.int/168007bd25",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Archaeological protection, public awareness and access within a European treaty framework.",
@@ -2623,6 +3428,27 @@
         "evidence": "本次选择的第9(ii)条明确提出公众接近考古遗址；教育与其他展示方式的完整情境尚待精读。",
         "source_url": "https://rm.coe.int/168007bd25",
         "location": "Article 9(ii)"
+      },
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -2660,9 +3486,7 @@
         "Multiple Narratives",
         "Heritage Values"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "将阐释、旅游与当地社群联系起来。第1.4条涉及少数文化及语言群体，并要求告知访客同一遗产的不同文化价值。",
       "paradigm_shift": "",
@@ -2680,12 +3504,16 @@
         {
           "target": "tourism",
           "type": "related_to",
-          "evidence": "同一文化旅游宪章系列的1999与2022版本，适合比较。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548"
+          "evidence": "同一文化旅游宪章系列的1999与2022版本，适合比较。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "voices",
           "type": "related_to",
-          "evidence": "第1.4条为多种文化价值进入阐释提供规范参照。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548"
+          "evidence": "第1.4条为多种文化价值进入阐释提供规范参照。 Source: https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Interpretation connects visitors with host communities and their diverse cultural values.",
@@ -2737,6 +3565,27 @@
         "evidence": "本次核对的原则3关注到访、游客移动及现场体验；该标签记录本次核对范围，不声称所有传播均发生在现场。",
         "source_url": "https://publ.icomos.org/publicomos/jlbSai?base=technica&file=2198.pdf&html=Bur&path=ICOMOS_International_Charter_Cultural_tourism_1999_EN.pdf&ref=43548",
         "location": "Principle 3"
+      },
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -2774,9 +3623,7 @@
         "Community Participation",
         "Transmission"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "将社群认可的实践、表达、知识及技能纳入非物质遗产保护。第14条涉及公众教育，第15条涉及传承社群参与管理。",
       "paradigm_shift": "",
@@ -2794,12 +3641,16 @@
         {
           "target": "quebec-declaration-2008",
           "type": "related_to",
-          "evidence": "活态遗产及场所意义的主题比较。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage"
+          "evidence": "活态遗产及场所意义的主题比较。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "community",
           "type": "related_to",
-          "evidence": "传承社群参与是第15条的明确要求。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage"
+          "evidence": "传承社群参与是第15条的明确要求。 Source: https://www.unesco.org/en/legal-affairs/convention-safeguarding-intangible-cultural-heritage",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Living heritage, transmission, public education and participation by its bearer communities.",
@@ -2838,7 +3689,28 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "Linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "quebec-declaration-2008",
@@ -2875,10 +3747,7 @@
         "Memory",
         "Multiple Narratives"
       ],
-      "media": [
-        "Text",
-        "Digital Media"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "把物质与非物质要素共同理解为场所精神，承认其多元且持续变化。宣言同时涉及社群参与和数字记录、传播。",
       "paradigm_shift": "",
@@ -2896,12 +3765,16 @@
         {
           "target": "xian",
           "type": "related_to",
-          "evidence": "序言明确提及西安宣言的环境及非物质要素。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf"
+          "evidence": "序言明确提及西安宣言的环境及非物质要素。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "voices",
           "type": "related_to",
-          "evidence": "第3、5条承认不同群体与多种场所精神。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf"
+          "evidence": "第3、5条承认不同群体与多种场所精神。 Source: https://www.icomos.org/images/DOCUMENTS/Charters/GA16_Quebec_Declaration_Final_EN.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Plural spirits of place connect memory, communities and digital transmission.",
@@ -2947,7 +3820,29 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text",
+          "Digital Media"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "burra-charter-2013",
@@ -2984,9 +3879,7 @@
         "Co-existence of Values",
         "Interpretation"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "2013版将价值、参与、意义与阐释纳入场所保护。第12、13、24、25条分别涉及参与、价值共存、关联与意义、阐释。",
       "paradigm_shift": "",
@@ -3004,12 +3897,16 @@
         {
           "target": "burra",
           "type": "extends",
-          "evidence": "2013为同一宪章的修订版，序言列明历次版本。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf"
+          "evidence": "2013为同一宪章的修订版，序言列明历次版本。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "heritage-values",
           "type": "related_to",
-          "evidence": "第1.2及13条提供文化意义与价值共存的参照。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf"
+          "evidence": "第1.2及13条提供文化意义与价值共存的参照。 Source: https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Cultural significance, participation and culturally appropriate interpretation in the 2013 revision.",
@@ -3048,7 +3945,61 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "revision",
+      "concept_roles": [
+        "object_value",
+        "authority",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "2.1.3",
+        "2.1.4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "burra-charter-2013-c1",
+          "claim_paraphrase": "文化意义可存在于场所及其构成、环境、使用、关联、意义、记录和相关物件中。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Australia ICOMOS",
+          "source_context": "relevant_passage",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/The-Burra-Charter-2013-Adopted-31.10.2013.pdf",
+          "source_locator": "Article 1.2",
+          "concept_roles": [
+            "object_value",
+            "authority",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "2.1.3",
+            "2.1.4",
+            "5"
+          ],
+          "researcher_implication": "把价值陈述落实到场所属性、使用和关联的资料，再讨论适合的设计活动。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "interpretation-practice-note-2013",
@@ -3085,11 +4036,7 @@
         "Audience",
         "Story Ownership"
       ],
-      "media": [
-        "Text",
-        "Audio",
-        "Digital Media"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "将宪章原则转为阐释规划：资源调查、受众识别、主题与媒介选择及评价。强调故事持有者参与，阐释不能替代实体保护。",
       "paradigm_shift": "",
@@ -3107,12 +4054,16 @@
         {
           "target": "burra-charter-2013",
           "type": "supports",
-          "evidence": "第1节说明服务于2013版巴拉宪章第25条的实践。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf"
+          "evidence": "第1节说明服务于2013版巴拉宪章第25条的实践。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "ename",
           "type": "related_to",
-          "evidence": "第2节引用ICOMOS阐释宪章的目标。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf"
+          "evidence": "第2节引用ICOMOS阐释宪章的目标。 Source: https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Practical interpretation planning links significance, audiences, storytellers and evaluation.",
@@ -3158,7 +4109,59 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "concept_roles": [
+        "object_value",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "2.1.7",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "interpretation-practice-note-2013-c1",
+          "claim_paraphrase": "该实践说明将阐释与场所文化意义、管理及相关群体联系起来。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Australia ICOMOS",
+          "source_context": "relevant_passage",
+          "source_url": "https://australia.icomos.org/wp-content/uploads/Practice-Note_Interpretation.pdf",
+          "source_locator": "Australia ICOMOS Practice Note: Interpretation; scope and key guidance",
+          "concept_roles": [
+            "object_value",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "2.1.7",
+            "5"
+          ],
+          "researcher_implication": "将其作为设计依据；具体程序仍需结合项目条件判断。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ],
+      "legacy_coding": {
+        "media": [
+          "Text",
+          "Audio",
+          "Digital Media"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "seville-principles-2017",
@@ -3195,11 +4198,7 @@
         "Scientific Transparency",
         "Visitor Studies"
       ],
-      "media": [
-        "Text",
-        "Digital Media",
-        "VR"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "面向虚拟考古的计算机可视化原则，强调科学透明性、真实性和评价。数字展示的质量应依据工作过程的严谨性，而非视觉奇观。",
       "paradigm_shift": "",
@@ -3217,12 +4216,16 @@
         {
           "target": "london-charter-2009",
           "type": "extends",
-          "evidence": "序言明确提出在考古领域实践伦敦宪章原则。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf"
+          "evidence": "序言明确提出在考古领域实践伦敦宪章原则。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "authenticity",
           "type": "related_to",
-          "evidence": "第4原则讨论虚拟重建与真实性。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf"
+          "evidence": "第4原则讨论虚拟重建与真实性。 Source: https://icomos.es/wp-content/uploads/2020/06/Seville-Principles-IN-ES-FR.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Virtual archaeology grounded in transparent evidence and evaluated through visitor studies.",
@@ -3261,7 +4264,30 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text",
+          "Digital Media",
+          "VR"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "salalah-guidelines-2017",
@@ -3298,9 +4324,7 @@
         "Public Access",
         "Sustainable Management"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "指导公众开放遗址的可行性评估与可持续管理，兼顾证据保护、公众理解和地方利益。序言明确其为指导建议，而非法规或标准。",
       "paradigm_shift": "",
@@ -3318,12 +4342,16 @@
         {
           "target": "lausanne-charter-1990",
           "type": "related_to",
-          "evidence": "同属考古遗产管理文件，可比较公众开放的实践要求。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf"
+          "evidence": "同属考古遗产管理文件，可比较公众开放的实践要求。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "tourism",
           "type": "related_to",
-          "evidence": "公众开放与可持续旅游议题相交，不表示直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf"
+          "evidence": "公众开放与可持续旅游议题相交，不表示直接影响。 Source: https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Sustainable public access balances archaeological evidence, cultural diversity and local benefits.",
@@ -3375,6 +4403,27 @@
         "evidence": "指南对象是向公众开放的考古遗址，重点在实际到访、现场体验与访问影响管理。",
         "source_url": "https://icahm.icomos.org/wp-content/uploads/2018/07/GA2017_6-3-3_SalalahGuidelines_EN_adopted-15122017.pdf",
         "location": "Purposes and Objectives; The Need for These Guidelines, printed pp. 1–3"
+      },
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
       }
     },
     {
@@ -3413,9 +4462,7 @@
         "Community Expertise",
         "Memory"
       ],
-      "media": [
-        "Text"
-      ],
+      "media": [],
       "public_actions": [],
       "summary": "把非物质遗产视为场所遗产的组成部分，强调社群知识、记忆与物质空间的联系。专业人员应尊重社群权利并协助相关实践。",
       "paradigm_shift": "",
@@ -3433,12 +4480,16 @@
         {
           "target": "intangible-convention-2003",
           "type": "extends",
-          "evidence": "序言明确说明与UNESCO2003公约衔接；这是专业实践扩展，不是公约修订。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf"
+          "evidence": "序言明确说明与UNESCO2003公约衔接；这是专业实践扩展，不是公约修订。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "quebec-declaration-2008",
           "type": "related_to",
-          "evidence": "背景部分明确提及魁北克宣言的场所精神。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf"
+          "evidence": "背景部分明确提及魁北克宣言的场所精神。 Source: https://admin.icomos.org/wp-content/uploads/2025/03/ICICH-Charter-EN-FR_final.pdf",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         }
       ],
       "preview": "Site-based heritage integrates living practices, community expertise and memory.",
@@ -3477,7 +4528,28 @@
       ],
       "interpretive_setting": [
         "Unspecified / pending review"
-      ]
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "not_assessed",
+      "date_basis": "legacy_date_pending_verification",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "Text"
+        ],
+        "public_actions": [],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
     },
     {
       "id": "case-new-philadelphia-ar",
@@ -3523,16 +4595,8 @@
       "narrative_structure": [
         "Multiple Narratives"
       ],
-      "media": [
-        "AR",
-        "Audio",
-        "Text"
-      ],
-      "public_actions": [
-        "Explore",
-        "Observe",
-        "Listen"
-      ],
+      "media": [],
+      "public_actions": [],
       "preview": "An on-site AR trail connects vanished buildings and residents’ stories to the surviving landscape.",
       "summary": "NPS官方页面介绍新费城协会的自助AR应用：访客沿约四分之一英里的现场路线访问11个站点，用手机摄像头对准站点标记，观看叠加在面前景观中的建筑与人物动画，并收听建镇者、反奴隶制与多文化社区的故事。",
       "significance": "为现场访问与数字阐释交汇提供官方机构介绍的实践参照；官方网页证明活动形式，不构成阐释效果的实验验证。",
@@ -3588,17 +4652,1496 @@
         {
           "target": "ename",
           "type": "related_to",
-          "evidence": "研究者主题比较：具体现场导览可与2008宪章的接近、理解和个人体验原则对照；未发现该项目直接引用宪章的证据。"
+          "evidence": "研究者主题比较：具体现场导览可与2008宪章的接近、理解和个人体验原则对照；未发现该项目直接引用宪章的证据。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "azuma-1997",
           "type": "related_to",
-          "evidence": "研究者技术对照：现场实景与数字建筑叠加可联系AR概念；不声称该项目直接受论文影响。"
+          "evidence": "研究者技术对照：现场实景与数字建筑叠加可联系AR概念；不声称该项目直接受论文影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
         },
         {
           "target": "tourism",
           "type": "related_to",
-          "evidence": "研究者主题比较：现场AR导览可对照2022旅游宪章原则3的访客体验与增强现实讨论；不构成执行认证或效果验证。"
+          "evidence": "研究者主题比较：现场AR导览可对照2022旅游宪章原则3的访客体验与增强现实讨论；不构成执行认证或效果验证。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "pending_source_review"
+        }
+      ],
+      "record_kind": "practice",
+      "publication_format": "Webpage",
+      "reading_status": "not_assessed",
+      "date_basis": "recognition_or_source_update_pending",
+      "concept_roles": [],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [],
+      "claims": [],
+      "legacy_coding": {
+        "media": [
+          "AR",
+          "Audio",
+          "Text"
+        ],
+        "public_actions": [
+          "Explore",
+          "Observe",
+          "Listen"
+        ],
+        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
+      }
+    },
+    {
+      "id": "mason-values-2002",
+      "year": 2002,
+      "title": "Assessing Values in Conservation Planning: Methodological Issues and Choices",
+      "title_zh": "保护规划中的价值评估：方法问题与选择",
+      "type": "Book chapter",
+      "author": [
+        "Randall Mason"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2002",
+      "stream": "B",
+      "map_title": "Values in Conservation",
+      "map_maker": "Mason",
+      "display_category": "Theory / Book",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Heritage values",
+        "Stakeholders"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "讨论遗产保护规划中的价值评估及方法选择。",
+      "preview": "Values assessment connects conservation decisions with stakeholders and context.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "区分价值分类、价值主体与项目取舍；不要从价值名称直接指定唯一机制。",
+      "source_url": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/assessing.pdf",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/assessing.pdf",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · relevant_passage核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "heritage-values",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Heritage values、Stakeholders；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Conservation & values",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "讨论遗产保护规划中的价值评估及方法选择。",
+          "source_url": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/assessing.pdf",
+          "location": "Chapter pp. 5–30; introduction and value typology"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book chapter",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "container": "Assessing the Values of Cultural Heritage: Research Report",
+        "editor": "Marta de la Torre",
+        "publisher": "Getty Conservation Institute",
+        "pages": "5–30"
+      },
+      "concept_roles": [
+        "object_value",
+        "authority",
+        "context"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "mason-values-2002-c1",
+          "claim_paraphrase": "该章节将多种价值及利益相关者纳入保护规划的评估讨论。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Randall Mason",
+          "source_context": "relevant_passage",
+          "source_url": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/assessing.pdf",
+          "source_locator": "Chapter pp. 5–30; introduction and value typology",
+          "concept_roles": [
+            "object_value",
+            "authority",
+            "context"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "5"
+          ],
+          "researcher_implication": "区分价值分类、价值主体与项目取舍；不要从价值名称直接指定唯一机制。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "staiff-2014",
+      "year": 2014,
+      "title": "Re-imagining Heritage Interpretation: Enchanting the Past-Future",
+      "title_zh": "重新想象遗产阐释",
+      "type": "Book",
+      "author": [
+        "Russell Staiff"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2014",
+      "stream": "B",
+      "map_title": "Re-imagining Interpretation",
+      "map_maker": "Staiff",
+      "display_category": "Theory / Book",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Heritage experience",
+        "Learning outcomes",
+        "Meaning-making"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "出版社介绍指出本书批评遗产与访客的对话过度聚焦学习结果，重新讨论遗产体验。",
+      "preview": "Reconsiders interpretation beyond prescribed educational outcomes.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "评价应允许感受、联想和自主意义形成；不由单一知识测验定义成功。",
+      "source_url": "https://www.routledge.com/Re-imagining-Heritage-Interpretation-Enchanting-the-Past-Future/Staiff/p/book/9781315604558",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · publisher_description核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "meaning",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Heritage experience、Learning outcomes、Meaning-making；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "出版社介绍指出本书批评遗产与访客的对话过度聚焦学习结果，重新讨论遗产体验。",
+          "source_url": "https://www.routledge.com/Re-imagining-Heritage-Interpretation-Enchanting-the-Past-Future/Staiff/p/book/9781315604558",
+          "location": "Publisher description; whole book not read"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {},
+      "concept_roles": [
+        "mediation",
+        "outcome"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [
+        "Candidate: affective response",
+        "Candidate: personal meaning-making"
+      ],
+      "chapter_use": [
+        "2.1.1",
+        "2.1.6",
+        "2.1.7",
+        "4"
+      ],
+      "claims": [
+        {
+          "claim_id": "staiff-2014-c1",
+          "claim_paraphrase": "Staiff认为访客与遗产地的对话过度聚焦学习结果，并据此重思阐释。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Russell Staiff",
+          "source_context": "publisher_description",
+          "source_url": "https://www.routledge.com/Re-imagining-Heritage-Interpretation-Enchanting-the-Past-Future/Staiff/p/book/9781315604558",
+          "source_locator": "Publisher description; whole book not read",
+          "concept_roles": [
+            "mediation",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.1.1",
+            "2.1.6",
+            "2.1.7",
+            "4"
+          ],
+          "researcher_implication": "评价应允许感受、联想和自主意义形成；不由单一知识测验定义成功。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "ireland-everyday-2025",
+      "year": 2025,
+      "title": "Engaging the everyday: the concept and practice of ‘everyday heritage’",
+      "title_zh": "走近日常：日常遗产的概念与实践",
+      "type": "Article",
+      "author": [
+        "Tracy Ireland",
+        "Steve Brown",
+        "Kate Bagnall",
+        "Jane Lydon",
+        "Tim Sherratt",
+        "Sharon Veale"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2025",
+      "stream": "B",
+      "map_title": "Everyday Heritage",
+      "map_maker": "Ireland et al.",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Everyday heritage",
+        "Heritage-making"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "把日常遗产讨论为正式与非正式遗产皆可能具有的维度，并提出开放讨论的工作性宣言。",
+      "preview": "Everyday heritage is entangled with official heritage and ordinary life.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "分析场所日常使用与正式价值如何交织，避免将日常遗产直接等同自下而上。",
+      "source_url": "https://www.tandfonline.com/doi/full/10.1080/13527258.2024.2417066",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · relevant_passage核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "community",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Everyday heritage、Heritage-making；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Conservation & values",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "把日常遗产讨论为正式与非正式遗产皆可能具有的维度，并提出开放讨论的工作性宣言。",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/13527258.2024.2417066",
+          "location": "Towards a working ‘manifesto’ for everyday heritage, items 1–4"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "把日常遗产讨论为正式与非正式遗产皆可能具有的维度，并提出开放讨论的工作性宣言。",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/13527258.2024.2417066",
+          "location": "Towards a working ‘manifesto’ for everyday heritage, items 1–4"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "issue_publication (online first: 2024)",
+      "bibliography": {
+        "doi": "10.1080/13527258.2024.2417066",
+        "journal": "International Journal of Heritage Studies",
+        "volume": "31",
+        "issue": "2",
+        "pages": "192–215",
+        "online_publication": "2024-10-19",
+        "issue_year": 2025
+      },
+      "concept_roles": [
+        "object_value",
+        "authority",
+        "context"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.2",
+        "2.1.3"
+      ],
+      "claims": [
+        {
+          "claim_id": "ireland-everyday-2025-c1",
+          "claim_paraphrase": "作者提出日常遗产与官方遗产相互纠缠，既可涉及日常生活痕迹，也可涉及日常实践与遗产形成活动。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Tracy Ireland; Steve Brown; Kate Bagnall; Jane Lydon; Tim Sherratt; Sharon Veale",
+          "source_context": "relevant_passage",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/13527258.2024.2417066",
+          "source_locator": "Towards a working ‘manifesto’ for everyday heritage, items 1–4",
+          "concept_roles": [
+            "object_value",
+            "authority",
+            "context"
+          ],
+          "chapter_use": [
+            "2.1.2",
+            "2.1.3"
+          ],
+          "researcher_implication": "分析场所日常使用与正式价值如何交织，避免将日常遗产直接等同自下而上。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "nikolakopoulou-codesign-2025",
+      "year": 2025,
+      "title": "The ‘making’ of participatory and co-design for digital experiences in cultural heritage: a review",
+      "title_zh": "文化遗产数字体验中参与式与协同设计的制作过程：综述",
+      "type": "Article",
+      "author": [
+        "Vasiliki Nikolakopoulou",
+        "Panayiotis Koutsabasis"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2025",
+      "stream": "B",
+      "map_title": "Participation & Co-design",
+      "map_maker": "Nikolakopoulou & Koutsabasis",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Participatory design",
+        "Co-design"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "综述文化遗产数字体验的参与式与协同设计制作过程。",
+      "preview": "Examines who participates, how, and at which design stages.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "分别编码参与阶段与决策权；访客测试不能自动标为共同设计。",
+      "source_url": "https://www.tandfonline.com/doi/abs/10.1080/15710882.2025.2511791",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · abstract核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "simon-2010",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Participatory design、Co-design；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Participation & plural voices",
+      "topic_memberships": [
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "综述文化遗产数字体验的参与式与协同设计制作过程。",
+          "source_url": "https://www.tandfonline.com/doi/abs/10.1080/15710882.2025.2511791",
+          "location": "Abstract (40 publications, 2014–2024)"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "综述文化遗产数字体验的参与式与协同设计制作过程。",
+          "source_url": "https://www.tandfonline.com/doi/abs/10.1080/15710882.2025.2511791",
+          "location": "Abstract (40 publications, 2014–2024)"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "evidence_synthesis",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.1080/15710882.2025.2511791",
+        "journal": "CoDesign",
+        "volume": "21",
+        "issue": "4",
+        "pages": "876–902",
+        "online_publication": "2025-06-09"
+      },
+      "concept_roles": [
+        "authority",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [
+        "research",
+        "design"
+      ],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.3",
+        "3",
+        "4"
+      ],
+      "claims": [
+        {
+          "claim_id": "nikolakopoulou-codesign-2025-c1",
+          "claim_paraphrase": "研究比较参与者构成、方法、工具与数字产出，并指出持续参与概念塑造的协同设计在其样本中仍不常见。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Vasiliki Nikolakopoulou; Panayiotis Koutsabasis",
+          "source_context": "abstract",
+          "source_url": "https://www.tandfonline.com/doi/abs/10.1080/15710882.2025.2511791",
+          "source_locator": "Abstract (40 publications, 2014–2024)",
+          "concept_roles": [
+            "authority",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.3",
+            "3",
+            "4"
+          ],
+          "researcher_implication": "分别编码参与阶段与决策权；访客测试不能自动标为共同设计。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "wang-authenticity-1999",
+      "year": 1999,
+      "title": "Rethinking authenticity in tourism experience",
+      "title_zh": "重新思考旅游体验中的真实性",
+      "type": "Article",
+      "author": [
+        "Ning Wang"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "1999",
+      "stream": "B",
+      "map_title": "Tourism Authenticity",
+      "map_maker": "Wang",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Authenticity",
+        "Existential authenticity"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "区分对象相关真实性与存在性真实性，为旅游体验的概念辨析提供理论。",
+      "preview": "Distinguishes object-related authenticity from existential authenticity.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "将内容可信性与访客的真实感分开；感到真实不能证明重建史实正确。",
+      "source_url": "https://doi.org/10.1016/S0160-7383(98)00103-0",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · abstract核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "authenticity",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Authenticity、Existential authenticity；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Heritage visitation & tourism",
+      "topic_memberships": [
+        {
+          "topic": "Heritage visitation & tourism",
+          "status": "source",
+          "evidence": "区分对象相关真实性与存在性真实性，为旅游体验的概念辨析提供理论。",
+          "source_url": "https://doi.org/10.1016/S0160-7383(98)00103-0",
+          "location": "Abstract; conceptual distinctions; full text coding pending"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "区分对象相关真实性与存在性真实性，为旅游体验的概念辨析提供理论。",
+          "source_url": "https://doi.org/10.1016/S0160-7383(98)00103-0",
+          "location": "Abstract; conceptual distinctions; full text coding pending"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.1016/S0160-7383(98)00103-0",
+        "journal": "Annals of Tourism Research",
+        "volume": "26",
+        "issue": "2",
+        "pages": "349–370"
+      },
+      "concept_roles": [
+        "evidence",
+        "outcome"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [
+        "Objective authenticity",
+        "Constructive authenticity",
+        "Existential authenticity"
+      ],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [
+        "Candidate: perceived authenticity",
+        "Candidate: existential authenticity"
+      ],
+      "chapter_use": [
+        "2.1.4",
+        "2.1.6",
+        "4"
+      ],
+      "claims": [
+        {
+          "claim_id": "wang-authenticity-1999-c1",
+          "claim_paraphrase": "存在性真实性被提出为理解旅游体验的另一种视角，不能与被体验对象的真实直接混同。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Ning Wang",
+          "source_context": "abstract",
+          "source_url": "https://doi.org/10.1016/S0160-7383(98)00103-0",
+          "source_locator": "Abstract; conceptual distinctions; full text coding pending",
+          "concept_roles": [
+            "evidence",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.1.4",
+            "2.1.6",
+            "4"
+          ],
+          "researcher_implication": "将内容可信性与访客的真实感分开；感到真实不能证明重建史实正确。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "vichnevetskaia-xr-authenticity-2025",
+      "year": 2025,
+      "title": "Enhancing Authenticity in XR Heritage: Practitioner Insights and Preliminary Recommendations",
+      "title_zh": "提升XR遗产体验的真实性：实践者见解与初步建议",
+      "type": "Conference paper",
+      "author": [
+        "Anna Vichnevetskaia",
+        "Yi-Wen Wang",
+        "Nicholas Webb",
+        "Yue Li"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2025",
+      "stream": "B",
+      "map_title": "Authenticity in XR",
+      "map_maker": "Vichnevetskaia et al.",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Authenticity",
+        "XR",
+        "Practitioner interviews"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "基于实践者访谈提出真实性设计的初步建议，涉及史料研究、多元叙事、个人意义及伦理等。",
+      "preview": "Practitioner interviews propose preliminary authenticity guidance for XR.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "可据此建立设计检查项；这些初步建议尚不等于已验证的访客效果或成熟量表。",
+      "source_url": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/isprs-archives-XLVIII-M-9-2025-1555-2025.pdf",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · abstract核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [
+        {
+          "target": "authenticity",
+          "type": "related_to",
+          "evidence": "研究者比较：共同涉及 Authenticity、XR、Practitioner interviews；不主张已证实的直接影响。",
+          "claim_basis": "researcher_comparison",
+          "validation_status": "comparison_proposed"
+        }
+      ],
+      "excerpts": [],
+      "timeline_topic": "Digital methods",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "基于实践者访谈提出真实性设计的初步建议，涉及史料研究、多元叙事、个人意义及伦理等。",
+          "source_url": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/",
+          "location": "Abstract; preliminary recommendations"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "基于实践者访谈提出真实性设计的初步建议，涉及史料研究、多元叙事、个人意义及伦理等。",
+          "source_url": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/",
+          "location": "Abstract; preliminary recommendations"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "基于实践者访谈提出真实性设计的初步建议，涉及史料研究、多元叙事、个人意义及伦理等。",
+          "source_url": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/",
+          "location": "Abstract; preliminary recommendations"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "empirical",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.5194/isprs-archives-XLVIII-M-9-2025-1555-2025",
+        "container": "ISPRS Archives",
+        "volume": "XLVIII-M-9-2025",
+        "pages": "1555–1562",
+        "publication_date": "2025-10-04"
+      },
+      "concept_roles": [
+        "evidence",
+        "authority",
+        "mediation",
+        "outcome"
+      ],
+      "interpretive_media": [
+        "XR"
+      ],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [
+        "Objective authenticity",
+        "Constructive authenticity",
+        "Subjective authenticity (authors’ term)"
+      ],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.4",
+        "2.2",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "vichnevetskaia-xr-authenticity-2025-c1",
+          "claim_paraphrase": "作者将严谨研究、多元社群叙事与个性化意义形成分别联系到其客观、建构和主观真实性讨论。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Anna Vichnevetskaia; Yi-Wen Wang; Nicholas Webb; Yue Li",
+          "source_context": "abstract",
+          "source_url": "https://isprs-archives.copernicus.org/articles/XLVIII-M-9-2025/1555/2025/",
+          "source_locator": "Abstract; preliminary recommendations",
+          "concept_roles": [
+            "evidence",
+            "authority",
+            "mediation",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.1.4",
+            "2.2",
+            "5"
+          ],
+          "researcher_implication": "可据此建立设计检查项；这些初步建议尚不等于已验证的访客效果或成熟量表。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "china-principles-2015",
+      "year": 2015,
+      "title": "Principles for the Conservation of Heritage Sites in China (revised 2015)",
+      "title_zh": "中国文物古迹保护准则（2015年修订）",
+      "type": "Document",
+      "author": [],
+      "organization": "ICOMOS China",
+      "node_type": "document",
+      "year_label": "2015",
+      "stream": "B",
+      "map_title": "China Principles",
+      "map_maker": "ICOMOS China",
+      "display_category": "Charter / Policy",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "China Principles",
+        "Conservation"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "中国文物古迹保护准则的修订版本；为中国场所的保护与阐释讨论提供本土规范背景。",
+      "preview": "A China-specific conservation reference; revised in 2015.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "与奈良、巴拉及阐释宪章比较适用背景；具体展示条款须继续逐条精读，不把国际文本直接替代本土规范。",
+      "source_url": "https://www.getty.edu/projects/china-principles/",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "https://www.getty.edu/conservation/publications_resources/pdf_publications/pdf/china_prin_heritage_sites_2015.pdf",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · official_description核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Conservation & values",
+      "topic_memberships": [
+        {
+          "topic": "Conservation & values",
+          "status": "source",
+          "evidence": "中国文物古迹保护准则的修订版本；为中国场所的保护与阐释讨论提供本土规范背景。",
+          "source_url": "https://www.getty.edu/projects/china-principles/",
+          "location": "Getty project page, revision history and publications"
+        }
+      ],
+      "document_nature": [
+        "Principles"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "normative",
+      "publication_format": "PDF / linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "revision (first version: 2000)",
+      "bibliography": {},
+      "concept_roles": [
+        "object_value",
+        "evidence",
+        "context"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.1",
+        "2.1.4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "china-principles-2015-c1",
+          "claim_paraphrase": "Getty项目说明记载准则于2000年首次发布，并于2015年修订。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "ICOMOS China",
+          "source_context": "official_description",
+          "source_url": "https://www.getty.edu/projects/china-principles/",
+          "source_locator": "Getty project page, revision history and publications",
+          "concept_roles": [
+            "object_value",
+            "evidence",
+            "context"
+          ],
+          "chapter_use": [
+            "2.1.1",
+            "2.1.4",
+            "5"
+          ],
+          "researcher_implication": "与奈良、巴拉及阐释宪章比较适用背景；具体展示条款须继续逐条精读，不把国际文本直接替代本土规范。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "falk-dierking-2018",
+      "year": 2018,
+      "title": "Learning from Museums (second edition)",
+      "title_zh": "从博物馆中学习（第二版）",
+      "type": "Book",
+      "author": [
+        "John H. Falk",
+        "Lynn D. Dierking"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2018",
+      "stream": "B",
+      "map_title": "Learning from Museums",
+      "map_maker": "Falk & Dierking",
+      "display_category": "Theory / Book",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Contextual Model of Learning"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "第二版从个人、社会文化与物理情境讨论博物馆学习。",
+      "preview": "Museum learning involves personal, sociocultural and physical contexts.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "将先备经验、同行者和场所条件纳入设计及评价；这些情境不等同于仅仅身处现场。",
+      "source_url": "https://www.bloomsbury.com/uk/learning-from-museums-9781442275997/",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · publisher_description核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "第二版从个人、社会文化与物理情境讨论博物馆学习。",
+          "source_url": "https://www.bloomsbury.com/uk/learning-from-museums-9781442275997/",
+          "location": "Publisher description, second edition"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "theoretical",
+      "publication_format": "Book",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "edition_publication (original: 2000)",
+      "bibliography": {
+        "edition": "2",
+        "publication_date": "2018-10-16",
+        "original_publication": 2000,
+        "isbn": "9781442275997"
+      },
+      "concept_roles": [
+        "context",
+        "outcome"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [
+        "personal",
+        "sociocultural",
+        "physical"
+      ],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.5",
+        "2.1.6",
+        "4"
+      ],
+      "claims": [
+        {
+          "claim_id": "falk-dierking-2018-c1",
+          "claim_paraphrase": "出版社介绍将学习解释为个人、社会文化与物理情境共同作用的过程。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "John H. Falk; Lynn D. Dierking",
+          "source_context": "publisher_description",
+          "source_url": "https://www.bloomsbury.com/uk/learning-from-museums-9781442275997/",
+          "source_locator": "Publisher description, second edition",
+          "concept_roles": [
+            "context",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.1.5",
+            "2.1.6",
+            "4"
+          ],
+          "researcher_implication": "将先备经验、同行者和场所条件纳入设计及评价；这些情境不等同于仅仅身处现场。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "partarakis-xr-review-2026",
+      "year": 2026,
+      "title": "A Systematic Review of Extended Reality (XR) Applications in Cultural Heritage",
+      "title_zh": "文化遗产XR应用的系统综述",
+      "type": "Article",
+      "author": [
+        "Nikolaos Partarakis",
+        "Menelaos N. Katsantonis",
+        "Emmanouil Zidianakis"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2026",
+      "stream": "B",
+      "map_title": "XR Design Coherence Review",
+      "map_maker": "Partarakis et al.",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "XR",
+        "Design coherence",
+        "Evaluation"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "综述遗产XR技术、交互、用户体验与评价，并提出设计一致性框架。",
+      "preview": "Reviews links among XR technology, interaction, experience and evaluation.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "把拟议框架与DCF-XR比较；不能把技术与内容需要一致直接宣称为独有创新。",
+      "source_url": "https://www.mdpi.com/2571-9408/9/6/215",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · relevant_passage核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Digital methods",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "综述遗产XR技术、交互、用户体验与评价，并提出设计一致性框架。",
+          "source_url": "https://www.mdpi.com/2571-9408/9/6/215",
+          "location": "Abstract and Design Coherence Framework for XR section"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "综述遗产XR技术、交互、用户体验与评价，并提出设计一致性框架。",
+          "source_url": "https://www.mdpi.com/2571-9408/9/6/215",
+          "location": "Abstract and Design Coherence Framework for XR section"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "evidence_synthesis",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.3390/heritage9060215",
+        "journal": "Heritage",
+        "volume": "9",
+        "issue": "6",
+        "article_number": "215",
+        "publication_date": "2026-05-25"
+      },
+      "concept_roles": [
+        "mediation",
+        "outcome"
+      ],
+      "interpretive_media": [
+        "XR"
+      ],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.2",
+        "3",
+        "4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "partarakis-xr-review-2026-c1",
+          "claim_paraphrase": "文章提出DCF-XR框架，讨论技术、交互、体验和评价之间的设计一致性。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Nikolaos Partarakis; Menelaos N. Katsantonis; Emmanouil Zidianakis",
+          "source_context": "relevant_passage",
+          "source_url": "https://www.mdpi.com/2571-9408/9/6/215",
+          "source_locator": "Abstract and Design Coherence Framework for XR section",
+          "concept_roles": [
+            "mediation",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.2",
+            "3",
+            "4",
+            "5"
+          ],
+          "researcher_implication": "把拟议框架与DCF-XR比较；不能把技术与内容需要一致直接宣称为独有创新。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "souza-gamified-xr-review-2026",
+      "year": 2026,
+      "title": "Gamified XR simulations for architectural cultural heritage education: a systematic literature review",
+      "title_zh": "建筑文化遗产教育中的游戏化XR模拟：系统文献综述",
+      "type": "Article",
+      "author": [
+        "Leonardo Prazeres Veloso de Souza",
+        "Ana Regina Mizrahy Cuperschmid"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2026",
+      "stream": "B",
+      "map_title": "Gamified XR Heritage Review",
+      "map_maker": "de Souza & Cuperschmid",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Gamification",
+        "XR",
+        "Architectural heritage education"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "系统综述建筑文化遗产教育中的游戏化XR模拟，讨论机制、技术与教育应用。",
+      "preview": "A focused review of gamified XR for architectural heritage education.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "作为第三章相邻综述比较对象；另核查自己的现场样本后再判断积分徽章是否占主导。",
+      "source_url": "https://www.tandfonline.com/doi/full/10.1080/2331186X.2026.2687224",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · abstract核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Digital methods",
+      "topic_memberships": [
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "系统综述建筑文化遗产教育中的游戏化XR模拟，讨论机制、技术与教育应用。",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/2331186X.2026.2687224",
+          "location": "Title and publisher abstract; detailed extraction pending"
+        },
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "系统综述建筑文化遗产教育中的游戏化XR模拟，讨论机制、技术与教育应用。",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/2331186X.2026.2687224",
+          "location": "Title and publisher abstract; detailed extraction pending"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "evidence_synthesis",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.1080/2331186X.2026.2687224",
+        "journal": "Cogent Education",
+        "volume": "13",
+        "issue": "1",
+        "article_number": "2687224",
+        "online_publication": "2026-06-19"
+      },
+      "concept_roles": [
+        "mediation",
+        "outcome"
+      ],
+      "interpretive_media": [
+        "XR",
+        "Game"
+      ],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.3",
+        "3"
+      ],
+      "claims": [
+        {
+          "claim_id": "souza-gamified-xr-review-2026-c1",
+          "claim_paraphrase": "研究对象是建筑文化遗产教育中的游戏化XR模拟；其样本不自动等同于现场MR游戏。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Leonardo Prazeres Veloso de Souza; Ana Regina Mizrahy Cuperschmid",
+          "source_context": "abstract",
+          "source_url": "https://www.tandfonline.com/doi/full/10.1080/2331186X.2026.2687224",
+          "source_locator": "Title and publisher abstract; detailed extraction pending",
+          "concept_roles": [
+            "mediation",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.3",
+            "3"
+          ],
+          "researcher_implication": "作为第三章相邻综述比较对象；另核查自己的现场样本后再判断积分徽章是否占主导。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "prisma-scr-2018",
+      "year": 2018,
+      "title": "PRISMA Extension for Scoping Reviews (PRISMA-ScR): Checklist and Explanation",
+      "title_zh": "范围综述报告规范PRISMA-ScR：清单与说明",
+      "type": "Article",
+      "author": [
+        "Andrea C. Tricco et al."
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2018",
+      "stream": "B",
+      "map_title": "PRISMA-ScR",
+      "map_maker": "Tricco et al.",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Scoping review",
+        "Reporting guideline"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "范围综述的报告清单与说明；作为研究方法背景收录。",
+      "preview": "Methodological reference for transparently reporting a scoping review.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "只有选择范围综述方法后才按此报告；清单不能替代检索策略、质量判断或批判综合。",
+      "source_url": "https://www.prisma-statement.org/scoping",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · official_description核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "研究方法背景条目：帮助报告综述，不构成遗产阐释理论或其历史起点。",
+          "source_url": "https://www.prisma-statement.org/scoping",
+          "location": "Official PRISMA scoping page"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "methodological",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.7326/M18-0850",
+        "journal": "Annals of Internal Medicine",
+        "volume": "169",
+        "issue": "7",
+        "pages": "467–473",
+        "author_list_status": "abbreviated; complete list at source"
+      },
+      "concept_roles": [
+        "review_method"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.1",
+        "3"
+      ],
+      "claims": [
+        {
+          "claim_id": "prisma-scr-2018-c1",
+          "claim_paraphrase": "PRISMA-ScR提供范围综述的报告要求。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Andrea C. Tricco et al.",
+          "source_context": "official_description",
+          "source_url": "https://www.prisma-statement.org/scoping",
+          "source_locator": "Official PRISMA scoping page",
+          "concept_roles": [
+            "review_method"
+          ],
+          "chapter_use": [
+            "2.1.1",
+            "3"
+          ],
+          "researcher_implication": "只有选择范围综述方法后才按此报告；清单不能替代检索策略、质量判断或批判综合。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "whipic-progress-2026",
+      "year": 2026,
+      "title": "Progress report on World Heritage-related Category 2 centres: WHIPIC section (WHC/26/48.COM/6B)",
+      "title_zh": "世界遗产二类中心进展报告：WHIPIC部分（2026）",
+      "type": "Document",
+      "author": [],
+      "organization": "UNESCO World Heritage Centre / WHIPIC",
+      "node_type": "document",
+      "year_label": "2026",
+      "stream": "B",
+      "map_title": "WHIPIC Progress Report",
+      "map_maker": "WHC / WHIPIC",
+      "display_category": "Charter / Policy",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [],
+      "authority_structure": [],
+      "public_role": [],
+      "narrative_structure": [],
+      "themes": [],
+      "concepts": [
+        "Interpretation principles",
+        "Institutional work in progress"
+      ],
+      "media": [],
+      "public_actions": [],
+      "summary": "WHIPIC进展报告记载五项阐释与展示原则的定稿及案例分析工作。",
+      "preview": "Reports WHIPIC work on interpretation principles and case analysis.",
+      "paradigm_shift": "",
+      "significance": "",
+      "phd_relevance": "作为当前制度讨论的背景，不称其为UNESCO已通过、替代2008宪章的新宪章。",
+      "source_url": "https://whc.unesco.org/document/226063",
+      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
+      "pdf": "https://whc.unesco.org/document/226063",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
+      "coding_status": "2026-10-08 · relevant_passage核查；全文精读待完成",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "WHIPIC进展报告记载五项阐释与展示原则的定稿及案例分析工作。",
+          "source_url": "https://whc.unesco.org/document/226063",
+          "location": "WHIPIC section, printed pp. 35–38; principles: p. 36 (PDF p. 37)"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "WHIPIC进展报告记载五项阐释与展示原则的定稿及案例分析工作。",
+          "source_url": "https://whc.unesco.org/document/226063",
+          "location": "WHIPIC section, printed pp. 35–38; principles: p. 36 (PDF p. 37)"
+        }
+      ],
+      "document_nature": [
+        "Document"
+      ],
+      "interpretive_setting": [
+        "Unspecified / pending review"
+      ],
+      "record_kind": "institutional_report",
+      "publication_format": "PDF / linked document",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "document_number": "WHC/26/48.COM/6B",
+        "publication_date": "2026-06-05",
+        "reporting_period": "July 2025–May 2026"
+      },
+      "concept_roles": [
+        "authority",
+        "mediation"
+      ],
+      "interpretive_media": [],
+      "participation_stage": [],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [],
+      "outcome_constructs": [],
+      "chapter_use": [
+        "2.1.7"
+      ],
+      "claims": [
+        {
+          "claim_id": "whipic-progress-2026-c1",
+          "claim_paraphrase": "该中心报告完成五项原则定稿并开展案例分析；此处是工作进展报告。",
+          "claim_basis": "explicit_source",
+          "claim_subject": "UNESCO World Heritage Centre / WHIPIC",
+          "source_context": "relevant_passage",
+          "source_url": "https://whc.unesco.org/document/226063",
+          "source_locator": "WHIPIC section, printed pp. 35–38; principles: p. 36 (PDF p. 37)",
+          "concept_roles": [
+            "authority",
+            "mediation"
+          ],
+          "chapter_use": [
+            "2.1.7"
+          ],
+          "researcher_implication": "作为当前制度讨论的背景，不称其为UNESCO已通过、替代2008宪章的新宪章。",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": ""
         }
       ]
     }

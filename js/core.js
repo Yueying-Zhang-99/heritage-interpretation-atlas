@@ -2,8 +2,8 @@
 window.Atlas = (() => {
   const streams={A:{name:'Heritage Paradigm',zh:'遗产对象观与保护范式',color:'#a1813e'},B:{name:'Interpretation Paradigm',zh:'遗产阐释理论',color:'#6f7950'},C:{name:'Participatory / Plural',zh:'参与式与多元叙事',color:'#a55f48'}};
   const flowTopics=['Conservation & values','Interpretation & experience','Participation & plural voices','Heritage visitation & tourism','Digital methods'];
-  const fields={topic_memberships:'Flow themes',interpretive_setting:'Interpretive setting',document_nature:'Document nature',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception',media:'Media / Technology'};
-  const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['media','Technology']];
+  const fields={record_kind:'Material kind',concept_roles:'Concept role',reading_status:'Reading status',chapter_use:'Chapter use',interpretive_media:'Interpretive media',interpretive_operations:'Public activities',topic_memberships:'Flow themes',interpretive_setting:'Interpretive setting',document_nature:'Document nature',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception'};
+  const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['interpretive_media','Interpretive media']];
   const palette=['#a1813e','#6f7950','#a55f48','#586f70','#8b6a72','#6e6555','#8d8457','#59724c','#af725b','#616774','#967845'];
   const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward'];
   const state={view:'timeline',timelineMode:'flow',lens:'stream',cluster:'topic_memberships',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1,dotScale:1};
@@ -24,6 +24,19 @@ window.Atlas = (() => {
       if(ids.has(d.id))throw new Error(`重复 id：${d.id}`);ids.add(d.id);
       if(d.node_type!=null&&!['document','person','concept'].includes(d.node_type))throw new Error(`${d.id} 的 node_type 必须是 document、person 或 concept。`);
       if(data.documents.includes(d)&&(d.year==null||d.year===''||!Number.isInteger(Number(d.year))||Number(d.year)<0||Number(d.year)>9999))throw new Error(`${d.id} 的 year 必须为有效整数。`);
+      if(d.reading_status!=null&&!['not_assessed','metadata_checked','relevant_passages_checked','full_text_read','coded'].includes(d.reading_status))throw new Error(`${d.id} 的 reading_status 无效。`);
+      for(const key of ['concept_roles','interpretive_media','interpretive_operations','chapter_use','outcome_constructs','participation_stage','authenticity_focus','context_dimensions'])if(d[key]!=null&&(!Array.isArray(d[key])||d[key].some(v=>typeof v!=='string'||!v.trim())))throw new Error(`${d.id} 的 ${key} 必须为文字标签数组。`);
+      if(d.claims!=null){
+        if(!Array.isArray(d.claims))throw new Error(`${d.id} 的 claims 必须是数组。`);
+        const claimIds=new Set();
+        for(const c of d.claims){
+          if(!c||typeof c.claim_id!=='string'||!c.claim_id.trim()||claimIds.has(c.claim_id)||typeof c.claim_paraphrase!=='string'||!c.claim_paraphrase.trim())throw new Error(`${d.id} 的主张需有效、唯一 claim_id 和 claim_paraphrase。`);
+          claimIds.add(c.claim_id);
+          if(!['explicit_source','researcher_inference','practice_report','empirical_result'].includes(c.claim_basis))throw new Error(`${d.id} 的 claim_basis 无效。`);
+          if(c.claim_basis!=='researcher_inference'&&(!/^https?:\/\//i.test(c.source_url||'')||typeof c.source_locator!=='string'||!c.source_locator.trim()))throw new Error(`${d.id} 的来源主张需要网址和位置。`);
+          for(const key of ['concept_roles','chapter_use'])if(c[key]!=null&&(!Array.isArray(c[key])||c[key].some(v=>typeof v!=='string')))throw new Error(`${d.id} 的主张 ${key} 必须是文字数组。`);
+        }
+      }
       if(d.relations!=null&&!Array.isArray(d.relations))throw new Error(`${d.id} 的 relations 必须为数组。`);
       if(d.annotations!=null&&!Array.isArray(d.annotations))throw new Error(`${d.id} 的 annotations 必须为数组。`);
       if(d.excerpts!=null&&(!Array.isArray(d.excerpts)||d.excerpts.some(e=>!e||typeof e.text!=='string'||typeof e.source!=='string')))throw new Error(`${d.id} 的 excerpts 必须为包含 text 和 source 的数组。`);
@@ -53,7 +66,7 @@ window.Atlas = (() => {
   });
   A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.values(d,key)).map(String))].sort();
   const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78','Heritage Practice':'#17806f'};
-  A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Heritage Practice Case')return 'Heritage Practice';if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
+  A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Heritage Practice Case')return 'Heritage Practice';if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph','Book chapter'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
   A.typeColors=typeColors;
   A.color=d=>typeColors[A.category(d)]||'#777f78';
   A.safeURL=(value,pdf=false)=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);if(/^https?:$/.test(u.protocol))return u.href;if(pdf&&u.protocol==='file:'&&location.protocol==='file:'&&!/^[a-z][a-z\d+.-]*:/i.test(value)&&!value.startsWith('/')&&!value.includes('..'))return u.href;}catch{}return null;};
