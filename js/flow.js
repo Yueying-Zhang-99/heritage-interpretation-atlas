@@ -291,7 +291,7 @@ Atlas.flow=function(rows){
     }
     contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(A.flowShellField(values,members,nx,ny,cell),nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
   });
-  A.drawTimelineCitations?.({svg:svg.node(),rows,nodes,width,height,scale:displayScale,obstacles:nodes.map(n=>({x:n.labelX+n.box.x-12,y:n.y+n.box.y-12,width:n.box.width+24,height:n.box.height+24})),before:labelsLayer.node(),boundaries:contours.map(p=>({topic:p.datum().i,path:p.attr('d')}))});
+  A.drawTimelineCitations?.({svg:svg.node(),rows,nodes,width,height,scale:displayScale,obstacles:nodes.map(n=>({x:n.labelX+n.box.x-12,y:n.y+n.box.y-12,width:n.box.width+24,height:n.box.height+24})),before:labelsLayer.node()});
   const byId=new Map(nodes.map(n=>[n.d.id,n]));
   let selected=null;
   const highlight=(active=null,hover=null)=>{
