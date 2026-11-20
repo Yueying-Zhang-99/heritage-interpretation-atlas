@@ -1581,36 +1581,36 @@ window.ATLAS_SNAPSHOT = {
           "topic": "Conservation & values",
           "status": "source",
           "evidence": "原则4、5把真实性、可持续保护及阐释基础设施对场所的影响纳入公众阐释。",
-          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-          "location": "Principles 4–5"
+          "location": "Principles 4–5",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
         },
         {
           "topic": "Interpretation & experience",
           "status": "source",
           "evidence": "目标与原则1–3界定遗产场所的理解、信息来源和语境，是公众阐释与展示框架。",
-          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-          "location": "Objectives; Principles 1–3"
+          "location": "Objectives; Principles 1–3",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
         },
         {
           "topic": "Participation & plural voices",
           "status": "source",
           "evidence": "原则6要求专业人员、当地及相关社群与其他利益相关方进行实质合作，并开放公众意见。",
-          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-          "location": "Principle 6.1–6.3"
-        },
-        {
-          "topic": "Digital methods",
-          "status": "source",
-          "evidence": "定义包含电子出版、多媒体和网站；原则6.4讨论数字媒体的材料所有权与文化权利。此处是数字阐释伦理背景。",
-          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-          "location": "Definitions; Principle 6.4"
+          "location": "Principle 6.1–6.3",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
         },
         {
           "topic": "Heritage visitation & tourism",
           "status": "source",
           "evidence": "定义部分以遗产场所及附近的展示为主要关注；原则1讨论公众的现场接近、个人体验与探索，原则5要求评估访客对场所的影响。",
-          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-          "location": "Definitions and footnote; Principles 1, 5"
+          "location": "Definitions and footnote; Principles 1, 5",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "定义包含电子出版、多媒体和网站；原则6.4讨论数字媒体的材料所有权与文化权利。此处是数字阐释伦理背景。",
+          "location": "Definitions; Principle 6.4",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
         }
       ],
       "document_nature": [
@@ -1622,8 +1622,8 @@ window.ATLAS_SNAPSHOT = {
       "interpretive_setting_evidence": {
         "status": "source",
         "evidence": "定义明确涵盖现场及相关场外设施；原则1.6要求现场访问受限时提供场外阐释。该宪章主要关注现场及其附近，并不把所有公众等同于游客。",
-        "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf",
-        "location": "Definitions and footnote; Principle 1.6"
+        "location": "Definitions and footnote; Principle 1.6",
+        "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf"
       },
       "record_kind": "normative",
       "publication_format": "Linked document",
@@ -1684,7 +1684,12 @@ window.ATLAS_SNAPSHOT = {
           "Read"
         ],
         "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
-      }
+      },
+      "recognition_basis": "",
+      "practice_date": "",
+      "notes_pdf": "documents/notes/ename-a80588e2-7c52-4d66-8dd4-789538616d92.pdf",
+      "notes_pdf_name": "interpretation_e_1.pdf",
+      "placeholder": false
     },
     {
       "id": "hul",

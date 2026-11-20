@@ -19,4 +19,7 @@ for(const [a,b]of [[{x:500,y:180,r:9},{x:100,y:50,r:7}],[{x:200,y:50,r:7},{x:200
 }
 const curve=A.citationCurve({x:550,y:210,r:8},{x:100,y:60,r:8},-50),box={width:180,height:60},bounds={width:650,height:350},obstacles=[{x:200,y:0,width:270,height:240}];
 const label=A.citationLabelPosition(curve,box,bounds,obstacles);assert.ok(label.x>=0&&label.y>=0&&label.x+label.width<=bounds.width&&label.y+label.height<=bounds.height);assert.equal(A.citationOverlap(label,obstacles[0]),0,'Available free space is used instead of covering a document');
-console.log('PASS: citation provenance, direction, filters, pending evidence exclusion, schema checks, trimmed arrow endpoints and bounded label placement.');
+const ring=Array.from({length:72},(_,i)=>({x:150+100*Math.cos(i*Math.PI/36),y:150+100*Math.sin(i*Math.PI/36)}));
+const boundaryRoute=A.citationContourRoute({x:280,y:150,r:5},{x:150,y:280,r:5},[ring]);
+assert.equal(boundaryRoute.routing,'bubble-contour');assert.ok(!/NaN|Infinity/.test(boundaryRoute.path));assert.ok(boundaryRoute.path.includes('Q'),'Contour route is smoothly rounded');assert.equal(boundaryRoute.start.x,271);assert.equal(boundaryRoute.end.y,269);assert.ok(Math.hypot(boundaryRoute.point(.5).x-150,boundaryRoute.point(.5).y-150)>90,'Route follows the perimeter rather than a chord across the bubble');assert.equal(A.citationContourRoute({x:800,y:800},{x:900,y:900},[ring]),null,'Distant bubbles do not create false boundary jumps');assert.equal(A.citationContourRoute({x:0,y:0},{x:100,y:100},[]),null);
+console.log('PASS: citation provenance, direction, filters, contour-following routes, fallback, trimmed arrow endpoints and bounded labels.');
