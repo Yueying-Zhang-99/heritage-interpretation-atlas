@@ -242,9 +242,9 @@ window.ATLAS_SNAPSHOT = {
       "paradigm_shift": "保护原则开始以国际文件形式协调。",
       "significance": "作为阐释设计的保护思想背景，不应等同于阐释理论起点。",
       "phd_relevance": "区分历史证据保护与公共意义传播。",
-      "source_url": "https://www.icomos.org/en/resources/charters-and-texts",
+      "source_url": "https://civvih.icomos.org/wp-content/uploads/2022/03/The-Athens-Charter_1931.pdf",
       "my_notes": "",
-      "pdf": "",
+      "pdf": "https://civvih.icomos.org/wp-content/uploads/2022/03/The-Athens-Charter_1931.pdf",
       "annotations": [],
       "importance": 1,
       "citation_count": null,
@@ -262,7 +262,7 @@ window.ATLAS_SNAPSHOT = {
           "topic": "Conservation & values",
           "status": "provisional",
           "evidence": "保护与修复的早期政策背景；本轮未据原文扩展其他主题。",
-          "source_url": "https://www.icomos.org/en/resources/charters-and-texts",
+          "source_url": "https://civvih.icomos.org/wp-content/uploads/2022/03/The-Athens-Charter_1931.pdf",
           "location": ""
         }
       ],
@@ -2121,91 +2121,6 @@ window.ATLAS_SNAPSHOT = {
     {
       "node_type": "document",
       "author": [
-        "Paul Milgram",
-        "Fumio Kishino"
-      ],
-      "organization": "",
-      "title_zh": "混合现实视觉显示分类法",
-      "stream": null,
-      "paradigm": [],
-      "heritage_conception": [],
-      "interpretation_model": [],
-      "authority_structure": [],
-      "public_role": [],
-      "narrative_structure": [],
-      "themes": [],
-      "concepts": [],
-      "media": [],
-      "public_actions": [],
-      "paradigm_shift": "",
-      "significance": "",
-      "phd_relevance": "",
-      "my_notes": "",
-      "pdf": "",
-      "annotations": [],
-      "relations": [],
-      "importance": null,
-      "importance_note": "Not assessed. Read the source before assigning a contribution code.",
-      "placeholder": true,
-      "coding_status": "Bibliographic placeholder · analytical coding pending",
-      "id": "milgram-kishino-1994",
-      "year": 1994,
-      "title": "A Taxonomy of Mixed Reality Visual Displays",
-      "type": "Article",
-      "preview": "Defines a reality–virtuality continuum for mixed-reality displays.",
-      "summary": "待精读：混合现实术语与真实—虚拟连续谱的基础文献。",
-      "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
-      "excerpts": [
-        {
-          "text": "Six classes of hybrid MR display environments are identified.",
-          "source": "Milgram & Kishino, 1994",
-          "location": "Abstract"
-        }
-      ],
-      "timeline_topic": "Digital methods",
-      "map_title": "Mixed Reality Displays",
-      "map_maker": "Milgram & Kishino",
-      "topic_memberships": [
-        {
-          "topic": "Digital methods",
-          "status": "provisional",
-          "evidence": "混合现实显示分类的技术参照；不因可用于遗产就自动编码为遗产阐释理论。",
-          "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
-          "location": "Publisher abstract; full-text reading pending"
-        }
-      ],
-      "interpretive_setting": [
-        "Unspecified / pending review"
-      ],
-      "interpretive_setting_evidence": {
-        "status": "provisional",
-        "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
-        "source_url": "https://globals.ieice.org/en_transactions/information/10.1587/e77-d_12_1321/_p",
-        "location": ""
-      },
-      "record_kind": "research_pending_classification",
-      "publication_format": "Linked document",
-      "reading_status": "not_assessed",
-      "date_basis": "legacy_date_pending_verification",
-      "concept_roles": [],
-      "interpretive_media": [],
-      "participation_stage": [],
-      "decision_rights": [],
-      "authenticity_focus": [],
-      "context_dimensions": [],
-      "interpretive_operations": [],
-      "outcome_constructs": [],
-      "chapter_use": [],
-      "claims": [],
-      "legacy_coding": {
-        "media": [],
-        "public_actions": [],
-        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
-      }
-    },
-    {
-      "node_type": "document",
-      "author": [
         "Ronald T. Azuma"
       ],
       "organization": "",
@@ -2614,87 +2529,6 @@ window.ATLAS_SNAPSHOT = {
           "evaluation_proposal": "记录哪些公众意见改变了主题、选材或发布决定。"
         }
       ],
-      "legacy_coding": {
-        "media": [],
-        "public_actions": [],
-        "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
-      }
-    },
-    {
-      "node_type": "document",
-      "author": [
-        "Sebastian Deterding",
-        "Dan Dixon",
-        "Rilla Khaled",
-        "Lennart Nacke"
-      ],
-      "organization": "",
-      "title_zh": "从游戏设计元素到游戏性：定义游戏化",
-      "stream": null,
-      "paradigm": [],
-      "heritage_conception": [],
-      "interpretation_model": [],
-      "authority_structure": [],
-      "public_role": [],
-      "narrative_structure": [],
-      "themes": [],
-      "concepts": [],
-      "media": [],
-      "public_actions": [],
-      "paradigm_shift": "",
-      "significance": "",
-      "phd_relevance": "",
-      "my_notes": "",
-      "pdf": "",
-      "annotations": [],
-      "relations": [],
-      "importance": null,
-      "importance_note": "Not assessed. Read the source before assigning a contribution code.",
-      "placeholder": true,
-      "coding_status": "Bibliographic placeholder · analytical coding pending",
-      "id": "deterding-2011",
-      "year": 2011,
-      "title": "From Game Design Elements to Gamefulness: Defining Gamification",
-      "type": "Conference paper",
-      "preview": "A conceptual definition of gamification for non-game contexts.",
-      "summary": "待精读：区分游戏化、游戏性与完整游戏，作为历史场所互动设计的概念基线。",
-      "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
-      "excerpts": [],
-      "timeline_topic": "Digital methods",
-      "map_title": "Defining Gamification",
-      "map_maker": "Deterding et al.",
-      "topic_memberships": [
-        {
-          "topic": "Digital methods",
-          "status": "provisional",
-          "evidence": "游戏化的概念与设计术语参照；与遗产公众参与的具体关联须由应用研究论证。",
-          "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
-          "location": ""
-        }
-      ],
-      "interpretive_setting": [
-        "Unspecified / pending review"
-      ],
-      "interpretive_setting_evidence": {
-        "status": "provisional",
-        "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
-        "source_url": "https://dl.acm.org/doi/10.1145/2181037.2181040",
-        "location": ""
-      },
-      "record_kind": "research_pending_classification",
-      "publication_format": "Linked document",
-      "reading_status": "not_assessed",
-      "date_basis": "legacy_date_pending_verification",
-      "concept_roles": [],
-      "interpretive_media": [],
-      "participation_stage": [],
-      "decision_rights": [],
-      "authenticity_focus": [],
-      "context_dimensions": [],
-      "interpretive_operations": [],
-      "outcome_constructs": [],
-      "chapter_use": [],
-      "claims": [],
       "legacy_coding": {
         "media": [],
         "public_actions": [],
@@ -5925,112 +5759,6 @@ window.ATLAS_SNAPSHOT = {
             "3"
           ],
           "researcher_implication": "作为第三章相邻综述比较对象；另核查自己的现场样本后再判断积分徽章是否占主导。",
-          "validation_status": "relevant_passage_checked",
-          "evaluation_proposal": ""
-        }
-      ]
-    },
-    {
-      "id": "prisma-scr-2018",
-      "year": 2018,
-      "title": "PRISMA Extension for Scoping Reviews (PRISMA-ScR): Checklist and Explanation",
-      "title_zh": "范围综述报告规范PRISMA-ScR：清单与说明",
-      "type": "Article",
-      "author": [
-        "Andrea C. Tricco et al."
-      ],
-      "organization": "",
-      "node_type": "document",
-      "year_label": "2018",
-      "stream": "B",
-      "map_title": "PRISMA-ScR",
-      "map_maker": "Tricco et al.",
-      "display_category": "Research Paper",
-      "paradigm": [],
-      "heritage_conception": [],
-      "interpretation_model": [],
-      "authority_structure": [],
-      "public_role": [],
-      "narrative_structure": [],
-      "themes": [],
-      "concepts": [
-        "Scoping review",
-        "Reporting guideline"
-      ],
-      "media": [],
-      "public_actions": [],
-      "summary": "范围综述的报告清单与说明；作为研究方法背景收录。",
-      "preview": "Methodological reference for transparently reporting a scoping review.",
-      "paradigm_shift": "",
-      "significance": "",
-      "phd_relevance": "只有选择范围综述方法后才按此报告；清单不能替代检索策略、质量判断或批判综合。",
-      "source_url": "https://www.prisma-statement.org/scoping",
-      "my_notes": "收录与主张提取不代表已完成全文精读。设计含义与评价建议为研究者推导，尚未验证。",
-      "pdf": "",
-      "annotations": [],
-      "importance": null,
-      "importance_note": "未评分；不以收录或出版年代推断学术重要性。",
-      "coding_status": "2026-10-08 · official_description核查；全文精读待完成",
-      "placeholder": true,
-      "relations": [],
-      "excerpts": [],
-      "timeline_topic": "Interpretation & experience",
-      "topic_memberships": [
-        {
-          "topic": "Interpretation & experience",
-          "status": "source",
-          "evidence": "研究方法背景条目：帮助报告综述，不构成遗产阐释理论或其历史起点。",
-          "source_url": "https://www.prisma-statement.org/scoping",
-          "location": "Official PRISMA scoping page"
-        }
-      ],
-      "document_nature": [],
-      "interpretive_setting": [
-        "Unspecified / pending review"
-      ],
-      "record_kind": "methodological",
-      "publication_format": "Journal article",
-      "reading_status": "relevant_passages_checked",
-      "date_basis": "publication",
-      "bibliography": {
-        "doi": "10.7326/M18-0850",
-        "journal": "Annals of Internal Medicine",
-        "volume": "169",
-        "issue": "7",
-        "pages": "467–473",
-        "author_list_status": "abbreviated; complete list at source"
-      },
-      "concept_roles": [
-        "review_method"
-      ],
-      "interpretive_media": [],
-      "participation_stage": [],
-      "decision_rights": [],
-      "authenticity_focus": [],
-      "context_dimensions": [],
-      "interpretive_operations": [],
-      "outcome_constructs": [],
-      "chapter_use": [
-        "2.1.1",
-        "3"
-      ],
-      "claims": [
-        {
-          "claim_id": "prisma-scr-2018-c1",
-          "claim_paraphrase": "PRISMA-ScR提供范围综述的报告要求。",
-          "claim_basis": "explicit_source",
-          "claim_subject": "Andrea C. Tricco et al.",
-          "source_context": "official_description",
-          "source_url": "https://www.prisma-statement.org/scoping",
-          "source_locator": "Official PRISMA scoping page",
-          "concept_roles": [
-            "review_method"
-          ],
-          "chapter_use": [
-            "2.1.1",
-            "3"
-          ],
-          "researcher_implication": "只有选择范围综述方法后才按此报告；清单不能替代检索策略、质量判断或批判综合。",
           "validation_status": "relevant_passage_checked",
           "evaluation_proposal": ""
         }
