@@ -20,7 +20,7 @@ Atlas.network=function(rows){
   const markerSize=d=>practice(d)?58:d.core_concept?410:d.node_type==='document'?170+(d.importance||1)*110:d.node_type==='person'?190:135;
   const markerShape=d=>d3.symbol().type(d.node_type==='person'?d3.symbolDiamond:d3.symbolCircle);
   const node=nodeLayer.selectAll('g').data(nodes,d=>d.id).join('g').attr('class',d=>'network-node'+(d.core_concept?' is-key-concept':'')+(practice(d)?' is-practice-case':'')).attr('tabindex',0).attr('role','button').attr('aria-label',d=>`${d.title}, ${d.year_label||d.year||''}; open details`).on('click',(e,d)=>{if(!e.defaultPrevented)A.openDetail(d.id);}).on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();A.openDetail(d.id);}});
-  node.append('circle').attr('class','network-halo').attr('r',d=>practice(d)?9:d.core_concept?29:d.node_type==='document'?17+(d.importance||1)*3:15).attr('fill',d=>practice(d)?'#82918d':A.color(d)).attr('fill-opacity',d=>practice(d)?.035:d.placeholder ? .04 : d.core_concept ? .2 : .08);
+  node.append('circle').attr('class','network-halo').attr('r',d=>practice(d)?9:d.core_concept?29:d.node_type==='document'?17+(d.importance||1)*3:15).attr('fill',d=>A.color(d)).attr('fill-opacity',d=>practice(d)?.035:d.placeholder ? .04 : d.core_concept ? .2 : .08);
   node.each(function(d){const label=d3.select(this).append('g').attr('class','network-label').attr('transform','translate(20,4)');
     if(d.year_label||d.year)label.append('text').attr('class','network-year').attr('y',10).text(d.year_label||d.year);
     const title=label.append('text').attr('class','network-title').attr('y',29).text(d.map_title||d.title).call(A.wrap,d.labelWidth||165,18);
@@ -30,7 +30,7 @@ Atlas.network=function(rows){
   // Keep every marker in a final shared layer so no label from another node can cover a dot.
   const markers=markerLayer.selectAll('g').data(nodes,d=>d.id).join('g').attr('class','network-marker');
   markers.append('path').attr('class','network-cutout').attr('d',d=>markerShape(d).size(markerSize(d)*1.55)()).attr('fill','#fff');
-  markers.append('path').attr('class','network-dot').attr('d',d=>markerShape(d).size(markerSize(d))()).attr('fill',d=>practice(d)?'#82918d':d.placeholder||d.node_type==='concept'?'#fff':A.color(d)).attr('fill-opacity',d=>practice(d)?.78:1).attr('stroke',d=>practice(d)?'#788984':A.color(d)).attr('stroke-width',d=>practice(d)?1.4:d.core_concept?3:2).attr('stroke-dasharray',d=>d.placeholder?'4 3':null);
+  markers.append('path').attr('class','network-dot').attr('d',d=>markerShape(d).size(markerSize(d))()).attr('fill',d=>d.placeholder||d.node_type==='concept'?'#fff':A.color(d)).attr('fill-opacity',d=>practice(d)?.78:1).attr('stroke',d=>A.color(d)).attr('stroke-width',d=>practice(d)?1.4:d.core_concept?3:2).attr('stroke-dasharray',d=>d.placeholder?'4 3':null);
   const applyLabelScale=()=>{
     const scale=A.networkPhysics.labelScale/100;
     node.each(function(d){

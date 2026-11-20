@@ -65,7 +65,7 @@ window.Atlas = (() => {
     return Object.entries(state.filters).every(([key,values])=>{if(!values.size)return true;const assigned=A.values(d,key);return assigned.some(x=>values.has(String(x)))||(key==='interpretive_setting'&&assigned.includes('Both')&&(values.has('On-site')||values.has('Off-site')));});
   });
   A.categories=key=>key==='stream'?Object.keys(streams):[...new Set(A.records.flatMap(d=>A.values(d,key)).map(String))].sort();
-  const typeColors={'Charter / Policy':'#267f8c','Theory / Book':'#4f6077','Research Paper':'#a36749','Research Topic':'#777f78','Heritage Practice':'#17806f'};
+  const typeColors={'Charter / Policy':'#c4343f','Theory / Book':'#2864b4','Research Paper':'#8250b5','Research Topic':'#6b7280','Heritage Practice':'#00856a'};
   A.category=d=>{if(typeColors[d.display_category])return d.display_category;if(d.type==='Heritage Practice Case')return 'Heritage Practice';if(d.type==='Research theme'||d.node_type==='concept')return 'Research Topic';if(['Book','Monograph','Book chapter'].includes(d.type))return 'Theory / Book';if(['Article','Paper','Conference paper'].includes(d.type))return 'Research Paper';return 'Charter / Policy';};
   A.typeColors=typeColors;
   A.color=d=>typeColors[A.category(d)]||'#777f78';

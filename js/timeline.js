@@ -46,7 +46,7 @@ Atlas.timeline=function(rows){
   const points=new Map(),sizes=new Map(),canvas=document.createElement('canvas'),measure=canvas.getContext('2d');
   const makePoint=d=>{
       const point=A.el('button','map-node'+(d.type==='Heritage Practice Case'?' is-practice-case':''));point.type='button';
-      point.style.setProperty('--entry-color',d.type==='Heritage Practice Case'?'#82918d':A.color(d));
+      point.style.setProperty('--entry-color',A.color(d));
       point.setAttribute('aria-label',`${d.year_label||d.year}: ${d.title}${d.title_zh?' / '+d.title_zh:''}. ${A.text(d.author)||d.organization||''}. Open details.`);
       const marker=A.el('span','map-marker'),circle=A.el('span','map-circle');circle.dataset.size=d.importance?String(d.importance):'unscored';
       if(d.placeholder)circle.classList.add('is-placeholder');

@@ -244,7 +244,7 @@ Atlas.flow=function(rows){
   const dots=dotsLayer.selectAll('g').data(nodes).join('g').attr('class','flow-dot').attr('data-record',n=>n.d.id).attr('transform',n=>`translate(${n.x},${n.y})`).attr('role','button').attr('tabindex',0).attr('aria-label',n=>`${n.d.year}: ${n.d.title}. ${n.topics.map(i=>topics[i]).join('; ')}. Open record.`);
   dots.append('text').attr('class','flow-year').attr('y',24).attr('text-anchor','middle').text(n=>/^\d+s$/.test(n.d.year_label||'')?n.d.year_label:n.d.year);
   dots.append('circle').attr('class','flow-dot-halo').attr('r',n=>n.r+4);
-  dots.append('circle').attr('class',n=>'flow-circle'+(n.d.placeholder?' is-placeholder':'')).attr('r',n=>n.r).style('--entry-color',n=>n.d.type==='Heritage Practice Case'?'#82918d':A.color(n.d));
+  dots.append('circle').attr('class',n=>'flow-circle'+(n.d.placeholder?' is-placeholder':'')).attr('r',n=>n.r).style('--entry-color',n=>A.color(n.d));
   dots.append('circle').attr('class','flow-hit').attr('r',18);
   dots.attr('aria-describedby',themeTip.id).on('click',(e,n)=>openRecord(n)).on('keydown',(e,n)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openRecord(n);}});
   const axisY=height-28;
