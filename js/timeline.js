@@ -33,6 +33,7 @@ Atlas.timeline=function(rows){
   if(Atlas.state.timelineMode==='flow'&&typeof d3!=='undefined')return Atlas.flow(rows);
   const A=Atlas,root=document.querySelector('#chart');
   root.classList.add('timeline-chart');
+  const relationToolbar=A.el('div','bands-relation-toolbar');if(A.timelineRelationControls?.(relationToolbar,rows))root.append(relationToolbar);
   const topics=A.flowTopics;
   const topicOf=d=>d.timeline_topic||(
     d.paradigm?.includes('Participation')?'Participation & plural voices':
@@ -68,7 +69,7 @@ Atlas.timeline=function(rows){
       return {topic,...A.packTimelineBand(items,xFor,left,width,d=>sizes.get(d.id),markerWidth)};
     });
     heights=layouts.map(layout=>Math.max(large?64:46,(large?18:8)+layout.tracks*trackStep));
-    available=Math.max(0,root.clientHeight-(large?42:35)-8);
+    available=Math.max(0,root.clientHeight-(large?42:35)-8-relationToolbar.getBoundingClientRect().height);
   };
   arrange();
   // Short windows get more horizontal reading room before extra vertical tracks.
@@ -88,4 +89,5 @@ Atlas.timeline=function(rows){
     plot.append(band);
   });
   plot.style.paddingBottom='8px';
+  if(A.drawTimelineCitations&&A.timelineCitations(rows).length){const rect=plot.getBoundingClientRect(),nodes=[],obstacles=[];for(const d of rows){const point=points.get(d.id),circle=point.querySelector('.map-circle').getBoundingClientRect(),box=point.getBoundingClientRect();nodes.push({d,x:circle.left-rect.left+circle.width/2,y:circle.top-rect.top+circle.height/2,r:circle.width/2});obstacles.push({x:box.left-rect.left,y:box.top-rect.top,width:box.width,height:box.height});}const overlay=document.createElementNS('http://www.w3.org/2000/svg','svg'),height=plot.scrollHeight;overlay.setAttribute('class','bands-citation-overlay');overlay.setAttribute('viewBox',`0 0 ${width} ${height}`);overlay.setAttribute('width',width);overlay.setAttribute('height',height);plot.append(overlay);A.drawTimelineCitations({svg:overlay,rows,nodes,width,height,obstacles});}
 };

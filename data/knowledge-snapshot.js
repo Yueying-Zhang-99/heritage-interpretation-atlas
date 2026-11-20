@@ -1534,6 +1534,34 @@ window.ATLAS_SNAPSHOT = {
           "evidence": "示例分析关系，待补充原文页码或条款；不代表已证实的直接影响。",
           "claim_basis": "researcher_comparison",
           "validation_status": "pending_source_review"
+        },
+        {
+          "target": "venice",
+          "type": "cites",
+          "relation_label": "Cites Venice Charter",
+          "quote": "As noted in the Charter of Venice (1964)",
+          "source_locator": "2008 Interpretation Charter, Preamble, paragraph 2, p. 1 (English column).",
+          "short_locator": "2008 · Preamble ¶2 · p. 1",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf#page=1",
+          "claim_basis": "explicit_source",
+          "validation_status": "source_checked",
+          "evidence": "The preamble expressly names and quotes the Venice Charter before locating later ICOMOS charters within its international conservation mission.",
+          "context_summary": "The paragraph quotes the Venice Charter on international agreement over conservation principles and their application within each country’s culture and traditions, then places subsequent ICOMOS charters within that mission.",
+          "context_summary_zh": "该段明确引述《威尼斯宪章》，将国际共同保护原则与各国文化和传统中的具体应用相联系，并说明后续 ICOMOS 宪章对这一使命的承接。这是文本上的明示引用，不直接证明具体设计实践中的因果影响。"
+        },
+        {
+          "target": "nara",
+          "type": "cites",
+          "relation_label": "Invokes Nara authenticity",
+          "quote": "respect the basic tenets of authenticity in the spirit of the Nara Document (1994).",
+          "source_locator": "2008 Interpretation Charter, Principle 4: Authenticity, opening statement, p. 6 (English column).",
+          "short_locator": "2008 · Principle 4 · p. 6",
+          "source_url": "https://www.icomos.org/images/DOCUMENTS/Charters/interpretation_e_1.pdf#page=6",
+          "claim_basis": "explicit_source",
+          "validation_status": "source_checked",
+          "evidence": "The opening statement of Principle 4 explicitly invokes the Nara Document when setting an authenticity requirement for interpretation and presentation.",
+          "context_summary": "Principle 4 opens by connecting interpretation and presentation with the Nara Document’s approach to authenticity. The clauses that follow address communities, traditional social functions, material remains and the effects of interpretive interventions.",
+          "context_summary_zh": "原则 4 的总述明确援引《奈良真实性文件》来提出阐释与展示的真实性要求。后续条款再讨论社群、传统社会功能、物质遗存以及阐释干预的影响；这些内容应与总述的引用位置区别记录。"
         }
       ],
       "preview": "Principles for public interpretation and presentation of heritage sites.",

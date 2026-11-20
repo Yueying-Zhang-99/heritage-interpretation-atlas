@@ -1,5 +1,13 @@
 # Heritage Interpretation Knowledge Atlas
 
+## Timeline 引用箭头
+
+Flow 和 Bands 中的 Citations 开关显示原文明示引用，箭头从引用文件指向被引用文件；Excerpts 控制箭头旁的短节选。点击箭头或节选可查看定位、段落语境释义和原文链接。主题重叠及研究者比较不自动显示为引用箭头。
+
+已录入 2008 年阐释宪章对《威尼斯宪章》的序言引用（第 1 页、第 2 段），以及原则 4 对《奈良真实性文件》的援引（第 6 页、总述）。关系保存在引用文件的 `relations` 中，使用 `type: cites`、`claim_basis: explicit_source`、`validation_status: source_checked`，并保留 `quote`、`source_locator`、`source_url`、段落语境释义等信息。只在两个文件均符合当前筛选时显示。
+
+相关检查：`node tools/check-timeline-relations.cjs`。
+
 ## 批注笔记 PDF
 
 在“管理内容 → 条目 → 编辑 → 批注笔记 PDF”选择自己的批注文件（PDF，最多 20 MB），再保存条目。文件先存入当前浏览器，可预览或下载，刷新后仍可读取。请保留自己的原文件；JSON 备份仅包含关联路径，不包含 PDF 文件本身。

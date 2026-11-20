@@ -5,7 +5,7 @@ window.Atlas = (() => {
   const fields={record_kind:'Material kind',concept_roles:'Concept role',reading_status:'Reading status',chapter_use:'Chapter use',interpretive_media:'Interpretive media',interpretive_operations:'Public activities',topic_memberships:'Flow themes',interpretive_setting:'Interpretive setting',document_nature:'Document nature',paradigm:'Paradigm',themes:'Theme',public_role:'Public Role',narrative_structure:'Narrative',heritage_conception:'Heritage Conception'};
   const lenses=[['stream','Heritage Values'],['interpretation_model','Interpretation'],['public_role','Public Role'],['narrative_structure','Narrative'],['interpretive_media','Interpretive media']];
   const palette=['#a1813e','#6f7950','#a55f48','#586f70','#8b6a72','#6e6555','#8d8457','#59724c','#af725b','#616774','#967845'];
-  const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward'];
+  const relationTypes=['influences','extends','critiques','related_to','supports','shifts_toward','cites'];
   const state={view:'timeline',timelineMode:'flow',lens:'stream',cluster:'topic_memberships',query:'',filters:{},minYear:'',maxYear:'',relation:'',sort:'year',direction:1,dotScale:1};
   const A={streams,fields,lenses,palette,relationTypes,flowTopics,state,data:null,records:[],nodes:[],byId:new Map(),visible:[],sim:null};
   A.arr=v=>v==null||v===''?[]:Array.isArray(v)?v:[v];
@@ -55,7 +55,7 @@ window.Atlas = (() => {
       if(d.display_category!=null&&!['Charter / Policy','Theory / Book','Research Paper','Research Topic','Heritage Practice'].includes(d.display_category))throw new Error(`${d.id} 的 display_category 无效。`);
       if(d.importance!=null&&![1,2,3].includes(Number(d.importance)))throw new Error(`${d.id} 的 importance 必须为 1、2 或 3。`);
       if(d.annotations?.some(a=>!a||typeof a!=='object'))throw new Error(`${d.id} 包含无效标注。`);
-      for(const r of d.relations||[])if(!r||typeof r.target!=='string'||!relationTypes.includes(r.type))throw new Error(`${d.id} 包含无效关系。`);
+      for(const r of d.relations||[]){if(!r||typeof r.target!=='string'||!relationTypes.includes(r.type))throw new Error(`${d.id} 包含无效关系。`);if(r.type==='cites'&&r.validation_status==='source_checked'&&(r.claim_basis!=='explicit_source'||typeof r.quote!=='string'||!r.quote.trim()||typeof r.source_locator!=='string'||!r.source_locator.trim()||!/^https?:\/\//i.test(r.source_url||'')))throw new Error(`${d.id} 已核对的引用关系需要原文短节选、来源网址和条款 / 页码。`);}
     }
     for(const d of [...data.documents,...(data.nodes||[])])for(const r of d.relations||[])if(!ids.has(r.target))throw new Error(`${d.id} 的关系目标不存在：${r.target}`);
     return {...data,meta:data.meta||{},nodes:data.nodes||[],vocabulary:data.vocabulary||{}};

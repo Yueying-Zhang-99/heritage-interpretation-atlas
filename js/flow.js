@@ -185,10 +185,11 @@ Atlas.flow=function(rows){
   root.style.removeProperty('overflow-x');
   const toolbar=A.el('div','flow-key');toolbar.append(A.el('span','flow-key-caption','THEME OVERLAPS'));
   const themeButtons=topics.map((topic,i)=>{const b=A.el('button','flow-theme-button',topic);b.type='button';b.dataset.theme=i;b.setAttribute('aria-pressed','false');toolbar.append(b);return b;});
+  A.timelineRelationControls?.(toolbar,rows);
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
-  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Hover: themes · Click: sources. Themes do not imply influence.');root.append(note);
+  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Solid arrows: source-checked citations, pointing to the cited document · Click an arrow or excerpt for evidence. Themes do not imply influence.');root.append(note);
   // CSS pixels already account for browser chrome, page zoom and OS scaling.
   const viewportWidth=Math.max(320,root.clientWidth),viewportHeight=Math.max(120,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
   let width=viewportWidth,height=viewportHeight;
@@ -290,6 +291,7 @@ Atlas.flow=function(rows){
     }
     contours.push(backdrop.append('path').datum({topic,i}).attr('d',A.flowEnvelopePath(A.flowShellField(values,members,nx,ny,cell),nx,ny,cell)).attr('fill-rule','evenodd').attr('class','flow-envelope').attr('data-theme',i));
   });
+  A.drawTimelineCitations?.({svg:svg.node(),rows,nodes,width,height,scale:displayScale,obstacles:nodes.map(n=>({x:n.labelX+n.box.x-12,y:n.y+n.box.y-12,width:n.box.width+24,height:n.box.height+24})),before:labelsLayer.node()});
   const byId=new Map(nodes.map(n=>[n.d.id,n]));
   let selected=null;
   const highlight=(active=null,hover=null)=>{
@@ -300,7 +302,7 @@ Atlas.flow=function(rows){
     nodes.forEach(n=>n.g.classed('is-muted',!matches(n)).classed('is-hovered',n===hover));dots.classed('is-muted',n=>!matches(n)).classed('is-hovered',n=>n===hover);
     linksLayer.selectAll('*').remove();
     if(hover){
-      const relationships=[];for(const n of nodes)for(const r of n.d.relations||[]){if((n===hover||r.target===hover.d.id)&&byId.has(r.target))relationships.push({a:n,b:byId.get(r.target),r});}
+      const relationships=[];for(const n of nodes)for(const r of n.d.relations||[]){if(r.type==='cites'&&r.validation_status==='source_checked')continue;if((n===hover||r.target===hover.d.id)&&byId.has(r.target))relationships.push({a:n,b:byId.get(r.target),r});}
       for(const {a,b,r} of relationships){const bend=Math.max(24,Math.abs(b.x-a.x)*.35);const p=linksLayer.append('path').attr('d',`M${a.x},${a.y} C${a.x+bend},${a.y} ${b.x-bend},${b.y} ${b.x},${b.y}`);p.append('title').text(`${a.d.title} → ${b.d.title}: ${r.type} · ${r.evidence||'Evidence pending'}`);}
     }
   };
