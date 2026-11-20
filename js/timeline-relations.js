@@ -2,7 +2,7 @@
 Atlas.timelineCitations=function(rows){
   const visible=new Map(rows.map(d=>[d.id,d])),result=[];
   for(const source of rows)for(const relation of source.relations||[]){
-    if(relation.type!=='cites'||relation.claim_basis!=='explicit_source'||relation.validation_status!=='source_checked'||!relation.quote||!relation.source_locator||!/^https?:\/\//i.test(relation.source_url||''))continue;
+    if(relation.timeline_visible===false||relation.type!=='cites'||relation.claim_basis!=='explicit_source'||relation.validation_status!=='source_checked'||!relation.quote||!relation.source_locator||!/^https?:\/\//i.test(relation.source_url||''))continue;
     const target=visible.get(relation.target);if(!target||source.id===target.id)continue;
     result.push({source,target,relation,key:source.id+'--'+target.id});
   }
@@ -16,6 +16,7 @@ Atlas.timelineRelationControls=function(host,rows){
   }
   controls.append(A.el('span','timeline-relation-key','→ cites / 引用'));host.append(controls);return controls;
 };
+Atlas.citationQuoteLines=function(value,max=36,limit=3){let rest=String(value||'').replace(/\s+/g,' ').trim(),lines=[];if(/[\u2e80-\u9fff]/.test(rest))max=Math.min(max,18);while(rest&&lines.length<limit){const chars=Array.from(rest);if(chars.length<=max){lines.push(rest);rest='';break;}let cut=chars.slice(0,max+1).lastIndexOf(' ');if(cut<max*.5)cut=max;lines.push(chars.slice(0,cut).join('').trim());rest=chars.slice(cut).join('').trim();}if(rest&&lines.length)lines[lines.length-1]+='…';return lines;};
 Atlas.citationCurve=function(a,b,bend=60){
   const control={x:(a.x+b.x)/2,y:(a.y+b.y)/2+bend};
   const trim=(point,distance)=>{const dx=control.x-point.x,dy=control.y-point.y,length=Math.hypot(dx,dy)||1;return {x:point.x+dx/length*distance,y:point.y+dy/length*distance};};
@@ -46,19 +47,18 @@ Atlas.drawTimelineCitations=function({svg,rows,nodes,width,height,scale=1,obstac
   const defs=el('defs'),marker=el('marker',{id:'timeline-citation-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:8/scale,markerHeight:8/scale,orient:'auto',markerUnits:'userSpaceOnUse'});marker.append(el('path',{d:'M0 0 L10 5 L0 10 Z',fill:'#526d91'}));defs.append(marker);svg.append(defs);
   const paths=el('g',{class:'timeline-citation-paths'}),labels=el('g',{class:'timeline-citation-labels'});svg.insertBefore(paths,before);svg.append(labels);
   const occupied=[...obstacles,...nodes.map(n=>({x:n.x-18,y:n.y-18,width:36,height:45}))];
-  const wrap=(text,max)=>{const lines=[];let line='';for(const word of text.split(/\s+/)){if(line&&(line+' '+word).length>max){lines.push(line);line=word;}else line+=(line?' ':'')+word;}if(line)lines.push(line);return lines;};
   for(const edge of edges){const a=positions.get(edge.source.id),b=positions.get(edge.target.id);if(!a||!b)continue;
     const alternatives=[-50,50,-110,110,-170,170].map(bend=>A.citationCurve(a,b,bend/scale));const route=alternatives.map(curve=>({curve,cost:Array.from({length:17},(_,i)=>curve.point((i+1)/18)).reduce((sum,p)=>sum+obstacles.filter(o=>p.x>o.x&&p.x<o.x+o.width&&p.y>o.y&&p.y<o.y+o.height).length,0)})).sort((x,y)=>x.cost-y.cost)[0].curve;
     const group=el('g',{class:'timeline-citation-edge','data-source':edge.source.id,'data-target':edge.target.id,role:'button',tabindex:0,'aria-label':`${edge.source.year} ${edge.source.map_title||edge.source.title} cites ${edge.target.map_title||edge.target.title} (${edge.target.year}). ${edge.relation.quote}. ${edge.relation.source_locator}. Read citation evidence.`});
     const line=el('path',{d:route.path,class:'timeline-citation-line','marker-end':'url(#timeline-citation-arrow)','vector-effect':'non-scaling-stroke'}),hit=el('path',{d:route.path,class:'timeline-citation-hit','vector-effect':'non-scaling-stroke'});group.append(line,hit);paths.append(group);
     const activate=event=>{event.stopPropagation();A.openCitationEvidence(edge);};group.addEventListener('click',activate);group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();activate(event);}});
     if(A.state.citationQuotes===false)continue;
-    const lines=wrap('“'+edge.relation.quote+'”',36),box={width:Math.min(220,width*scale-20)/scale,height:(lines.length*14+32)/scale};const place=A.citationLabelPosition(route,box,{width,height:height-30/scale},occupied);occupied.push(place);
+    const lines=A.citationQuoteLines('“'+(edge.relation.arrow_quote||edge.relation.quote)+'”'),box={width:Math.min(220,width*scale-20)/scale,height:(lines.length*14+32)/scale};const place=A.citationLabelPosition(route,box,{width,height:height-30/scale},occupied);occupied.push(place);
     const quote=el('g',{class:'timeline-citation-label','data-target':edge.target.id,transform:`translate(${place.x},${place.y})`});quote.append(el('rect',{width:box.width,height:box.height,rx:5/scale}));
     const heading=el('text',{x:9/scale,y:15/scale,class:'timeline-citation-kind','font-size':10/scale});heading.textContent=edge.relation.relation_label||'Explicit citation';quote.append(heading);
     lines.forEach((line,i)=>{const text=el('text',{x:9/scale,y:(30+i*14)/scale,'font-size':11/scale,class:'timeline-citation-excerpt'});text.textContent=line;quote.append(text);});
     const locator=el('text',{x:9/scale,y:(box.height*scale-7)/scale,'font-size':9/scale,class:'timeline-citation-locator'});locator.textContent=edge.relation.short_locator||edge.relation.source_locator;quote.append(locator);
-    const midpoint=route.point(.5),leader=el('path',{d:`M${midpoint.x},${midpoint.y} L${place.x+box.width/2},${place.y+box.height/2}`,class:'timeline-citation-leader','vector-effect':'non-scaling-stroke'});labels.append(leader,quote);quote.addEventListener('click',activate);
+    const midpoint=route.point(.5),leader=el('path',{d:`M${midpoint.x},${midpoint.y} L${place.x+box.width/2},${place.y+box.height/2}`,class:'timeline-citation-leader','vector-effect':'non-scaling-stroke'});labels.append(leader,quote);for(const text of quote.querySelectorAll('text')){let value=text.textContent;while(value.length>1&&text.getComputedTextLength()>box.width-18/scale){value=value.slice(0,-1);text.textContent=value+'…';}}quote.addEventListener('click',activate);
     group.addEventListener('mouseenter',()=>quote.classList.add('is-active'));group.addEventListener('mouseleave',()=>quote.classList.remove('is-active'));group.addEventListener('focus',()=>quote.classList.add('is-active'));group.addEventListener('blur',()=>quote.classList.remove('is-active'));
   }
 };
