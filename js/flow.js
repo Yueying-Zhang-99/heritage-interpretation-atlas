@@ -189,7 +189,7 @@ Atlas.flow=function(rows){
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
-  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Solid arrows: source-checked citations, pointing to the cited document · Click an arrow or excerpt for evidence. Themes do not imply influence.');root.append(note);
+  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Solid arrows: cited source → later citing document · Click an arrow or excerpt for evidence. Themes do not imply influence.');root.append(note);
   // CSS pixels already account for browser chrome, page zoom and OS scaling.
   const viewportWidth=Math.max(320,root.clientWidth),viewportHeight=Math.max(120,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
   let width=viewportWidth,height=viewportHeight;

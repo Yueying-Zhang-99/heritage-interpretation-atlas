@@ -1537,7 +1537,7 @@
         {
           "target": "venice",
           "type": "cites",
-          "relation_label": "Cites Venice Charter",
+          "relation_label": "Venice cited in 2008",
           "quote": "As noted in the Charter of Venice (1964)",
           "source_locator": "2008 Interpretation Charter, Preamble, paragraph 2, p. 1 (English column).",
           "short_locator": "2008 · Preamble ¶2 · p. 1",
@@ -1551,7 +1551,7 @@
         {
           "target": "nara",
           "type": "cites",
-          "relation_label": "Invokes Nara authenticity",
+          "relation_label": "Nara invoked in 2008",
           "quote": "respect the basic tenets of authenticity in the spirit of the Nara Document (1994).",
           "source_locator": "2008 Interpretation Charter, Principle 4: Authenticity, opening statement, p. 6 (English column).",
           "short_locator": "2008 · Principle 4 · p. 6",
