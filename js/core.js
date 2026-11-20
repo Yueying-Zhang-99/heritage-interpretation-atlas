@@ -24,6 +24,8 @@ window.Atlas = (() => {
       if(ids.has(d.id))throw new Error(`重复 id：${d.id}`);ids.add(d.id);
       if(d.node_type!=null&&!['document','person','concept'].includes(d.node_type))throw new Error(`${d.id} 的 node_type 必须是 document、person 或 concept。`);
       if(data.documents.includes(d)&&(d.year==null||d.year===''||!Number.isInteger(Number(d.year))||Number(d.year)<0||Number(d.year)>9999))throw new Error(`${d.id} 的 year 必须为有效整数。`);
+      for(const key of ['notes_pdf','notes_pdf_name'])if(d[key]!=null&&typeof d[key]!=='string')throw new Error(`${d.id} 的 ${key} 必须为文字。`);
+      if(d.notes_pdf&&!/^documents\/notes\/[a-z0-9_-]+\.pdf$/.test(d.notes_pdf)&&!/^https?:\/\//i.test(d.notes_pdf))throw new Error(`${d.id} 的批注 PDF 路径无效。`);
       if(d.reading_status!=null&&!['not_assessed','metadata_checked','relevant_passages_checked','full_text_read','coded'].includes(d.reading_status))throw new Error(`${d.id} 的 reading_status 无效。`);
       for(const key of ['concept_roles','interpretive_media','interpretive_operations','chapter_use','outcome_constructs','participation_stage','authenticity_focus','context_dimensions'])if(d[key]!=null&&(!Array.isArray(d[key])||d[key].some(v=>typeof v!=='string'||!v.trim())))throw new Error(`${d.id} 的 ${key} 必须为文字标签数组。`);
       if(d.claims!=null){
@@ -70,6 +72,7 @@ window.Atlas = (() => {
   A.typeColors=typeColors;
   A.color=d=>typeColors[A.category(d)]||'#777f78';
   A.safeURL=(value,pdf=false)=>{if(typeof value!=='string'||!value.trim())return null;try{const u=new URL(value,location.href);if(/^https?:$/.test(u.protocol))return u.href;if(pdf&&u.protocol==='file:'&&location.protocol==='file:'&&!/^[a-z][a-z\d+.-]*:/i.test(value)&&!value.startsWith('/')&&!value.includes('..'))return u.href;}catch{}return null;};
+  A.sourceLinks=d=>{const source=A.safeURL(d.source_url),pdf=A.safeURL(d.pdf,true),links=[];const same=source&&pdf&&source.split('#')[0]===pdf.split('#')[0];if(source&&!same)links.push({label:/\.pdf(?:[?#]|$)/i.test(source)?'Original PDF ↗':'Source page ↗',url:source});if(pdf)links.push({label:'Original PDF ↗',url:pdf});return links;};
   A.tooltip=(event,d)=>{const tip=document.querySelector('#tooltip');tip.replaceChildren(A.el('strong','',d.title),A.el('span','',[d.year_label||d.year,A.text(d.concepts||d.themes)].filter(Boolean).join(' / ')));tip.hidden=false;const rect=event.currentTarget.getBoundingClientRect();const x=event.clientX||rect.x,y=event.clientY||rect.y;tip.style.left=Math.max(8,Math.min(x+15,innerWidth-tip.offsetWidth-12))+'px';tip.style.top=Math.max(8,Math.min(y+15,innerHeight-tip.offsetHeight-12))+'px';};
   A.hideTooltip=()=>document.querySelector('#tooltip').hidden=true;
   A.bindNodes=selection=>selection.attr('class','node').attr('tabindex',0).attr('role','button').attr('aria-label',d=>`${d.title} ${d.year_label||d.year||''}，打开详情`).on('click',(e,d)=>{A.hideTooltip();A.openDetail(d.id);}).on('keydown',(e,d)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();A.openDetail(d.id);}}).on('mouseenter',A.tooltip).on('mousemove',A.tooltip).on('mouseleave',A.hideTooltip).on('focus',A.tooltip).on('blur',A.hideTooltip);
