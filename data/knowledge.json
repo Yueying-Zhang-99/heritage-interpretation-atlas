@@ -16,7 +16,7 @@
       "updated": "2026-10-03",
       "method": "Setting and media are independent coding dimensions. On-site = at the heritage place; Off-site = elsewhere, including remote access; Both = explicitly covers both. Unknown or general technology papers remain Unspecified / pending review. Tags describe checked scope, not the full exclusive applicability of a document. Evidence records source/provisional status and locators. Both is included when filtering On-site or Off-site."
     },
-    "updated": "2026-10-08",
+    "updated": "2026-11-21",
     "research_position": {
       "status": "exploratory",
       "main_research_question": "Not fixed: review will inform selection",
@@ -5903,6 +5903,170 @@
           "researcher_implication": "作为当前制度讨论的背景，不称其为UNESCO已通过、替代2008宪章的新宪章。",
           "validation_status": "relevant_passage_checked",
           "evaluation_proposal": ""
+        }
+      ]
+    },
+    {
+      "id": "rahaman-predic-2018",
+      "year": 2018,
+      "title": "Digital heritage interpretation: a conceptual framework",
+      "title_zh": "数字遗产阐释：概念框架",
+      "type": "Article",
+      "author": [
+        "Hafizur Rahaman"
+      ],
+      "organization": "",
+      "node_type": "document",
+      "year_label": "2018",
+      "stream": "B",
+      "map_title": "Digital Heritage Interpretation",
+      "map_maker": "Rahaman · PrEDiC",
+      "display_category": "Research Paper",
+      "paradigm": [],
+      "heritage_conception": [],
+      "interpretation_model": [
+        "Meaning-making",
+        "Experience",
+        "Participation"
+      ],
+      "authority_structure": [],
+      "public_role": [
+        "Participant",
+        "Contributor"
+      ],
+      "narrative_structure": [
+        "Multiple Narratives"
+      ],
+      "themes": [],
+      "concepts": [
+        "Digital heritage interpretation",
+        "PrEDiC",
+        "Presentation",
+        "Embodiment",
+        "Dialogic interaction",
+        "Cultural learning"
+      ],
+      "media": [],
+      "public_actions": [],
+      "preview": "PrEDiC connects interpretive aims with fifteen considerations for digital heritage design.",
+      "summary": "Integrating heritage interpretation, human–computer interaction and learning theory, Rahaman proposes PrEDiC, a framework of four aspects and fifteen design considerations, and explores its application through a comparative study of an online heritage platform. The four aspects are presentation, embodiment, dialogic interaction and cultural learning.",
+      "paradigm_shift": "Researcher synthesis: digital heritage design should move beyond content delivery to support participation, meaning-making and multiple understandings.",
+      "significance": "A comparator for linking interpretive aims, design considerations, operational functions and evaluation.",
+      "phd_relevance": "2.1.1: define digital interpretation as a process. 2.1.3: distinguish contribution and dialogue from shared decision-making. 2.1.5: examine mediation and embodied engagement. 2.1.6–2.1.7: separate intended outcomes from measured evidence. Chapters 3–4: compare existing frameworks and specify outcome measures. Chapter 5: trace design decisions to the activities and outcomes they are intended to support.",
+      "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
+      "my_notes": "Critical appraisal — revised after checking selected passages\n\n1. Conceptual organisation. The four aspects can be compared in terms of their conceptual levels, grouping logic and proposed relationships. Section 6 explicitly acknowledges overlap and cross-membership. The stronger criticism therefore concerns how these interdependencies are specified and tested, rather than whether overlap is acknowledged.\n\n2. Theoretical derivation. Examine how theoretical concepts are translated into the fifteen design considerations and how competing explanations are handled. The argument should not rest on an assertion that the paper cites only a few authors: its discussion also draws on embodied interaction, activity theory and constructivist learning.\n\n3. Outcomes and evidential scope. Distinguish the four intended outcomes from what is operationalised, reported and supported. Satisfaction receives explicit tabulation, but Section 5 also reports interaction frequencies and qualitative responses. The concern is uneven outcome reporting and the strength of inference to overall interpretive effectiveness, rather than satisfaction being the sole evidence collected.\n\n4. Mechanism identification. Several design features change together. A comparison of whole platforms cannot isolate the contribution of a particular aspect or design consideration. Future studies could vary a smaller set of factors and trace how each affects a specified outcome.\n\nFor the thesis: distinguish interpretive aims, design requirements, participant activities and measured outcomes. Use PrEDiC as a comparator for framework construction and evaluation, while testing transfer from an online portal to built-heritage encounters on site.\n\nOriginal reading notes / 原始阅读笔记\n\n一句话概括：本文通过整合遗产阐释、人机交互与学习理论，提出一个包含四个方面和十五项设计原则的数字遗产阐释框架 PrEDiC，并通过线上遗产展示平台的对比实验初步评估其有效性。\n\n研究贡献：数字遗产阐释应当从以内容呈现为中心，转向以公众参与、意义建构和多元理解为中心。\n\n研究局限（原始阅读判断）：\n1. 框架①缺乏明确的分类逻辑；②各个维度不处于同一概念层级；③维度之间有明显重叠。作者没有说明这些维度是互斥的分析类别、相互作用的机制，还是便于设计实践的组织性主题。\n2. 理论引用反复使用 Tilden、Champion 等少数研究，没有形成严密的理论推导。\n3. 四个 Outcome，但案例只测量了 Satisfaction，因此论文从“框架改善了满意度和参与体验”进一步推论到“框架提升了数字遗产阐释的整体效果”，存在一定程度的结论超出证据支持范围（overclaiming）的问题。\n4. 实验同时改变了太多设计因素，因此无法识别到底是哪一种机制导致了结果差异。\n\n核对说明：以上中文保留原始判断；英文四点为核对后的表述。第 6 节（p. 228）明确承认维度交叉；第 3 节涉及多种理论；第 5 节（pp. 224–228；Tables 3–6）除满意度外还报告互动频率与开放回答。后续论文写作宜使用修订后的批评。",
+      "pdf": "",
+      "annotations": [],
+      "importance": null,
+      "importance_note": "Contribution level has not been scored.",
+      "coding_status": "2026-11-21: publisher abstract and selected passages in Sections 3–6 checked; supplied reading notes retained with verification corrections.",
+      "placeholder": true,
+      "relations": [],
+      "excerpts": [],
+      "timeline_topic": "Interpretation & experience",
+      "topic_memberships": [
+        {
+          "topic": "Interpretation & experience",
+          "status": "source",
+          "evidence": "The paper develops a conceptual framework for an interpretive process.",
+          "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
+          "location": "Abstract, p. 208"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "The framework is implemented on an online platform.",
+          "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
+          "location": "Abstract, p. 208"
+        },
+        {
+          "topic": "Participation & plural voices",
+          "status": "source",
+          "evidence": "Contribution and dialogue connect participants with other users and experts.",
+          "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework",
+          "location": "Section 4: Dialogic interaction, pp. 219–220"
+        }
+      ],
+      "document_nature": [],
+      "interpretive_setting": [
+        "Off-site"
+      ],
+      "interpretive_setting_evidence": {
+        "status": "source",
+        "evidence": "The evaluation uses an online heritage portal; on-site AR is discussed as future work.",
+        "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework",
+        "location": "Sections 5–7, pp. 221–229"
+      },
+      "record_kind": "theoretical",
+      "publication_format": "Journal article",
+      "reading_status": "relevant_passages_checked",
+      "date_basis": "publication",
+      "bibliography": {
+        "doi": "10.1080/14626268.2018.1511602",
+        "journal": "Digital Creativity",
+        "volume": "29",
+        "issue": "2–3",
+        "pages": "208–234",
+        "online_publication": "2018-08-28"
+      },
+      "concept_roles": [
+        "mediation",
+        "authority",
+        "outcome"
+      ],
+      "interpretive_media": [
+        "Online heritage platform"
+      ],
+      "participation_stage": [
+        "experience"
+      ],
+      "decision_rights": [],
+      "authenticity_focus": [],
+      "context_dimensions": [],
+      "interpretive_operations": [
+        "Explore",
+        "Contribute",
+        "Discuss"
+      ],
+      "outcome_constructs": [
+        "Intended: satisfaction",
+        "Intended: provocation / empathy",
+        "Intended: cultural learning",
+        "Intended: multiple perspectives of the past"
+      ],
+      "chapter_use": [
+        "2.1.1",
+        "2.1.3",
+        "2.1.5",
+        "2.1.6",
+        "2.1.7",
+        "3",
+        "4",
+        "5"
+      ],
+      "claims": [
+        {
+          "claim_id": "rahaman-predic-2018-c1",
+          "claim_paraphrase": "The author proposes a process-oriented framework with four objectives and fifteen considerations, implemented and tested online.",
+          "claim_basis": "explicit_source",
+          "claim_subject": "Hafizur Rahaman",
+          "source_context": "abstract",
+          "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
+          "source_locator": "Abstract, p. 208",
+          "concept_roles": [
+            "mediation",
+            "outcome"
+          ],
+          "chapter_use": [
+            "2.1.1",
+            "2.1.6",
+            "2.1.7",
+            "3",
+            "4"
+          ],
+          "researcher_implication": "Keep conceptual aspects, design operations and measured outcomes analytically distinct.",
+          "validation_status": "relevant_passage_checked",
+          "evaluation_proposal": "Map every proposed outcome to observable evidence and test a smaller set of design mechanisms."
         }
       ]
     }

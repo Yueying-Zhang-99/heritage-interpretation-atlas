@@ -39,7 +39,7 @@ A.state.filters={interpretive_setting:new Set(['On-site'])};assert.ok(A.filtered
 A.state.filters={interpretive_setting:new Set(['Off-site'])};assert.ok(A.filtered().some(d=>d.id==='ename'),'Both matches off-site');assert.ok(!A.filtered().some(d=>d.id==='case-new-philadelphia-ar'));
 A.state.filters={interpretive_setting:new Set(['On-site']),topic_memberships:new Set(['Digital methods'])};assert.ok(A.filtered().some(d=>d.id==='case-new-philadelphia-ar'));assert.ok(!A.filtered().some(d=>d.id==='london-charter-2009'),'General digital guidelines do not imply a setting');A.state.filters={};
 A.state.filters={topic_memberships:new Set(['Digital methods'])};assert.ok(A.filtered().some(d=>d.id==='faro'));assert.ok(A.filtered().some(d=>d.id==='ename'));assert.ok(!A.filtered().some(d=>d.id==='tilden'));A.state.filters={};
-A.state.query='Tilden';assert.deepEqual(Array.from(A.filtered(),d=>d.id),['tilden']);
+A.state.query='Tilden';assert.deepEqual(Array.from(A.filtered(),d=>d.id),['tilden','rahaman-predic-2018'],'Search includes author fields and reading notes that discuss Tilden');
 A.state.query='';A.state.filters={type:new Set(['Book','Convention']),public_role:new Set(['Visitor'])};assert.equal(A.filtered().length,3,'OR within a field; AND across fields');
 A.state.filters={};A.state.minYear='2005';A.state.maxYear='2006';assert.equal(A.filtered().length,3);
 A.state.minYear='';A.state.maxYear='';A.state.filters={document_nature:new Set(['Guidelines'])};assert.deepEqual(Array.from(A.filtered(),d=>d.id).sort(),['intangible-sites-charter-2024','salalah-guidelines-2017']);
