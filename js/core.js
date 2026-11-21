@@ -60,6 +60,7 @@ window.Atlas = (() => {
     for(const d of [...data.documents,...(data.nodes||[])])for(const r of d.relations||[])if(!ids.has(r.target))throw new Error(`${d.id} 的关系目标不存在：${r.target}`);
     return {...data,meta:data.meta||{},nodes:data.nodes||[],vocabulary:data.vocabulary||{}};
   };
+  A.removeRecord=(raw,id)=>{const data=JSON.parse(JSON.stringify(raw)),records=[...data.documents,...(data.nodes||[])];if(!records.some(d=>d.id===id))throw new Error('条目不存在，请刷新列表后重试。');data.documents=data.documents.filter(d=>d.id!==id);data.nodes=(data.nodes||[]).filter(d=>d.id!==id);for(const d of [...data.documents,...data.nodes])if(d.relations)d.relations=d.relations.filter(r=>r.target!==id);return A.validate(data);};
   A.setData=raw=>{const data=A.validate(raw);A.data=data;A.records=data.documents.map(d=>({...d,year:Number(d.year),node_type:d.node_type||'document'}));A.nodes=data.nodes.map(d=>({...d,node_type:d.node_type||'concept'}));A.byId=new Map([...A.records,...A.nodes].map(d=>[d.id,d]));};
   A.filtered=()=>A.records.filter(d=>{
     if(state.query&&!JSON.stringify(d).toLocaleLowerCase().includes(state.query.toLocaleLowerCase().trim()))return false;
