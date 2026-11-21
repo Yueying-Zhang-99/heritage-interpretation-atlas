@@ -3,9 +3,17 @@ const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p
 const context={window:{}};vm.createContext(context);vm.runInContext(read('js/core.js'),context);context.Atlas=context.window.Atlas;vm.runInContext(read('js/timeline-relations.js'),context);const A=context.Atlas;
 const data=JSON.parse(read('data/knowledge.json'));A.setData(data);
 const edges=A.timelineCitations(data.documents);
-assert.equal(edges.length,2,'Two verified document citations appear by default');
+assert.equal(edges.length,2,'Two verified document citations are available');
 assert.deepEqual(Array.from(edges,e=>[e.source.id,e.target.id]),[['ename','venice'],['ename','nara']],'Citation provenance retains the citing and cited documents');
 assert.deepEqual(Array.from(edges,e=>{const d=A.citationDisplayDirection(e);return [d.from.id,d.to.id];}),[['venice','ename'],['nara','ename']],'Visual arrows run from the cited predecessor to the later citing charter');
+assert.equal(A.focusedTimelineCitations(data.documents).length,0,'Initial map has no arrows');
+assert.equal(A.focusedTimelineCitations(data.documents,'ename').length,2,'Clicking the later charter reveals both citations');
+assert.equal(A.focusedTimelineCitations(data.documents,'venice').length,1,'Clicking Venice reveals only its own citation');
+assert.equal(A.focusedTimelineCitations(data.documents,'nara')[0].target.id,'nara','Switching nodes replaces the visible citation');
+assert.equal(A.focusedTimelineCitations(data.documents,'azuma-1997').length,0,'An unrelated node shows no citation arrows');
+assert.equal(A.focusedTimelineCitations(data.documents.filter(d=>d.id==='ename'),'ename').length,0,'Both endpoints must remain visible');
+A.focusTimelineCitations('ename');assert.equal(A.focusedTimelineCitations(data.documents).length,2);
+A.focusTimelineCitations(null);assert.equal(A.focusedTimelineCitations(data.documents).length,0,'Clearing the selection hides arrows');
 for(const edge of edges){const {from,to}=A.citationDisplayDirection(edge);assert.ok(from.year<to.year);const curve=A.citationCurve({x:from.year*10,y:100,r:7},{x:to.year*10,y:180,r:9},-50);assert.ok(curve.end.x>curve.start.x,'Arrowhead ends toward the later document');assert.equal(edge.source.id,'ename','Excerpt provenance remains in the 2008 charter');}
 for(const edge of edges){assert.equal(edge.relation.type,'cites');assert.equal(edge.relation.claim_basis,'explicit_source');assert.equal(edge.relation.validation_status,'source_checked');assert.match(edge.relation.source_url,/^https:\/\/www\.icomos\.org\/.+#page=(1|6)$/);assert.ok(edge.relation.source_locator);}
 assert.equal(A.timelineCitations(data.documents.filter(d=>['ename','venice'].includes(d.id))).length,1,'Only citations with both endpoints visible are drawn');

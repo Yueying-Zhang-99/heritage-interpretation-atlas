@@ -33,7 +33,6 @@ Atlas.timeline=function(rows){
   if(Atlas.state.timelineMode==='flow'&&typeof d3!=='undefined')return Atlas.flow(rows);
   const A=Atlas,root=document.querySelector('#chart');
   root.classList.add('timeline-chart');
-  const relationToolbar=A.el('div','bands-relation-toolbar');if(A.timelineRelationControls?.(relationToolbar,rows))root.append(relationToolbar);
   const topics=A.flowTopics;
   const topicOf=d=>d.timeline_topic||(
     d.paradigm?.includes('Participation')?'Participation & plural voices':
@@ -69,7 +68,7 @@ Atlas.timeline=function(rows){
       return {topic,...A.packTimelineBand(items,xFor,left,width,d=>sizes.get(d.id),markerWidth)};
     });
     heights=layouts.map(layout=>Math.max(large?64:46,(large?18:8)+layout.tracks*trackStep));
-    available=Math.max(0,root.clientHeight-(large?42:35)-8-relationToolbar.getBoundingClientRect().height);
+    available=Math.max(0,root.clientHeight-(large?42:35)-8);
   };
   arrange();
   // Short windows get more horizontal reading room before extra vertical tracks.

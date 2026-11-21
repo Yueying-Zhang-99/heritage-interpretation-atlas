@@ -9,13 +9,13 @@ Atlas.timelineCitations=function(rows){
   return result;
 };
 Atlas.citationDisplayDirection=edge=>({from:edge.target,to:edge.source});
-Atlas.timelineRelationControls=function(host,rows){
-  const A=Atlas,edges=A.timelineCitations(rows);if(!edges.length)return null;
-  const controls=A.el('div','timeline-relation-controls');controls.setAttribute('role','group');controls.setAttribute('aria-label','Documented citations');
-  for(const [key,label]of [['citationArrows','Citations ('+edges.length+')'],['citationQuotes','Excerpts']]){
-    const button=A.el('button','timeline-relation-toggle',label);button.type='button';button.setAttribute('aria-pressed',String(A.state[key]!==false));button.title=key==='citationArrows'?'箭头由被援引的先行文件指向后续引用文件':'在箭头旁显示原文短节选与定位';button.onclick=()=>{A.state[key]=A.state[key]===false;A.render();};controls.append(button);
-  }
-  controls.append(A.el('span','timeline-relation-key','→ cited by / 被援引'));host.append(controls);return controls;
+Atlas.focusedTimelineCitations=function(rows,id=Atlas.state.citationFocus){
+  return id?Atlas.timelineCitations(rows).filter(edge=>edge.source.id===id||edge.target.id===id):[];
+};
+Atlas.focusTimelineCitations=function(id){
+  Atlas.state.citationFocus=id||null;
+  const view=Atlas.timelineCitationView;
+  if(view?.svg.isConnected)Atlas.drawTimelineCitations(view);
 };
 Atlas.citationQuoteLines=function(value,max=36,limit=3){let rest=String(value||'').replace(/\s+/g,' ').trim(),lines=[];if(/[\u2e80-\u9fff]/.test(rest))max=Math.min(max,18);while(rest&&lines.length<limit){const chars=Array.from(rest);if(chars.length<=max){lines.push(rest);rest='';break;}let cut=chars.slice(0,max+1).lastIndexOf(' ');if(cut<max*.5)cut=max;lines.push(chars.slice(0,cut).join('').trim());rest=chars.slice(cut).join('').trim();}if(rest&&lines.length)lines[lines.length-1]+='…';return lines;};
 Atlas.citationCurve=function(a,b,bend=60){
@@ -43,9 +43,9 @@ Atlas.openCitationEvidence=function(edge){
   const actions=A.el('div','citation-evidence-actions'),url=A.safeURL(r.source_url);if(url){const source=A.el('a','outline-button','Read source paragraph ↗');source.href=url;source.target='_blank';source.rel='noopener noreferrer';actions.append(source);}for(const [label,id]of [['Open cited record',edge.target.id],['Open citing record',edge.source.id]]){const button=A.el('button','text-button',label);button.type='button';button.onclick=()=>{dialog.close();A.openDetail(id);};actions.append(button);}dialog.append(actions);dialog.showModal();
 };
 Atlas.drawTimelineCitations=function({svg,rows,nodes,width,height,scale=1,obstacles=[],before=null}){
-  const A=Atlas;if(A.state.citationArrows===false)return;const edges=A.timelineCitations(rows),positions=new Map(nodes.map(n=>[n.d.id,n]));if(!edges.length)return;
+  const A=Atlas;A.timelineCitationView={svg,rows,nodes,width,height,scale,obstacles,before};for(const old of svg.querySelectorAll('.timeline-citation-defs,.timeline-citation-paths,.timeline-citation-labels'))old.remove();const edges=A.focusedTimelineCitations(rows),positions=new Map(nodes.map(n=>[n.d.id,n]));if(!edges.length)return;
   const NS='http://www.w3.org/2000/svg',el=(tag,attrs={})=>{const node=document.createElementNS(NS,tag);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);return node;};
-  const defs=el('defs'),marker=el('marker',{id:'timeline-citation-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:4.5/scale,markerHeight:4.5/scale,orient:'auto',markerUnits:'userSpaceOnUse'});marker.append(el('path',{d:'M0 0 L10 5 L0 10 Z',fill:'#8f9ea2'}));defs.append(marker);svg.append(defs);
+  const defs=el('defs',{class:'timeline-citation-defs'}),marker=el('marker',{id:'timeline-citation-arrow',viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:4.5/scale,markerHeight:4.5/scale,orient:'auto',markerUnits:'userSpaceOnUse'});marker.append(el('path',{d:'M0 0 L10 5 L0 10 Z',fill:'#8f9ea2'}));defs.append(marker);svg.append(defs);
   const paths=el('g',{class:'timeline-citation-paths'}),labels=el('g',{class:'timeline-citation-labels'});svg.insertBefore(paths,before);svg.append(labels);
   const occupied=[...obstacles,...nodes.map(n=>({x:n.x-18,y:n.y-18,width:36,height:45}))];
   for(const edge of edges){const {from,to}=A.citationDisplayDirection(edge),a=positions.get(from.id),b=positions.get(to.id);if(!a||!b)continue;
@@ -53,7 +53,6 @@ Atlas.drawTimelineCitations=function({svg,rows,nodes,width,height,scale=1,obstac
     const group=el('g',{class:'timeline-citation-edge','data-source':edge.source.id,'data-target':edge.target.id,'data-from':from.id,'data-to':to.id,'data-routing':route.routing||'gentle-curve',role:'button',tabindex:0,'aria-label':`${from.year} ${from.map_title||from.title} → ${to.year} ${to.map_title||to.title}. Cited by the later document. ${edge.relation.quote}. ${edge.relation.source_locator}. Read citation evidence.`});
     const line=el('path',{d:route.path,class:'timeline-citation-line','marker-end':'url(#timeline-citation-arrow)','vector-effect':'non-scaling-stroke'}),hit=el('path',{d:route.path,class:'timeline-citation-hit','vector-effect':'non-scaling-stroke'});group.append(line,hit);paths.append(group);
     const activate=event=>{event.stopPropagation();A.openCitationEvidence(edge);};group.addEventListener('click',activate);group.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();activate(event);}});
-    if(A.state.citationQuotes===false)continue;
     const lines=A.citationQuoteLines('“'+(edge.relation.arrow_quote||edge.relation.quote)+'”'),box={width:Math.min(220,width*scale-20)/scale,height:(lines.length*14+32)/scale};const place=A.citationLabelPosition(route,box,{width,height:height-30/scale},occupied);occupied.push(place);
     const quote=el('g',{class:'timeline-citation-label','data-target':edge.target.id,transform:`translate(${place.x},${place.y})`});quote.append(el('rect',{width:box.width,height:box.height,rx:5/scale}));
     const heading=el('text',{x:9/scale,y:15/scale,class:'timeline-citation-kind','font-size':10/scale});heading.textContent=edge.relation.relation_label||'Cited by later document';quote.append(heading);

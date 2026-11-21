@@ -1,5 +1,5 @@
 Atlas.openDetail=function(id){
-  const A=Atlas,d=A.byId.get(id);if(!d)return;A.hideTooltip();
+  const A=Atlas,d=A.byId.get(id);if(!d)return;A.hideTooltip();A.focusTimelineCitations?.(id);
   const root=document.querySelector('#detail-content');root.replaceChildren();
   const link=(label,url,cls='reading-resource')=>{const a=A.el('a',cls,label);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;};
   const section=(host,title)=>{const s=A.el('section','reading-section');s.append(A.el('h3','',title));host.append(s);return s;};

@@ -185,11 +185,10 @@ Atlas.flow=function(rows){
   root.style.removeProperty('overflow-x');
   const toolbar=A.el('div','flow-key');toolbar.append(A.el('span','flow-key-caption','THEME OVERLAPS'));
   const themeButtons=topics.map((topic,i)=>{const b=A.el('button','flow-theme-button',topic);b.type='button';b.dataset.theme=i;b.setAttribute('aria-pressed','false');toolbar.append(b);return b;});
-  A.timelineRelationControls?.(toolbar,rows);
   const reset=A.el('button','text-button','Show all');toolbar.append(reset);root.append(toolbar);
   const themeTip=A.el('div','flow-theme-tooltip');themeTip.id='flow-theme-tooltip';themeTip.setAttribute('role','tooltip');themeTip.hidden=true;root.append(themeTip);
   const openRecord=n=>{themeTip.hidden=true;A.openDetail(n.d.id);};
-  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Solid arrows: cited source → later citing document · Click an arrow or excerpt for evidence. Themes do not imply influence.');root.append(note);
+  const note=A.el('p','flow-note','1930–1990: equal decade spacing · After 1990: expanded spacing · Click a node to reveal its citations · Earlier source → later citing document · Click blank space to clear.');root.append(note);
   // CSS pixels already account for browser chrome, page zoom and OS scaling.
   const viewportWidth=Math.max(320,root.clientWidth),viewportHeight=Math.max(120,root.clientHeight-toolbar.getBoundingClientRect().height-note.getBoundingClientRect().height-2);
   let width=viewportWidth,height=viewportHeight;
@@ -323,5 +322,5 @@ Atlas.flow=function(rows){
   dots.on('mouseenter',showThemes).on('mousemove',positionTip).on('mouseleave',hideThemes).on('focus',showThemes).on('blur',hideThemes);
   svg.on('keydown.flow-themes',event=>{if(event.key==='Escape')hideThemes();});
   themeButtons.forEach((b,i)=>b.onclick=()=>{selected=selected===i?null:i;themeButtons.forEach((button,j)=>button.setAttribute('aria-pressed',String(j===selected)));highlight(selected);});
-  reset.onclick=()=>{selected=null;themeButtons.forEach(b=>b.setAttribute('aria-pressed','false'));highlight();};
+  reset.onclick=()=>{A.focusTimelineCitations?.(null);selected=null;themeButtons.forEach(b=>b.setAttribute('aria-pressed','false'));highlight();};
 };
