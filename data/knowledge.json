@@ -2195,8 +2195,8 @@
           "topic": "Digital methods",
           "status": "provisional",
           "evidence": "增强现实技术综述；遗产应用的具体主题与实例须另找直接文献支持。",
-          "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
-          "location": ""
+          "location": "",
+          "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality"
         }
       ],
       "interpretive_setting": [
@@ -2205,8 +2205,8 @@
       "interpretive_setting_evidence": {
         "status": "provisional",
         "evidence": "通用技术或设计概念文献；尚未在本记录中核对具体遗产应用的现场／场外情境。",
-        "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality",
-        "location": ""
+        "location": "",
+        "source_url": "https://direct.mit.edu/pvar/article/6/4/355/18336/A-Survey-of-Augmented-Reality"
       },
       "record_kind": "research_pending_classification",
       "publication_format": "Linked document",
@@ -2226,7 +2226,11 @@
         "media": [],
         "public_actions": [],
         "note": "迁移保留的旧编码，可能混用出版形式与公众体验；不自动转为阐释媒介或公众活动。"
-      }
+      },
+      "year_label": "",
+      "recognition_basis": "",
+      "practice_date": "",
+      "document_nature": []
     },
     {
       "node_type": "document",
@@ -5960,7 +5964,7 @@
       "importance": null,
       "importance_note": "Contribution level has not been scored.",
       "coding_status": "2026-11-21: publisher abstract and selected passages in Sections 3–6 checked; supplied reading notes retained with verification corrections.",
-      "placeholder": true,
+      "placeholder": false,
       "relations": [],
       "excerpts": [],
       "timeline_topic": "Interpretation & experience",
@@ -5969,22 +5973,22 @@
           "topic": "Interpretation & experience",
           "status": "source",
           "evidence": "The paper develops a conceptual framework for an interpretive process.",
-          "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
-          "location": "Abstract, p. 208"
-        },
-        {
-          "topic": "Digital methods",
-          "status": "source",
-          "evidence": "The framework is implemented on an online platform.",
-          "source_url": "https://doi.org/10.1080/14626268.2018.1511602",
-          "location": "Abstract, p. 208"
+          "location": "Abstract, p. 208",
+          "source_url": "https://doi.org/10.1080/14626268.2018.1511602"
         },
         {
           "topic": "Participation & plural voices",
           "status": "source",
           "evidence": "Contribution and dialogue connect participants with other users and experts.",
-          "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework",
-          "location": "Section 4: Dialogic interaction, pp. 219–220"
+          "location": "Section 4: Dialogic interaction, pp. 219–220",
+          "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework"
+        },
+        {
+          "topic": "Digital methods",
+          "status": "source",
+          "evidence": "The framework is implemented on an online platform.",
+          "location": "Abstract, p. 208",
+          "source_url": "https://doi.org/10.1080/14626268.2018.1511602"
         }
       ],
       "document_nature": [],
@@ -5994,8 +5998,8 @@
       "interpretive_setting_evidence": {
         "status": "source",
         "evidence": "The evaluation uses an online heritage portal; on-site AR is discussed as future work.",
-        "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework",
-        "location": "Sections 5–7, pp. 221–229"
+        "location": "Sections 5–7, pp. 221–229",
+        "source_url": "https://www.academia.edu/37309212/Digital_heritage_interpretation_a_conceptual_framework"
       },
       "record_kind": "theoretical",
       "publication_format": "Journal article",
@@ -6068,7 +6072,9 @@
           "validation_status": "relevant_passage_checked",
           "evaluation_proposal": "Map every proposed outcome to observable evidence and test a smaller set of design mechanisms."
         }
-      ]
+      ],
+      "recognition_basis": "",
+      "practice_date": ""
     }
   ],
   "nodes": [
